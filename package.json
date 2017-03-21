@@ -1,0 +1,29 @@
+{
+  "name": "xpm",
+  "version": "0.1.0",
+  "description": "The xPack package manager command line tool",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/xpack/xpm-js.git"
+  },
+  "keywords": [
+    "xpack",
+    "package",
+    "manager",
+    "npm"
+  ],
+  "author": {
+    "name": "Liviu Ionescu",
+    "email": "ilg@livius.net",
+    "url": "http://liviusdotnet.wordpress.com"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/xpack/xpm-js/issues"
+  },
+  "homepage": "https://github.com/xpack/xpm-js"
+}
