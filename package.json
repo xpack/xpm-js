@@ -2,9 +2,17 @@
   "name": "xpm",
   "version": "0.1.0",
   "description": "The xPack package manager command line tool",
-  "main": "index.js",
+  "main": "./lib/module.js",
+  "directories": {
+    "bin": "./bin",
+    "lib": "./lib",
+    "test": "./test"
+  },
+  "bin": {
+    "xpm": "./bin/xpm-cli.js"
+  },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "standard"
   },
   "repository": {
     "type": "git",
@@ -21,9 +29,25 @@
     "email": "ilg@livius.net",
     "url": "http://liviusdotnet.wordpress.com"
   },
+  "contributors": [],
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/xpack/xpm-js/issues"
   },
-  "homepage": "https://github.com/xpack/xpm-js"
+  "homepage": "https://github.com/xpack/xpm-js",
+  "dependencies": {
+    "wscript-avoider": "latest",
+    "npmlog": "~4.0.0",
+    "xml2js": "~0.4.15",
+    "shopify-liquid": "~1.7.1"
+  },
+  "devDependencies": {
+    "standard": "*"
+  },
+  "peerDependencies": {},
+  "bundledDependencies": [],
+  "optionalDependencies": {},
+  "engines": {
+    "node": ">7.7.0"
+  }
 }
