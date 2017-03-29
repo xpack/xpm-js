@@ -1,0 +1,8 @@
+# .gitignore is not automatically included, add relevant lines again.
+
+# npm
+*.tgz
+
+# VS Code
+.vscode/
+vscode.mac.command
