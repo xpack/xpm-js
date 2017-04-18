@@ -8,7 +8,7 @@ environment:
 # set clone depth
 clone_depth: 3  # clone entire repository history if not defined
 
-version: {branch}.{build}
+version: "{branch}.{build}"
 
 # Do not build on tags (GitHub and BitBucket)
 skip_tags: true
