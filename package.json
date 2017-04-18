@@ -2,17 +2,21 @@
   "name": "xpm",
   "version": "0.1.0",
   "description": "The xPack package manager command line tool",
-  "main": "./lib/module.js",
+  "main": "./index.js",
   "directories": {
     "bin": "./bin",
     "lib": "./lib",
     "test": "./test"
   },
   "bin": {
-    "xpm": "./bin/xpm-cli.js"
+    "xpm": "./bin/xpm.js"
   },
   "scripts": {
-    "test": "standard"
+    "test": "standard && npm run test-tap -s",
+    "test-coverage": "tap --coverage --reporter=classic --timeout 600 \"test/tap/*.js\"",
+    "test-tap": "tap --reporter=classic --timeout 300 \"test/tap/*.js\"",
+    "tap": "tap --reporter=spec --timeout 300",
+    "fix": "standard --fix"
   },
   "repository": {
     "type": "git",
@@ -36,13 +40,15 @@
   },
   "homepage": "https://github.com/xpack/xpm-js",
   "dependencies": {
-    "wscript-avoider": "latest",
-    "npmlog": "~4.0.0",
-    "xml2js": "~0.4.15",
-    "shopify-liquid": "~1.7.1"
+    "@ilg/cli-start-options": "~0.1.0",
+    "shopify-liquid": "~1.7.7"
   },
   "devDependencies": {
-    "standard": "*"
+    "mkdirp": "~0.5.1",
+    "rimraf": "~2.6.1",
+    "standard": "~10.0.1",
+    "tar": "~2.2.1",
+    "tap": "~10.3.1"
   },
   "peerDependencies": {},
   "bundledDependencies": [],

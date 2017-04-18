@@ -28,35 +28,33 @@
 'use strict'
 
 /**
- * This is the Xpm module entry point, the file that is processed when
- * `require()` is called.
+ * This is the module entry point, the file that is processed when
+ * `require('<module>')` is called.
  *
- * For this to work, it must be linked from `package.json`
- * as `"main": "./lib/module.js",`.
+ * For this to work, it must be linked from `package.json` as
+ * `"main": "./index.js",`, which is, BTW, the default behaviour.
  *
  * To import classes from this module into Node.js applications, use:
  *
  * ```javascript
- * const Xpm = require('xpm').Xpm
+ * const Main = require('<module>').Main
  * ```
  */
 
-// export
-class Xpm {
-
-}
+// ES6: `import { Main } from './lib/main.js'
+const Main = require('./lib/main.js').Main
 
 // ----------------------------------------------------------------------------
 // Node.js specific export definitions.
 
 // By default, `module.exports = {}`.
-// The Xpm class is added as a property to this object.
+// The Main class is added as a property with the same name to this object.
 
-module.exports.Xpm = Xpm
+module.exports.Main = Main
 
 // In ES6, it would be:
-// export class Xpm { ... }
+// export class Main { ... }
 // ...
-// import { Xpm } from 'xpm'
+// import { Main } from 'module.js'
 
 // ----------------------------------------------------------------------------
