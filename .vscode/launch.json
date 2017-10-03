@@ -127,6 +127,7 @@
         "-C",
         "/Users/ilg/tmp/xpm/hifive1-blinky",
         "script1",
+        "x",
         "--",
         "1",
         "2"
