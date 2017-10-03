@@ -12,11 +12,13 @@
     "xpm": "./bin/xpm.js"
   },
   "scripts": {
+    "prepublishOnly": "standard && npm run test-tap -s",
     "test": "standard && npm run test-tap -s",
-    "test-coverage": "tap --coverage --reporter=classic --timeout 600 \"test/tap/*.js\"",
-    "test-tap": "tap --reporter=classic --timeout 300 \"test/tap/*.js\"",
-    "tap": "tap --reporter=spec --timeout 300",
-    "fix": "standard --fix"
+    "test-coverage": "tap --coverage --reporter=classic --timeout 600 --no-color \"test/tap/*.js\"",
+    "test-tap": "tap --reporter=classic --timeout 300 --no-color \"test/tap/*.js\"",
+    "tap": "tap --reporter=spec --timeout 300 --no-color",
+    "fix": "standard --fix",
+    "link": "npm link @ilg/cli-start-options; npm link @ilg/es6-promisifier"
   },
   "repository": {
     "type": "git",
@@ -40,15 +42,16 @@
   },
   "homepage": "https://github.com/xpack/xpm-js",
   "dependencies": {
-    "@ilg/cli-start-options": "~0.1.0",
+    "@ilg/es6-promisifier": "~0.1.9",
+    "@ilg/cli-start-options": "~0.4.0",
     "shopify-liquid": "~1.7.7"
   },
   "devDependencies": {
     "mkdirp": "~0.5.1",
-    "rimraf": "~2.6.1",
-    "standard": "~10.0.1",
-    "tar": "~2.2.1",
-    "tap": "~10.3.1"
+    "rimraf": "~2.6.2",
+    "standard": "~10.0.3",
+    "tar": "~4.0.1",
+    "tap": "~10.7.2"
   },
   "peerDependencies": {},
   "bundledDependencies": [],

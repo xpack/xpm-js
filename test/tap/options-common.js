@@ -121,15 +121,12 @@ test('xpm -d (spawn)', async (t) => {
   try {
     const { code, stdout, stderr } = await Common.xpmCli([
       '--version',
-      '-d'
+      '-dd'
     ])
     t.equal(code, 0, 'exit 0')
     t.ok(stdout.length > 0, 'has stdout')
-    // Matching the whole string also checks that
-    // the colour changes are not used.
-    t.match(stdout, 'DEBUG: start arg0:', 'has debug')
-    // There should be no error messages.
-    t.equal(stderr, '', 'stderr empty')
+    t.match(stdout, 'debug: start arg0:', 'has debug')
+    t.ok(stderr === '', 'has no stderr')
   } catch (err) {
     t.fail(err.message)
   }

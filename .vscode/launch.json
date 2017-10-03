@@ -28,6 +28,124 @@
     {
       "type": "node",
       "request": "launch",
+      "name": "xpm install --help",
+      "program": "${workspaceRoot}/bin/xpm.js",
+      "stopOnEntry": true,
+      "args": [
+        "install",
+        "--help"
+      ],
+      "cwd": "${workspaceRoot}",
+      "preLaunchTask": null,
+      "runtimeExecutable": null,
+      "runtimeArgs": [
+        "--nolazy"
+      ],
+      "env": {
+        "NODE_ENV": "development"
+      },
+      "console": "internalConsole",
+      "sourceMaps": false
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "xpm run-script --help",
+      "program": "${workspaceRoot}/bin/xpm.js",
+      "stopOnEntry": true,
+      "args": [
+        "run-script",
+        "--help"
+      ],
+      "cwd": "${workspaceRoot}",
+      "preLaunchTask": null,
+      "runtimeExecutable": null,
+      "runtimeArgs": [
+        "--nolazy"
+      ],
+      "env": {
+        "NODE_ENV": "development"
+      },
+      "console": "internalConsole",
+      "sourceMaps": false
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "xpm run-script",
+      "program": "${workspaceRoot}/bin/xpm.js",
+      "stopOnEntry": true,
+      "args": [
+        "run-script",
+        "-dd"
+      ],
+      "cwd": "/Users/ilg/tmp/xpm/hifive1-blinky",
+      "preLaunchTask": null,
+      "runtimeExecutable": null,
+      "runtimeArgs": [
+        "--nolazy"
+      ],
+      "env": {
+        "NODE_ENV": "development"
+      },
+      "console": "internalConsole",
+      "sourceMaps": false
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "xpm run-script -C ...",
+      "program": "${workspaceRoot}/bin/xpm.js",
+      "stopOnEntry": true,
+      "args": [
+        "run-script",
+        "-dd",
+        "-C",
+        "/Users/ilg/tmp/xpm/hifive1-blinky"
+      ],
+      "cwd": "${workspaceRoot}",
+      "preLaunchTask": null,
+      "runtimeExecutable": null,
+      "runtimeArgs": [
+        "--nolazy"
+      ],
+      "env": {
+        "NODE_ENV": "development"
+      },
+      "console": "internalConsole",
+      "sourceMaps": false
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "xpm run-script -C ... script1",
+      "program": "${workspaceRoot}/bin/xpm.js",
+      "stopOnEntry": true,
+      "args": [
+        "run-script",
+        "-dd",
+        "-C",
+        "/Users/ilg/tmp/xpm/hifive1-blinky",
+        "script1",
+        "--",
+        "1",
+        "2"
+      ],
+      "cwd": "${workspaceRoot}",
+      "preLaunchTask": null,
+      "runtimeExecutable": null,
+      "runtimeArgs": [
+        "--nolazy"
+      ],
+      "env": {
+        "NODE_ENV": "development"
+      },
+      "console": "internalConsole",
+      "sourceMaps": false
+    },
+    {
+      "type": "node",
+      "request": "launch",
       "name": "Launch Program",
       "program": "${workspaceRoot}/index.js"
     },

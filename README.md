@@ -132,7 +132,7 @@ $ npm run test-coverage
 
 ### Continuous Integration (CI)
 
-The continuous integration tests are performed via [Travis CI](https://travis-ci.org/xpack/xpm-js) and [AppVeyor](https://ci.appveyor.com/project/ilg-ul/xpm-js).
+The continuous integration tests are performed via [Travis CI](https://travis-ci.org/xpack/xpm-js) (for POSIX) and [AppVeyor](https://ci.appveyor.com/project/ilg-ul/xpm-js) (for Windows).
 
 ### Standard compliance
 
