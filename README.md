@@ -26,7 +26,7 @@ If this is your first encounter with `npm`, you need to install the [node.js](ht
 
 The module is available as [**xpm**](https://www.npmjs.com/package/xpm) from the public repository; with `npm` already available, installing `xpm` is quite easy:
 
-```bash
+```console
 $ sudo npm install xpm --global
 ```
 
@@ -38,7 +38,7 @@ The development repository is available from the GitHub [xpack/xpm-js](https://g
 
 To remove `xpm`, the command is similar:
 
-```bash
+```console
 $ sudo npm uninstall xpm --global
 ```
 
@@ -48,7 +48,7 @@ $ sudo npm uninstall xpm --global
 
 To get an initial glimpse on the program, ask for help:
 
-```
+```console
 $ xpm --help
 
 The xPack package manager command line tool
@@ -84,7 +84,7 @@ TBD
 
 ### Git repo
 
-```bash
+```console
 $ git clone https://github.com/xpack/xpm-js.git xpm-js.git
 $ cd xpm-js.git
 $ npm install
@@ -100,7 +100,7 @@ The tests use the [`node-tap`](http://www.node-tap.org) framework (_A Test-Anyth
 
 As for any `npm` package, the standard way to run the project tests is via `npm test`:
 
-```bash
+```console
 $ cd xpm-js.git
 $ npm install
 $ npm test
@@ -108,14 +108,14 @@ $ npm test
 
 A typical test result looks like:
 
-```
+```console
 $ npm run test
 ...
 ```
 
 To run a specific test with more verbose output, use `npm run tap`:
 
-```
+```console
 $ npm run tap test/tap/...
 ```
 
@@ -125,7 +125,7 @@ Coverage tests are a good indication on how much of the source files is exercise
 
 To run the coverage tests, use `npm run test-coverage`:
 
-```
+```console
 $ npm run test-coverage
 ...
 ```
@@ -146,7 +146,7 @@ Known and accepted exceptions:
 
 To manually fix compliance with the style guide (where possible):
 
-```
+```console
 $ npm run fix
 
 > xpm@0.1.10 fix /Users/ilg/My Files/MacBookPro Projects/xPack/npm-modules/xpm-js.git
@@ -160,7 +160,7 @@ The documentation metadata follows the [JSdoc](http://usejsdoc.org) tags.
 
 To enforce checking at file level, add the following comments right after the `use strict`:
 
-```
+```js
 'use strict'
 /* eslint valid-jsdoc: "error" */
 /* eslint max-len: [ "error", 80, { "ignoreUrls": true } ] */
