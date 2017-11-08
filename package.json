@@ -51,7 +51,8 @@
     "rimraf": "~2.6.2",
     "standard": "~10.0.3",
     "tar": "~4.0.1",
-    "tap": "~10.7.2"
+    "tap": "~10.7.2",
+    "pacote": "~6.1.0"
   },
   "peerDependencies": {},
   "bundledDependencies": [],
