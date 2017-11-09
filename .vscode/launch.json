@@ -178,7 +178,8 @@
         "install",
         "-dd",
         "@gnu-mcu-eclipse/riscv-none-gcc",
-        "--global"
+        "--global",
+        "--force"
       ],
       "cwd": "${workspaceRoot}",
       "preLaunchTask": null,

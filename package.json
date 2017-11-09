@@ -44,15 +44,18 @@
   "dependencies": {
     "@ilg/es6-promisifier": "~0.1.9",
     "@ilg/cli-start-options": "~0.4.0",
-    "liquidjs": "~1.9.6"
+    "liquidjs": "~1.9.6",
+    "rimraf": "~2.6.2",
+    "pacote": "~6.1.0",
+    "cacache": "~10.0.0",
+    "arch": "~2.1.0",
+    "mkdirp": "~0.5.1",
+    "tar": "~4.0.1",
+    "unzip": "~0.1.11"
   },
   "devDependencies": {
-    "mkdirp": "~0.5.1",
-    "rimraf": "~2.6.2",
     "standard": "~10.0.3",
-    "tar": "~4.0.1",
-    "tap": "~10.7.2",
-    "pacote": "~6.1.0"
+    "tap": "~10.7.2"
   },
   "peerDependencies": {},
   "bundledDependencies": [],
