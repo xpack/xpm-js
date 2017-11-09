@@ -171,7 +171,7 @@
     {
       "type": "node",
       "request": "launch",
-      "name": "xpm install gcc",
+      "name": "xpm install gcc -g",
       "program": "${workspaceRoot}/bin/xpm.js",
       "stopOnEntry": true,
       "args": [
@@ -179,6 +179,32 @@
         "-dd",
         "@gnu-mcu-eclipse/riscv-none-gcc",
         "--global"
+      ],
+      "cwd": "${workspaceRoot}",
+      "preLaunchTask": null,
+      "runtimeExecutable": null,
+      "runtimeArgs": [
+        "--nolazy"
+      ],
+      "env": {
+        "NODE_ENV": "development"
+      },
+      "console": "internalConsole",
+      "sourceMaps": false
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "xpm install gcc",
+      "program": "${workspaceRoot}/bin/xpm.js",
+      "stopOnEntry": true,
+      "args": [
+        "install",
+        "-dd",
+        "@gnu-mcu-eclipse/riscv-none-gcc",
+        "--force",
+        "-C",
+        "/tmp/ppp"
       ],
       "cwd": "${workspaceRoot}",
       "preLaunchTask": null,
