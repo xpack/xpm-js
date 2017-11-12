@@ -2,6 +2,10 @@
 
 Changes in reverse chronological order.
 
+### v0.2.2 (2017-11-12)
+
+- fix Linux cache path
+
 ### v0.2.1 (2017-11-12)
 
 - add 'request' to deps
