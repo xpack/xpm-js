@@ -43,7 +43,7 @@
   "homepage": "https://github.com/xpack/xpm-js",
   "dependencies": {
     "@ilg/es6-promisifier": "~0.1.9",
-    "@ilg/cli-start-options": "~0.4.0",
+    "@ilg/cli-start-options": "~0.4.1",
     "liquidjs": "~1.9.6",
     "rimraf": "~2.6.2",
     "pacote": "~6.1.0",
