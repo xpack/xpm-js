@@ -1,6 +1,6 @@
 {
   "name": "xpm",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "description": "The xPack package manager command line tool",
   "main": "./index.js",
   "directories": {
