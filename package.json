@@ -46,6 +46,7 @@
     "@ilg/cli-start-options": "~0.4.1",
     "liquidjs": "~1.9.6",
     "rimraf": "~2.6.2",
+    "request": "~2.83.0",
     "pacote": "~6.1.0",
     "cacache": "~10.0.0",
     "arch": "~2.1.0",
