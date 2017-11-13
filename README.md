@@ -180,8 +180,7 @@ Note: be sure C style comments are used, C++ styles are not parsed by [ESLint](h
 
 ## License
 
-The original content is released under the MIT License, with
-all rights reserved to Liviu Ionescu.
+The original content is released under the [MIT License](https://opensource.org/licenses/MIT), with all rights reserved to [Liviu Ionescu](https://github.com/ilg-ul).
 
 The design is heavily influenced by the `npm` application, **Copyright (c) npm, Inc. and Contributors**, Licensed on the terms of **The Artistic License 2.0**.
 
