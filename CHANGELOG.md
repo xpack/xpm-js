@@ -2,6 +2,10 @@
 
 Changes in reverse chronological order.
 
+### v0.2.3 (2017-11-12)
+
+- xpm/install: rework the download logic
+
 ### v0.2.2 (2017-11-12)
 
 - fix Linux cache path
