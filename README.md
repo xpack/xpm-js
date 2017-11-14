@@ -186,5 +186,5 @@ The design is heavily influenced by the `npm` application, **Copyright (c) npm, 
 
 ## Note
 
-The `xpm` tool will be available soon.
+The `xpm` tool is currently experimental and should not be used in production environments.
 
