@@ -2,6 +2,11 @@
 
 Changes in reverse chronological order.
 
+### v0.2.4 (2017-11-14)
+
+- README: fix  typos
+- README: add 'experimental' notice
+
 ### v0.2.3 (2017-11-12)
 
 - xpm/install: rework the download logic
