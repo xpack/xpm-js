@@ -44,6 +44,17 @@ $ sudo npm uninstall xpm --global
 
 (On Windows `sudo` is not required`).
 
+### macOS specifics
+
+On macOS, the central repository is located in `~/Library/xPacks`. By default, `~/Library` is hidden and does not show in folder selections.
+
+To make it visible, use:
+
+```console
+$ /usr/bin/chflags nohidden ~/Library
+$ xattr -d com.apple.FinderInfo ~/Library
+```
+
 ## User info
 
 To get an initial glimpse on the program, ask for help:
