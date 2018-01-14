@@ -2,6 +2,12 @@
 
 Changes in reverse chronological order.
 
+### v0.2.5 (2018-01-14)
+
+- [#1] install: accept multiple packages
+- [#2] install: accept platforms that do not have binaries
+- [#3] install: no error for 'Package already installed'
+
 ### v0.2.4 (2017-11-14)
 
 - README: fix  typos
