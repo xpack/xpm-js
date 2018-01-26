@@ -2,6 +2,12 @@
 
 Changes in reverse chronological order.
 
+### v0.2.6 2018-01-14
+
+- [#1] rework the unzip logic
+  - no longer need the rename step
+  - use decompress, which allows to strip
+
 ### v0.2.5 (2018-01-14)
 
 - [#1] install: accept multiple packages
