@@ -52,7 +52,7 @@
     "arch": "~2.1.0",
     "mkdirp": "~0.5.1",
     "tar": "~4.0.1",
-    "unzip": "~0.1.11"
+    "decompress": "~4.2.0"
   },
   "devDependencies": {
     "standard": "~10.0.3",
