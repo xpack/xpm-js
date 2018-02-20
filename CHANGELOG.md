@@ -1,6 +1,11 @@
 ## Change log
 
 Changes in reverse chronological order.
+Don't forget to close GitHub [issues](https://github.com/xpack/xpm-js/issues).
+
+### v0.2.7 2018-02-20
+
+- [#5] xpm install: add support for xz archives
 
 ### v0.2.6 2018-01-14
 
