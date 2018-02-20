@@ -42,17 +42,18 @@
   },
   "homepage": "https://github.com/xpack/xpm-js",
   "dependencies": {
-    "@ilg/es6-promisifier": "~0.1.9",
     "@ilg/cli-start-options": "~0.4.1",
-    "liquidjs": "~1.9.6",
-    "rimraf": "~2.6.2",
-    "request": "~2.83.0",
-    "pacote": "~6.1.0",
-    "cacache": "~10.0.0",
+    "@ilg/es6-promisifier": "~0.1.9",
     "arch": "~2.1.0",
+    "cacache": "~10.0.0",
+    "decompress": "~4.2.0",
+    "decompress-tarxz": "~2.1.1",
+    "liquidjs": "~1.9.6",
     "mkdirp": "~0.5.1",
-    "tar": "~4.0.1",
-    "decompress": "~4.2.0"
+    "pacote": "~6.1.0",
+    "request": "~2.83.0",
+    "rimraf": "~2.6.2",
+    "tar": "~4.0.1"
   },
   "devDependencies": {
     "standard": "~10.0.3",
