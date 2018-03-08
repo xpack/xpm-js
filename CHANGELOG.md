@@ -3,6 +3,10 @@
 Changes in reverse chronological order.
 Don't forget to close GitHub [issues](https://github.com/xpack/xpm-js/issues).
 
+### v0.2.8 2018-03-08
+
+- update deps to avoid ssri < 5.2.2.
+
 ### v0.2.7 2018-02-20
 
 - [#5] xpm install: add support for xz archives
