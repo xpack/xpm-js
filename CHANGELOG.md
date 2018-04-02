@@ -3,6 +3,10 @@
 Changes in reverse chronological order.
 Don't forget to close GitHub [issues](https://github.com/xpack/xpm-js/issues).
 
+### v0.2.10 2018-04-02
+
+- update deps
+
 ### v0.2.9 2018-04-02
 
 - removed dep from compress-tarxz, it fails to install on node 9.x
