@@ -20,21 +20,38 @@ For developers, `xpm` provides a very convenient way of publishing the software 
 
 ## Prerequisites
 
-If this is your first encounter with `npm`, you need to install the [node.js](https://nodejs.org/) JavScript run-time. The process is straightforward and does not pollute the system locations significantly; just pick the current version, download the package suitable for your platform and install it as usual. The result is a binary program called `node` that can be used to execute JavaScript code from the terminal, and a link called `npm`, pointing to the `npm-cli.js` script, which is part of the node module that implements the npm functionality. On Windows, it is recommended to first install the [Git for Windows](https://git-scm.com/download/win) package.
+If this is your first encounter with `npm`, you need to install the 
+[node.js](https://nodejs.org/) JavaScript run-time. The process is 
+straightforward and does not pollute the system locations significantly; 
+there are two `node` versions, LTS (Long Term Service) and Current; 
+generally it is safer to use LTS, especially on Windows.
+Download the package suitable for your platform and install it as usual.
+The result is a binary program called `node` that can be used to execute 
+JavaScript code from the terminal, and a link called `npm`, pointing to 
+the `npm-cli.js` script, which is part of the node module that implements 
+the npm functionality. 
+
+Although not mandatory for `xpm`, on Windows, it is recommended to 
+also install the [Git for Windows](https://git-scm.com/download/win) package.
 
 ## Easy install
 
-The module is available as [**xpm**](https://www.npmjs.com/package/xpm) from the public repository; with `npm` already available, installing `xpm` is quite easy:
+The command line module is available as 
+[`xpm`](https://www.npmjs.com/package/xpm) from the public repository; 
+with `npm` already available, installing `xpm` is quite easy:
 
 ```console
 $ sudo npm install xpm --global
 ```
 
-On Windows, global packages are installed in the user home folder, and do not require `sudo`.
+On Windows, global packages are installed in the user home folder, and 
+do not require `sudo`.
 
-The module provides the `xpm` executable, which is a possible reason to install it globally.
+The module provides the `xpm` executable, which is a possible reason to 
+install it globally.
 
-The development repository is available from the GitHub [xpack/xpm-js](https://github.com/xpack/xpm-js) project.
+The development repository is available from the GitHub 
+[xpack/xpm-js](https://github.com/xpack/xpm-js) project.
 
 To remove `xpm`, the command is similar:
 
@@ -46,7 +63,8 @@ $ sudo npm uninstall xpm --global
 
 ### macOS specifics
 
-On macOS, the central repository is located in `~/Library/xPacks`. By default, `~/Library` is hidden and does not show in folder selections.
+On macOS, the central repository is located in `~/Library/xPacks`. 
+By default, `~/Library` is hidden and does not show in folder selections.
 
 To make it visible, use:
 
@@ -66,30 +84,27 @@ The xPack package manager command line tool
 Usage: xpm <command> [<subcommand>...] [<options> ...] [<args>...]
 
 where <command> is one of:
-  install
+  build, init, install, run-script
 
 Common options:
   --loglevel <level>     Set log level (silent|warn|info|verbose|debug|trace) 
   -s|--silent            Disable all messages (--loglevel silent) 
-  -q|--quiet             Mostly quiet (--loglevel warn) 
-  -v|--verbose           Informative verbose (--loglevel info) 
-  -vv                    Very verbose (--loglevel verbose, or -v -v) 
+  -q|--quiet             Mostly quiet, warnings and errors (--loglevel warn) 
+  --informative          Informative (--loglevel info) 
+  -v|--verbose           Verbose (--loglevel verbose) 
   -d|--debug             Debug messages (--loglevel debug) 
-  -dd|--trace            Trace messages (--loglevel trace) 
+  -dd|--trace            Trace messages (--loglevel trace, -d -d) 
   -C <folder>            Set current folder 
 
-xpm -h|--help            Quick help
-xpm <command> -h|--help  Quick help on command
-
+xpm -h|--help            Quick help 
+xpm <command> -h|--help  Quick help on command 
 xpm --version            Show version 
 xpm -i|--interactive     Enter interactive mode 
 
-npm xpm@0.1.0 '/Users/ilg/My Files/MacBookPro Projects/xPack/npm-modules/xpm-js.git'
+npm xpm@0.2.10 '/Users/ilg/My Files/MacBookPro Projects/xPack/npm-modules/xpm-js.git'
 Home page: <https://github.com/xpack/xpm-js>
 Bug reports: <https://github.com/xpack/xpm-js/issues>
 ```
-
-TBD
 
 ## Developer info
 
