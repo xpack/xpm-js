@@ -3,6 +3,10 @@
 Changes in reverse chronological order.
 Don't forget to close GitHub [issues](https://github.com/xpack/xpm-js/issues).
 
+### v0.2.11 2018-04-06
+
+- add update-notifier
+
 ### v0.2.10 2018-04-02
 
 - update deps
