@@ -10,13 +10,18 @@ A Node.js CLI application to manage xPacks.
 
 ## xPacks overview
 
-**xPacks** are general purpose software C/C++ packages, intended to enhance code sharing and reusing during the development of C/C++ libraries and applications, much the same as **npm modules** do so nicely in the JavaScript ecosystem.
+**xPacks** are general purpose software C/C++ packages, intended to enhance 
+code sharing and reusing during the development of C/C++ libraries and 
+applications, much the same as **npm modules** do so nicely in the 
+JavaScript ecosystem.
 
 ## Purpose
 
-The main purpose of the `xpm` tool is to install xPacks, including all dependent xPacks, and to easily update them when new versions are released.
+The main purpose of the `xpm` tool is to install xPacks, including all 
+dependent xPacks, and to easily update them when new versions are released.
 
-For developers, `xpm` provides a very convenient way of publishing the software packages, using the same central repository as `npm`.
+For developers, `xpm` provides a very convenient way of publishing the 
+software packages, using the same central repository as `npm`.
 
 ## Prerequisites
 
@@ -118,13 +123,17 @@ $ sudo npm link
 $ ls -l /usr/local/lib/node_modules/
 ```
 
-A link to the development folder should be present in the system `node_modules` folder, and also a link to the `xpm` executable should be available system wide.
+A link to the development folder should be present in the system 
+`node_modules` folder, and also a link to the `xpm` executable should 
+be available system wide.
 
 ### Tests
 
-The tests use the [`node-tap`](http://www.node-tap.org) framework (_A Test-Anything-Protocol library for Node.js_, written by Isaac Schlueter).
+The tests use the [`node-tap`](http://www.node-tap.org) framework 
+(_A Test-Anything-Protocol library for Node.js_, written by Isaac Schlueter).
 
-As for any `npm` package, the standard way to run the project tests is via `npm test`:
+As for any `npm` package, the standard way to run the project tests is 
+via `npm test`:
 
 ```console
 $ cd xpm-js.git
@@ -147,7 +156,9 @@ $ npm run tap test/tap/...
 
 ### Coverage tests
 
-Coverage tests are a good indication on how much of the source files is exercised by the tests. Ideally all source files should be covered 100%, for all 4 criteria (statements, branches, functions, lines).
+Coverage tests are a good indication on how much of the source files is 
+exercised by the tests. Ideally all source files should be covered 100%, 
+for all 4 criteria (statements, branches, functions, lines).
 
 To run the coverage tests, use `npm run test-coverage`:
 
@@ -158,13 +169,16 @@ $ npm run test-coverage
 
 ### Continuous Integration (CI)
 
-The continuous integration tests are performed via [Travis CI](https://travis-ci.org/xpack/xpm-js) (for POSIX) and [AppVeyor](https://ci.appveyor.com/project/ilg-ul/xpm-js) (for Windows).
+The continuous integration tests are performed via 
+[Travis CI](https://travis-ci.org/xpack/xpm-js) (for POSIX) and 
+[AppVeyor](https://ci.appveyor.com/project/ilg-ul/xpm-js) (for Windows).
 
 ### Standard compliance
 
 The module uses ECMAScript 6 class definitions.
 
-As style, it uses the [JavaScript Standard Style](https://standardjs.com/), automatically checked at each commit via Travis CI.
+As style, it uses the [JavaScript Standard Style](https://standardjs.com/), 
+automatically checked at each commit via Travis CI.
 
 Known and accepted exceptions:
 
@@ -184,7 +198,8 @@ $ npm run fix
 
 The documentation metadata follows the [JSdoc](http://usejsdoc.org) tags.
 
-To enforce checking at file level, add the following comments right after the `use strict`:
+To enforce checking at file level, add the following comments right after 
+the `use strict`:
 
 ```js
 'use strict'
@@ -192,7 +207,8 @@ To enforce checking at file level, add the following comments right after the `u
 /* eslint max-len: [ "error", 80, { "ignoreUrls": true } ] */
 ```
 
-Note: be sure C style comments are used, C++ styles are not parsed by [ESLint](http://eslint.org).
+Note: be sure C style comments are used, C++ styles are not parsed by 
+[ESLint](http://eslint.org).
 
 ### How to publish
 
@@ -206,11 +222,16 @@ Note: be sure C style comments are used, C++ styles are not parsed by [ESLint](h
 
 ## License
 
-The original content is released under the [MIT License](https://opensource.org/licenses/MIT), with all rights reserved to [Liviu Ionescu](https://github.com/ilg-ul).
+The original content is released under the 
+[MIT License](https://opensource.org/licenses/MIT), with all rights 
+reserved to [Liviu Ionescu](https://github.com/ilg-ul).
 
-The design is heavily influenced by the `npm` application, **Copyright (c) npm, Inc. and Contributors**, Licensed on the terms of **The Artistic License 2.0**.
+The design is heavily influenced by the `npm` application, 
+**Copyright (c) npm, Inc. and Contributors**, Licensed on the 
+terms of **The Artistic License 2.0**.
 
 ## Note
 
-The `xpm` tool is currently experimental and should not be used in production environments.
+The `xpm` tool is currently experimental and should not be used in 
+production environments.
 
