@@ -3,11 +3,15 @@
 Changes in reverse chronological order.
 Don't forget to close GitHub [issues](https://github.com/xpack/xpm-js/issues).
 
-### v0.2.13 2018-04-07
+### v0.2.15 20 18-04-07
+
+- update cli-start-options to 0.4.4
+
+### v0.2.14/v0.2.13 2018-04-07
 
 - use integrated update notifier
 
-### v0.2.11/v0.2.11 2018-04-06
+### v0.2.12/v0.2.11 2018-04-06
 
 - add update-notifier
 
