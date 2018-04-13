@@ -3,6 +3,10 @@
 Changes in reverse chronological order.
 Don't forget to close GitHub [issues](https://github.com/xpack/xpm-js/issues).
 
+### v0.2.17 20 18-04-13
+
+- update cli-start-options to 0.4.6, to fix del message
+
 ### v0.2.16 20 18-04-07
 
 - update cli-start-options to 0.4.5
