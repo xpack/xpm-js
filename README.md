@@ -10,10 +10,10 @@ A Node.js CLI application to manage xPacks.
 
 ## xPacks overview
 
-**xPacks** are general purpose software C/C++ packages, intended to enhance 
-code sharing and reusing during the development of C/C++ libraries and 
-applications, much the same as **npm modules** do so nicely in the 
-JavaScript ecosystem.
+**xPacks** are general purpose software **C/C++ packages**, intended to
+enhance code **sharing** and **reusin**g during the development of
+C/C++ libraries and applications, much the same as **npm modules**
+do so nicely in the JavaScript ecosystem.
 
 ## Purpose
 
@@ -49,7 +49,7 @@ with `npm` already available, installing `xpm` is quite easy:
 $ sudo npm install xpm --global
 ```
 
-On Windows, global packages are installed in the user home folder, and 
+On **Windows**, global packages are installed in the user home folder, and 
 do not require `sudo`.
 
 The module provides the `xpm` executable, which is a possible reason to 
