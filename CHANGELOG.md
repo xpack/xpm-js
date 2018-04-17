@@ -3,6 +3,14 @@
 Changes in reverse chronological order.
 Don't forget to close GitHub [issues](https://github.com/xpack/xpm-js/issues).
 
+### v0.3.0 20 18-04-17
+
+- [#8] xpm init: add support for --template
+- [#9] xpm init: add support to create new xPacks
+- xpm install: install dependencies
+- xpm install: add links to binaries
+- xpm run: add paths to local .bin
+
 ### v0.2.18 20 18-04-13
 
 - update cli-start-options to 0.4.8, with message on two lines
