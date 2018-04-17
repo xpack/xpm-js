@@ -319,7 +319,7 @@
         "boardName=hifive1",
         "-dd",
         "-C",
-        "/Users/ilg/tmp/xp"
+        "C:\\Users\\ilg\\tmp\\xyz"
       ],
       "cwd": "${workspaceRoot}",
       "preLaunchTask": null,
