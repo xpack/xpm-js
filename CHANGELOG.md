@@ -3,6 +3,10 @@
 Changes in reverse chronological order.
 Don't forget to close GitHub [issues](https://github.com/xpack/xpm-js/issues).
 
+### v0.3.2 20 18-04-17
+
+- xpm install: try junctions and hard links on Windows
+
 ### v0.3.1 20 18-04-17
 
 - utils/spawn.js: fix code for windows
