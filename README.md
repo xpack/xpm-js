@@ -4,7 +4,7 @@
 [![Travis](https://img.shields.io/travis/xpack/xpm-js.svg?label=linux)](https://travis-ci.org/xpack/xpm-js)
 [![AppVeyor](https://ci.appveyor.com/api/projects/status/lj735puc38idko6m?svg=true)](https://ci.appveyor.com/project/ilg-ul/xpm-js)
 
-## The **x**Pack **p**ackage **m**anager command line tool.
+## The **x**Pack **p**ackage **m**anager command line tool
 
 A Node.js CLI application to manage xPacks.
 
@@ -186,6 +186,7 @@ xpm -i|--interactive     Enter interactive mode
 npm xpm@0.2.10 '/Users/ilg/My Files/MacBookPro Projects/xPack/npm-modules/xpm-js.git'
 Home page: <https://github.com/xpack/xpm-js>
 Bug reports: <https://github.com/xpack/xpm-js/issues>
+$
 ```
 
 ## Developer info
@@ -287,7 +288,15 @@ the `use strict`:
 Note: be sure C style comments are used, C++ styles are not parsed by 
 [ESLint](http://eslint.org).
 
+## Maintainer info
+
 ### How to publish
+
+To check the last commits:
+
+```console
+$ git log --pretty='%cd * %h %s' --date=short
+```
 
 * commit all changes
 * `npm run test` (`fix` included)
