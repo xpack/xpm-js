@@ -3,6 +3,11 @@
 Changes in reverse chronological order.
 Don't forget to close GitHub [issues](https://github.com/xpack/xpm-js/issues).
 
+### v0.3.4 20 18-04-18
+
+- xpm init: fix parseGitConfig exception
+- README: improve install section
+
 ### v0.3.3 20 18-04-17
 
 - xpm install: add 'checking...' messages
