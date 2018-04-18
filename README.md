@@ -43,20 +43,30 @@ also install the [Git for Windows](https://git-scm.com/download/win) package.
 
 The command line module is available as 
 [`xpm`](https://www.npmjs.com/package/xpm) from the public repository; 
-with `npm` already available, installing `xpm` is quite easy:
+with `npm` already available, installing `xpm` is quite easy.
+
+### macOS and GNU/Linux
+
+Since `xpm` behaves like a system wide command, it is recommended to 
+install it globally:
 
 ```console
 $ sudo npm install xpm --global
 ```
 
-On **Windows**, global packages are installed in the user home folder, and 
-do not require `sudo`.
+The result is a link in `/usr/local/bin`:
 
-The module provides the `xpm` executable, which is a possible reason to 
-install it globally.
+```console
+$ ls -l /usr/local/bin/xpm
+lrwxr-xr-x  1 root  wheel  34 Nov 13 03:02 /usr/local/bin/xpm -> ../lib/node_modules/xpm/bin/xpm.js
+```
 
-The development repository is available from the GitHub 
-[xpack/xpm-js](https://github.com/xpack/xpm-js) project.
+To test if `xpm` starts:
+
+```console
+$ xpm --version
+0.3.3
+```
 
 To remove `xpm`, the command is similar:
 
@@ -64,7 +74,74 @@ To remove `xpm`, the command is similar:
 $ sudo npm uninstall xpm --global
 ```
 
-(On Windows `sudo` is not required`).
+### Windows
+
+On **Windows**, global packages are installed in the user home folder 
+(like `C:\Users\ilg\AppData\Roaming\npm`), and do not require `sudo`.
+
+```console
+C:\>npm install xpm --global
+```
+
+The result is a pair of files in the `%APPDATA%\npm` folder:
+
+```console
+C:\>dir "%APPDATA%"\npm\xpm*
+ Volume in drive C has no label.
+ Volume Serial Number is 28CE-1C06
+
+ Directory of C:\Users\Liviu Ionescu\AppData\Roaming\npm
+
+18/04/2018  10:40               319 xpm
+18/04/2018  10:40               196 xpm.cmd
+               2 File(s)            515 bytes
+               0 Dir(s)  51,207,155,712 bytes free
+```
+
+However, attempts to start the program fail:
+
+```console
+C:\>xpm --version
+'xpm' is not recognized as an internal or external command,
+operable program or batch file.
+```
+
+The reason is that this path is not in the default environment, 
+and must be added manually.
+
+```console
+C:\>setx Path "%Path%;%APPDATA%\npm"
+```
+
+After this, the program should start normally:
+
+```console
+C:\>xpm --version
+0.3.3
+```
+
+To remove `xpm`, the command is similar:
+
+```console
+C:\>npm uninstall xpm --global
+```
+
+## `npm` folders
+
+For more details on the folders used by `npm`, see 
+[npm-folders](https://docs.npmjs.com/files/folders).
+
+## `xpm` folders
+
+To avoid security issues and the need to increase the user privilege level,
+`xpm` does not use any system folders, and all activity happens
+in the user home location.
+
+There are two main folders:
+- a cache folder, where all downloaded files are stored
+- a central repository folder, where the xPacks are expanded
+
+For more details see [xpm folders](https://xpack.github.io/xpm/files/folders/).
 
 ### macOS specifics
 
