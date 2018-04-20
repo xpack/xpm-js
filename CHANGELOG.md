@@ -3,6 +3,12 @@
 Changes in reverse chronological order.
 Don't forget to close GitHub [issues](https://github.com/xpack/xpm-js/issues).
 
+### v0.3.5 20 18-04-20
+
+- utils/spawn: fix windows Path
+- deps: cmd-shim@2.0.2
+- install: use cmd-shim on windows
+
 ### v0.3.4 20 18-04-18
 
 - xpm init: fix parseGitConfig exception
