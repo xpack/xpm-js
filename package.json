@@ -58,7 +58,8 @@
     "user-home": "~2.0.0",
     "semver": "~5.5.0",
     "make-dir": "~1.2.0",
-    "del": "~3.0.0"
+    "del": "~3.0.0",
+    "cmd-shim": "~2.0.2"
   },
   "devDependencies": {
     "standard": "~11.0.0",
