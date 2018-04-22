@@ -3,6 +3,16 @@
 Changes in reverse chronological order.
 Don't forget to close GitHub [issues](https://github.com/xpack/xpm-js/issues).
 
+### v0.3.6 20 18-04-22
+
+- deps: @zkochan/cd-shim@2.2.4
+- init: remove package if npm install fails
+- utils/xpack.js: add getPosixPath()
+- utils/spawn.js: overwrite Path with PATH only if different
+- install: implement Windows complicated logic with shims
+- add NOTES.md
+- install: skip when posix bin file not found
+
 ### v0.3.5 20 18-04-20
 
 - utils/spawn: fix windows Path
