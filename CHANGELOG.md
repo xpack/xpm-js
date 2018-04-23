@@ -3,7 +3,12 @@
 Changes in reverse chronological order.
 Don't forget to close GitHub [issues](https://github.com/xpack/xpm-js/issues).
 
-### v0.3.6 20 18-04-22
+### v0.4.0 (2018-04-23)
+
+- copy shim locally
+- install: shims add path to pick dlls
+
+### v0.3.6 (2018-04-22)
 
 - deps: @zkochan/cd-shim@2.2.4
 - init: remove package if npm install fails
@@ -13,31 +18,31 @@ Don't forget to close GitHub [issues](https://github.com/xpack/xpm-js/issues).
 - add NOTES.md
 - install: skip when posix bin file not found
 
-### v0.3.5 20 18-04-20
+### v0.3.5 (2018-04-20)
 
 - utils/spawn: fix windows Path
 - deps: cmd-shim@2.0.2
 - install: use cmd-shim on windows
 
-### v0.3.4 20 18-04-18
+### v0.3.4 (2018-04-18)
 
 - xpm init: fix parseGitConfig exception
 - README: improve install section
 
-### v0.3.3 20 18-04-17
+### v0.3.3 (2018-04-17)
 
 - xpm install: add 'checking...' messages
  
-### v0.3.2 20 18-04-17
+### v0.3.2 (2018-04-17)
 
 - xpm install: try junctions and hard links on Windows
 
-### v0.3.1 20 18-04-17
+### v0.3.1 (2018-04-17)
 
 - utils/spawn.js: fix code for windows
 - package.json: bump cli-start-options to 0.4.9
 
-### v0.3.0 20 18-04-17
+### v0.3.0 (2018-04-17)
 
 - [#8] xpm init: add support for --template
 - [#9] xpm init: add support to create new xPacks
@@ -45,47 +50,47 @@ Don't forget to close GitHub [issues](https://github.com/xpack/xpm-js/issues).
 - xpm install: add links to binaries
 - xpm run: add paths to local .bin
 
-### v0.2.18 20 18-04-13
+### v0.2.18 (2018-04-13)
 
 - update cli-start-options to 0.4.8, with message on two lines
 
-### v0.2.17 20 18-04-13
+### v0.2.17 (2018-04-13)
 
 - update cli-start-options to 0.4.6, to fix del message
 
-### v0.2.16 20 18-04-07
+### v0.2.16 (2018-04-07)
 
 - update cli-start-options to 0.4.5
 
-### v0.2.15 20 18-04-07
+### v0.2.15 (2018-04-07)
 
 - update cli-start-options to 0.4.4
 
-### v0.2.14/v0.2.13 2018-04-07
+### v0.2.14/v0.2.13 (2018-04-07)
 
 - use integrated update notifier
 
-### v0.2.12/v0.2.11 2018-04-06
+### v0.2.12/v0.2.11 (2018-04-06)
 
 - add update-notifier
 
-### v0.2.10 2018-04-02
+### v0.2.10 (2018-04-02)
 
 - update deps
 
-### v0.2.9 2018-04-02
+### v0.2.9 (2018-04-02)
 
 - removed dep from compress-tarxz, it fails to install on node 9.x
 
-### v0.2.8 2018-03-08
+### v0.2.8 (2018-03-08)
 
 - update deps to avoid ssri < 5.2.2.
 
-### v0.2.7 2018-02-20
+### v0.2.7 (2018-02-20)
 
 - [#5] xpm install: add support for xz archives
 
-### v0.2.6 2018-01-14
+### v0.2.6 (2018-01-14)
 
 - [#4] rework the unzip logic
   - no longer need the rename step
