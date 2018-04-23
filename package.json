@@ -59,8 +59,10 @@
     "semver": "~5.5.0",
     "make-dir": "~1.2.0",
     "del": "~3.0.0",
-    "@zkochan/cmd-shim": "~2.2.4",
-    "cp-file": "~5.0.0"
+    "cp-file": "~5.0.0",
+    "is-windows": "^1.0.0",
+    "mkdirp-promise": "^5.0.1",
+    "mz": "^2.5.0"
   },
   "devDependencies": {
     "standard": "~11.0.0",
