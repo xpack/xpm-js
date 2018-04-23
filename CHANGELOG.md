@@ -3,6 +3,10 @@
 Changes in reverse chronological order.
 Don't forget to close GitHub [issues](https://github.com/xpack/xpm-js/issues).
 
+### v0.4.3 (2018-04-23)
+
+- deps: bump @ilg/cli-start-options@0.4.10; this includes the test for node 8.x
+
 ### v0.4.2 (2018-04-23)
 
 - run-script: propagate error code
