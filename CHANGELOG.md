@@ -3,6 +3,10 @@
 Changes in reverse chronological order.
 Don't forget to close GitHub [issues](https://github.com/xpack/xpm-js/issues).
 
+### v0.4.2 (2018-04-23)
+
+- run-script: propagate error code
+
 ### v0.4.1 (2018-04-23)
 
 - install: move some messages to verbose mode
