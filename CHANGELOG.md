@@ -3,6 +3,10 @@
 Changes in reverse chronological order.
 Don't forget to close GitHub [issues](https://github.com/xpack/xpm-js/issues).
 
+### v0.4.1 (2018-04-23)
+
+- install: move some messages to verbose mode
+
 ### v0.4.0 (2018-04-23)
 
 - copy shim locally
