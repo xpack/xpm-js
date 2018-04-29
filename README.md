@@ -6,7 +6,10 @@
 
 ## The **x**Pack **p**ackage **m**anager command line tool
 
-A Node.js CLI application to manage xPacks.
+`xpm` is a Node.js CLI application to manage xPacks.
+
+`xpm` is an open source project, hosted as
+[xpack/xpm-js](https://github.com/xpack/xpm-js.git) on GitHub.
 
 ## xPacks overview
 
@@ -26,10 +29,11 @@ software packages, using the same central repository as `npm`.
 ## Prerequisites
 
 If this is your first encounter with `npm`, you need to install the 
-[node.js](https://nodejs.org/) JavaScript run-time. The process is 
-straightforward and does not pollute the system locations significantly; 
-there are two `node` versions, LTS (Long Term Service) and Current; 
-generally it is safer to use LTS, especially on Windows.
+[Node.js](https://nodejs.org/) JavaScript run-time. The process is 
+is straightforward and does not pollute the system locations significantly; 
+there are two `node` versions, **LTS** (**Long Term Service**) and  
+**Current**; generally it is safer to use LTS, especially on Windows.
+
 Download the package suitable for your platform and install it as usual.
 The result is a binary program called `node` that can be used to execute 
 JavaScript code from the terminal, and a link called `npm`, pointing to 
@@ -39,48 +43,25 @@ the npm functionality.
 Although not mandatory for `xpm`, on Windows, it is recommended to 
 also install the [Git for Windows](https://git-scm.com/download/win) package.
 
+The official page explaining how to install `npm` in a custom
+folder is [How to Prevent Permissions Errors](https://docs.npmjs.com/getting-started/fixing-npm-permissions#option-two-change-npms-default-directory)
+
+For advanced users, see the page [Using a Version Manager to install Node.js and npm](https://docs.npmjs.com/getting-started/installing-node#using-a-version-manager-to-install-nodejs-and-npm).
+
 ## Easy install
 
-The command line module is available as 
-[`xpm`](https://www.npmjs.com/package/xpm) from the public repository; 
-with `npm` already available, installing `xpm` is quite easy.
-
-### macOS and GNU/Linux
-
-Since `xpm` behaves like a system wide command, it is recommended to 
-install it globally:
-
-```console
-$ sudo npm install xpm --global
-```
-
-The result is a link in `/usr/local/bin`:
-
-```console
-$ ls -l /usr/local/bin/xpm
-lrwxr-xr-x  1 root  wheel  34 Nov 13 03:02 /usr/local/bin/xpm -> ../lib/node_modules/xpm/bin/xpm.js
-```
-
-To test if `xpm` starts:
-
-```console
-$ xpm --version
-0.3.3
-```
-
-To remove `xpm`, the command is similar:
-
-```console
-$ sudo npm uninstall xpm --global
-```
+The command line is implemented as a portable node module, available as 
+[`xpm`](https://www.npmjs.com/package/xpm) from the public repository.
 
 ### Windows
 
-On **Windows**, global packages are installed in the user home folder 
-(like `C:\Users\ilg\AppData\Roaming\npm`), and do not require `sudo`.
+On **Windows**, by default, global node packages are installed in the 
+user home folder 
+(like `C:\Users\ilg\AppData\Roaming\npm`), and managing them 
+does not require administrative rights.
 
 ```console
-C:\>npm install xpm --global
+C:\>npm install --global xpm
 ```
 
 The result is a pair of files in the `%APPDATA%\npm` folder:
@@ -117,14 +98,134 @@ After this, the program should start normally:
 
 ```console
 C:\>xpm --version
-0.3.3
+0.4.3
 ```
 
 To remove `xpm`, the command is similar:
 
 ```console
-C:\>npm uninstall xpm --global
+C:\>npm uninstall --global xpm
 ```
+
+### macOS 
+
+On **macOS**, by default, global node packages are installed in 
+`/usr/local`, and managing them require administrative rights.
+
+```console
+$ sudo npm install --global xpm
+```
+
+The result is a link in `/usr/local/bin`:
+
+```console
+$ ls -l /usr/local/bin/xpm
+lrwxr-xr-x  1 root  wheel  34 Nov 13 03:02 /usr/local/bin/xpm -> ../lib/node_modules/xpm/bin/xpm.js
+```
+
+However, the recommended location is `${HOME}/Library/npm`.
+
+For those who already performed the install in `/usr/local`, the 
+command to remove it is:
+
+```console
+$ sudo npm uninstall xpm --global
+```
+
+The commands to set this custom location are:
+
+```console
+$ mkdir -p "${HOME}"/Library/npm
+$ npm config set prefix "${HOME}"/Library/npm
+$ echo 'export PATH="${HOME}"/Library/npm/bin:${PATH}' >> "${HOME}"/.profile
+$ source "${HOME}"/.profile
+```
+
+With the environment properly set, the command to install `xpm` is:
+
+```console
+$ npm install --global xpm
+```
+
+To test if `xpm` starts:
+
+```console
+$ xpm --version
+0.4.3
+```
+
+To remove `xpm`, the command is similar:
+
+```console
+$ npm uninstall --global xpm
+```
+
+### GNU/Linux
+
+On **GNU/Linux**, by default, global node packages are installed in 
+`/usr/local`, and managing them require administrative rights.
+
+```console
+$ sudo npm install --global xpm
+```
+
+The result is a link in `/usr/local/bin`:
+
+```console
+$ ls -l /usr/local/bin/xpm
+lrwxr-xr-x  1 root  wheel  34 Nov 13 03:02 /usr/local/bin/xpm -> ../lib/node_modules/xpm/bin/xpm.js
+```
+
+However, the recommended location is `${HOME}/Library/npm`.
+
+For those who already performed the install in `/usr/local`, the 
+command to remove it is:
+
+```console
+$ sudo npm uninstall xpm --global
+```
+
+The commands to set this custom location are:
+
+```console
+$ mkdir -p "${HOME}"/opt/npm
+$ npm config set prefix "${HOME}"/opt/npm
+$ echo 'export PATH="${HOME}"/opt/npm/bin:${PATH}' >> "${HOME}"/.profile
+$ source "${HOME}"/.profile
+```
+
+With the environment properly set, the command to install `xpm` is:
+
+```console
+$ npm install --global xpm
+```
+
+To test if `xpm` starts:
+
+```console
+$ xpm --version
+0.4.3
+```
+
+To remove `xpm`, the command is similar:
+
+```console
+$ npm uninstall --global xpm
+```
+
+## `npx`
+
+If, for any reason, you decide not to install `xpm`, you can still 
+benefit from it by using `npx`, as a trampoline to start `xpm`:
+
+```console
+$ npx xpm --version
+0.4.3
+```
+
+However, for regular usage, this method is not efficient, since 
+`npx` will need some time to prepare the node module
+for each run, and this takes some time.
 
 ## `npm` folders
 
@@ -145,7 +246,7 @@ For more details see [xpm folders](https://xpack.github.io/xpm/files/folders/).
 
 ### macOS specifics
 
-On macOS, the central repository is located in `~/Library/xPacks`. 
+On macOS, the central xPack repository is located in `~/Library/xPacks`. 
 By default, `~/Library` is hidden and does not show in folder selections.
 
 To make it visible, use:
