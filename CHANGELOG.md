@@ -3,6 +3,12 @@
 Changes in reverse chronological order.
 Don't forget to close GitHub [issues](https://github.com/xpack/xpm-js/issues).
 
+### v0.4.4 (2018-04-29)
+
+- [#10] display shorter message for install error; after pacote.manifest, display error.message
+- bump promisifier 0.1.10 to avoid hoek issue
+- [#11]: README explain how to install in custom folder
+
 ### v0.4.3 (2018-04-23)
 
 - deps: bump @ilg/cli-start-options@0.4.10; this includes the test for node 8.x
