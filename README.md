@@ -31,12 +31,12 @@ software packages, using the same central repository as `npm`.
 If this is your first encounter with `npm`, you need to install the 
 [Node.js](https://nodejs.org/) JavaScript run-time. The process is 
 is straightforward and does not pollute the system locations significantly; 
-there are two `node` versions, **LTS** (**Long Term Service**) and  
+there are two `node` versions, **LTS** (**Long Term Service**) and 
 **Current**; generally it is safer to use LTS, especially on Windows.
 
 Download the package suitable for your platform and install it as usual.
-The result is a binary program called `node` that can be used to execute 
-JavaScript code from the terminal, and a link called `npm`, pointing to 
+The result is a binary program called `node` (that can be used to execute 
+JavaScript code from the terminal), and a link called `npm`, pointing to 
 the `npm-cli.js` script, which is part of the node module that implements 
 the npm functionality. 
 
@@ -50,14 +50,14 @@ For advanced users, see the page [Using a Version Manager to install Node.js and
 
 ## Easy install
 
-The command line is implemented as a portable node module, available as 
+The command line tool is implemented as a portable node module, available as 
 [`xpm`](https://www.npmjs.com/package/xpm) from the public repository.
 
 ### Windows
 
 On **Windows**, by default, global node packages are installed in the 
-user home folder 
-(like `C:\Users\ilg\AppData\Roaming\npm`), and managing them 
+user home folder, in `%APPDATA%\npm` 
+(like `C:\Users\ilg\AppData\Roaming\npm`), and managing packages 
 does not require administrative rights.
 
 ```console
@@ -94,7 +94,7 @@ and must be added manually.
 C:\>setx Path "%Path%;%APPDATA%\npm"
 ```
 
-After this, the program should start normally:
+After this, the program starts normally:
 
 ```console
 C:\>xpm --version
@@ -110,7 +110,7 @@ C:\>npm uninstall --global xpm
 ### macOS 
 
 On **macOS**, by default, global node packages are installed in 
-`/usr/local`, and managing them require administrative rights.
+`/usr/local`, and managing them requires administrative rights.
 
 ```console
 $ sudo npm install --global xpm
@@ -123,13 +123,13 @@ $ ls -l /usr/local/bin/xpm
 lrwxr-xr-x  1 root  wheel  34 Nov 13 03:02 /usr/local/bin/xpm -> ../lib/node_modules/xpm/bin/xpm.js
 ```
 
-However, the recommended location is `${HOME}/Library/npm`.
+However, the recommended install location is `${HOME}/Library/npm`.
 
 For those who already performed the install in `/usr/local`, the 
 command to remove it is:
 
 ```console
-$ sudo npm uninstall xpm --global
+$ sudo npm uninstall --global xpm
 ```
 
 The commands to set this custom location are:
@@ -163,7 +163,7 @@ $ npm uninstall --global xpm
 ### GNU/Linux
 
 On **GNU/Linux**, by default, global node packages are installed in 
-`/usr/local`, and managing them require administrative rights.
+`/usr/local`, and managing them requires administrative rights.
 
 ```console
 $ sudo npm install --global xpm
@@ -176,13 +176,13 @@ $ ls -l /usr/local/bin/xpm
 lrwxr-xr-x  1 root  wheel  34 Nov 13 03:02 /usr/local/bin/xpm -> ../lib/node_modules/xpm/bin/xpm.js
 ```
 
-However, the recommended location is `${HOME}/Library/npm`.
+However, the recommended install location is `${HOME}/opt/npm`.
 
 For those who already performed the install in `/usr/local`, the 
 command to remove it is:
 
 ```console
-$ sudo npm uninstall xpm --global
+$ sudo npm uninstall --global xpm
 ```
 
 The commands to set this custom location are:
@@ -193,6 +193,9 @@ $ npm config set prefix "${HOME}"/opt/npm
 $ echo 'export PATH="${HOME}"/opt/npm/bin:${PATH}' >> "${HOME}"/.profile
 $ source "${HOME}"/.profile
 ```
+
+(Thse commands were tested with `bash`, for other shells may need small
+adjustments).
 
 With the environment properly set, the command to install `xpm` is:
 
@@ -298,13 +301,28 @@ $
 $ git clone https://github.com/xpack/xpm-js.git xpm-js.git
 $ cd xpm-js.git
 $ npm install
-$ sudo npm link 
-$ ls -l /usr/local/lib/node_modules/
 ```
 
-A link to the development folder should be present in the system 
+A link to the development folder should be made available in the system 
 `node_modules` folder, and also a link to the `xpm` executable should 
-be available system wide.
+be made available system wide.
+
+```console
+$ sudo npm link 
+up to date in 4.992s
+/usr/local/bin/xpm -> /usr/local/lib/node_modules/xpm/bin/xpm.js
+/usr/local/lib/node_modules/xpm -> /Users/ilg/My Files/MacBookPro Projects/xPack/npm-modules/xpm-js.git
+```
+
+On Windows, or on machines where the install folder is in the user home,
+the command does not require `sudo`, for example on macOS:
+
+```console
+$ npm link
+up to date in 4.985s
+/Users/ilg/Library/npm/bin/xpm -> /Users/ilg/Library/npm/lib/node_modules/xpm/bin/xpm.js
+/Users/ilg/Library/npm/lib/node_modules/xpm -> /Users/ilg/My Files/MacBookPro Projects/xPack/npm-modules/xpm-js.git
+```
 
 ### Tests
 
@@ -317,14 +335,7 @@ via `npm test`:
 ```console
 $ cd xpm-js.git
 $ npm install
-$ npm test
-```
-
-A typical test result looks like:
-
-```console
 $ npm run test
-...
 ```
 
 To run a specific test with more verbose output, use `npm run tap`:
@@ -421,4 +432,3 @@ terms of **The Artistic License 2.0**.
 
 The `xpm` tool is currently experimental and should not be used in 
 production environments.
-
