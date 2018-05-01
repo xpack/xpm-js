@@ -1,7 +1,7 @@
 /*
  * This file is part of the xPack distribution
  *   (http://xpack.github.io).
- * Copyright (c) 2017 Liviu Ionescu.
+ * Copyright (c) 2018 Liviu Ionescu.
  *
  * Permission is hereby granted, free of charge, to any person
  * obtaining a copy of this software and associated documentation
