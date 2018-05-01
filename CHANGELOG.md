@@ -3,6 +3,12 @@
 Changes in reverse chronological order.
 Don't forget to close GitHub [issues](https://github.com/xpack/xpm-js/issues).
 
+### v0.4.5 (2018-04-29)
+
+- bump start options 0.4.10 this fixes the `sudo` recommendation for upgrades
+- bump promisifier 0.2.1 to add support for fsPromises
+- update code to use fsPromises
+
 ### v0.4.4 (2018-04-29)
 
 - [#10] display shorter message for install error; after pacote.manifest, display error.message
