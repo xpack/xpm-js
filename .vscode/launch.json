@@ -319,7 +319,7 @@
         "boardName=hifive1",
         "-dd",
         "-C",
-        "C:\\Users\\ilg\\tmp\\xyz"
+        "/Users/ilg/tmp/xyz"
       ],
       "cwd": "${workspaceRoot}",
       "preLaunchTask": null,
@@ -348,7 +348,7 @@
         "--template",
         "@sifive/templates",
         "--name",
-        "@babu/riba+",
+        "@babu/riba",
         "--property",
         "boardName=hifive1",
         "-dd",
