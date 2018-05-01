@@ -43,7 +43,7 @@
   "homepage": "https://github.com/xpack/xpm-js",
   "dependencies": {
     "@ilg/cli-start-options": "~0.4.11",
-    "@ilg/es6-promisifier": "~0.2.0",
+    "@ilg/es6-promisifier": "~0.2.1",
     "arch": "~2.1.0",
     "cacache": "~10.0.4",
     "decompress": "~4.2.0",
