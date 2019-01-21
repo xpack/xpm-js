@@ -4,17 +4,18 @@
 [![Travis](https://img.shields.io/travis/xpack/xpm-js.svg?label=linux)](https://travis-ci.org/xpack/xpm-js)
 [![AppVeyor](https://ci.appveyor.com/api/projects/status/lj735puc38idko6m?svg=true)](https://ci.appveyor.com/project/ilg-ul/xpm-js)
 
-## The **x**Pack **p**ackage **m**anager command line tool
+## The xPack package manager command line tool
 
-`xpm` is a Node.js CLI application to manage xPacks.
+`xpm` stands for **x**Pack **p**ackage **m**anager and is a Node.js CLI 
+application to manage xPacks.
 
-`xpm` is an open source project, hosted as
-[xpack/xpm-js](https://github.com/xpack/xpm-js.git) on GitHub.
+The open source project is hosted on GitHub as 
+[xpack/xpm-js](https://github.com/xpack/xpm-js.git).
 
 ## xPacks overview
 
 **xPacks** are general purpose software **C/C++ packages**, intended to
-enhance code **sharing** and **reusin**g during the development of
+enhance code **sharing** and **reusing** during the development of
 C/C++ libraries and applications, much the same as **npm modules**
 do so nicely in the JavaScript ecosystem.
 
@@ -28,25 +29,74 @@ software packages, using the same central repository as `npm`.
 
 ## Prerequisites
 
-If this is your first encounter with `npm`, you need to install the 
-[Node.js](https://nodejs.org/) JavaScript run-time. The process is 
+A recent [Node.js](https://nodejs.org) (>=8.x), since the ECMAScript 6 class 
+syntax is used.
+
+```console
+$ node --version
+v10.6.0
+```
+
+If this is your first encounter with `npm`/`xpm`, you need to install the 
+Node.js JavaScript run-time. The process is 
 is straightforward and does not pollute the system locations significantly; 
 there are two `node` versions, **LTS** (**Long Term Service**) and 
 **Current**; generally it is safer to use LTS, especially on Windows.
 
-Download the package suitable for your platform and install it as usual.
+The general procedure is to download the package suitable for your 
+platform and install it as usual.
 The result is a binary program called `node` (that can be used to execute 
 JavaScript code from the terminal), and a link called `npm`, pointing to 
 the `npm-cli.js` script, which is part of the node module that implements 
 the npm functionality. 
 
-Although not mandatory for `xpm`, on Windows, it is recommended to 
+The usual method is to install `node` with administrative rights;
+it is also possible to install it in a custom location, using the
+archive distributions. Regardless where it is installed, `node` must 
+be in the system path.
+
+### Windows
+
+Download the **Windows Installer (.msi)** and install it as usual, 
+with administrative rights.
+If you are using a 64-bit machine, download the `node-v*-x64.msi` file.
+
+The result is a folder like `C:\Program Files\nodejs`, added to the 
+system path since it includes the `node.exe` binary.
+
+Although not mandatory for using `xpm` alone, on Windows it is recommended to 
 also install the [Git for Windows](https://git-scm.com/download/win) package.
 
-The official page explaining how to install `npm` in a custom
-folder is [How to Prevent Permissions Errors](https://docs.npmjs.com/getting-started/fixing-npm-permissions#option-two-change-npms-default-directory)
+`npm`/`xpm` can run either in the Windows weird `cmd.exe` terminal, 
+or in the git shell terminal.
 
-For advanced users, see the page [Using a Version Manager to install Node.js and npm](https://docs.npmjs.com/getting-started/installing-node#using-a-version-manager-to-install-nodejs-and-npm).
+### macOS
+
+Download the **macOS Installer (.pkg)** and install it as usual,
+with administrative rights.
+
+The result is a binary like `/usr/local/bin/node` and a folder like
+`/usr/local/lib/node_modules` where the modules, including `npm`, 
+are installed.
+
+### GNU/Linux
+
+On GNU/Linux, follow the instructions in 
+[Installing Node.js via package manager](https://nodejs.org/en/download/package-manager/).
+
+The result is a binary like `/usr/bin/node` and a folder like
+`/usr/lib/node_modules` where the modules, including `npm`, are installed.
+
+> Warning: your distribution may already have a `node` binary installed; if
+it is not >=8.x, `xpm` will complain and do not start; anyway, we strongly
+recommend to avoid the distribution binary and install at least 
+the LTS package from Node.js.
+
+### Version manager
+
+For advanced users, it is recommended to use a version manager,
+which allows to install multiple versions of Node.js in parallel. 
+For details, see the [Using a Version Manager to install Node.js and npm](https://docs.npmjs.com/getting-started/installing-node#using-a-version-manager-to-install-nodejs-and-npm) page.
 
 ## Easy install
 
@@ -123,7 +173,7 @@ $ ls -l /usr/local/bin/xpm
 lrwxr-xr-x  1 root  wheel  34 Nov 13 03:02 /usr/local/bin/xpm -> ../lib/node_modules/xpm/bin/xpm.js
 ```
 
-However, the recommended install location is `${HOME}/Library/npm`.
+However, **the recommended install location** is `${HOME}/Library/npm`.
 
 For those who already performed the install in `/usr/local`, the 
 command to remove it is:
@@ -176,7 +226,7 @@ $ ls -l /usr/local/bin/xpm
 lrwxr-xr-x  1 root  wheel  34 Nov 13 03:02 /usr/local/bin/xpm -> ../lib/node_modules/xpm/bin/xpm.js
 ```
 
-However, the recommended install location is `${HOME}/opt/npm`.
+However, **the recommended install location** is `${HOME}/opt/npm`.
 
 For those who already performed the install in `/usr/local`, the 
 command to remove it is:
@@ -194,7 +244,7 @@ $ echo 'export PATH="${HOME}"/opt/npm/bin:${PATH}' >> "${HOME}"/.profile
 $ source "${HOME}"/.profile
 ```
 
-(Thse commands were tested with `bash`, for other shells may need small
+(These commands were tested with `bash`, for other shells may need small
 adjustments).
 
 With the environment properly set, the command to install `xpm` is:
@@ -216,6 +266,22 @@ To remove `xpm`, the command is similar:
 $ npm uninstall --global xpm
 ```
 
+## Update npm to latest version
+
+Regardless if `npm` was already installed, or you just installed it with
+`node`, it is alwys a good idea to update `npm` to the latest version:
+
+```console
+$ npm update --global npm
+```
+
+If you did not switch to local install, on macOS and GNU/Linux use `sudo`.
+
+## Miscellaneous
+
+The official page explaining how to install `npm` in a custom
+folder is [How to Prevent Permissions Errors](https://docs.npmjs.com/getting-started/fixing-npm-permissions#option-two-change-npms-default-directory)
+
 ## `npx`
 
 If, for any reason, you decide not to install `xpm`, you can still 
@@ -227,7 +293,7 @@ $ npx xpm --version
 ```
 
 However, for regular usage, this method is not efficient, since 
-`npx` will need some time to prepare the node module
+`npx` will need to prepare the node module
 for each run, and this takes some time.
 
 ## `npm` folders
@@ -239,7 +305,7 @@ For more details on the folders used by `npm`, see
 
 To avoid security issues and the need to increase the user privilege level,
 `xpm` does not use any system folders, and all activity happens
-in the user home location.
+in the user home.
 
 There are two main folders:
 - a cache folder, where all downloaded files are stored
@@ -404,19 +470,21 @@ Note: be sure C style comments are used, C++ styles are not parsed by
 
 ### How to publish
 
-To check the last commits:
+* `npm run fix`
+* commit all changes
+* `npm run test-coverage`
+* check the latest commits:
 
-```console
+  ```console
 $ git log --pretty='%cd * %h %s' --date=short
 ```
 
-* commit all changes
-* `npm run test` (`fix` included)
 * update `CHANGELOG.md`; commit with a message like _CHANGELOG: prepare v0.1.2_
-* `npm version patch`
+`npm version patch` (bug fixes), `npm version minor` (compatible API
+  additions), `npm version major` (incompatible API changes)
 * push all changes to GitHub; this should trigger CI
 * wait for CI tests to complete
-* `npm publish`
+* `npm publish` (use `--access public` when publishing for the first time)
 
 ## License
 
