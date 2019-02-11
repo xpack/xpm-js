@@ -18,7 +18,7 @@
     "test-tap": "tap --reporter=classic --timeout 300 --no-color \"test/tap/*.js\"",
     "tap": "tap --reporter=spec --timeout 300 --no-color",
     "fix": "standard --fix",
-    "link": "npm link @ilg/cli-start-options; npm link @ilg/es6-promisifier"
+    "link": "npm link @ilg/cli-start-options; npm link @xpack/es6-promisifier"
   },
   "repository": {
     "type": "git",
@@ -43,30 +43,29 @@
   "homepage": "https://github.com/xpack/xpm-js",
   "dependencies": {
     "@ilg/cli-start-options": "~0.4.11",
-    "@ilg/es6-promisifier": "~0.2.1",
-    "arch": "~2.1.0",
-    "cacache": "~10.0.4",
+    "@xpack/es6-promisifier": "~1.0.0",
+    "arch": "~2.1.1",
+    "cacache": "~11.3.2",
+    "cp-file": "~6.0.0",
     "decompress": "~4.2.0",
-    "liquidjs": "~3.1.1",
-    "mkdirp": "~0.5.1",
-    "pacote": "~8.0.0",
-    "request": "~2.85.0",
-    "rimraf": "~2.6.2",
-    "tar": "~4.4.1",
-    "update-notifier": "~2.4.0",
-    "parse-git-config": "~2.0.2",
-    "user-home": "~2.0.0",
-    "semver": "~5.5.0",
-    "make-dir": "~1.2.0",
     "del": "~3.0.0",
-    "cp-file": "~5.0.0",
-    "is-windows": "^1.0.0",
-    "mkdirp-promise": "^5.0.1",
-    "mz": "^2.5.0"
+    "is-windows": "^1.0.2",
+    "liquidjs": "~6.4.2",
+    "make-dir": "~2.0.0",
+    "mkdirp": "~0.5.1",
+    "mkdirp-promise": "~5.0.1",
+    "mz": "^2.7.0",
+    "pacote": "~9.4.1",
+    "parse-git-config": "~3.0.0",
+    "request": "^2.88.0",
+    "rimraf": "~2.6.3",
+    "semver": "~5.6.0",
+    "tar": "~4.4.8",
+    "user-home": "~2.0.0"
   },
   "devDependencies": {
-    "standard": "~11.0.0",
-    "tap": "~11.1.2"
+    "standard": "~12.0.1",
+    "tap": "~12.5.2"
   },
   "peerDependencies": {},
   "bundledDependencies": [],
