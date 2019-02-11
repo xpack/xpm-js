@@ -3,6 +3,10 @@
 Changes in reverse chronological order.
 Don't forget to close GitHub [issues](https://github.com/xpack/xpm-js/issues).
 
+### v0.4.6 (2019-02-11)
+
+- bump all deps to latest versions
+
 ### v0.4.5 (2018-04-29)
 
 - bump start options 0.4.10 this fixes the `sudo` recommendation for upgrades
