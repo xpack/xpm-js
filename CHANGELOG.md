@@ -3,6 +3,14 @@
 Changes in reverse chronological order.
 Don't forget to close GitHub [issues](https://github.com/xpack/xpm-js/issues).
 
+### v0.5.0 (2019-02-22)
+
+- [#12] xpack.js: Add baseUrl below platform for binaries
+- [#17] xpack.js: Exit if download fails
+- [#16] Warn about aggressive antivirus
+- [#15] temporary log of system info
+- [#18] Add 'git-log' script
+
 ### v0.4.6 (2019-02-11)
 
 - bump all deps to latest versions
