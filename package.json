@@ -18,7 +18,8 @@
     "test-tap": "tap --reporter=classic --timeout 300 --no-color \"test/tap/*.js\"",
     "tap": "tap --reporter=spec --timeout 300 --no-color",
     "fix": "standard --fix",
-    "link": "npm link @ilg/cli-start-options; npm link @xpack/es6-promisifier"
+    "link": "npm link @ilg/cli-start-options; npm link @xpack/es6-promisifier",
+    "git-log": "git log --pretty='%cd * %h %s' --date=short"
   },
   "repository": {
     "type": "git",

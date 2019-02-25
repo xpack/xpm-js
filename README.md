@@ -497,12 +497,7 @@ Note: be sure C style comments are used, C++ styles are not parsed by
 * `npm run fix`
 * commit all changes
 * `npm run test-coverage`
-* check the latest commits:
-
-  ```console
-$ git log --pretty='%cd * %h %s' --date=short
-```
-
+* check the latest commits `npm run git-log`
 * update `CHANGELOG.md`; commit with a message like _CHANGELOG: prepare v0.1.2_
 `npm version patch` (bug fixes), `npm version minor` (compatible API
   additions), `npm version major` (incompatible API changes)
