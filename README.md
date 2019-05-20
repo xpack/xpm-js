@@ -187,7 +187,7 @@ On **macOS**, by default, global node packages are installed in
 `/usr/local`, and managing them requires administrative rights.
 
 ```console
-$ sudo npm install --global xpm
+$ sudo npm install --global xpm   <-- DO NOT DO THAT
 ```
 
 The result is a link in `/usr/local/bin`:
@@ -240,7 +240,7 @@ On **GNU/Linux**, by default, global node packages are installed in
 `/usr/local`, and managing them requires administrative rights.
 
 ```console
-$ sudo npm install --global xpm
+$ sudo npm install --global xpm   <-- DO NOT DO THAT
 ```
 
 The result is a link in `/usr/local/bin`:
@@ -262,10 +262,10 @@ $ sudo npm uninstall --global xpm
 The commands to set this custom location are:
 
 ```console
-$ mkdir -p "${HOME}"/opt/npm
-$ npm config set prefix "${HOME}"/opt/npm
-$ echo 'export PATH="${HOME}"/opt/npm/bin:${PATH}' >> "${HOME}"/.profile
-$ source "${HOME}"/.profile
+$ mkdir -p "${HOME}/opt/npm"
+$ npm config set prefix "${HOME}/opt/npm"
+$ echo 'export PATH="${HOME}/opt/npm/bin:${PATH}"' >> "${HOME}/.profile"
+$ source "${HOME}/.profile"
 ```
 
 (These commands were tested with `bash`, for other shells may need small
@@ -296,7 +296,7 @@ Regardless if `npm` was already installed, or you just installed it with
 `node`, it is alwys a good idea to update `npm` to the latest version:
 
 ```console
-$ npm update --global npm
+$ npm install --global npm
 ```
 
 If you did not switch to local install, on macOS and GNU/Linux use `sudo`.
@@ -398,7 +398,7 @@ A link to the development folder should be made available in the system
 be made available system wide.
 
 ```console
-$ sudo npm link 
+$ sudo npm link   <-- DO NOT DO THAT
 up to date in 4.992s
 /usr/local/bin/xpm -> /usr/local/lib/node_modules/xpm/bin/xpm.js
 /usr/local/lib/node_modules/xpm -> /Users/ilg/My Files/MacBookPro Projects/xPack/npm-modules/xpm-js.git
@@ -410,7 +410,7 @@ the command does not require `sudo`, for example on macOS:
 ```console
 $ npm link
 up to date in 4.985s
-/Users/ilg/Library/npm/bin/xpm -> /Users/ilg/Library/npm/lib/node_modules/xpm/bin/xpm.js
+/Users/ilg/Library/npm/bin/xpm -> ../lib/node_modules/xpm/bin/xpm.js
 /Users/ilg/Library/npm/lib/node_modules/xpm -> /Users/ilg/My Files/MacBookPro Projects/xPack/npm-modules/xpm-js.git
 ```
 
