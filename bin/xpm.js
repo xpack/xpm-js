@@ -58,6 +58,6 @@ const Xpm = require('../lib/main.js').Xpm
 // ----------------------------------------------------------------------------
 
 // TODO: use instances, not static classes.
-Xpm.start()
+Xpm.start().then((code) => process.exitCode = code)
 
 // ----------------------------------------------------------------------------
