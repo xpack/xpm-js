@@ -32,6 +32,7 @@
 
 # tap
 coverage/
+test/
 
 # nyc test coverage
 .nyc_output/
@@ -39,5 +40,8 @@ coverage/
 # VS Code
 .vscode/
 vscode.mac.command
+
+.travis.yml
+.appveyor.yml
 
 doc
