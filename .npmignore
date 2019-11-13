@@ -43,6 +43,7 @@ vscode.mac.command
 
 .travis.yml
 .appveyor.yml
-README-*.me
+README-*.md
+NOTES.md
 
 doc
