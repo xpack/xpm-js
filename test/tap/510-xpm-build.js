@@ -84,8 +84,7 @@ test('xpm build -h',
       if (outLines.length > 9) {
         // console.log(outLines)
         t.match(outLines[1], 'build package', 'has title')
-        t.match(outLines[2], 'Usage: xpm build [options...] ' +
-          '[-- <build args>]', 'has Usage')
+        t.match(outLines[2], 'Usage: xpm build [<options>...] ...', 'has Usage')
       }
       // There should be no error messages.
       t.equal(stderr, '', 'stderr is empty')
@@ -112,8 +111,7 @@ test('xpm buil -h',
       if (outLines.length > 9) {
         // console.log(outLines)
         t.match(outLines[1], 'build package', 'has title')
-        t.match(outLines[2], 'Usage: xpm build [options...] ' +
-          '[-- <build args>]', 'has Usage')
+        t.match(outLines[2], 'Usage: xpm build [<options>...] ...', 'has Usage')
       }
       // There should be no error messages.
       t.equal(stderr, '', 'stderr is empty')

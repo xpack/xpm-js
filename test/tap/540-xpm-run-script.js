@@ -84,8 +84,8 @@ test('xpm run-script -h',
       if (outLines.length > 9) {
         // console.log(outLines)
         t.match(outLines[1], 'run package specific script', 'has title')
-        t.match(outLines[2], 'Usage: xpm run-script [options...] ' +
-          '[<command>] [-- <script args>]', 'has Usage')
+        t.match(outLines[2], 'Usage: xpm run-script [<options>...] ...',
+          'has Usage')
       }
       // There should be no error messages.
       t.equal(stderr, '', 'stderr is empty')
@@ -112,8 +112,8 @@ test('xpm run -h',
       if (outLines.length > 9) {
         // console.log(outLines)
         t.match(outLines[1], 'run package specific script', 'has title')
-        t.match(outLines[2], 'Usage: xpm run-script [options...] ' +
-          '[<command>] [-- <script args>]', 'has Usage')
+        t.match(outLines[2], 'Usage: xpm run-script [<options>...] ...',
+          'has Usage')
       }
       // There should be no error messages.
       t.equal(stderr, '', 'stderr is empty')

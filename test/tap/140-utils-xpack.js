@@ -44,8 +44,7 @@ const test = require('tap').test
 const Xpack = require('../../lib/utils/xpack.js').Xpack
 const ManifestId = require('../../lib/utils/xpack.js').ManifestId
 
-// const Common = require('../common.js').Common
-const CliLogger = require('@ilg/cli-start-options').CliLogger
+const Logger = require('@xpack/logger').Logger
 
 // ----------------------------------------------------------------------------
 
@@ -54,7 +53,7 @@ const CliLogger = require('@ilg/cli-start-options').CliLogger
 
 test('utils/xpack', (t) => {
   const context = {}
-  context.log = new CliLogger(console)
+  context.log = new Logger({ console })
 
   const xpack = new Xpack('x', context)
   t.ok(xpack, 'spawn set')

@@ -43,7 +43,8 @@ const path = require('path')
 
 const Common = require('../common.js').Common
 
-const CliApplication = require('@ilg/cli-start-options').CliApplication
+// const CliApplication = require('@ilg/cli-start-options').CliApplication
+const CliUtil = require('@ilg/cli-start-options').CliUtil
 
 // ----------------------------------------------------------------------------
 
@@ -52,7 +53,7 @@ const rootPath = path.dirname(path.dirname(__dirname))
 
 test('setup', async (t) => {
   // Read in the package.json, to later compare version.
-  pack = await CliApplication.readPackageJson(rootPath)
+  pack = await CliUtil.readPackageJson(rootPath)
   t.ok(pack, 'package ok')
   t.ok(pack.version.length > 0, 'version length > 0')
   t.pass(`package ${pack.name}@${pack.version}`)
@@ -125,7 +126,7 @@ test('xpm -d (spawn)', async (t) => {
     ])
     t.equal(code, 0, 'exit 0')
     t.ok(stdout.length > 0, 'has stdout')
-    t.match(stdout, 'debug: start arg0:', 'has debug')
+    t.match(stdout, 'debug: os arch=', 'has debug')
     t.ok(stderr === '', 'has no stderr')
   } catch (err) {
     t.fail(err.message)

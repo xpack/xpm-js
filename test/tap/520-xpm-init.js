@@ -84,12 +84,11 @@ test('xpm help -h',
       if (outLines.length > 9) {
         // console.log(outLines)
         t.match(outLines[1], 'create an xPack', 'has title')
-        t.match(outLines[2], 'Usage: xpm init [options...] ' +
-          '[--template <xpack>] [--name <string>]', 'has Usage')
-        t.match(outLines[5], 'Init options:', 'has init options')
-        t.match(outLines[6], '  -t|--template <xpack>  ', 'has --template')
-        t.match(outLines[7], '  -n|--name <string>  ', 'has --name')
-        t.match(outLines[8], '  -p|--property <string>  ', 'has --property')
+        t.match(outLines[2], 'Usage: xpm init [<options>...] ...', 'has Usage')
+        t.match(outLines[15], 'Init options:', 'has init options')
+        t.match(outLines[16], '  -t|--template <xpack>  ', 'has --template')
+        t.match(outLines[17], '  -n|--name <string>  ', 'has --name')
+        t.match(outLines[18], '  -p|--property <string>  ', 'has --property')
       }
       // There should be no error messages.
       t.equal(stderr, '', 'stderr is empty')
@@ -116,8 +115,7 @@ test('xpm ini -h',
       if (outLines.length > 9) {
         // console.log(outLines)
         t.match(outLines[1], 'create an xPack', 'has title')
-        t.match(outLines[2], 'Usage: xpm init [options...] ' +
-          '[--template <xpack>] [--name <string>]', 'has Usage')
+        t.match(outLines[2], 'Usage: xpm init [<options>...] ...', 'has Usage')
       }
       // There should be no error messages.
       t.equal(stderr, '', 'stderr is empty')
