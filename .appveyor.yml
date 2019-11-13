@@ -3,7 +3,11 @@
 
 # https://www.appveyor.com/docs/lang/nodejs-iojs/
 environment:
-  nodejs_version: "8"
+  matrix:
+    - nodejs_version: "12"
+    - nodejs_version: "10"
+    - nodejs_version: "8"
+
 
 # set clone depth
 clone_depth: 3  # clone entire repository history if not defined
@@ -26,7 +30,7 @@ test_script:
   - node --version
   - npm --version
   # run tests
-  - npm test
+  - npm run test
 
 # Don't actually build.
 build: off

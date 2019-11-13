@@ -6,8 +6,9 @@ os:
   - linux
 
 # https://docs.travis-ci.com/user/trusty-ci-environment/
-# Use the new Debian 14 containers.
-dist: trusty
+# dist: trusty # 14
+# dist: xenial # 16
+dist: bionic # 18
 sudo: false
 
 # https://docs.travis-ci.com/user/languages/javascript-with-nodejs/#Specifying-Node.js-versions
@@ -17,7 +18,9 @@ sudo: false
 # can do so in the `before_install` stage of the build.
 language: node_js
 node_js:
-  - "node" 
+  - "12" 
+  - "10" 
+  - "8"
 
 # https://docs.travis-ci.com/user/customizing-the-build/#Git-Clone-Depth
 git:
@@ -47,17 +50,6 @@ notifications:
 #  - ...
 
 script:
-  - npm test
+  - npm run test
   
-# Unused, kept for just in case.
-
-# after_success:
-#  - bash "${SCRIPT}" after_success
-
-# after_failure:
-#   - bash "${SCRIPT}" after_failure
-  
-# after_script:
-#   - bash "${SCRIPT}" after_script
-
 # -----------------------------------------------------------------------------
