@@ -55,4 +55,5 @@ test('utils/global-config', (t) => {
   t.ok(gconf.globalFolderPath, 'globalFolderPath set')
   t.end()
 })
+
 // ----------------------------------------------------------------------------
