@@ -44,7 +44,7 @@ const path = require('path')
 const Common = require('../common.js').Common
 
 // const CliApplication = require('@ilg/cli-start-options').CliApplication
-const CliUtil = require('@ilg/cli-start-options').CliUtil
+const CliUtils = require('@ilg/cli-start-options').CliUtils
 
 // ----------------------------------------------------------------------------
 
@@ -53,7 +53,7 @@ const rootPath = path.dirname(path.dirname(__dirname))
 
 test('setup', async (t) => {
   // Read in the package.json, to later compare version.
-  pack = await CliUtil.readPackageJson(rootPath)
+  pack = await CliUtils.readPackageJson(rootPath)
   t.ok(pack, 'package ok')
   t.ok(pack.version.length > 0, 'version length > 0')
   t.pass(`package ${pack.name}@${pack.version}`)

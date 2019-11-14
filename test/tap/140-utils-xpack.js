@@ -52,12 +52,11 @@ const Logger = require('@xpack/logger').Logger
 // const rootPath = path.dirname(path.dirname(__dirname))
 
 test('utils/xpack', (t) => {
-  const context = {}
-  context.log = new Logger({ console })
+  const log = new Logger({ console })
 
-  const xpack = new Xpack('x', context)
-  t.ok(xpack, 'spawn set')
-  const mid = new ManifestId('xx')
+  const xpack = new Xpack({ xpackPath: 'x', log })
+  t.ok(xpack, 'xpack object created')
+  const mid = new ManifestId({ _from: 'x' })
   t.ok(mid, 'mid set')
 
   t.end()

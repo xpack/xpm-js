@@ -70,7 +70,7 @@ Promisifier.promisifyInPlace(fs, 'chmod')
 /**
  * Test if help content includes convert options.
  */
-test('xpm help -h',
+test('xpm init -h',
   async (t) => {
     try {
       const { code, stdout, stderr } = await Common.xpmCli([
