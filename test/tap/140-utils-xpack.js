@@ -54,9 +54,9 @@ const Logger = require('@xpack/logger').Logger
 test('utils/xpack', (t) => {
   const log = new Logger({ console })
 
-  const xpack = new Xpack({ xpackPath: 'x', log })
+  const xpack = new Xpack({ xpackFolderAbsolutePath: 'x', log })
   t.ok(xpack, 'xpack object created')
-  const mid = new ManifestId({ _from: 'x' })
+  const mid = new ManifestId({ _from: 'somewhere', _id: '@x/y@1.2.3' })
   t.ok(mid, 'mid set')
 
   t.end()

@@ -38,9 +38,9 @@
 // ----------------------------------------------------------------------------
 
 const assert = require('assert')
-// const path = require('path')
-// const os = require('os')
-const fs = require('fs')
+const path = require('path')
+const os = require('os')
+// const fs = require('fs')
 
 // The `[node-tap](http://www.node-tap.org)` framework.
 const test = require('tap').test
@@ -50,10 +50,14 @@ const Promisifier = require('@xpack/es6-promisifier').Promisifier
 
 // ES6: `import { CliExitCodes } from 'cli-start-options'
 const CliExitCodes = require('@ilg/cli-start-options').CliExitCodes
+const CliUtils = require('@ilg/cli-start-options').CliUtils
+
+const rimrafPromise = Promisifier.promisify(require('rimraf'))
 
 assert(Common)
 assert(Promisifier)
 assert(CliExitCodes)
+assert(CliUtils)
 
 // ----------------------------------------------------------------------------
 
@@ -63,7 +67,7 @@ assert(CliExitCodes)
 // const mkdirpPromise = Promisifier.promisify(require('mkdirp'))
 
 // Promisified functions from the Node.js callbacks library.
-Promisifier.promisifyInPlace(fs, 'chmod')
+// Promisifier.promisifyInPlace(fs, 'chmod')
 
 // ----------------------------------------------------------------------------
 
@@ -99,29 +103,114 @@ test('xpm init -h',
   })
 
 /**
- * Test if partial command recognised and expanded.
+ * Test if the project is created.
  */
-test('xpm ini -h',
+test('xpm init',
   async (t) => {
-    try {
-      const { code, stdout, stderr } = await Common.xpmCli([
-        'ini',
-        '-h'
-      ])
-      // Check exit code.
-      t.equal(code, CliExitCodes.SUCCESS, 'exit code is success')
-      const outLines = stdout.split(/\r?\n/)
-      t.ok(outLines.length > 9, 'has enough output')
-      if (outLines.length > 9) {
+    const workFolderPath = path.resolve(os.tmpdir(), 'init')
+    await rimrafPromise(workFolderPath)
+
+    await t.test('clean init', async (t) => {
+      try {
+        const { code, stdout, stderr } = await Common.xpmCli([
+          'init',
+          '-C',
+          workFolderPath
+        ])
+        // Check exit code.
+        t.equal(code, CliExitCodes.SUCCESS, 'exit code is success')
+        const outLines = stdout.split(/\r?\n/)
+        t.ok(outLines.length > 1, 'has enough output')
         // console.log(outLines)
-        t.match(outLines[1], 'create an xPack', 'has title')
-        t.match(outLines[2], 'Usage: xpm init [<options>...] ...', 'has Usage')
+        t.match(stdout, 'Creating project', 'has creating')
+        t.match(stdout, 'File \'package.json\' generated',
+          'has package generated')
+        t.match(stdout, 'File \'LICENSE\' generated',
+          'has LICENSE generated')
+
+        // There should be no error messages.
+        t.equal(stderr, '', 'stderr is empty')
+      } catch (err) {
+        t.fail(err.message)
       }
-      // There should be no error messages.
-      t.equal(stderr, '', 'stderr is empty')
-    } catch (err) {
-      t.fail(err.message)
-    }
+
+      t.end()
+    })
+
+    await t.test('check package', async (t) => {
+      const json = await CliUtils.readPackageJson(workFolderPath)
+      t.ok(json, 'has json')
+      t.equal(json.name, 'init', 'has name')
+      t.equal(json.version, '1.0.0', 'has version')
+
+      t.end()
+    })
+
+    await t.test('already there', async (t) => {
+      try {
+        const { code, stdout, stderr } = await Common.xpmCli([
+          'init',
+          '-C',
+          workFolderPath
+        ])
+        // Check exit code.
+        t.equal(code, CliExitCodes.ERROR.OUTPUT, 'exit code is OUTPUT')
+        const outLines = stdout.split(/\r?\n/)
+        t.ok(outLines.length > 1, 'has enough output')
+        // console.log(outLines)
+
+        // There should be no error messages.
+        t.match(stderr,
+          'The destination folder already has a package.json file',
+          'stderr has already ')
+      } catch (err) {
+        t.fail(err.message)
+      }
+
+      t.end()
+    })
+
+    // Remove the package.json to allow subsequent installs.
+    await rimrafPromise(path.join(workFolderPath, 'package.json'))
+
+    await t.test('partial init', async (t) => {
+      try {
+        const { code, stdout, stderr } = await Common.xpmCli([
+          'init',
+          '-C',
+          workFolderPath,
+          '--name',
+          'baburiba'
+        ])
+        // Check exit code.
+        t.equal(code, CliExitCodes.SUCCESS, 'exit code is success')
+        const outLines = stdout.split(/\r?\n/)
+        t.ok(outLines.length > 1, 'has enough output')
+        // console.log(outLines)
+        t.match(stdout, 'Creating project', 'has creating')
+        t.match(stdout, 'File \'package.json\' generated',
+          'has package generated')
+        t.match(stdout, 'File \'LICENSE\' preserved',
+          'has LICENSE preserved')
+
+        // There should be no error messages.
+        t.equal(stderr, '', 'stderr is empty')
+      } catch (err) {
+        t.fail(err.message)
+      }
+
+      t.end()
+    })
+
+    await t.test('check package with name', async (t) => {
+      const json = await CliUtils.readPackageJson(workFolderPath)
+      t.ok(json, 'has json')
+      t.equal(json.name, 'baburiba', 'has name')
+      t.equal(json.version, '1.0.0', 'has version')
+
+      t.end()
+    })
+
     t.end()
   })
 

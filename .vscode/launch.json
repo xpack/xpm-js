@@ -285,6 +285,34 @@
     {
       "type": "node",
       "request": "launch",
+      "name": "xpm init",
+      "program": "${workspaceRoot}/bin/xpm.js",
+      "stopOnEntry": true,
+      "args": [
+        "init",
+        "-dd",
+        "-C",
+        "/Users/ilg/tmp/xpi"
+      ],
+      "cwd": "${workspaceRoot}",
+      "preLaunchTask": null,
+      "runtimeExecutable": null,
+      "runtimeArgs": [
+        "--nolazy"
+      ],
+      "skipFiles": [
+        "async_hooks.js",
+        "inspector_async_hook.js"
+      ],
+      "env": {
+        "NODE_ENV": "development"
+      },
+      "console": "internalConsole",
+      "sourceMaps": false
+    },
+    {
+      "type": "node",
+      "request": "launch",
       "name": "xpm init --name babu",
       "program": "${workspaceRoot}/bin/xpm.js",
       "stopOnEntry": true,
@@ -294,7 +322,7 @@
         "babu",
         "-dd",
         "-C",
-        "/Users/ilg/tmp/xp"
+        "/Users/ilg/tmp/xpi"
       ],
       "cwd": "${workspaceRoot}",
       "preLaunchTask": null,
@@ -448,6 +476,186 @@
         "-C",
         "/Users/ilg/tmp/qemu",
         "@gnu-mcu-eclipse/qemu"
+      ],
+      "cwd": "${workspaceRoot}",
+      "preLaunchTask": null,
+      "runtimeExecutable": null,
+      "runtimeArgs": [
+        "--nolazy"
+      ],
+      "skipFiles": [
+        "async_hooks.js",
+        "inspector_async_hook.js"
+      ],
+      "env": {
+        "NODE_ENV": "development"
+      },
+      "console": "internalConsole",
+      "sourceMaps": false
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "xpm install standalone",
+      "program": "${workspaceRoot}/bin/xpm.js",
+      "stopOnEntry": true,
+      "args": [
+        "install",
+        "-dd",
+        "-C",
+        "/Users/ilg/tmp/st",
+        "@micro-os-plus/diag-trace"
+      ],
+      "cwd": "${workspaceRoot}",
+      "preLaunchTask": null,
+      "runtimeExecutable": null,
+      "runtimeArgs": [
+        "--nolazy"
+      ],
+      "skipFiles": [
+        "async_hooks.js",
+        "inspector_async_hook.js"
+      ],
+      "env": {
+        "NODE_ENV": "development"
+      },
+      "console": "internalConsole",
+      "sourceMaps": false
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "xpm install folder locally",
+      "program": "${workspaceRoot}/bin/xpm.js",
+      "stopOnEntry": true,
+      "args": [
+        "install",
+        "-dd",
+        "-C",
+        "/Users/ilg/tmp/lcl",
+        "${workspaceRoot}/test/mock/afrom",
+        "--force"
+      ],
+      "cwd": "${workspaceRoot}",
+      "preLaunchTask": null,
+      "runtimeExecutable": null,
+      "runtimeArgs": [
+        "--nolazy"
+      ],
+      "skipFiles": [
+        "async_hooks.js",
+        "inspector_async_hook.js"
+      ],
+      "env": {
+        "NODE_ENV": "development"
+      },
+      "console": "internalConsole",
+      "sourceMaps": false
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "xpm install npm locally",
+      "program": "${workspaceRoot}/bin/xpm.js",
+      "stopOnEntry": true,
+      "args": [
+        "install",
+        "-dd",
+        "-C",
+        "/Users/ilg/tmp/lcl",
+        "@xpack/xpm-develop-test",
+        "--force"
+      ],
+      "cwd": "${workspaceRoot}",
+      "preLaunchTask": null,
+      "runtimeExecutable": null,
+      "runtimeArgs": [
+        "--nolazy"
+      ],
+      "skipFiles": [
+        "async_hooks.js",
+        "inspector_async_hook.js"
+      ],
+      "env": {
+        "NODE_ENV": "development"
+      },
+      "console": "internalConsole",
+      "sourceMaps": false
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "xpm install gh tgz locally",
+      "program": "${workspaceRoot}/bin/xpm.js",
+      "stopOnEntry": true,
+      "args": [
+        "install",
+        "-dd",
+        "-C",
+        "/Users/ilg/tmp/lcl",
+        "https://github.com/xpack/xpm-develop-test-xpack/archive/v1.0.0.tar.gz",
+        "--force"
+      ],
+      "cwd": "${workspaceRoot}",
+      "preLaunchTask": null,
+      "runtimeExecutable": null,
+      "runtimeArgs": [
+        "--nolazy"
+      ],
+      "skipFiles": [
+        "async_hooks.js",
+        "inspector_async_hook.js"
+      ],
+      "env": {
+        "NODE_ENV": "development"
+      },
+      "console": "internalConsole",
+      "sourceMaps": false
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "xpm install github locally",
+      "program": "${workspaceRoot}/bin/xpm.js",
+      "stopOnEntry": true,
+      "args": [
+        "install",
+        "-dd",
+        "-C",
+        "/Users/ilg/tmp/lcl",
+        "xpack/xpm-develop-test-xpack",
+        "--force"
+      ],
+      "cwd": "${workspaceRoot}",
+      "preLaunchTask": null,
+      "runtimeExecutable": null,
+      "runtimeArgs": [
+        "--nolazy"
+      ],
+      "skipFiles": [
+        "async_hooks.js",
+        "inspector_async_hook.js"
+      ],
+      "env": {
+        "NODE_ENV": "development"
+      },
+      "console": "internalConsole",
+      "sourceMaps": false
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "xpm install github globally",
+      "program": "${workspaceRoot}/bin/xpm.js",
+      "stopOnEntry": true,
+      "args": [
+        "install",
+        "-dd",
+        "-C",
+        "/Users/ilg/tmp/lcl",
+        "xpack/xpm-develop-test-xpack",
+        "--force",
+        "-g"
       ],
       "cwd": "${workspaceRoot}",
       "preLaunchTask": null,
