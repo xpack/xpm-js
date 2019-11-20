@@ -57,7 +57,7 @@
     "mkdirp": "^0.5.1",
     "mkdirp-promise": "^5.0.1",
     "mz": "^2.7.0",
-    "pacote": "^10.1.2",
+    "pacote": "^9.5.9",
     "parse-git-config": "^3.0.0",
     "request": "^2.88.0",
     "rimraf": "^3.0.0",
