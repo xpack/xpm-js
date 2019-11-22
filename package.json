@@ -47,7 +47,7 @@
     "@xpack/es6-promisifier": "^1.0.0",
     "@xpack/logger": "^2.2.1",
     "arch": "^2.1.1",
-    "cacache": "^13.0.1",
+    "cacache": "^12.0.2",
     "cp-file": "^7.0.0",
     "decompress": "^4.2.0",
     "del": "^5.1.0",
