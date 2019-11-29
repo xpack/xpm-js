@@ -31,19 +31,25 @@
 /*.tgz
 
 # tap
-coverage/
-test/
+/coverage/
+/test/
 
 # nyc test coverage
-.nyc_output/
+/.nyc_output/
 
 # VS Code
-.vscode/
-vscode.mac.command
+/.vscode/
 
-.travis.yml
-.appveyor.yml
+# GitHub
+/.github/
+
+# CI
+/.travis.yml
+/.appveyor.yml
+
+# Project specfic
 README-*.md
-NOTES.md
+NOTES*.md
+/docs/
 
-doc
+#end
