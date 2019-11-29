@@ -12,13 +12,15 @@
     "xpm": "./bin/xpm.js"
   },
   "scripts": {
-    "prepublishOnly": "standard && npm run test-tap -s",
+    "prepublishOnly": "standard && npm run test-tap100 -s",
     "test": "standard && npm run test-tap -s",
-    "test-coverage": "tap --coverage --reporter=classic --timeout 600 --no-color \"test/tap/*.js\"",
-    "test-tap": "tap --reporter=classic --timeout 300 --no-color \"test/tap/*.js\"",
-    "tap": "tap --reporter=spec --timeout 300 --no-color",
-    "fix": "standard --fix",
-    "link": "npm link @ilg/cli-start-options; npm link @xpack/es6-promisifier",
+    "test100": "standard && npm run test-tap100 -s",
+    "test-coverage": "tap --coverage --reporter=classic --timeout 600 \"test/tap/*.js\"",
+    "test-tap": "tap --reporter=classic --timeout 300 \"test/tap/*.js\"",
+    "test-tap100": "tap --reporter=classic --timeout 300 --100 \"test/tap/*.js\"",
+    "tap": "tap --reporter=spec --timeout 30",
+    "fix": "standard --fix --verbose",
+    "link": "npm link @ilg/cli-start-options",
     "git-log": "git log --pretty='%cd * %h %s' --date=short"
   },
   "repository": {
