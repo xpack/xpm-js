@@ -194,13 +194,16 @@ test('xpm install from folder standalone',
         // Check exit code.
         t.equal(code, CliExitCodes.ERROR.OUTPUT, 'exit code is OUTPUT')
 
-        // console.log(stdout)
         const outLines = stdout.split(/\r?\n/)
+        // console.log(outLines)
         t.ok(outLines.length > 1, 'has enough output')
 
-        // console.log(stderr)
-        t.match(stderr, 'warning: Package already installed',
-          'stderr has warning')
+        const errLines = stderr.split(/\r?\n/)
+        // console.log(errLines)
+        t.equal(errLines.length, 1 + 1, 'stderr has 1 line')
+        t.match(errLines[0], 'error: Package already installed',
+          'stderr has error')
+        t.equal(errLines[1], '', 'stderr ends')
       } catch (err) {
         t.fail(err.message)
       }
@@ -317,9 +320,12 @@ test('xpm install from folder globally',
         const outLines = stdout.split(/\r?\n/)
         t.ok(outLines.length > 1, 'has enough output')
 
-        // console.log(stderr)
-        t.match(stderr, 'warning: Package already installed',
-          'stderr has warning')
+        const errLines = stderr.split(/\r?\n/)
+        // console.log(errLines)
+        t.equal(errLines.length, 1 + 1, 'stderr has 1 line')
+        t.match(errLines[0], 'error: Package already installed',
+          'stderr has error')
+        t.equal(errLines[1], '', 'stderr ends')
       } catch (err) {
         t.fail(err.message)
       }
@@ -446,9 +452,12 @@ test('xpm install from folder locally copy',
         // console.log(outLines)
         t.ok(outLines.length > 1, 'has enough output')
 
-        // console.log(stderr)
-        t.match(stderr, 'warning: Package already installed',
-          'stderr has warning')
+        const errLines = stderr.split(/\r?\n/)
+        // console.log(errLines)
+        t.equal(errLines.length, 1 + 1, 'stderr has 1 line')
+        t.match(errLines[0], 'error: Package already installed',
+          'stderr has error')
+        t.equal(errLines[1], '', 'stderr ends')
       } catch (err) {
         t.fail(err.message)
       }
@@ -577,9 +586,12 @@ test('xpm install from folder locally link',
         // console.log(outLines)
         t.ok(outLines.length > 1, 'has enough output')
 
-        // console.log(stderr)
-        t.match(stderr, 'warning: Package already installed',
-          'stderr has warning')
+        const errLines = stderr.split(/\r?\n/)
+        // console.log(errLines)
+        t.equal(errLines.length, 1 + 1, 'stderr has 1 line')
+        t.match(errLines[0], 'error: Package already installed',
+          'stderr has error')
+        t.equal(errLines[1], '', 'stderr ends')
       } catch (err) {
         t.fail(err.message)
       }
