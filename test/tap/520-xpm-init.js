@@ -83,17 +83,21 @@ test('xpm init -h',
       ])
       // Check exit code.
       t.equal(code, CliExitCodes.SUCCESS, 'exit code is success')
+
       const outLines = stdout.split(/\r?\n/)
-      t.ok(outLines.length > 9, 'has enough output')
-      if (outLines.length > 9) {
-        // console.log(outLines)
-        t.match(outLines[1], 'create an xPack', 'has title')
-        t.match(outLines[2], 'Usage: xpm init [<options>...] ...', 'has Usage')
-        t.match(outLines[15], 'Init options:', 'has init options')
-        t.match(outLines[16], '  -t|--template <xpack>  ', 'has --template')
-        t.match(outLines[17], '  -n|--name <string>  ', 'has --name')
-        t.match(outLines[18], '  -p|--property <string>  ', 'has --property')
+      // console.log(outLines)
+      t.ok(outLines.length > 10, 'has enough output')
+      if (outLines.length > 10) {
+        t.match(outLines[1], 'The xPack manager - Create an xPack',
+          'has title')
+        t.match(outLines[3], 'Usage: xpm init [<options>...] ...', 'has Usage')
+        t.match(outLines[5], 'Command aliases: ini, inni', 'has aliases')
+        t.match(outLines[7], 'Init options:', 'has init options')
+        t.match(outLines[8], '  -t|--template <xpack>  ', 'has --template')
+        t.match(outLines[9], '  -n|--name <string>  ', 'has --name')
+        t.match(outLines[10], '  -p|--property <string>  ', 'has --property')
       }
+
       // There should be no error messages.
       t.equal(stderr, '', 'stderr is empty')
     } catch (err) {
@@ -119,9 +123,10 @@ test('xpm init',
         ])
         // Check exit code.
         t.equal(code, CliExitCodes.SUCCESS, 'exit code is success')
+
         const outLines = stdout.split(/\r?\n/)
-        t.ok(outLines.length > 1, 'has enough output')
         // console.log(outLines)
+        t.ok(outLines.length > 1, 'has enough output')
         t.match(stdout, 'Creating project', 'has creating')
         t.match(stdout, 'File \'package.json\' generated',
           'has package generated')
@@ -156,8 +161,8 @@ test('xpm init',
         // Check exit code.
         t.equal(code, CliExitCodes.ERROR.OUTPUT, 'exit code is OUTPUT')
         const outLines = stdout.split(/\r?\n/)
-        t.ok(outLines.length > 1, 'has enough output')
         // console.log(outLines)
+        t.ok(outLines.length > 1, 'has enough output')
 
         // There should be no error messages.
         t.match(stderr,
@@ -184,9 +189,10 @@ test('xpm init',
         ])
         // Check exit code.
         t.equal(code, CliExitCodes.SUCCESS, 'exit code is success')
+
         const outLines = stdout.split(/\r?\n/)
-        t.ok(outLines.length > 1, 'has enough output')
         // console.log(outLines)
+        t.ok(outLines.length > 1, 'has enough output')
         t.match(stdout, 'Creating project', 'has creating')
         t.match(stdout, 'File \'package.json\' generated',
           'has package generated')

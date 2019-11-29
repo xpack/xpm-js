@@ -67,9 +67,11 @@ test('xpm --version (spawn)', async (t) => {
     ])
     // Check exit code.
     t.equal(code, 0, 'exit 0')
+
     // Check if version matches the package.
     // Beware, the stdout string has a new line terminator.
     t.equal(stdout, pack.version + '\n', 'version ok')
+
     // There should be no error messages.
     t.equal(stderr, '', 'stderr empty')
   } catch (err) {
@@ -95,6 +97,7 @@ test('xpm -h (spawn)', async (t) => {
       'has log levels')
     t.match(stdout, '-s|--silent', 'has -s|--silent')
     t.match(stdout, 'Bug reports:', 'has Bug reports:')
+
     // There should be no error messages.
     t.equal(stderr, '', 'stderr empty')
   } catch (err) {
@@ -109,7 +112,9 @@ test('xpm --help (spawn)', async (t) => {
       '--help'
     ])
     t.equal(code, 0, 'exit 0')
+
     t.match(stdout, 'Usage: xpm <command>', 'has Usage')
+
     // There should be no error messages.
     t.equal(stderr, '', 'stderr empty')
   } catch (err) {
@@ -125,9 +130,11 @@ test('xpm -d (spawn)', async (t) => {
       '-dd'
     ])
     t.equal(code, 0, 'exit 0')
+
     t.ok(stdout.length > 0, 'has stdout')
     t.match(stdout, 'debug: os arch=', 'has debug')
-    t.ok(stderr === '', 'has no stderr')
+
+    t.equal(stderr, '', 'stderr empty')
   } catch (err) {
     t.fail(err.message)
   }

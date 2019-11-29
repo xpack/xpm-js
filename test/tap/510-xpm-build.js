@@ -79,13 +79,16 @@ test('xpm build -h',
       ])
       // Check exit code.
       t.equal(code, CliExitCodes.SUCCESS, 'exit code is success')
+
+      // console.log(stdout)
       const outLines = stdout.split(/\r?\n/)
-      t.ok(outLines.length > 9, 'has enough output')
-      if (outLines.length > 9) {
-        // console.log(outLines)
-        t.match(outLines[1], 'build package', 'has title')
-        t.match(outLines[2], 'Usage: xpm build [<options>...] ...', 'has Usage')
+      t.ok(outLines.length > 3, 'has enough output')
+      if (outLines.length > 3) {
+        t.match(outLines[1], 'Build package', 'has title')
+        t.match(outLines[3],
+          'Usage: xpm build [<options>...] [-- <build args>...]', 'has Usage')
       }
+
       // There should be no error messages.
       t.equal(stderr, '', 'stderr is empty')
     } catch (err) {
@@ -106,13 +109,16 @@ test('xpm buil -h',
       ])
       // Check exit code.
       t.equal(code, CliExitCodes.SUCCESS, 'exit code is success')
+
+      // console.log(stdout)
       const outLines = stdout.split(/\r?\n/)
-      t.ok(outLines.length > 9, 'has enough output')
-      if (outLines.length > 9) {
-        // console.log(outLines)
-        t.match(outLines[1], 'build package', 'has title')
-        t.match(outLines[2], 'Usage: xpm build [<options>...] ...', 'has Usage')
+      t.ok(outLines.length > 3, 'has enough output')
+      if (outLines.length > 3) {
+        t.match(outLines[1], 'Build package', 'has title')
+        t.match(outLines[3],
+          'Usage: xpm build [<options>...] [-- <build args>...]', 'has Usage')
       }
+
       // There should be no error messages.
       t.equal(stderr, '', 'stderr is empty')
     } catch (err) {

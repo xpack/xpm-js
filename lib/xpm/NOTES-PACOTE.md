@@ -1,5 +1,9 @@
-The documentation for pacote is not very detailed on how the documentation
-entries should be generated, so here are some examples:
+The documentation for pacote is not very detailed on how the metadata
+entries should be used:
+
+- `_resolved` The tarball url or file path where the package artifact can be found.
+- `_from` A normalized form of the spec passed in as an argument.
+- `_integrity` The integrity value for the package artifact.
 
 ## npm
 

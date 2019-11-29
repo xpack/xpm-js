@@ -79,14 +79,18 @@ test('xpm run-script -h',
       ])
       // Check exit code.
       t.equal(code, CliExitCodes.SUCCESS, 'exit code is success')
+
       const outLines = stdout.split(/\r?\n/)
-      t.ok(outLines.length > 9, 'has enough output')
-      if (outLines.length > 9) {
-        // console.log(outLines)
-        t.match(outLines[1], 'run package specific script', 'has title')
-        t.match(outLines[2], 'Usage: xpm run-script [<options>...] ...',
+      // console.log(outLines)
+      t.ok(outLines.length > 3, 'has enough output')
+      if (outLines.length > 3) {
+        t.match(outLines[1], 'The xPack manager - Run package specific script',
+          'has title')
+        t.match(outLines[3],
+          'Usage: xpm run-script [<options>...] name [-- <script args>...]',
           'has Usage')
       }
+
       // There should be no error messages.
       t.equal(stderr, '', 'stderr is empty')
     } catch (err) {
@@ -107,14 +111,18 @@ test('xpm run -h',
       ])
       // Check exit code.
       t.equal(code, CliExitCodes.SUCCESS, 'exit code is success')
+
       const outLines = stdout.split(/\r?\n/)
-      t.ok(outLines.length > 9, 'has enough output')
-      if (outLines.length > 9) {
-        // console.log(outLines)
-        t.match(outLines[1], 'run package specific script', 'has title')
-        t.match(outLines[2], 'Usage: xpm run-script [<options>...] ...',
+      // console.log(outLines)
+      t.ok(outLines.length > 3, 'has enough output')
+      if (outLines.length > 3) {
+        t.match(outLines[1], 'The xPack manager - Run package specific script',
+          'has title')
+        t.match(outLines[3],
+          'Usage: xpm run-script [<options>...] name [-- <script args>...]',
           'has Usage')
       }
+
       // There should be no error messages.
       t.equal(stderr, '', 'stderr is empty')
     } catch (err) {

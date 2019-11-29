@@ -98,12 +98,15 @@ test('xpm install -h',
       // Check exit code.
       t.equal(code, CliExitCodes.SUCCESS, 'exit code is success')
       const outLines = stdout.split(/\r?\n/)
-      t.ok(outLines.length > 9, 'has enough output')
       // console.log(outLines)
-      t.equals(outLines[0], '', 'has empty line')
-      t.match(outLines[1], 'install package(s)', 'has title')
-      t.match(outLines[2], 'Usage: xpm install [<options>...] ...')
-      t.equals(outLines[3], '', 'has empty line')
+      t.ok(outLines.length > 4, 'has enough output')
+      if (outLines.length > 4) {
+        t.equals(outLines[0], '', 'has empty line')
+        t.match(outLines[1], 'The xPack manager - Install package(s)',
+          'has title')
+        t.match(outLines[3], 'Usage: xpm install [<options>...] [<pkg>...]')
+        t.equals(outLines[4], '', 'has empty line')
+      }
 
       t.match(stdout, 'Install options:', 'has install options')
       t.match(stdout, '  -g|--global  ', 'has --global')
@@ -111,6 +114,7 @@ test('xpm install -h',
       t.match(stdout, '  -f|--force  ', 'has --force')
       t.match(stdout, '  --copy  ', 'has --copy')
       t.match(stdout, '  -n|--dry-run  ', 'has --dry-run')
+
       // There should be no error messages.
       t.equal(stderr, '', 'stderr is empty')
     } catch (err) {
@@ -137,8 +141,9 @@ test('xpm install from folder standalone',
         ], opts)
         // Check exit code.
         t.equal(code, CliExitCodes.SUCCESS, 'exit code is success')
-        // console.log(stdout)
+
         const outLines = stdout.split(/\r?\n/)
+        // console.log(outLines)
         t.ok(outLines.length > 1, 'has enough output')
         t.match(stdout, 'Installing standalone package',
           'has installed standalone')
@@ -188,6 +193,7 @@ test('xpm install from folder standalone',
         ], opts)
         // Check exit code.
         t.equal(code, CliExitCodes.ERROR.OUTPUT, 'exit code is OUTPUT')
+
         // console.log(stdout)
         const outLines = stdout.split(/\r?\n/)
         t.ok(outLines.length > 1, 'has enough output')
@@ -214,6 +220,7 @@ test('xpm install from folder standalone',
         ], opts)
         // Check exit code.
         t.equal(code, CliExitCodes.SUCCESS, 'exit code is success')
+
         // console.log(stdout)
         const outLines = stdout.split(/\r?\n/)
         t.ok(outLines.length > 1, 'has enough output')
@@ -265,6 +272,7 @@ test('xpm install from folder globally',
         ], opts)
         // Check exit code.
         t.equal(code, CliExitCodes.SUCCESS, 'exit code is success')
+
         // console.log(stdout)
         const outLines = stdout.split(/\r?\n/)
         t.ok(outLines.length > 1, 'has enough output')
@@ -304,6 +312,7 @@ test('xpm install from folder globally',
         ], opts)
         // Check exit code.
         t.equal(code, CliExitCodes.ERROR.OUTPUT, 'exit code is OUTPUT')
+
         // console.log(stdout)
         const outLines = stdout.split(/\r?\n/)
         t.ok(outLines.length > 1, 'has enough output')
@@ -330,6 +339,7 @@ test('xpm install from folder globally',
         ], opts)
         // Check exit code.
         t.equal(code, CliExitCodes.SUCCESS, 'exit code is success')
+
         // console.log(stdout)
         const outLines = stdout.split(/\r?\n/)
         t.ok(outLines.length > 1, 'has enough output')
@@ -378,8 +388,9 @@ test('xpm install from folder locally copy',
         ], opts)
         // Check exit code.
         t.equal(code, CliExitCodes.SUCCESS, 'exit code is success')
-        // console.log(stdout)
+
         const outLines = stdout.split(/\r?\n/)
+        // console.log(outLines)
         t.ok(outLines.length > 1, 'has enough output')
         t.match(stdout, 'Copying locally as \'xpacks/testscope-afrom\'',
           'has copying locally')
@@ -430,8 +441,9 @@ test('xpm install from folder locally copy',
         ], opts)
         // Check exit code.
         t.equal(code, CliExitCodes.ERROR.OUTPUT, 'exit code is OUTPUT')
-        // console.log(stdout)
+
         const outLines = stdout.split(/\r?\n/)
+        // console.log(outLines)
         t.ok(outLines.length > 1, 'has enough output')
 
         // console.log(stderr)
@@ -456,8 +468,9 @@ test('xpm install from folder locally copy',
         ], opts)
         // Check exit code.
         t.equal(code, CliExitCodes.SUCCESS, 'exit code is success')
-        // console.log(stdout)
+
         const outLines = stdout.split(/\r?\n/)
+        // console.log(outLines)
         t.ok(outLines.length > 1, 'has enough output')
         t.match(stdout, 'Copying locally as \'xpacks/testscope-afrom\'',
           'has copying locally')
@@ -509,8 +522,9 @@ test('xpm install from folder locally link',
         ], opts)
         // Check exit code.
         t.equal(code, CliExitCodes.SUCCESS, 'exit code is success')
-        // console.log(stdout)
+
         const outLines = stdout.split(/\r?\n/)
+        // console.log(outLines)
         t.ok(outLines.length > 1, 'has enough output')
         t.match(stdout, 'Linking locally as \'xpacks/testscope-afrom\'',
           'has linking locally')
@@ -558,8 +572,9 @@ test('xpm install from folder locally link',
         ], opts)
         // Check exit code.
         t.equal(code, CliExitCodes.ERROR.OUTPUT, 'exit code is OUTPUT')
-        // console.log(stdout)
+
         const outLines = stdout.split(/\r?\n/)
+        // console.log(outLines)
         t.ok(outLines.length > 1, 'has enough output')
 
         // console.log(stderr)
@@ -583,8 +598,9 @@ test('xpm install from folder locally link',
         ], opts)
         // Check exit code.
         t.equal(code, CliExitCodes.SUCCESS, 'exit code is success')
-        // console.log(stdout)
+
         const outLines = stdout.split(/\r?\n/)
+        // console.log(outLines)
         t.ok(outLines.length > 1, 'has enough output')
         t.match(stdout, 'Linking locally as \'xpacks/testscope-afrom\'',
           'has linking locally')
@@ -637,8 +653,9 @@ test('xpm install from npmjs locally link',
         ], opts)
         // Check exit code.
         t.equal(code, CliExitCodes.SUCCESS, 'exit code is success')
-        // console.log(stdout)
+
         const outLines = stdout.split(/\r?\n/)
+        // console.log(outLines)
         t.ok(outLines.length > 1, 'has enough output')
         t.match(stdout, 'Adding to repository', 'has adding to repo')
         t.match(stdout, 'Write protecting folder', 'has write protecting')
@@ -713,8 +730,9 @@ test('xpm install from github tgz locally link',
         ], opts)
         // Check exit code.
         t.equal(code, CliExitCodes.SUCCESS, 'exit code is success')
-        // console.log(stdout)
+
         const outLines = stdout.split(/\r?\n/)
+        // console.log(outLines)
         t.ok(outLines.length > 1, 'has enough output')
         t.match(stdout, 'Adding to repository', 'has adding to repo')
         t.match(stdout, 'Write protecting folder', 'has write protecting')
@@ -789,8 +807,9 @@ test('xpm install from github locally link',
         ], opts)
         // Check exit code.
         t.equal(code, CliExitCodes.SUCCESS, 'exit code is success')
-        // console.log(stdout)
+
         const outLines = stdout.split(/\r?\n/)
+        // console.log(outLines)
         t.ok(outLines.length > 1, 'has enough output')
         t.match(stdout, 'Adding to repository', 'has adding to repo')
         t.match(stdout, 'Write protecting folder', 'has write protecting')
