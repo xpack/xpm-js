@@ -61,6 +61,15 @@ $ npm run test-coverage
 ...
 ```
 
+#### Coverage exceptions
+
+Use `/* istanbul ignore next <something> */` before the code to be ignored
+(https://github.com/gotwarlost/istanbul/blob/master/ignoring-code-for-coverage.md).
+
+Fully excluded files:
+
+- `lib/utils/cmd-shim.js` 
+
 ### Continuous Integration (CI)
 
 The continuous integration tests are performed via
