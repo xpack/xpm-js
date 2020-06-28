@@ -93,7 +93,7 @@ To manually fix compliance with the style guide (where possible):
 ```console
 $ npm run fix
 
-> xpm@0.1.10 fix /Users/ilg/My Files/MacBookPro Projects/xPack/npm-modules/xpm-js.git
+> xpm@0.5.0 fix /Users/ilg/My Files/WKS Projects/xpack.github/npm-modules/xpm-js.git
 > standard --fix
 
 ```
@@ -126,3 +126,10 @@ Note: be sure C style comments are used, C++ styles are not parsed by
 - push all changes to GitHub; this should trigger CI
 - wait for CI tests to complete
 - `npm publish` (use `--access public` when publishing for the first time)
+
+Optionally manage tags:
+
+- `npm dist-tag ls xpm`
+- `npm dist-tag add xpm@0.6.0 next`
+- `npm dist-tag add xpm@0.5.0 latest`
+- `npm dist-tag ls xpm`
