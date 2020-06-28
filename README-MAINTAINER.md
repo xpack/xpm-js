@@ -125,7 +125,7 @@ Note: be sure C style comments are used, C++ styles are not parsed by
   additions), `npm version major` (incompatible API changes)
 - push all changes to GitHub; this should trigger CI
 - wait for CI tests to complete
-- `npm publish` (use `--access public` when publishing for the first time)
+- `npm publish --tag next` (use `--access public` when publishing for the first time)
 
 Optionally manage tags:
 
