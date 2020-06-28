@@ -41,7 +41,7 @@
   "bugs": {
     "url": "https://github.com/xpack/xpm-js/issues"
   },
-  "homepage": "https://github.com/xpack/xpm-js",
+  "homepage": "https://xpack.github.io/xpm/",
   "dependencies": {
     "@ilg/cli-start-options": "^0.4.11",
     "@xpack/es6-promisifier": "^1.0.0",
