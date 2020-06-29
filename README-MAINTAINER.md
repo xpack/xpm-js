@@ -114,6 +114,20 @@ the `use strict`:
 Note: be sure C style comments are used, C++ styles are not parsed by
 [ESLint](http://eslint.org).
 
+## Dependencies
+
+Stick with older cacache & pacote.
+
+```
+    "cacache": "^12.0.2",
+    "pacote": "^9.4.1",
+```
+
+- cacache@15.0.4: fails to download binaries.
+- pacote@11.1.10: fails with _TypeError: Cannot read property 'startsWith' of undefined_ and uses deprecated 'request'.
+
+TODO: investigate and update.
+
 ### How to publish
 
 - `npm run fix`
