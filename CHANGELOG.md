@@ -3,6 +3,13 @@
 Changes in reverse chronological order.
 Don't forget to close GitHub [issues](https://github.com/xpack/xpm-js/issues).
 
+### v0.6.1 (2020-06-29)
+
+- [#36] - Replace 'request' by 'node-fetch'
+- [#38] replace mkdirp module with make-dir
+- package.json: bump all deps, less cacache & pacote
+- update usage of Liquid
+
 ### v0.6.0 (2020-06-28)
 
 - [#26] - Add --save-* options to save dependencies in package.json
