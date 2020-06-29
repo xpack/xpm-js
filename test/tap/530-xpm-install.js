@@ -60,7 +60,6 @@ assert(CliExitCodes)
 // const fixtures = path.resolve(__dirname, '../fixtures')
 // const workFolder = path.resolve(os.tmpdir(), 'xtest-copy')
 // const rimrafPromise = Promisifier.promisify(require('rimraf'))
-// const mkdirpPromise = Promisifier.promisify(require('mkdirp'))
 
 // Promisified functions from the Node.js callbacks library.
 Promisifier.promisifyInPlace(fs, 'chmod')
