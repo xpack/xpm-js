@@ -42,7 +42,7 @@ const test = require('tap').test
 // const path = require('path')
 
 const Xpack = require('../../lib/utils/xpack.js').Xpack
-const ManifestId = require('../../lib/utils/xpack.js').ManifestId
+const ManifestIds = require('../../lib/utils/xpack.js').ManifestIds
 
 // const Common = require('../common.js').Common
 const CliLogger = require('@ilg/cli-start-options').CliLogger
@@ -58,7 +58,7 @@ test('utils/xpack', (t) => {
 
   const xpack = new Xpack('x', context)
   t.ok(xpack, 'spawn set')
-  const mid = new ManifestId('xx')
+  const mid = new ManifestIds({ _id: 'xx' })
   t.ok(mid, 'mid set')
 
   t.end()
