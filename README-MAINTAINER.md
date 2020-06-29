@@ -123,8 +123,10 @@ Stick with older cacache & pacote.
     "pacote": "^9.4.1",
 ```
 
-- cacache@15.0.4: fails to download binaries.
-- pacote@11.1.10: fails with _TypeError: Cannot read property 'startsWith' of undefined_ and uses deprecated 'request'.
+- cacache@15.0.3: fails to download binaries.
+- pacote@11.1.10: apparently works, but passing the stream to cacache fails.
+
+Note: the cacache version should match the one used inside pacote.
 
 TODO: investigate and update.
 
