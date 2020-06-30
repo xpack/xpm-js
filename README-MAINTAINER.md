@@ -128,6 +128,10 @@ Stick with older cacache & pacote.
 
 Note: the cacache version should match the one used inside pacote.
 
+- https://github.com/npm/cacache/issues/27
+- https://github.com/npm/pacote/issues/21
+
+
 TODO: investigate and update.
 
 ### How to publish
