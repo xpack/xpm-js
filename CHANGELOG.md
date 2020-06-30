@@ -3,6 +3,12 @@
 Changes in reverse chronological order.
 Don't forget to close GitHub [issues](https://github.com/xpack/xpm-js/issues).
 
+### v0.6.2 (2020-06-30)
+
+[#40] - update pacote to 11.1.10
+[#39] - update to cacache 15.0.3 and internal buffer
+[#42] - error on unsupported architecture
+
 ### v0.6.1 (2020-06-29)
 
 - [#36] - Replace 'request' by 'node-fetch'
