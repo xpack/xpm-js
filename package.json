@@ -45,7 +45,7 @@
   "dependencies": {
     "@ilg/cli-start-options": "^0.4.11",
     "@xpack/es6-promisifier": "^1.0.0",
-    "cacache": "^12.0.2",
+    "cacache": "^15.0.3",
     "cp-file": "^9.0.0",
     "decompress": "^4.2.1",
     "del": "^5.1.0",
