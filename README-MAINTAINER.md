@@ -131,7 +131,6 @@ Note: the cacache version should match the one used inside pacote.
 - https://github.com/npm/cacache/issues/27
 - https://github.com/npm/pacote/issues/21
 
-
 TODO: investigate and update.
 
 ### How to publish
@@ -143,6 +142,7 @@ TODO: investigate and update.
 - update `CHANGELOG.md`; commit with a message like _CHANGELOG: prepare v0.1.2_
 `npm version patch` (bug fixes), `npm version minor` (compatible API
   additions), `npm version major` (incompatible API changes)
+- `npm pack` and check the content
 - push all changes to GitHub; this should trigger CI
 - wait for CI tests to complete
 - `npm publish --tag next` (use `--access public` when publishing for the first time)
@@ -150,6 +150,8 @@ TODO: investigate and update.
 Optionally manage tags:
 
 - `npm dist-tag ls xpm`
-- `npm dist-tag add xpm@0.6.0 next`
-- `npm dist-tag add xpm@0.5.0 latest`
+- `npm dist-tag add xpm@0.6.2 latest`
 - `npm dist-tag ls xpm`
+
+Check if the version is present at
+[xpm Versions](https://www.npmjs.com/package/xpm?activeTab=versions).
