@@ -3,6 +3,11 @@
 Changes in reverse chronological order.
 Don't forget to close GitHub [issues](https://github.com/xpack/xpm-js/issues).
 
+### v0.6.3 (2020-07-08)
+
+- Bump npm-registry-fetch from 8.1.0 to 8.1.1
+- README: fix actions badge url
+
 ### v0.6.2 (2020-06-30)
 
 [#40] - update pacote to 11.1.10
