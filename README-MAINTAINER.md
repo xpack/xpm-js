@@ -139,7 +139,7 @@ TODO: investigate and update.
 - commit all changes
 - `npm run test-coverage`
 - check the latest commits `npm run git-log`
-- update `CHANGELOG.md`; commit with a message like _CHANGELOG: prepare v0.1.2_
+- update `CHANGELOG.md`; commit with a message like _CHANGELOG: prepare v0.6.4_
 - `npm version patch` (bug fixes), `npm version minor` (compatible API
   additions), `npm version major` (incompatible API changes)
 - `npm pack` and check the content

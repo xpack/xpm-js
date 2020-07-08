@@ -3,6 +3,10 @@
 Changes in reverse chronological order.
 Don't forget to close GitHub [issues](https://github.com/xpack/xpm-js/issues).
 
+### v0.6.4 (2020-07-08)
+
+- revert Bump npm-registry-fetch from 8.1.0 to 8.1.1, tests fail
+
 ### v0.6.3 (2020-07-08)
 
 - Bump npm-registry-fetch from 8.1.0 to 8.1.1
