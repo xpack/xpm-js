@@ -140,7 +140,7 @@ TODO: investigate and update.
 - `npm run test-coverage`
 - check the latest commits `npm run git-log`
 - update `CHANGELOG.md`; commit with a message like _CHANGELOG: prepare v0.1.2_
-`npm version patch` (bug fixes), `npm version minor` (compatible API
+- `npm version patch` (bug fixes), `npm version minor` (compatible API
   additions), `npm version major` (incompatible API changes)
 - `npm pack` and check the content
 - push all changes to GitHub; this should trigger CI
