@@ -37,7 +37,7 @@ software packages, using the same central repository as `npm`.
 ## Install
 
 The basic command is `npm install --global xpm`, but since it is recommended
-to use a version manager or to customize the `npm` install location, 
+to use a version manager or to customize the `npm` install location,
 please read the
 [Install](https://xpack.github.io/xpm/install/) page.
 
