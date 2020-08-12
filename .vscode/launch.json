@@ -439,15 +439,15 @@
     {
       "type": "node",
       "request": "launch",
-      "name": "xpm install qemu",
+      "name": "xpm install arm-none",
       "program": "${workspaceRoot}/bin/xpm.js",
       "stopOnEntry": true,
       "args": [
         "install",
         "-dd",
         "-C",
-        "/Users/ilg/tmp/qemu",
-        "@gnu-mcu-eclipse/qemu"
+        "/Users/ilg/tmp/arm-none",
+        "@xpack-dev-tools/arm-none-eabi-gcc"
       ],
       "cwd": "${workspaceRoot}",
       "preLaunchTask": null,
