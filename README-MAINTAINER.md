@@ -144,7 +144,7 @@ TODO: investigate and update.
   additions), `npm version major` (incompatible API changes)
 - `npm pack` and check the content
 - push all changes to GitHub; this should trigger CI
-- wait for CI tests to complete
+- **wait for CI tests to complete**
 - `npm publish --tag next` (use `--access public` when publishing for the first time)
 
 Optionally manage tags:
