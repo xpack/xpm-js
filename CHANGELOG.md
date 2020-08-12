@@ -3,6 +3,15 @@
 Changes in reverse chronological order.
 Don't forget to close GitHub [issues](https://github.com/xpack/xpm-js/issues).
 
+### v0.6.5 (2020-08-12)
+
+- [#47] Local installs should add links in .bin
+- [#48] Show the .content folder after archive extraction
+- [#49] Dependencies to pre-releases should be saved as exact
+- [#50] Binary xPacks should be added to devDependencies by default
+- Bump lodash from 4.17.15 to 4.17.19
+- npm audit fix
+
 ### v0.6.4 (2020-07-08)
 
 - revert Bump npm-registry-fetch from 8.1.0 to 8.1.1, tests fail
