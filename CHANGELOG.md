@@ -3,6 +3,10 @@
 Changes in reverse chronological order.
 Don't forget to close GitHub [issues](https://github.com/xpack/xpm-js/issues).
 
+### v0.6.6 (2020-08-27)
+
+- [#52] Add win32-ia32 architecture; impove aliases logic
+
 ### v0.6.5 (2020-08-12)
 
 - [#47] Local installs should add links in .bin
