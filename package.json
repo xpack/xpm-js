@@ -53,7 +53,7 @@
     "liquidjs": "^9.14.0",
     "make-dir": "^3.1.0",
     "mz": "^2.7.0",
-    "node-fetch": "^2.6.0",
+    "node-fetch": "^2.6.1",
     "pacote": "^11.1.10",
     "parse-git-config": "^3.0.0",
     "rimraf": "^3.0.2",
