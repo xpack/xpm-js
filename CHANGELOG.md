@@ -6,7 +6,7 @@ Don't forget to close GitHub [issues](https://github.com/xpack/xpm-js/issues).
 ### v0.6.8 (2020-09-22)
 
 - [#51] Rename Linux .cache/xPack
-- [#54] Do not display 'Adding symbolic links...' if there are no binaries
+- [#55] Do not display 'Adding symbolic links...' if there are no binaries
 - [#56] Detect different versions of the same package
 
 ### v0.6.7 (2020-09-19)
