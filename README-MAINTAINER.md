@@ -150,7 +150,7 @@ TODO: investigate and update.
 Optionally manage tags:
 
 - `npm dist-tag ls xpm`
-- `npm dist-tag add xpm@0.6.2 latest`
+- `npm dist-tag add xpm@0.6.9 latest`
 - `npm dist-tag ls xpm`
 
 Check if the version is present at
