@@ -3,6 +3,10 @@
 Changes in reverse chronological order.
 Don't forget to close GitHub [issues](https://github.com/xpack/xpm-js/issues).
 
+### v0.6.9 (2020-09-29)
+
+- [#59] Add support for linux-ia32 architecture
+
 ### v0.6.8 (2020-09-22)
 
 - [#51] Rename Linux .cache/xPack
