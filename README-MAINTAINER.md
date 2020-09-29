@@ -75,7 +75,7 @@ The continuous integration tests are performed via
 [Travis CI](https://travis-ci.org/xpack/xpm-js) (for POSIX) and
 [AppVeyor](https://ci.appveyor.com/project/ilg-ul/xpm-js) (for Windows).
 
-The tests are currently performed with node 8, 10, 12.
+The tests are currently performed with node 10, 12.
 
 ### Standard compliance
 
@@ -139,7 +139,7 @@ TODO: investigate and update.
 - commit all changes
 - `npm run test-coverage`
 - check the latest commits `npm run git-log`
-- update `CHANGELOG.md`; commit with a message like _CHANGELOG: prepare v0.6.4_
+- update `CHANGELOG.md`; commit with a message like _CHANGELOG: prepare v0.6.9_
 - `npm version patch` (bug fixes), `npm version minor` (compatible API
   additions), `npm version major` (incompatible API changes)
 - `npm pack` and check the content
