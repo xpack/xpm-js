@@ -147,11 +147,13 @@ TODO: investigate and update.
 - **wait for CI tests to complete**
 - `npm publish --tag next` (use `--access public` when publishing for the first time)
 
-Optionally manage tags:
+Check if the version is present at
+[xpm Versions](https://www.npmjs.com/package/xpm?activeTab=versions).
+
+When stable, tag as latest:
 
 - `npm dist-tag ls xpm`
 - `npm dist-tag add xpm@0.6.10 latest`
 - `npm dist-tag ls xpm`
 
-Check if the version is present at
-[xpm Versions](https://www.npmjs.com/package/xpm?activeTab=versions).
+Merge `develop` into `merge`.
