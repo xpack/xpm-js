@@ -3,6 +3,12 @@
 Changes in reverse chronological order.
 Don't forget to close GitHub [issues](https://github.com/xpack/xpm-js/issues).
 
+### v0.6.10 (2020-10-18)
+
+- [#58] Installing node modules should report linking to node_modules, not xpacks #58
+- [#63] On Windows, cmdShim() fails to identify absolute paths
+- [#64] Installing deps should report linking to global folder, not local
+
 ### v0.6.9 (2020-09-29)
 
 - [#59] Add support for linux-ia32 architecture

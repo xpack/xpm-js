@@ -139,7 +139,7 @@ TODO: investigate and update.
 - commit all changes
 - `npm run test-coverage`
 - check the latest commits `npm run git-log`
-- update `CHANGELOG.md`; commit with a message like _CHANGELOG: prepare v0.6.9_
+- update `CHANGELOG.md`; commit with a message like _CHANGELOG: prepare v0.6.10_
 - `npm version patch` (bug fixes), `npm version minor` (compatible API
   additions), `npm version major` (incompatible API changes)
 - `npm pack` and check the content
@@ -150,7 +150,7 @@ TODO: investigate and update.
 Optionally manage tags:
 
 - `npm dist-tag ls xpm`
-- `npm dist-tag add xpm@0.6.9 latest`
+- `npm dist-tag add xpm@0.6.10 latest`
 - `npm dist-tag ls xpm`
 
 Check if the version is present at
