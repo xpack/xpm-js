@@ -150,6 +150,12 @@ TODO: investigate and update.
 Check if the version is present at
 [xpm Versions](https://www.npmjs.com/package/xpm?activeTab=versions).
 
+Test it with:
+
+```bash
+npm install -global xpm@next
+```
+
 When stable, tag as latest:
 
 - `npm dist-tag ls xpm`
