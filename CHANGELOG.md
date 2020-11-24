@@ -3,6 +3,10 @@
 Changes in reverse chronological order.
 Don't forget to close GitHub [issues](https://github.com/xpack/xpm-js/issues).
 
+### v0.7.1 (2020-11-25)
+
+- lib/xpm/link: revert to long info lines
+
 ### v0.7.0 (2020-11-25)
 
 - [#62] - add \n when writing package.json

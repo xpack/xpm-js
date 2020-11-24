@@ -139,7 +139,7 @@ TODO: investigate and update.
 - commit all changes
 - `npm run test-coverage`
 - check the latest commits `npm run git-log`
-- update `CHANGELOG.md`; commit with a message like _CHANGELOG: prepare v0.7.0_
+- update `CHANGELOG.md`; commit with a message like _CHANGELOG: prepare v0.7.1_
 - `npm version patch` (bug fixes), `npm version minor` (compatible API
   additions), `npm version major` (incompatible API changes)
 - `npm pack` and check the content
@@ -159,7 +159,7 @@ npm install -global xpm@next
 When stable, tag as latest:
 
 - `npm dist-tag ls xpm`
-- `npm dist-tag add xpm@0.7.0 latest`
+- `npm dist-tag add xpm@0.7.1 latest`
 - `npm dist-tag ls xpm`
 
 Merge `develop` into `merge`.
