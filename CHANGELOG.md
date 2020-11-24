@@ -3,6 +3,11 @@
 Changes in reverse chronological order.
 Don't forget to close GitHub [issues](https://github.com/xpack/xpm-js/issues).
 
+### v0.7.0 (2020-11-25)
+
+- [#62] - add \n when writing package.json
+- [#65] - Add the 'xpm link' command
+
 ### v0.6.10 (2020-10-18)
 
 - [#58] Installing node modules should report linking to node_modules, not xpacks #58
