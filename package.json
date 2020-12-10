@@ -34,12 +34,12 @@
   "author": {
     "name": "Liviu Ionescu",
     "email": "ilg@livius.net",
-    "url": "https://github.com/ilg-ul"
+    "url": "https://github.com/ilg-u/"
   },
   "contributors": [],
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/xpack/xpm-js/issues"
+    "url": "https://github.com/xpack/xpm-js/issues/"
   },
   "homepage": "https://xpack.github.io/xpm/",
   "dependencies": {
@@ -67,8 +67,5 @@
   },
   "peerDependencies": {},
   "bundledDependencies": [],
-  "optionalDependencies": {},
-  "engines": {
-    "node": ">7.7.0"
-  }
+  "optionalDependencies": {}
 }
