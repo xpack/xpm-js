@@ -40,8 +40,8 @@
  * when installing a global package,
  * two forwarders are automatically created in the
  * user `\AppData\Roaming\npm\node_modules\xpm\bin` folder:
- * - `xpm.cmd`, for invocation from the Windows command line
- * - `xpm` (a shell script), for invokations from an optional
+ * - `xpm-dev.cmd`, for invocation from the Windows command line
+ * - `xpm-dev` (a shell script), for invokations from an optional
  * POSIX environments like minGW-w64, msys2, git shell, etc.
  *
  * On all platforms, `process.argv[1]` will be the full path of
@@ -53,11 +53,11 @@
 // ----------------------------------------------------------------------------
 
 // ES6: `import { Xpm } from 'main.js'
-const { Xpm } = require('../lib/main.js')
+const { XpmDev } = require('../lib/main-dev.js')
 
 // ----------------------------------------------------------------------------
 
 // TODO: use instances, not static classes.
-Xpm.start().then((code) => { process.exitCode = code })
+XpmDev.start().then((code) => { process.exitCode = code })
 
 // ----------------------------------------------------------------------------
