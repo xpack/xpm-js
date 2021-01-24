@@ -116,15 +116,17 @@ Note: be sure C style comments are used, C++ styles are not parsed by
 
 ## Dependencies
 
-Stick with older cacache & pacote.
+There were some problems with cacache & pacote.
+
+- cacache@15.0.3: fails to download binaries.
+- pacote@11.1.10: apparently works, but passing the stream to cacache fails.
+
+The previous known to work versions:
 
 ```
     "cacache": "^12.0.2",
     "pacote": "^9.4.1",
 ```
-
-- cacache@15.0.3: fails to download binaries.
-- pacote@11.1.10: apparently works, but passing the stream to cacache fails.
 
 Note: the cacache version should match the one used inside pacote.
 
