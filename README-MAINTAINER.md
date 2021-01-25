@@ -77,6 +77,8 @@ The continuous integration tests are performed via
 
 The tests are currently performed with node 10, 12.
 
+- [Node.js 10 documentation](https://nodejs.org/docs/latest-v10.x/api/fs.html)
+
 ### Standard compliance
 
 The module uses ECMAScript 6 class definitions.
