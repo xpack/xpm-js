@@ -613,6 +613,65 @@
     {
       "type": "node",
       "request": "launch",
+      "name": "xpm uninstall @lix/stm32f7-qspi",
+      "program": "${workspaceRoot}/bin/xpm.js",
+      "stopOnEntry": true,
+      "args": [
+        "uninstall",
+        "-n",
+        "@lix/stm32f7-qspi",
+        "-dd",
+        "-C",
+        "/Users/ilg/tmp/lll"
+      ],
+      "cwd": "${workspaceRoot}",
+      "preLaunchTask": null,
+      "runtimeExecutable": null,
+      "runtimeArgs": [
+        "--nolazy"
+      ],
+      "skipFiles": [
+        "async_hooks.js",
+        "inspector_async_hook.js"
+      ],
+      "env": {
+        "NODE_ENV": "development"
+      },
+      "console": "internalConsole",
+      "sourceMaps": false
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "xpm uninstall @babu/riba",
+      "program": "${workspaceRoot}/bin/xpm.js",
+      "stopOnEntry": true,
+      "args": [
+        "uninstall",
+        "-g",
+
+        "@babu/riba@1.2.3",
+        "-dd"
+      ],
+      "cwd": "${workspaceRoot}",
+      "preLaunchTask": null,
+      "runtimeExecutable": null,
+      "runtimeArgs": [
+        "--nolazy"
+      ],
+      "skipFiles": [
+        "async_hooks.js",
+        "inspector_async_hook.js"
+      ],
+      "env": {
+        "NODE_ENV": "development"
+      },
+      "console": "internalConsole",
+      "sourceMaps": false
+    },
+    {
+      "type": "node",
+      "request": "launch",
       "name": "Launch Program",
       "program": "${workspaceRoot}/index.js"
     },
