@@ -72,10 +72,12 @@ Fully excluded files:
 ### Continuous Integration (CI)
 
 The continuous integration tests are performed via
-[Travis CI](https://travis-ci.org/xpack/xpm-js) (for POSIX) and
-[AppVeyor](https://ci.appveyor.com/project/ilg-ul/xpm-js) (for Windows).
+GitHub Actions.
 
 The tests are currently performed with node 10, 12.
+
+To preserve compatibility with Node 10, use the older
+version of the documentation:
 
 - [Node.js 10 documentation](https://nodejs.org/docs/latest-v10.x/api/fs.html)
 
@@ -143,7 +145,7 @@ TODO: investigate and update.
 - commit all changes
 - `npm run test-coverage`
 - check the latest commits `npm run git-log`
-- update `CHANGELOG.md`; commit with a message like _CHANGELOG: prepare v0.7.1_
+- update `CHANGELOG.md`; commit with a message like _CHANGELOG: prepare v0.8.0_
 - `npm version patch` (bug fixes), `npm version minor` (compatible API
   additions), `npm version major` (incompatible API changes)
 - `npm pack` and check the content
@@ -163,7 +165,7 @@ npm install -global xpm@next
 When stable, tag as latest:
 
 - `npm dist-tag ls xpm`
-- `npm dist-tag add xpm@0.7.1 latest`
+- `npm dist-tag add xpm@0.8.0 latest`
 - `npm dist-tag ls xpm`
 
 Merge `develop` into `merge`.

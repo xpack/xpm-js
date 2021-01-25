@@ -3,6 +3,19 @@
 Changes in reverse chronological order.
 Don't forget to close GitHub [issues](https://github.com/xpack/xpm-js/issues).
 
+### v0.8.0 (2020-01-26)
+
+- [#13] - implement uninstall
+- [#60] - change the linux default path to .local
+- [#75] - remove the build command
+- [#73] - change mode to RO after install
+- [#74] - xpm link: report broken link, not ENOENT
+- [#70] - check for name & version before xpm link
+- [#72] - link to global repo
+- [#71] - rework :=
+- [#66] - fix installing github: & git: & file:
+- [#71] - reduce verbosity
+
 ### v0.7.1 (2020-11-25)
 
 - lib/xpm/link: revert to long info lines
