@@ -121,7 +121,7 @@ class Common {
    * the exit code and the stdio streams captured in strings.
    */
   static async xpmLib (args, ctx = null) {
-    assert(Xpm !== null, 'No application class')
+    assert(Xpm !== null, 'no application class')
     // Create two streams to local strings.
     let stdout = ''
     const ostream = new Writable({
