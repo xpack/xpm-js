@@ -52,7 +52,7 @@ The xPack package manager command line tool
 Usage: xpm <command> [<subcommand>...] [<options> ...] [<args>...]
 
 where <command> is one of:
-  build, init, install, run-script
+  init, install, link, list, run-script, uninstall
 
 Common options:
   --loglevel <level>     Set log level (silent|warn|info|verbose|debug|trace) 
@@ -70,9 +70,9 @@ xpm <command> -h|--help  Quick help on command
 xpm --version            Show version 
 xpm -i|--interactive     Enter interactive mode 
 
-npm xpm@0.5.0 '/Users/ilg/.nvm/versions/node/v12.14.0/lib/node_modules/xpm'
-Home page: <https://github.com/xpack/xpm-js>
-Bug reports: <https://github.com/xpack/xpm-js/issues>
+npm xpm@0.8.0 '/Users/ilg/.nvm/versions/node/v12.14.0/lib/node_modules/xpm'
+Home page: <https://xpack.github.io/xpm/>
+Bug reports: <https://github.com/xpack/xpm-js/issues/>
 ```
 
 ## Maintainer info
