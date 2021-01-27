@@ -37,29 +37,13 @@
 
 // ----------------------------------------------------------------------------
 
-const assert = require('assert')
-// const path = require('path')
-// const os = require('os')
-const fs = require('fs')
-
 // The `[node-tap](http://www.node-tap.org)` framework.
-const test = require('tap').test
+const { test } = require('tap')
 
-const Common = require('../common.js').Common
+const { Common } = require('../common.js')
 
 // ES6: `import { CliExitCodes } from 'cli-start-options'
-const CliExitCodes = require('@ilg/cli-start-options').CliExitCodes
-
-assert(Common)
-assert(Promisifier)
-assert(CliExitCodes)
-
-// ----------------------------------------------------------------------------
-
-const Promisifier = require('@xpack/es6-promisifier').Promisifier
-
-// Promisified functions from the Node.js callbacks library.
-Promisifier.promisifyInPlace(fs, 'chmod')
+const { CliExitCodes } = require('@ilg/cli-start-options')
 
 // ----------------------------------------------------------------------------
 

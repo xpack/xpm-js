@@ -39,11 +39,8 @@
 
 // The `[node-tap](http://www.node-tap.org)` framework.
 const test = require('tap').test
-// const path = require('path')
 
-const Spawn = require('../../lib/utils/spawn.js').Spawn
-
-// const Common = require('../common.js').Common
+const { Spawn } = require('../../lib/utils/spawn.js')
 
 // ----------------------------------------------------------------------------
 

@@ -39,11 +39,8 @@
 
 // The `[node-tap](http://www.node-tap.org)` framework.
 const test = require('tap').test
-// const path = require('path')
 
-const GlobalConfig = require('../../lib/utils/global-config.js').GlobalConfig
-
-// const Common = require('../common.js').Common
+const { GlobalConfig } = require('../../lib/utils/global-config.js')
 
 // ----------------------------------------------------------------------------
 

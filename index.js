@@ -37,12 +37,12 @@
  * To import classes from this module into Node.js applications, use:
  *
  * ```javascript
- * const Main = require('<module>').Main
+ * const { Main } = require('<module>')
  * ```
  */
 
 // ES6: `import { Main } from './lib/main.js'
-const Main = require('./lib/main.js').Main
+const { Main } = require('./lib/main.js')
 
 // ----------------------------------------------------------------------------
 // Node.js specific export definitions.

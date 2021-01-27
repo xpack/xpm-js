@@ -37,13 +37,17 @@
 
 // ----------------------------------------------------------------------------
 
-// The `[node-tap](http://www.node-tap.org)` framework.
-const test = require('tap').test
+// https://nodejs.org/docs/latest-v10.x/api/
 const path = require('path')
 
-const Common = require('../common.js').Common
+// ----------------------------------------------------------------------------
 
-const CliApplication = require('@ilg/cli-start-options').CliApplication
+// The `[node-tap](http://www.node-tap.org)` framework.
+const { test } = require('tap')
+
+const { Common } = require('../common.js')
+
+const { CliApplication } = require('@ilg/cli-start-options')
 
 // ----------------------------------------------------------------------------
 

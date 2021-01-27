@@ -31,17 +31,20 @@
 
 // ----------------------------------------------------------------------------
 
+// https://nodejs.org/docs/latest-v10.x/api/
 const assert = require('assert')
 const fs = require('fs')
-const zlib = require('zlib')
 const tar = require('tar')
+const zlib = require('zlib')
 
-const spawn = require('child_process').spawn
-const Console = require('console').Console
-const Writable = require('stream').Writable
+// ----------------------------------------------------------------------------
+
+const { spawn } = require('child_process')
+const { Console } = require('console')
+const { Writable } = require('stream')
 
 // ES6: `import { CliHelp } from './utils/cli-helps.js'
-const Xpm = require('../lib/main.js').Xpm
+const { Xpm } = require('../lib/main.js')
 
 // ----------------------------------------------------------------------------
 

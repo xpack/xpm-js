@@ -39,13 +39,12 @@
 
 // The `[node-tap](http://www.node-tap.org)` framework.
 const test = require('tap').test
-// const path = require('path')
 
-const Xpack = require('../../lib/utils/xpack.js').Xpack
-const ManifestIds = require('../../lib/utils/xpack.js').ManifestIds
+const { ManifestIds } = require('../../lib/utils/xpack.js')
+const { Xpack } = require('../../lib/utils/xpack.js')
 
 // const Common = require('../common.js').Common
-const CliLogger = require('@ilg/cli-start-options').CliLogger
+const { CliLogger } = require('@ilg/cli-start-options')
 
 // ----------------------------------------------------------------------------
 
