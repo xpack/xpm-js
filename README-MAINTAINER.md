@@ -79,7 +79,7 @@ The tests are currently performed with node 10, 12.
 To preserve compatibility with Node 10, use the older
 version of the documentation:
 
-- [Node.js 10 documentation](https://nodejs.org/docs/latest-v10.x/api/fs.html)
+- [Node.js 10 documentation](https://nodejs.org/docs/latest-v10.x/api/)
 
 ### Standard compliance
 
