@@ -56,7 +56,6 @@
     "node-fetch": "^2.6.1",
     "pacote": "^11.2.1",
     "parse-git-config": "^3.0.0",
-    "rimraf": "^3.0.2",
     "semver": "^7.3.4",
     "tar": "^6.1.0",
     "user-home": "^2.0.0"

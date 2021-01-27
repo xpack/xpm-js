@@ -46,7 +46,6 @@ const fs = require('fs')
 const test = require('tap').test
 
 const Common = require('../common.js').Common
-const Promisifier = require('@xpack/es6-promisifier').Promisifier
 
 // ES6: `import { CliExitCodes } from 'cli-start-options'
 const CliExitCodes = require('@ilg/cli-start-options').CliExitCodes
@@ -57,9 +56,7 @@ assert(CliExitCodes)
 
 // ----------------------------------------------------------------------------
 
-// const fixtures = path.resolve(__dirname, '../fixtures')
-// const workFolder = path.resolve(os.tmpdir(), 'xtest-copy')
-// const rimrafPromise = Promisifier.promisify(require('rimraf'))
+const Promisifier = require('@xpack/es6-promisifier').Promisifier
 
 // Promisified functions from the Node.js callbacks library.
 Promisifier.promisifyInPlace(fs, 'chmod')
