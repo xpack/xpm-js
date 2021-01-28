@@ -3,8 +3,14 @@
 Changes in reverse chronological order.
 Don't forget to close GitHub [issues](https://github.com/xpack/xpm-js/issues).
 
+### v0.8.1 (2020-01-28)
+
+- [#66] - more fixes for installing github: & git: & file:
+- reformat the `list` output
+
 ### v0.8.0 (2020-01-26)
 
+- [#76] - implement list
 - [#13] - implement uninstall
 - [#60] - change the linux default path to .local
 - [#75] - remove the build command

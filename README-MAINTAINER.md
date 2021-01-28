@@ -90,7 +90,7 @@ automatically checked at each commit via Travis CI.
 
 Known and accepted exceptions:
 
-- none.
+- none
 
 To manually fix compliance with the style guide (where possible):
 
@@ -127,7 +127,7 @@ There were some problems with cacache & pacote.
 
 The previous known to work versions:
 
-```
+```js
     "cacache": "^12.0.2",
     "pacote": "^9.4.1",
 ```
@@ -139,13 +139,48 @@ Note: the cacache version should match the one used inside pacote.
 
 TODO: investigate and update.
 
-### How to publish
+## How to publish
+
+### Update help text
+
+In `README.md`, update the `xpm --help` test.
+
+## Prepare a new blog post with the pre-release
+
+In the `xpack/web-jekyll` GitHub repo:
+
+- select the `develop` branch
+- add a new file to `_posts/releases/xpm`
+- name the file like `2021-01-28-xpm-v0-8-1-released.md`
+- name the post like: **xPack xpm v0.8.1 pre-release**
+- update the `date:` field with the current date
+- add a paragraph with _To install the pre-release version, use:_
+  and give the command with the next tag
+- update the **Changes** sections
+
+If any, refer to closed
+[issues](https://github.com/xpack/xpm-js/issues)
+as:
+
+```
+- [#1] ...
+```
+
+- commit with a message like **xPack xpm v0.8.1 pre-release**
+- push
+- wait for CI job to complete
+
+Check if the page shows at:
+
+- https://xpack.github.io/web-preview/news/
+
+### Publish to npmjs.com
 
 - `npm run fix`
 - commit all changes
 - `npm run test-coverage`
 - check the latest commits `npm run git-log`
-- update `CHANGELOG.md`; commit with a message like _CHANGELOG: prepare v0.8.0_
+- update `CHANGELOG.md`; commit with a message like _CHANGELOG: prepare v0.8.1_
 - `npm version patch` (bug fixes), `npm version minor` (compatible API
   additions), `npm version major` (incompatible API changes)
 - `npm pack` and check the content
@@ -162,10 +197,37 @@ Test it with:
 npm install -global xpm@next
 ```
 
-When stable, tag as latest:
+## Update the web repo
+
+In the `xpack/web-jekyll` GitHub repo:
+
+- select the `master` branch
+- merge `develop`
+- push
+- wait for CI job to complete
+
+Check if the page shows at:
+
+- https://xpack.github.io/news/
+
+### Change tag to latest
+
+When stable:
 
 - `npm dist-tag ls xpm`
 - `npm dist-tag add xpm@0.8.0 latest`
 - `npm dist-tag ls xpm`
 
+### Update repo
+
 Merge `develop` into `merge`.
+
+### Update the blob post to release
+
+In the `xpack/web-jekyll` GitHub repo:
+
+- select the `develop` branch
+- update the post title from **pre-release** to **release**
+- remove the `@next` instructions
+- commit with a message like **xPack xpm v0.8.1 release**
+- push both branches

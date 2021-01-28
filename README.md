@@ -2,19 +2,22 @@
 [![license](https://img.shields.io/github/license/xpack/xpm-js.svg)](https://github.com/xpack/xpm-js/blob/master/LICENSE)
 [![Standard](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com/)
 [![GitHub Workflow](https://github.com/xpack/xpm-js/workflows/Node.js%20CI%20on%20Push/badge.svg)](https://github.com/xpack/xpm-js/actions)
-[![GitHub issues](https://img.shields.io/github/issues/xpack/xpm-js.svg)](https://github.com/xpack/xpm-js/issues)
-[![GitHub pulls](https://img.shields.io/github/issues-pr/xpack/xpm-js.svg)](https://github.com/xpack/xpm-js/pulls)
+
+## Release info
+
+For more details on the **xpm** releases, please check the
+[releases](https://xpack.github.io/xpm/releases/) pages on the project web.
 
 ## Quicklinks
 
 If you already know the general facts about `xpm`, you can directly skip to:
 
-- [`xpack.github.io/xpm`](https://xpack.github.io/xpm/) - documentation
-- [`xpack/xpm-js`](https://github.com/xpack/xpm-js.git) - the GitHub location of the open source project
-- [how to install](https://xpack.github.io/xpm/install/)
-- [how to get support](https://xpack.github.io/xpm/support/)
-- [`xpm`](https://www.npmjs.com/package/xpm) - the npm package at the public repository
-- [versions](https://www.npmjs.com/package/xpm?activeTab=versions) - published versions
+- [Documentation](https://xpack.github.io/xpm/)
+- [GitHub](https://github.com/xpack/xpm-js.git)
+- [How to install](https://xpack.github.io/xpm/install/)
+- [How to get support](https://xpack.github.io/xpm/support/)
+- [npmjs/xpm](https://www.npmjs.com/package/xpm/)
+- [Pubished versions](https://www.npmjs.com/package/xpm?activeTab=versions)
 
 ## xPacks overview
 
@@ -28,17 +31,36 @@ in the [Node.js](https://nodejs.org/en/) JavaScript ecosystem.
 
 ## Purpose
 
-The main purpose of the `xpm` tool is to install xPacks, including all
-dependent xPacks, and to easily update them when new versions are released.
+The main purpose of the `xpm` command line tool is to install xPacks,
+including all dependent xPacks, and to easily update them when new
+versions are released.
 
-For developers, `xpm` provides a very convenient way of publishing the
-software packages, using the same central repository as `npm`.
+For developers, **xpm** provides a very convenient way of publishing the
+software packages, using the same central repository as **npm**.
+
+## Prequisites
+
+The current version requires Node.js >= 10.x.
+
+Since it is recommended
+to use a version manager or to customize the **npm** install location,
+please read the
+[Install](https://xpack.github.io/xpm/install/) page for more details.
 
 ## Install
 
-The basic command is `npm install --global xpm`, but since it is recommended
-to use a version manager or to customize the `npm` install location,
-please read the
+The basic command is:
+
+```
+npm install --global xpm@latest
+```
+
+Note: In the current configuration, **npm** complains about several deprecated
+packages; these packages are used by some third party packages, and until
+those packages will update their dependencies, there is not much we can
+do to prevent these warnings.
+
+For more details, please refer to the
 [Install](https://xpack.github.io/xpm/install/) page.
 
 ## User info
@@ -70,7 +92,7 @@ xpm <command> -h|--help  Quick help on command
 xpm --version            Show version 
 xpm -i|--interactive     Enter interactive mode 
 
-npm xpm@0.8.0 '/Users/ilg/.nvm/versions/node/v12.14.0/lib/node_modules/xpm'
+npm xpm@0.8.1 '/Users/ilg/.nvm/versions/node/v12.14.0/lib/node_modules/xpm'
 Home page: <https://xpack.github.io/xpm/>
 Bug reports: <https://github.com/xpack/xpm-js/issues/>
 ```
@@ -94,5 +116,4 @@ terms of **The Artistic License 2.0**.
 
 ## Note
 
-The `xpm` tool is currently experimental and should not be used in
-production environments.
+The **xpm** tool is currently work in progress and should be used with caution.
