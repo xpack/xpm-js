@@ -3,6 +3,11 @@
 Changes in reverse chronological order.
 Don't forget to close GitHub [issues](https://github.com/xpack/xpm-js/issues).
 
+### v0.8.1 (2020-01-30)
+
+- [#66] - change match logic to `str.match(/^[a-zA-Z]+:/)`
+- [#78] - download dependencies in parallel
+
 ### v0.8.1 (2020-01-28)
 
 - [#66] - more fixes for installing github: & git: & file:
