@@ -197,37 +197,44 @@ Test it with:
 npm install -global xpm@next
 ```
 
-## Update the web repo
+### Change tag to latest
+
+When stable:
+
+- `npm dist-tag ls xpm`
+- `npm dist-tag add xpm@0.8.1 latest`
+- `npm dist-tag ls xpm`
+
+### Update repo
+
+- in the `develop` branch
+- commit all changes
+- select the `master` branch
+- merge `develop`
+- push all branches
+
+### Update the blob post to release
 
 In the `xpack/web-jekyll` GitHub repo:
 
+- in the `develop` branch
+- change the name from _pre-release_ to _released_
+- remove the _To install the pre-release version, use:_ section
+- commit with a message like **xPack xpm v0.8.1 release**
 - select the `master` branch
 - merge `develop`
-- push
+- push both branches
 - wait for CI job to complete
 
 Check if the page shows at:
 
 - https://xpack.github.io/news/
 
-### Change tag to latest
+## Share on Twitter
 
-When stable:
-
-- `npm dist-tag ls xpm`
-- `npm dist-tag add xpm@0.8.0 latest`
-- `npm dist-tag ls xpm`
-
-### Update repo
-
-Merge `develop` into `merge`.
-
-### Update the blob post to release
-
-In the `xpack/web-jekyll` GitHub repo:
-
-- select the `develop` branch
-- update the post title from **pre-release** to **release**
-- remove the `@next` instructions
-- commit with a message like **xPack xpm v0.8.1 release**
-- push both branches
+- in a separate browser windows, open [TweetDeck](https://tweetdeck.twitter.com/)
+- using the `@xpack_project` account
+- paste the release name like **xPack xpm v0.8.1 released**
+- paste the link to the Web page
+  [release](https://xpack.github.io/xpm/releases/)
+- click the **Tweet** button
