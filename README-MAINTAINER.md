@@ -27,6 +27,29 @@ A link to the development folder should be made available in the
 `node_modules` folder, and also a link to the `xpm` executable should
 be made available.
 
+### Dependencies
+
+```console
+$ npm outdated
+```
+
+Details about dependencies:
+
+- https://www.npmjs.com/package/cacache
+- https://www.npmjs.com/package/cp-file
+- https://www.npmjs.com/package/decompress
+- https://www.npmjs.com/package/del
+- https://www.npmjs.com/package/is-windows
+- https://www.npmjs.com/package/liquidjs
+- https://www.npmjs.com/package/make-dir
+- https://www.npmjs.com/package/mz
+- https://www.npmjs.com/package/node-fetch
+- https://www.npmjs.com/package/pacote
+- https://www.npmjs.com/package/parse-git-config
+- https://www.npmjs.com/package/semver
+- https://www.npmjs.com/package/tar
+- https://www.npmjs.com/package/user-home
+
 ### Tests
 
 The tests use the [`node-tap`](http://www.node-tap.org) framework
