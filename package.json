@@ -12,6 +12,7 @@
     "xpm": "./bin/xpm.js"
   },
   "scripts": {
+    "dumpconf": "env | sort | uniq",
     "prepublishOnly": "standard && npm run test-tap -s",
     "test": "standard && npm run test-tap -s",
     "test-coverage": "tap --coverage --reporter=classic --timeout 600 --no-color \"test/tap/*.js\"",
