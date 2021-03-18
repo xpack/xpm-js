@@ -1,4 +1,4 @@
-## Visual Studio Code settings
+# Visual Studio Code settings
 
 This file stores editor settings that help keep the source files compliant with [JavaScript Standard Style](https://standardjs.com/), like `"editor.tabSize": 2`.
 
