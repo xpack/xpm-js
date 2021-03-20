@@ -842,6 +842,37 @@
     {
       "type": "node",
       "request": "launch",
+      "name": "xpm run build -c stm32f4discovery-cmake-gcc10-debug",
+      "program": "${workspaceRoot}/bin/xpm.js",
+      "stopOnEntry": true,
+      "args": [
+        "run",
+        "build",
+        "-dd",
+        "-c",
+        "stm32f4discovery-cmake-gcc10-debug",
+        "-C",
+        "/Users/ilg/My Files/WKS Projects/micro-os-plus.github/xpack-study-projects.git/blinky-no-rtos"
+      ],
+      "cwd": "${workspaceRoot}",
+      "preLaunchTask": null,
+      "runtimeExecutable": null,
+      "runtimeArgs": [
+        "--nolazy"
+      ],
+      "skipFiles": [
+        "async_hooks.js",
+        "inspector_async_hook.js"
+      ],
+      "env": {
+        "NODE_ENV": "development"
+      },
+      "console": "internalConsole",
+      "sourceMaps": false
+    },
+    {
+      "type": "node",
+      "request": "launch",
       "name": "Launch Program",
       "program": "${workspaceRoot}/index.js"
     },
