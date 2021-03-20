@@ -50,11 +50,11 @@ const { CliExitCodes } = require('@ilg/cli-start-options')
 /**
  * Test if help content includes convert options.
  */
-test('xpm run-script -h',
+test('xpm run -h',
   async (t) => {
     try {
       const { code, stdout, stderr } = await Common.xpmCli([
-        'run-script',
+        'run',
         '-h'
       ])
       // Check exit code.
@@ -63,9 +63,10 @@ test('xpm run-script -h',
       t.ok(outLines.length > 9, 'has enough output')
       if (outLines.length > 9) {
         // console.log(outLines)
-        t.match(outLines[1], 'run package specific script', 'has title')
-        t.match(outLines[2], 'Usage: xpm run-script [options...] ' +
-          '[<command>] [-- <script args>]', 'has Usage')
+        t.match(outLines[1],
+          'run package/configuration specific action', 'has title')
+        t.match(outLines[2], 'Usage: xpm run [options...] ' +
+          '[--config <string>] [--dry-run]', 'has Usage')
       }
       // There should be no error messages.
       t.equal(stderr, '', 'stderr is empty')
@@ -91,9 +92,10 @@ test('xpm run -h',
       t.ok(outLines.length > 9, 'has enough output')
       if (outLines.length > 9) {
         // console.log(outLines)
-        t.match(outLines[1], 'run package specific script', 'has title')
-        t.match(outLines[2], 'Usage: xpm run-script [options...] ' +
-          '[<command>] [-- <script args>]', 'has Usage')
+        t.match(outLines[1],
+          'run package/configuration specific action', 'has title')
+        t.match(outLines[2], 'Usage: xpm run [options...] ' +
+          '[--config <string>] [--dry-run]', 'has Usage')
       }
       // There should be no error messages.
       t.equal(stderr, '', 'stderr is empty')

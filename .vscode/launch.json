@@ -85,11 +85,11 @@
     {
       "type": "node",
       "request": "launch",
-      "name": "xpm run-script --help",
+      "name": "xpm run --help",
       "program": "${workspaceRoot}/bin/xpm.js",
       "stopOnEntry": true,
       "args": [
-        "run-script",
+        "run",
         "--help"
       ],
       "cwd": "${workspaceRoot}",
@@ -111,11 +111,11 @@
     {
       "type": "node",
       "request": "launch",
-      "name": "xpm run-script",
+      "name": "xpm run",
       "program": "${workspaceRoot}/bin/xpm.js",
       "stopOnEntry": true,
       "args": [
-        "run-script",
+        "run",
         "-dd"
       ],
       "cwd": "/Users/ilg/tmp/xpm/hifive1-blinky",
@@ -137,11 +137,11 @@
     {
       "type": "node",
       "request": "launch",
-      "name": "xpm run-script -C ...",
+      "name": "xpm run -C ...",
       "program": "${workspaceRoot}/bin/xpm.js",
       "stopOnEntry": true,
       "args": [
-        "run-script",
+        "run",
         "-dd",
         "-C",
         "/Users/ilg/tmp/xpm/hifive1-blinky"
@@ -165,11 +165,11 @@
     {
       "type": "node",
       "request": "launch",
-      "name": "xpm run-script -C ... script1",
+      "name": "xpm run -C ... script1",
       "program": "${workspaceRoot}/bin/xpm.js",
       "stopOnEntry": true,
       "args": [
-        "run-script",
+        "run",
         "-dd",
         "-C",
         "/Users/ilg/tmp/xpm/hifive1-blinky",
