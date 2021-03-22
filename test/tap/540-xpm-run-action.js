@@ -66,7 +66,7 @@ test('xpm run -h',
         t.match(outLines[1],
           'run package/configuration specific action', 'has title')
         t.match(outLines[2], 'Usage: xpm run [options...] ' +
-          '[--config <string>] [--dry-run]', 'has Usage')
+          '[--config <config_name>] [--dry-run]', 'has Usage')
       }
       // There should be no error messages.
       t.equal(stderr, '', 'stderr is empty')
@@ -95,7 +95,7 @@ test('xpm run -h',
         t.match(outLines[1],
           'run package/configuration specific action', 'has title')
         t.match(outLines[2], 'Usage: xpm run [options...] ' +
-          '[--config <string>] [--dry-run]', 'has Usage')
+          '[--config <config_name>] [--dry-run]', 'has Usage')
       }
       // There should be no error messages.
       t.equal(stderr, '', 'stderr is empty')
