@@ -26,7 +26,7 @@ Don't forget to close GitHub [issues](https://github.com/xpack/xpm-js/issues/).
 ## 2021-03-23
 
 - [#93] - install: process isDryRun
-- [#90] - iterate all configurations on `xpm run install`
+- [#90] - iterate all configurations on `xpm install`
 - [#91] - fix use of properties in substitutions
 - [#92] - Add os.platform and os.arch to substitution map
 

@@ -21,22 +21,22 @@ If you already know the general facts about `xpm`, you can directly skip to:
 
 ## xPacks overview
 
-`xpm` stands for **x**Pack **p**ackage **m**anager and is a Node.js CLI
-application to manage xPacks.
+`xpm` is a Node.js CLI
+application to manage xPacks dependencies.
 
 **xPacks** are general purpose multi-version software packages,
 much the same as the highly successful
 [npm modules](https://docs.npmjs.com/getting-started/what-is-npm)
 in the [Node.js](https://nodejs.org/en/) JavaScript ecosystem.
 
+xPacks are generally Git repositories and can be published on
+[npmjs.com](https://npmjs.com/) or any npm compatible server.
+
 ## Purpose
 
-The main purpose of the `xpm` command line tool is to install xPacks,
-including all dependent xPacks, and to easily update them when new
-versions are released.
-
-For developers, **xpm** provides a very convenient way of publishing the
-software packages, using the same central repository as **npm**.
+The main purpose of the `xpm` command line tool is to install
+both source and binary xPacks,
+and to easily update them when new versions are released.
 
 ## Prequisites
 
@@ -92,7 +92,7 @@ xpm <command> -h|--help  Quick help on command
 xpm --version            Show version 
 xpm -i|--interactive     Enter interactive mode 
 
-npm xpm@0.9.0 '/Users/ilg/My Files/WKS Projects/xpack.github/npm-modules/xpm-js.git'
+npm xpm@0.9.0 '/Users/ilg/.nvm/versions/node/v14.16.0/lib/node_modules/xpm'
 Home page: <https://xpack.github.io/xpm/>
 Bug reports: <https://github.com/xpack/xpm-js/issues/>
 ```

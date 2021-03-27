@@ -1,4 +1,4 @@
-## The `node-tap` framework
+# The `node-tap` framework
 
 The tests use the `[node-tap](http://www.node-tap.org)` framework ('A Test-Anything-Protocol library for Node.js', written by Isaac Schlueter).
 
@@ -8,8 +8,7 @@ Reporting (`--report`):
 - spec
 - tap
 
-
-### [API](http://www.node-tap.org/api/)
+## [API](http://www.node-tap.org/api/)
 
 - tap = require(‘tap’)
 - Class t.Test (tap.node)
@@ -28,7 +27,7 @@ Reporting (`--report`):
 - t.pragma(set)
 - t.threw(error)
 
-### [Assertions](http://www.node-tap.org/asserts/)
+## [Assertions](http://www.node-tap.org/asserts/)
 
 - t.ok(obj, message, extra)
 - t.notOk(obj, message, extra)
@@ -45,7 +44,7 @@ Reporting (`--report`):
 - t.notMatch(found, pattern, message, extra)
 - t.type(object, type, message, extra)
 
-### [Advanced](http://www.node-tap.org/advanced/)
+## [Advanced](http://www.node-tap.org/advanced/)
 
 - Class t.Spawn()
 - Class t.Stdin()
@@ -55,7 +54,6 @@ Reporting (`--report`):
 - t.pass(message)
 - t.endAll()
 
-## The `should` module
+# The `should` module
 
 The [`should`](https://github.com/shouldjs/should.js) module provides BDD ['should'-style assertions](https://shouldjs.github.io), which are a nice idea, but the current version of `tap` does not properly await for async functions, so it cannot be used. :-(
-
