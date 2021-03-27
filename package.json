@@ -1,6 +1,6 @@
 {
   "name": "xpm",
-  "version": "0.9.0-beta",
+  "version": "0.9.0",
   "description": "The xPack package manager command line tool",
   "main": "./index.js",
   "directories": {
@@ -9,7 +9,7 @@
     "test": "./test"
   },
   "bin": {
-    "xpm": "./bin/xpm.js"
+    "xpm": "bin/xpm.js"
   },
   "scripts": {
     "dumpconf": "env | sort | uniq",
@@ -66,9 +66,9 @@
     "tap": "^14.11.0"
   },
   "peerDependencies": {},
-  "bundledDependencies": [],
   "optionalDependencies": {},
   "engines": {
     "node": ">=10"
-  }
+  },
+  "bundleDependencies": []
 }
