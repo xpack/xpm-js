@@ -3,6 +3,39 @@
 Changes in reverse chronological order.
 Don't forget to close GitHub [issues](https://github.com/xpack/xpm-js/issues/).
 
+## 2021-03-27
+
+- v0.9.0 released
+
+## 2021-03-26
+
+- install should set all installs as read-only
+
+## 2021-03-25
+
+- [#35] - add checkMinimumXpmRequired added
+- bump dependencies versions
+- [#94] - add --config to `xpm link`
+- [#95] - add --config to `xpm uninstall`
+- [#96] - update `xpm list` to show configurations dependencies
+
+## 2021-03-24
+
+- [#90] - add configuration specific install with package.json update
+
+## 2021-03-23
+
+- [#93] - install: process isDryRun
+- [#90] - iterate all configurations on `xpm run install`
+- [#91] - fix use of properties in substitutions
+- [#92] - Add os.platform and os.arch to substitution map
+
+## 2021-03-22
+
+- [#91] - add liquidMap.properties
+- return CliExitCodes.ERROR.INPUT for package.json errors
+- [#90] - add configuration specific install
+
 ## 2021-03-20
 
 - [#89] - prefer run & run-action
