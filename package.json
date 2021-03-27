@@ -65,8 +65,6 @@
     "standard": "^16.0.3",
     "tap": "^14.11.0"
   },
-  "peerDependencies": {},
-  "optionalDependencies": {},
   "engines": {
     "node": ">=10"
   },
