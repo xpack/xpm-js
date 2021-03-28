@@ -184,7 +184,7 @@ In the `xpack/web-jekyll` GitHub repo:
 - update the **Changes** sections
 
 If any, refer to closed
-[issues](https://github.com/xpack/xpm-js/issues)
+[issues](https://github.com/xpack/xpm-js/issues/)
 as:
 
 ```
