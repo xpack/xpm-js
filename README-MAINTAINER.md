@@ -238,7 +238,7 @@ When stable:
 - merge `develop`
 - push all branches
 
-### Update the blob post to release
+### Update the blog post to release
 
 In the `xpack/web-jekyll` GitHub repo:
 
