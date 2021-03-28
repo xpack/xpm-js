@@ -5,6 +5,7 @@ Don't forget to close GitHub [issues](https://github.com/xpack/xpm-js/issues/).
 
 ## 2021-03-28
 
+- v0.9.1 released
 - [#98] - fix xpm run -c path
 - [#97] - prefer buildConfigurations
 
