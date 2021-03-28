@@ -3,6 +3,10 @@
 Changes in reverse chronological order.
 Don't forget to close GitHub [issues](https://github.com/xpack/xpm-js/issues/).
 
+## 2021-03-28
+
+- [#97] - prefer buildConfigurations
+
 ## 2021-03-27
 
 - v0.9.0 released
