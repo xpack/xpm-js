@@ -122,7 +122,7 @@ To manually fix compliance with the style guide (where possible):
 ```console
 $ npm run fix
 
-> xpm@0.9.0 fix
+> xpm@0.9.1 fix
 > standard --fix
 
 ```
@@ -177,7 +177,7 @@ In the `xpack/web-jekyll` GitHub repo:
 - select the `develop` branch
 - add a new file to `_posts/releases/xpm`
 - name the file like `2021-01-28-xpm-v0-8-1-released.md`
-- name the post like: **xPack xpm v0.9.0 pre-release**
+- name the post like: **xPack xpm v0.9.1 pre-release**
 - update the `date:` field with the current date
 - add a paragraph with _To install the pre-release version, use:_
   and give the command with the next tag
@@ -191,7 +191,7 @@ as:
 - [#1] ...
 ```
 
-- commit with a message like **xPack xpm v0.9.0 pre-release**
+- commit with a message like **xPack xpm v0.9.1 pre-release**
 - push
 - wait for CI job to complete
 
@@ -205,7 +205,7 @@ Check if the page shows at:
 - commit all changes
 - `npm run test-coverage`
 - check the latest commits `npm run git-log`
-- update `CHANGELOG.md`; commit with a message like _CHANGELOG: prepare v0.9.0_
+- update `CHANGELOG.md`; commit with a message like _CHANGELOG: prepare v0.9.1_
 - `npm version patch` (bug fixes), `npm version minor` (compatible API
   additions), `npm version major` (incompatible API changes)
 - `npm pack` and check the content
@@ -227,7 +227,7 @@ npm install -global xpm@next
 When stable:
 
 - `npm dist-tag ls xpm`
-- `npm dist-tag add xpm@0.9.0 latest`
+- `npm dist-tag add xpm@0.9.1 latest`
 - `npm dist-tag ls xpm`
 
 ### Update repo
@@ -245,7 +245,7 @@ In the `xpack/web-jekyll` GitHub repo:
 - in the `develop` branch
 - change the name from _pre-release_ to _released_
 - remove the _To install the pre-release version, use:_ section
-- commit with a message like **xPack xpm v0.9.0 release**
+- commit with a message like **xPack xpm v0.9.1 release**
 - select the `master` branch
 - merge `develop`
 - push both branches
@@ -259,7 +259,7 @@ Check if the page shows at:
 
 - in a separate browser windows, open [TweetDeck](https://tweetdeck.twitter.com/)
 - using the `@xpack_project` account
-- paste the release name like **xPack xpm v0.9.0 released**
+- paste the release name like **xPack xpm v0.9.1 released**
 - paste the link to the Web page
   [release](https://xpack.github.io/xpm/releases/)
 - click the **Tweet** button
