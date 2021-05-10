@@ -8,9 +8,12 @@
 
 # https://nodejs.org/en/download/releases/
 
-name: Node.js CI on Push
+name: CI on Push
 
-on: [push]
+on: 
+  push:
+    branches:
+    - '**'
 
 jobs:
   npm-test:

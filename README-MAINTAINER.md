@@ -1,7 +1,7 @@
 [![npm (scoped)](https://img.shields.io/npm/v/xpm.svg)](https://www.npmjs.com/package/xpm)
 [![license](https://img.shields.io/github/license/xpack/xpm-js.svg)](https://github.com/xpack/xpm-js/blob/master/LICENSE)
 [![Standard](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com/)
-[![GitHub Workflow](https:/github.com/xpack/xpm-js/workflows/Node.js%20CI%20on%20Push/badge.svg)](https://github.com/xpack/xpm-js/actions)
+[![GitHub Workflow](https:/github.com/xpack/xpm-js/workflows/CI%20on%20Push/badge.svg)](https://github.com/xpack/xpm-js/actions)
 [![GitHub issues](https://img.shields.io/github/issues/xpack/xpm-js.svg)](https://github.com/xpack/xpm-js/issues)
 [![GitHub pulls](https://img.shields.io/github/issues-pr/xpack/xpm-js.svg)](https://github.com/xpack/xpm-js/pulls)
 
