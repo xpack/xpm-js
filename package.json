@@ -46,6 +46,7 @@
   "dependencies": {
     "@ilg/cli-start-options": "^0.6.1",
     "@xpack/es6-promisifier": "^1.0.1",
+    "@xpack/xpm-liquid": "^1.0.0",
     "cacache": "^15.0.6",
     "cp-file": "^9.0.0",
     "decompress": "^4.2.1",
@@ -55,15 +56,14 @@
     "make-dir": "^3.1.0",
     "mz": "^2.7.0",
     "node-fetch": "^2.6.1",
-    "pacote": "^11.3.1",
+    "pacote": "^11.3.3",
     "parse-git-config": "^3.0.0",
     "semver": "^7.3.5",
-    "tar": "^6.1.0",
-    "user-home": "^2.0.0"
+    "tar": "^6.1.0"
   },
   "devDependencies": {
     "standard": "^16.0.3",
-    "tap": "^14.11.0"
+    "tap": "^15.0.9"
   },
   "engines": {
     "node": ">=10"
