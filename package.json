@@ -12,14 +12,14 @@
     "xpm": "bin/xpm.js"
   },
   "scripts": {
-    "dumpconf": "env | sort | uniq",
-    "prepublishOnly": "standard && npm run test-tap -s",
+    "fix": "standard --fix",
     "test": "standard && npm run test-tap -s",
     "test-coverage": "tap --coverage --reporter=classic --timeout 600 --no-color \"test/tap/*.js\"",
     "test-tap": "tap --reporter=classic --timeout 300 --no-color \"test/tap/*.js\"",
     "tap": "tap --reporter=spec --timeout 300 --no-color",
-    "fix": "standard --fix",
     "link": "npm link @ilg/cli-start-options; npm link @xpack/es6-promisifier",
+    "prepublishOnly": "standard && npm run test-tap -s",
+    "dumpconf": "env | sort | uniq",
     "git-log": "git log --pretty='%cd * %h %s' --date=short"
   },
   "repository": {
