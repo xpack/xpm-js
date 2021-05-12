@@ -89,7 +89,7 @@ test('xpm -h (spawn)', async (t) => {
     t.equal(code, 0, 'exit 0')
     t.match(stdout, 'Usage: xpm <command>', 'has Usage')
 
-    t.match(stdout, 'The xPack dependencies manager command line tool',
+    t.match(stdout, 'The xPack project manager command line tool',
       'has title')
     t.match(stdout, 'xpm -h|--help', 'has -h|--help')
     t.match(stdout, 'xpm <command> -h|--help', 'has <command> -h|--help')
