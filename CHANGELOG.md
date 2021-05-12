@@ -3,6 +3,26 @@
 Changes in reverse chronological order.
 Don't forget to close GitHub [issues](https://github.com/xpack/xpm-js/issues/).
 
+## 2021-05-12
+
+- [#108] - support multi-line properties
+- [#107] - rename to project manager
+- [#106] - xpm init --template checks minimumXpmRequired
+
+## 2021-05-11
+
+- [#101] - Pass CliExitCodes & CliError in the context
+- [#105] - improve error messages
+- [#104] - xpm install -g does not validate package.json
+
+## 2021-05-10
+
+- [#103] - no xpm install for templates with bundleDependencies
+- [#99] use @xpack/xpm-liquid
+- [#100] - remove tag endl
+- [#102] - xpm init adds minimumXpmRequired
+- replace user-home with os.homedir()
+
 ## 2021-03-28
 
 - v0.9.1 released

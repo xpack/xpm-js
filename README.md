@@ -1,7 +1,24 @@
-[![npm (scoped)](https://img.shields.io/npm/v/xpm.svg)](https://www.npmjs.com/package/xpm)
+[![npm (scoped)](https://img.shields.io/npm/v/xpm.svg)](https://www.npmjs.com/package/xpm/)
 [![license](https://img.shields.io/github/license/xpack/xpm-js.svg)](https://github.com/xpack/xpm-js/blob/master/LICENSE)
 [![Standard](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com/)
-[![GitHub Workflow](https://github.com/xpack/xpm-js/workflows/CI%20on%20Push/badge.svg)](https://github.com/xpack/xpm-js/actions)
+
+# xpm - the xPack project manager
+
+This project implements `xpm` - the xPack project manager - as a Node.js CLI
+application.
+
+The main purpose of `xpm` is to help manage
+projects during development.
+
+More specificaly:
+
+- to manage dependencies, like to install both source and binary packages,
+and to easily update them when new versions are released
+- to manage build configurations and to run actions
+associated with various build steps.
+
+The project is open-source and hosted on GitHub as
+[xpack/xpm-js](https://github.com/xpack/xpm-js.git).
 
 ## Release info
 
@@ -12,17 +29,14 @@ For more details on the **xpm** releases, please check the
 
 If you already know the general facts about `xpm`, you can directly skip to:
 
-- [Documentation](https://xpack.github.io/xpm/)
+- [Project web site](https://xpack.github.io/xpm/)
 - [GitHub](https://github.com/xpack/xpm-js.git)
 - [How to install](https://xpack.github.io/xpm/install/)
 - [How to get support](https://xpack.github.io/xpm/support/)
 - [npmjs/xpm](https://www.npmjs.com/package/xpm/)
-- [Pubished versions](https://www.npmjs.com/package/xpm?activeTab=versions)
+- [Published versions](https://www.npmjs.com/package/xpm?activeTab=versions)
 
 ## xPacks overview
-
-`xpm` is a Node.js CLI
-application to manage xPacks dependencies.
 
 **xPacks** are general purpose multi-version software packages,
 much the same as the highly successful
@@ -32,20 +46,17 @@ in the [Node.js](https://nodejs.org/en/) JavaScript ecosystem.
 xPacks are generally Git repositories and can be published on
 [npmjs.com](https://npmjs.com/) or any npm compatible server.
 
-## Purpose
-
-The main purpose of the `xpm` command line tool is to install
-both source and binary xPacks,
-and to easily update them when new versions are released.
+For more details, please read the [xPacks 101](https://xpack.github.io/intro/) page.
 
 ## Prequisites
 
 The current version requires Node.js >= 10.x.
 
-Since it is recommended
-to use a version manager or to customize the **npm** install location,
+Since it is highly recommended to **not** use `sudo` during install,
+and instead
+use a version manager or to customize the **npm** install location,
 please read the
-[Install](https://xpack.github.io/xpm/install/) page for more details.
+[install](https://xpack.github.io/xpm/install/) page for more details.
 
 ## Install
 
@@ -61,16 +72,16 @@ those packages will update their dependencies, there is not much we can
 do to prevent these warnings.
 
 For more details, please refer to the
-[Install](https://xpack.github.io/xpm/install/) page.
+[install](https://xpack.github.io/xpm/install/) page.
 
 ## User info
 
 To get an initial glimpse on the program, ask for help:
 
 ```console
-$ xpm --help
+% xpm --help
 
-The xPack package manager command line tool
+The xPack project manager command line tool
 Usage: xpm <command> [<subcommand>...] [<options> ...] [<args>...]
 
 where <command> is one of:
@@ -92,23 +103,88 @@ xpm <command> -h|--help  Quick help on command
 xpm --version            Show version 
 xpm -i|--interactive     Enter interactive mode 
 
-npm xpm@0.9.0 '/Users/ilg/.nvm/versions/node/v14.16.0/lib/node_modules/xpm'
+npm xpm@0.10.0 '/Users/ilg/.nvm/versions/node/v14.16.0/lib/node_modules/xpm'
 Home page: <https://xpack.github.io/xpm/>
 Bug reports: <https://github.com/xpack/xpm-js/issues/>
 ```
 
+## Template substitutions
+
+To increase reusability, the actions strings allow substitutions, using the
+[LiquidJS](https://liquidjs.com/) template engine syntax, with:
+
+- variables, like `{{ configuration.name }}`
+- filters, like `{{ configuration.name | downcase }}`
+- tags, like `{% if os.platform != 'win32' %}xpm run execute --config synthetic-posix-cmake-debug{% endif %}`
+
+The following predefined objects are available:
+
+- `package`, with the entire `package.json` content
+- `properties` with the xPack properties
+- `os.platform` with the Node.js platform (possible values are 'aix',
+  'darwin', 'freebsd', 'linux', 'openbsd', 'sunos', and 'win32')
+- `os.arch` with the Node.js architecture (possible values are 'arm',
+  'arm64', 'ia32', 'mips', 'mipsel', 'ppc', 'ppc64', 's390', 's390x',
+  'x32', and 'x64')
+
+If the xpm command was started with `--config`,
+the following are also available:
+
+- `configuration` with the current xPack build configuration;
+  the configuration name is available as `configuration.name`
+- `properties` with the configuration properties _preceding_ the xPack
+  properties
+
+For the full list of variables available for substitutions, please
+read the separate [README](https://github.com/xpack/xpm-liquid-ts#readme).
+
+## Multi-line actions
+
+In order to acomodate more complex actions, it is possible to define
+sequences of commands as arrays of strings, with each line executed as
+a separate command.
+
+If multiple commands are generated via loops, line terminators can be inserted
+with `{{ os.EOL }}`), for example:
+
+```liquid
+{% for command in package.xpack.my_commands %}{{ command }}{{ os.EOL }}{% endfor %}
+```
+
+### The build folder path
+
+The only required property is `buildFolderRelativePath`, which can be
+defined either for each configuration, or for the entire project, using
+a parametrised definition based on the configuration name, like:
+
+```json
+  "xpack": {
+    "properties": {
+      "buildFolderRelativePath": "{{ 'build' | path_join: configuration.name | to_filename | downcase }}"
+    }
+  }
+```
+
+## Compatibility notices
+
+According to [semver](https://semver.org) requirements,
+incompatible API changes require higher major numbers.
+
+- none so far
+
 ## Maintainer info
 
 This page documents how to use this module in an user application.
-For maintainer information, see the separate
+For developer and maintainer information, see the separate
+[`README-DEVELOPER.md`](https://github.com/xpack/xpm-js/blob/master/README-DEVELOPER.md) and
 [`README-MAINTAINER.md`](https://github.com/xpack/xpm-js/blob/master/README-MAINTAINER.md)
-page.
+pages.
 
 ## License
 
 The original content is released under the
 [MIT License](https://opensource.org/licenses/MIT), with all rights
-reserved to [Liviu Ionescu](https://github.com/ilg-ul).
+reserved to [Liviu Ionescu](https://github.com/ilg-ul/).
 
 The design is heavily influenced by the `npm` application,
 **Copyright (c) npm, Inc. and Contributors**, Licensed on the
