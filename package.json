@@ -13,15 +13,22 @@
   },
   "scripts": {
     "fix": "standard --fix",
-    "test": "standard && npm run test-tap -s",
+    "outdated": "npm outdated",
+    "update": "npm update",
+    "install ": "npm install",
+    "version-patch": "npm version patch",
+    "version-minor": "npm version minor",
+    "pack": "npm pack",
+    "git-log": "git log --pretty='%cd * %h %s' --date=short",
+    "lint": "standard src",
+    "test": "npm lint && npm run test-tap -s",
+    "test-tap100": "tap --reporter=classic --timeout 300 --100 \"test/tap/*.js\"",
     "test-coverage": "tap --coverage --reporter=classic --timeout 600 --no-check-coverage \"test/tap/*.js\"",
     "test-tap": "tap --reporter=classic --timeout 300 --no-coverage \"test/tap/*.js\"",
-    "test-tap100": "tap --reporter=classic --timeout 300 --100 \"test/tap/*.js\"",
     "tap": "tap --reporter=spec --timeout 300 --no-coverage",
     "link": "npm link @ilg/cli-start-options; npm link @xpack/es6-promisifier",
     "prepublishOnly": "standard && npm run test-tap -s",
-    "dumpconf": "env | sort | uniq",
-    "git-log": "git log --pretty='%cd * %h %s' --date=short"
+    "dumpconf": "env | sort | uniq"
   },
   "repository": {
     "type": "git",
