@@ -5,6 +5,7 @@ Don't forget to close GitHub [issues](https://github.com/xpack/xpm-js/issues/).
 
 ## 2021-05-12
 
+- v0.10.1 released
 - [#108] - support multi-line properties
 - [#107] - rename to project manager
 - [#106] - xpm init --template checks minimumXpmRequired
