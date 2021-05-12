@@ -109,7 +109,7 @@ Check if the version is present at
 Test it with:
 
 ```bash
-npm install -global xpm@next
+npm install --global xpm@next
 ```
 
 ### Change tag to latest
