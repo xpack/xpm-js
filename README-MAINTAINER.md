@@ -59,17 +59,15 @@ In `README.md`, update the `xpm --help` text.
 - check if all previous fixed issues are in
 - commit with a message like _prepare v0.10.0_
 
-## Prepare a new blog post with the pre-release
+## Prepare a new blog post with the release
 
 In the `xpack/web-jekyll` GitHub repo:
 
 - select the `develop` branch
 - add a new file to `_posts/releases/xpm`
-- name the file like `2021-01-28-xpm-v0-8-1-released.md`
-- name the post like: **xPack xpm v0.10.0 pre-release**
+- name the file like `2021-01-28-xpm-v0-10-0-released.md`
+- name the post like: **xPack xpm v0.10.0 released**
 - update the `date:` field with the current date
-- add a paragraph with _To install the pre-release version, use:_
-  and give the command with the `@next` tag
 - update the **Changes** sections
 
 If any, refer to closed
@@ -80,7 +78,7 @@ as:
 - [#1] ...
 ```
 
-- commit with a message like **xPack xpm v0.10.0 pre-release**
+- commit with a message like **xPack xpm v0.10.0 release**
 - push
 - wait for CI job to complete
 
@@ -134,10 +132,6 @@ In this Git repo:
 
 In the `xpack/web-jekyll` GitHub repo:
 
-- in the `develop` branch
-- change the name from _pre-release_ to _released_
-- remove the _To install the pre-release version, use:_ section
-- commit with a message like **xPack xpm v0.10.0 release**
 - select the `master` branch
 - merge `develop`
 - push both branches
