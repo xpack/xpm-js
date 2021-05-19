@@ -69,12 +69,29 @@
     "semver": "^7.3.5",
     "tar": "^6.1.0"
   },
+  "bundledDependencies": [
+    "@ilg/cli-start-options",
+    "@xpack/es6-promisifier",
+    "@xpack/xpm-liquid",
+    "cacache",
+    "cp-file",
+    "decompress",
+    "del",
+    "is-windows",
+    "liquidjs",
+    "make-dir",
+    "mz",
+    "node-fetch",
+    "pacote",
+    "parse-git-config",
+    "semver",
+    "tar"
+  ],
   "devDependencies": {
     "standard": "^16.0.3",
     "tap": "^15.0.9"
   },
   "engines": {
     "node": ">=10"
-  },
-  "bundleDependencies": []
+  }
 }
