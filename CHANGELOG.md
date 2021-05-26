@@ -3,6 +3,11 @@
 Changes in reverse chronological order.
 Don't forget to close GitHub [issues](https://github.com/xpack/xpm-js/issues/).
 
+## 2021-05-26
+
+- v0.10.3 released
+- update README; remove deprecation notice, mention uninstall
+
 ## 2021-05-19
 
 - v0.10.2 released

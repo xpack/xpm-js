@@ -66,10 +66,14 @@ The basic command is:
 npm install --global xpm@latest
 ```
 
-Note: In the current configuration, **npm** complains about several deprecated
-packages; these packages are used by some third party packages, and until
-those packages will update their dependencies, there is not much we can
-do to prevent these warnings.
+Note: In case `xpm` was already installed, in certain conditions
+the update may not succeed and xpm may become unusable; if this happens,
+uninstall xpm and retry the install:
+
+```sh
+npm uninstall --global xpm
+npm install --global xpm@latest
+```
 
 For more details, please refer to the
 [install](https://xpack.github.io/xpm/install/) page.
@@ -103,7 +107,7 @@ xpm <command> -h|--help  Quick help on command
 xpm --version            Show version 
 xpm -i|--interactive     Enter interactive mode 
 
-npm xpm@0.10.2 '/Users/ilg/.nvm/versions/node/v14.16.0/lib/node_modules/xpm'
+npm xpm@0.10.3 '/Users/ilg/.nvm/versions/node/v14.16.0/lib/node_modules/xpm'
 Home page: <https://xpack.github.io/xpm/>
 Bug reports: <https://github.com/xpack/xpm-js/issues/>
 ```
