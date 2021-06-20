@@ -5,6 +5,8 @@ Don't forget to close GitHub [issues](https://github.com/xpack/xpm-js/issues/).
 
 ## 2021-06-16
 
+- v0.10.5 released
+- [#110] - xpm init should warn for extra args
 - v0.10.4 released
 - bump deps
 
