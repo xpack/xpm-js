@@ -3,6 +3,12 @@
 Changes in reverse chronological order.
 Don't forget to close GitHub [issues](https://github.com/xpack/xpm-js/issues/).
 
+## 2021-07-21
+
+- v0.10.6 released
+- [#112] - process errors while checking for updates
+- bump deps
+
 ## 2021-06-16
 
 - v0.10.5 released
