@@ -67,7 +67,7 @@
     "pacote": "^11.3.5",
     "parse-git-config": "^3.0.0",
     "semver": "^7.3.5",
-    "tar": "^6.1.0"
+    "tar": "^6.1.6"
   },
   "bundledDependencies": [
     "@ilg/cli-start-options",
