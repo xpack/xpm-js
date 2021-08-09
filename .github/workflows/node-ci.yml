@@ -8,7 +8,7 @@
 
 # https://nodejs.org/en/download/releases/
 
-name: CI on Push
+name: Node.js CI on Push
 
 on: 
   push:
