@@ -55,7 +55,7 @@
     "@ilg/cli-start-options": "^0.6.3",
     "@xpack/es6-promisifier": "^1.0.1",
     "@xpack/xpm-liquid": "^1.1.0",
-    "cacache": "^15.1.0",
+    "cacache": "^15.3.0",
     "cp-file": "^9.0.0",
     "decompress": "^4.2.1",
     "del": "^6.0.0",
@@ -67,7 +67,7 @@
     "pacote": "^11.3.5",
     "parse-git-config": "^3.0.0",
     "semver": "^7.3.5",
-    "tar": "^6.1.6"
+    "tar": "^6.1.11"
   },
   "bundledDependencies": [
     "@ilg/cli-start-options",

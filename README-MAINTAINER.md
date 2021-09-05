@@ -22,6 +22,8 @@ Before making the release, perform some checks and tweaks.
 - repeat and possibly manually edit `package.json` until everything is
   up to date
 
+Note: keep `node-fetch` to 2.6.1, the new 3.x requires Node.js 12.x.
+
 ### Check Git
 
 In this Git repo:
