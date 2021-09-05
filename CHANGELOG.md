@@ -3,6 +3,12 @@
 Changes in reverse chronological order.
 Don't forget to close GitHub [issues](https://github.com/xpack/xpm-js/issues/).
 
+## 2021-09-05
+
+- v0.10.7 released
+- [#116] - allow to install the 32-bit binaries on 64-bit architectures
+- bump deps
+
 ## 2021-07-21
 
 - v0.10.6 released
