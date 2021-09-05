@@ -82,7 +82,7 @@ as:
 
 - commit with a message like **xPack xpm v0.10.7 release**
 - push
-- wait for CI job to complete (<https://github.com/xpack/web-jekyll/actions>)
+- wait for the CI job to complete (<https://github.com/xpack/web-jekyll/actions/>)
 
 Check if the page shows at:
 
