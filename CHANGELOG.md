@@ -3,6 +3,11 @@
 Changes in reverse chronological order.
 Don't forget to close GitHub [issues](https://github.com/xpack/xpm-js/issues/).
 
+## 2021-12-22
+
+- [#120] xpm list fails with null exception
+- prepare v0.10.9
+
 ## 2021-09-05
 
 - v0.10.7 released
@@ -263,7 +268,7 @@ Don't forget to close GitHub [issues](https://github.com/xpack/xpm-js/issues/).
 ## v0.3.3 (2018-04-17)
 
 - xpm install: add 'checking...' messages
- 
+
 ## v0.3.2 (2018-04-17)
 
 - xpm install: try junctions and hard links on Windows
