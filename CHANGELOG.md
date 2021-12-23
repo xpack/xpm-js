@@ -3,6 +3,11 @@
 Changes in reverse chronological order.
 Don't forget to close GitHub [issues](https://github.com/xpack/xpm-js/issues/).
 
+## 2021-12-23
+
+- [#119] do not recurse npm dependencies
+- [#121] use `npm install` for npm packages
+
 ## 2021-12-22
 
 - [#120] xpm list fails with null exception
