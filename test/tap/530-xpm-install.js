@@ -72,7 +72,8 @@ test('xpm install -h',
         t.match(outLines[11], '  -f|--force  ', 'has --force')
         t.match(outLines[12], '  -32|--force-32bit ', 'has --force-32bit')
         t.match(outLines[13], '  -c|--config <config_name>  ', 'has --config')
-        t.match(outLines[14], '  -n|--dry-run  ', 'has --dry-run')
+        t.match(outLines[14], '  -a|--all-configs  ')
+        t.match(outLines[15], '  -n|--dry-run  ', 'has --dry-run')
       }
       // There should be no error messages.
       t.equal(stderr, '', 'stderr is empty')
