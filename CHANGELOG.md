@@ -3,6 +3,17 @@
 Changes in reverse chronological order.
 Don't forget to close GitHub [issues](https://github.com/xpack/xpm-js/issues/).
 
+## 2021-12-26
+
+- v0.11.0 released
+
+## 2021-12-25
+
+- [#124] fix list scoped npm
+- [#122] update tests for --all-configs
+- [#122] add --all-configs to install
+- [#123] accept -32 as alias for --force-32bit
+
 ## 2021-12-23
 
 - [#119] do not recurse npm dependencies
