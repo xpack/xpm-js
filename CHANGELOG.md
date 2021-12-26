@@ -5,6 +5,8 @@ Don't forget to close GitHub [issues](https://github.com/xpack/xpm-js/issues/).
 
 ## 2021-12-26
 
+- v0.11.1 released
+- [#125] fix `install --config` regression
 - v0.11.0 released
 
 ## 2021-12-25
