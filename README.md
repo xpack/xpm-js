@@ -43,7 +43,7 @@ much the same as the highly successful
 [npm modules](https://docs.npmjs.com/getting-started/what-is-npm)
 in the [Node.js](https://nodejs.org/en/) JavaScript ecosystem.
 
-xPacks are generally Git repositories and can be published on
+xPacks are usually Git repositories and can be published on
 [npmjs.com](https://npmjs.com/) or any npm compatible server.
 
 For more details, please read the [xPacks 101](https://xpack.github.io/intro/) page.
