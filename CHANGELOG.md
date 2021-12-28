@@ -3,9 +3,14 @@
 Changes in reverse chronological order.
 Don't forget to close GitHub [issues](https://github.com/xpack/xpm-js/issues/).
 
+## 2021-12-28
+
+- v0.11.2 released
+- [#126] improve error processing for liquidjs substitutions
+
 ## 2021-12-26
 
-- v0.11.1 released
+- v0.11.1 released, but not tagged as `latest`
 - [#125] fix `install --config` regression
 - v0.11.0 released
 
