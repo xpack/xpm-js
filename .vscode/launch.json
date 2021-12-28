@@ -941,9 +941,40 @@
         "install",
         "-dd",
         "-c",
-        "stm32f4discovery-cmake-gcc10-debug",        
+        "stm32f4discovery-cmake-gcc10-debug",
         "-C",
         "/Users/ilg/My Files/WKS Projects/micro-os-plus.github/xpack-study-projects.git/blinky-rtos"
+      ],
+      "cwd": "${workspaceRoot}",
+      "preLaunchTask": null,
+      "runtimeExecutable": null,
+      "runtimeArgs": [
+        "--nolazy"
+      ],
+      "skipFiles": [
+        "async_hooks.js",
+        "inspector_async_hook.js"
+      ],
+      "env": {
+        "NODE_ENV": "development"
+      },
+      "console": "internalConsole",
+      "sourceMaps": false
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "xpm run prepare -c native-cmake-gcc11-debug",
+      "program": "${workspaceRoot}/bin/xpm.js",
+      "stopOnEntry": true,
+      "args": [
+        "run",
+        "prepare",
+        "-dd",
+        "-c",
+        "native-cmake-gcc11-debug",
+        "-C",
+        "/Users/ilg/My Files/WKS Projects/micro-os-plus.github/xPacks/micro-test-plus-xpack.git"
       ],
       "cwd": "${workspaceRoot}",
       "preLaunchTask": null,
