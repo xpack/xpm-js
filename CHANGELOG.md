@@ -3,6 +3,12 @@
 Changes in reverse chronological order.
 Don't forget to close GitHub [issues](https://github.com/xpack/xpm-js/issues/).
 
+## 2021-12-30
+
+- v0.12.1 published
+- [#128] revert to public cmd-shim to also create .ps1 shim
+- disable experimental Windows file symlinks, they are broken
+
 ## 2021-12-28
 
 - experimental v0.12.0 prepared

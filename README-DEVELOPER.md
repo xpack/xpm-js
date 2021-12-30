@@ -97,7 +97,7 @@ To manually fix compliance with the style guide (where possible):
 ```console
 $ npm run fix
 
-> xpm@0.12.0 fix
+> xpm@0.12.1 fix
 > standard --fix
 ```
 
