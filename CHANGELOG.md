@@ -6,6 +6,8 @@ Don't forget to close GitHub [issues](https://github.com/xpack/xpm-js/issues/).
 ## 2022-01-05
 
 - v0.12.2 published
+- [#129] rework spawn()
+- v0.12.2 published
 - [#128] fix windows paths to use the npm cmdShim pacakge
 
 ## 2021-12-30
