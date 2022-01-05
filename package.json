@@ -54,14 +54,14 @@
   "dependencies": {
     "@ilg/cli-start-options": "^0.6.3",
     "@xpack/es6-promisifier": "^1.0.1",
-    "@xpack/xpm-liquid": "^1.1.0",
+    "@xpack/xpm-liquid": "^1.2.0",
     "cacache": "^15.3.0",
     "cmd-shim": "^4.1.0",
     "cp-file": "^9.0.0",
     "decompress": "^4.2.1",
     "del": "^6.0.0",
     "is-windows": "^1.0.2",
-    "liquidjs": "^9.31.0",
+    "liquidjs": "^9.32.0",
     "make-dir": "^3.1.0",
     "mz": "^2.7.0",
     "node-fetch": "^2.6.6",
@@ -91,7 +91,7 @@
   ],
   "devDependencies": {
     "standard": "^16.0.4",
-    "tap": "^15.1.5"
+    "tap": "^15.1.6"
   },
   "engines": {
     "node": ">=10"
