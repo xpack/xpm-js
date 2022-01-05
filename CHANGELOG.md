@@ -3,6 +3,11 @@
 Changes in reverse chronological order.
 Don't forget to close GitHub [issues](https://github.com/xpack/xpm-js/issues/).
 
+## 2022-01-05
+
+- v0.12.2 published
+- [#128] fix windows paths to use the npm cmdShim pacakge
+
 ## 2021-12-30
 
 - v0.12.1 published
