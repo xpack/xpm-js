@@ -5,6 +5,8 @@ Don't forget to close GitHub [issues](https://github.com/xpack/xpm-js/issues/).
 
 ## 2022-01-06
 
+- v0.12.5 published
+- [#129] fix shims for --config
 - v0.12.4 published
 - [#129] more spawn() rework, add log, fix relative path on windows
 
