@@ -5,6 +5,8 @@ Don't forget to close GitHub [issues](https://github.com/xpack/xpm-js/issues/).
 
 ## 2022-01-06
 
+- v0.12.6 published
+- [#129] switch shims to absolute paths (arm-none-eabi-g++ fails)
 - v0.12.5 published
 - [#129] fix shims for --config
 - v0.12.4 published
