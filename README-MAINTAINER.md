@@ -105,7 +105,7 @@ Check if the page shows at:
 - push all changes to GitHub; this should trigger CI
 - **wait for CI tests to complete**
 - check <https://github.com/xpack/xpm-js/actions/>
-- `npm publish --tag next` (use `--access public` when publishing for the first time)
+- `npm publish --tag next` (use `npm publish --access public` when publishing for the first time)
 
 Check if the version is present at
 [xpm Versions](https://www.npmjs.com/package/xpm?activeTab=versions).
