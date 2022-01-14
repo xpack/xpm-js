@@ -46,6 +46,16 @@ tests_folder_path="$(dirname "${script_folder_path}")"
 
 # -----------------------------------------------------------------------------
 
+function run_verbose()
+{
+  # Does not include the .exe extension.
+  local app_path=$1
+  shift
+
+  echo
+  echo "[${app_path} $@]"
+  "${app_path}" "$@" 2>&1
+}
 
 # -----------------------------------------------------------------------------
 
@@ -111,7 +121,15 @@ fi
 
 # -----------------------------------------------------------------------------
 
-echo "TODO: implement me"
+run_verbose npm install --global xpm@${RELEASE_VERSION}
+
+mkdir -p hello-world
+cd hello-world
+
+# https://github.com/xpack/hello-world-template-xpack
+run_verbose xpm init --template @xpack/hello-world-template --property language=cpp
+run_verbose xpm install
+run_verbose xpm run test
 
 # Completed successfully.
 exit 0
