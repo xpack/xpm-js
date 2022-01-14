@@ -101,24 +101,24 @@ jobs:
         run: bash tests/scripts/test-hello-world.sh --version ${{ github.event.inputs.version }}
 
 
-  macos-arm64:
-    name: 'macOS Arm 64-bit xpm@${{ github.event.inputs.version }} test'
-    runs-on: [self-hosted, macos, apple]
-    defaults:
-      run:
-        shell: "/usr/bin/arch -arch arm64e /bin/bash -l {0}"
+  # macos-arm64:
+  #   name: 'macOS Arm 64-bit xpm@${{ github.event.inputs.version }} test'
+  #   runs-on: [self-hosted, macos, apple]
+  #   defaults:
+  #     run:
+  #       shell: "/usr/bin/arch -arch arm64e /bin/bash -l {0}"
 
-    steps:
-      - name: 'Machine'
-        run: uname -a
+  #   steps:
+  #     - name: 'Machine'
+  #       run: uname -a
 
-      - name: 'Checkout'
-        uses: actions/checkout@v2
-        with:
-          fetch-depth: 3
-          submodules: true
-      - name: 'Run xpm ${{ github.event.inputs.version }} test'
-        run: bash tests/scripts/test-hello-world.sh --version ${{ github.event.inputs.version }}
+  #     - name: 'Checkout'
+  #       uses: actions/checkout@v2
+  #       with:
+  #         fetch-depth: 3
+  #         submodules: true
+  #     - name: 'Run xpm ${{ github.event.inputs.version }} test'
+  #       run: bash tests/scripts/test-hello-world.sh --version ${{ github.event.inputs.version }}
 
 
   windows-x64:
