@@ -1,0 +1,141 @@
+
+# -----------------------------------------------------------------------------
+# DO NOT EDIT! Generated from scripts/helper/templates/*.
+#
+# This file is part of the xPack distribution.
+#   (https://xpack.github.io)
+# Copyright (c) 2021 Liviu Ionescu.
+#
+# Permission to use, copy, modify, and/or distribute this software
+# for any purpose is hereby granted, under the terms of the MIT license.
+# -----------------------------------------------------------------------------
+
+# https://help.github.com/en/actions
+# https://docs.github.com/en/actions/using-github-hosted-runners/about-github-hosted-runners
+
+# https://docs.github.com/en/actions/reference/events-that-trigger-workflows#workflow_dispatch
+# https://docs.github.com/en/developers/webhooks-and-events/webhooks/webhook-events-and-payloads#workflow_dispatch
+# https://docs.github.com/en/rest/reference/actions#create-a-workflow-dispatch-event
+
+# -----------------------------------------------------------------------------
+
+
+name: 'Test hello-world'
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'The semver of the xpm release'
+        required: false
+        default: 'next'
+
+jobs:
+
+  linux-x64:
+    name: 'Linux Intel 64-bit xpm@${{ github.event.inputs.version }} test'
+    runs-on: ubuntu-latest
+    steps:
+      - name: 'Machine'
+        run: uname -a
+      - name: 'Checkout'
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 3
+          submodules: true
+      - name: 'Run xpm ${{ github.event.inputs.version }} test'
+        uses: docker://ilegeul/debian:amd64-10-npm-v1
+        with:
+          entrypoint: /bin/bash
+          args: /github/workspace/tests/scripts/test-hello-world.sh --image debian:buster --version ${{ github.event.inputs.version }}
+
+
+  linux-arm64:
+    name: 'Linux Arm 64-bit xpm@${{ github.event.inputs.version }} test'
+    runs-on: [self-hosted, linux, arm64]
+    steps:
+      - name: 'Machine'
+        run: uname -a
+      - name: 'Checkout'
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 3
+          submodules: true
+      - name: 'Run xpm ${{ github.event.inputs.version }} docker test on Debian 10 aarch64'
+        uses: docker://ilegeul/debian:arm64v8-10-npm-v1
+        with:
+          entrypoint: /bin/bash
+          args: tests/scripts/test-hello-world.sh --image ilegeul/debian:arm64v8-10-npm-v1 --version ${{ github.event.inputs.version }}
+
+
+  linux-arm32:
+    name: 'Linux Arm 32-bit xpm@${{ github.event.inputs.version }} test'
+    runs-on: [self-hosted, linux, arm64]
+    steps:
+      - name: 'Machine'
+        run: uname -a
+      - name: 'Checkout'
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 3
+          submodules: true
+      - name: 'Run xpm ${{ github.event.inputs.version }} docker test on Debian 10 armhf'
+        uses: docker://ilegeul/debian:arm32v7-10-npm-v1
+        with:
+          entrypoint: /usr/bin/linux32
+          args: /bin/bash tests/scripts/test-hello-world.sh --image ilegeul/debian:arm32v7-10-npm-v1 --version ${{ github.event.inputs.version }}
+
+
+  macos-x64:
+    name: 'macOS Intel 64-bit xpm@${{ github.event.inputs.version }} test'
+    runs-on: macos-latest
+    steps:
+      - name: 'Machine'
+        run: uname -a
+      - name: 'Checkout'
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 3
+          submodules: true
+      - name: 'Run xpm ${{ github.event.inputs.version }} test'
+        run: bash tests/scripts/test-hello-world.sh --version ${{ github.event.inputs.version }}
+
+
+  macos-arm64:
+    name: 'macOS Arm 64-bit xpm@${{ github.event.inputs.version }} test'
+    runs-on: [self-hosted, macos, apple]
+    defaults:
+      run:
+        shell: "/usr/bin/arch -arch arm64e /bin/bash -l {0}"
+
+    steps:
+      - name: 'Machine'
+        run: uname -a
+
+      - name: 'Checkout'
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 3
+          submodules: true
+      - name: 'Run xpm ${{ github.event.inputs.version }} test'
+        run: bash tests/scripts/test-hello-world.sh --version ${{ github.event.inputs.version }}
+
+
+  windows-x64:
+    name: 'Windows 64-bit xpm@${{ github.event.inputs.version }} test'
+    runs-on: windows-latest
+    steps:
+      - name: 'Machine'
+        run: uname -a
+      - name: 'Checkout'
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 3
+          submodules: true
+      - name: 'Run xpm ${{ github.event.inputs.version }} test'
+        run: bash tests/scripts/test-hello-world.sh --version ${{ github.event.inputs.version }}
+
+
+
+# -----------------------------------------------------------------------------
+
