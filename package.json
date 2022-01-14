@@ -1,6 +1,6 @@
 {
   "name": "xpm",
-  "version": "0.12.4",
+  "version": "0.12.6",
   "description": "The xPack project manager command line tool",
   "main": "./index.js",
   "directories": {
@@ -28,6 +28,7 @@
     "tap": "tap --reporter=spec --timeout 300 --no-coverage",
     "link": "npm link @ilg/cli-start-options; npm link @xpack/es6-promisifier",
     "prepublishOnly": "standard && npm run test-tap -s",
+    "postpublish": "git push origin --follow-tags",
     "dumpconf": "env | sort | uniq"
   },
   "repository": {
@@ -53,10 +54,10 @@
   "homepage": "https://xpack.github.io/xpm/",
   "dependencies": {
     "@ilg/cli-start-options": "^0.6.3",
+    "@xpack/cmd-shim": "^4.1.0-2",
     "@xpack/es6-promisifier": "^1.0.1",
     "@xpack/xpm-liquid": "^1.2.0",
     "cacache": "^15.3.0",
-    "cmd-shim": "^4.1.0",
     "cp-file": "^9.0.0",
     "cross-spawn": "^7.0.3",
     "decompress": "^4.2.1",
@@ -74,9 +75,9 @@
   "bundledDependencies": [
     "@ilg/cli-start-options",
     "@xpack/es6-promisifier",
+    "@xpack/cmd-shim",
     "@xpack/xpm-liquid",
     "cacache",
-    "cmd-shim",
     "cp-file",
     "cross-spawn",
     "decompress",
