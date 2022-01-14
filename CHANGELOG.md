@@ -5,7 +5,7 @@ Don't forget to close GitHub [issues](https://github.com/xpack/xpm-js/issues/).
 
 ## 2022-01-14
 
-- v0.12.7 published
+- v0.12.8 published
 - [#129] - process spawn() exceptions
 
 ## 2022-01-06
