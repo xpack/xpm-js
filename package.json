@@ -6,7 +6,7 @@
   "directories": {
     "bin": "./bin",
     "lib": "./lib",
-    "test": "./test"
+    "test": "./tests"
   },
   "bin": {
     "xpm": "bin/xpm.js"
@@ -23,9 +23,9 @@
     "git-log": "git log --pretty='%cd * %h %s' --date=short",
     "lint": "standard",
     "test": "npm run lint && npm run test-tap -s",
-    "test-tap100": "tap --reporter=classic --timeout 300 --100 \"test/tap/*.js\"",
-    "test-coverage": "tap --coverage --reporter=classic --timeout 600 --no-check-coverage \"test/tap/*.js\"",
-    "test-tap": "tap --reporter=classic --timeout 300 --no-coverage \"test/tap/*.js\"",
+    "test-tap100": "tap --reporter=classic --timeout 300 --100 \"tests/tap/*.js\"",
+    "test-coverage": "tap --coverage --reporter=classic --timeout 600 --no-check-coverage \"tests/tap/*.js\"",
+    "test-tap": "tap --reporter=classic --timeout 300 --no-coverage \"tests/tap/*.js\"",
     "tap": "tap --reporter=spec --timeout 300 --no-coverage",
     "link": "npm link @ilg/cli-start-options; npm link @xpack/es6-promisifier",
     "prepublishOnly": "standard && npm run test-tap -s",
