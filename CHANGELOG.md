@@ -3,6 +3,11 @@
 Changes in reverse chronological order.
 Don't forget to close GitHub [issues](https://github.com/xpack/xpm-js/issues/).
 
+## 2022-01-14
+
+- v0.12.7 published
+- [#129] - process spawn() exceptions
+
 ## 2022-01-06
 
 - v0.12.6 published
