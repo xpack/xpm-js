@@ -58,17 +58,19 @@
     "@xpack/cmd-shim": "^4.1.0-2",
     "@xpack/es6-promisifier": "^1.0.1",
     "@xpack/xpm-liquid": "^1.2.0",
-    "cacache": "^15.3.0",
+    "cacache": "^16.0.3",
     "cp-file": "^9.0.0",
     "cross-spawn": "^7.0.3",
     "decompress": "^4.2.1",
     "del": "^6.0.0",
     "is-windows": "^1.0.2",
-    "liquidjs": "^9.32.0",
+    "liquidjs": "^9.36.0",
     "make-dir": "^3.1.0",
+    "minimist": "^1.2.5",
     "mz": "^2.7.0",
-    "node-fetch": "^2.6.6",
-    "pacote": "^12.0.2",
+    "node-fetch": "^2.6.7",
+    "npm": "^8.6.0",
+    "pacote": "^13.0.5",
     "parse-git-config": "^3.0.0",
     "semver": "^7.3.5",
     "tar": "^6.1.11"
@@ -86,6 +88,7 @@
     "is-windows",
     "liquidjs",
     "make-dir",
+    "minimist",
     "mz",
     "node-fetch",
     "pacote",
@@ -95,7 +98,7 @@
   ],
   "devDependencies": {
     "standard": "^16.0.4",
-    "tap": "^15.1.6"
+    "tap": "^16.0.1"
   },
   "engines": {
     "node": ">=10"
