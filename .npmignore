@@ -52,5 +52,6 @@
 /README-*.md
 /docs/
 /doc/
+/tests/
 
 #end
