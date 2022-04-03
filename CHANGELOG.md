@@ -3,6 +3,11 @@
 Changes in reverse chronological order.
 Don't forget to close GitHub [issues](https://github.com/xpack/xpm-js/issues/).
 
+## 2022-04-01
+
+- v0.12.10 published
+- add explicit minimist 1.2.5 to fix security issue
+
 ## 2022-01-14
 
 - v0.12.9 published
