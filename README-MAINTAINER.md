@@ -24,8 +24,7 @@ Before making the release, perform some checks and tweaks.
 
 Notes:
 
-- keep `node-fetch` to 2.6.x, the new 3.x requires Node.js 12.x.
-- minimist 1.2.5 was added to avoid a security issue
+- engine: Node.js 12.x.
 
 ### Check Git
 
