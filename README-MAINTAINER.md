@@ -24,7 +24,8 @@ Before making the release, perform some checks and tweaks.
 
 Notes:
 
-- engine: Node.js 12.x.
+- engine: Node.js 12.x
+- keep `node-fetch` to 2.6.x, the new 3.x requires import() instead of require()
 
 ### Check Git
 
