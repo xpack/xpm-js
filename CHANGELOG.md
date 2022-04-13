@@ -5,6 +5,7 @@ Don't forget to close GitHub [issues](https://github.com/xpack/xpm-js/issues/).
 
 ## 2022-04-11
 
+- v0.13.0 prepared
 - bump Node.js 12.x
 
 ## 2022-04-01
