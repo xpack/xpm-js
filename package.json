@@ -99,7 +99,7 @@
     "tap": "^16.0.1"
   },
   "engines": {
-    "node": ">=10"
+    "node": ">=12"
   },
   "bundleDependencies": [
     "@ilg/cli-start-options",
