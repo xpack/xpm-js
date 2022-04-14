@@ -54,7 +54,7 @@
   },
   "homepage": "https://xpack.github.io/xpm/",
   "dependencies": {
-    "@ilg/cli-start-options": "^0.6.3",
+    "@ilg/cli-start-options": "^0.6.4",
     "@xpack/cmd-shim": "^4.1.0-2",
     "@xpack/es6-promisifier": "^1.0.1",
     "@xpack/xpm-liquid": "^1.2.0",
