@@ -3,6 +3,30 @@
 Changes in reverse chronological order.
 Don't forget to close GitHub [issues](https://github.com/xpack/xpm-js/issues/).
 
+## 2022-04-17
+
+- v0.13.0 published
+- 8d0473c #134 fix install updates
+
+## 2022-04-16
+
+- 8807aff #134 add processInheritance
+- 252f8c7 functions.js: add isBoolean()
+
+## 2022-04-14
+
+- 38692a1 #109 prefer XPACKS_STORE_FOLDER
+- cf30b77 engines: node >= 12
+- 96ec107 bump cli-start-options 0.6.4
+- c68dce5 #131 recommend --global for binary xpacks
+- cb13042 #133 validate chmod
+- c033a1e #133 fs.constants.S_IWUSR hack on windows
+
+## 2022-04-13
+
+- 9a79f25 #136 --ignore-errors for run & uninstall
+- 673e44f #136 prepareMap with no stack trace
+
 ## 2022-04-11
 
 - v0.13.0 prepared
