@@ -18,7 +18,12 @@ on:
       - '**'
     paths-ignore:
       - 'docs/**'
-      - 'README*'
+      - 'LICENSE'
+      - '**.md'
+      - '.gitignore'
+      - '.npmignore'
+      - '.vscode/**'
+
 
 jobs:
   npm-test:
