@@ -39,14 +39,14 @@ In this Git repo:
 
 Use the semantic versioning semantics.
 
-Edit `package.json` to this version suffixed by `-pre` (like `0.1.3.0-pre`).
+Edit `package.json` to this version suffixed by `-pre` (like `0.13.1-pre`).
 
 ### Fix possible open issues
 
 Check GitHub issues and pull requests:
 
 - in <https://github.com/xpack/xpm-js/milestones>
-add a new milestone like `0.13.0` (without `v`)
+add a new milestone like `0.13.1` (without `v`)
 - <https://github.com/xpack/xpm-js/issues/>
 
 ### Update versions in READMEs
@@ -124,7 +124,7 @@ npm install --global xpm@next
 When stable:
 
 - `npm dist-tag ls xpm`
-- `npm dist-tag add xpm@0.13.0 latest`
+- `npm dist-tag add xpm@0.13.1 latest`
 - `npm dist-tag ls xpm`
 
 ### Merge into `master`

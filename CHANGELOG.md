@@ -3,6 +3,11 @@
 Changes in reverse chronological order.
 Don't forget to close GitHub [issues](https://github.com/xpack/xpm-js/issues/).
 
+## 2022-04-18
+
+- v0.13.1 published
+- 773475b re-generate dependencies
+
 ## 2022-04-17
 
 - v0.13.0 published
