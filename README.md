@@ -10,7 +10,7 @@ application.
 The main purpose of `xpm` is to help manage
 projects during development.
 
-More specificaly:
+More specifically:
 
 - to manage dependencies, like to install both source and binary packages,
 and to easily update them when new versions are released
@@ -29,12 +29,12 @@ For more details on the **xpm** releases, please check the
 
 If you already know the general facts about `xpm`, you can directly skip to:
 
-- [Project web site](https://xpack.github.io/xpm/)
+- project [web site](https://xpack.github.io/xpm/)
 - [GitHub](https://github.com/xpack/xpm-js.git)
-- [How to install](https://xpack.github.io/xpm/install/)
-- [How to get support](https://xpack.github.io/xpm/support/)
+- [how to install](https://xpack.github.io/xpm/install/)
+- [how to get support](https://xpack.github.io/xpm/support/)
 - [npmjs/xpm](https://www.npmjs.com/package/xpm/)
-- [Published versions](https://www.npmjs.com/package/xpm?activeTab=versions)
+- published [versions](https://www.npmjs.com/package/xpm?activeTab=versions)
 
 ## xPacks overview
 
@@ -46,15 +46,16 @@ in the [Node.js](https://nodejs.org/en/) JavaScript ecosystem.
 xPacks are usually Git repositories and can be published on
 [npmjs.com](https://npmjs.com/) or any npm compatible server.
 
-For more details, please read the [xPacks 101](https://xpack.github.io/intro/) page.
+For more details, please read the
+[xPacks 101](https://xpack.github.io/intro/) page.
 
-## Prequisites
+## Prerequisites
 
-The current version requires Node.js >= 10.x.
+The current version requires Node.js >= 12.
 
 Since it is highly recommended to **not** use `sudo` during install,
 and instead
-use a version manager or to customize the **npm** install location,
+**use a version manager** or to customize the **npm** install location,
 please read the
 [install](https://xpack.github.io/xpm/install/) page for more details.
 
@@ -66,9 +67,9 @@ The basic command is:
 npm install --global xpm@latest
 ```
 
-Note: In case `xpm` was already installed, in certain conditions
-the update may not succeed and xpm may become unusable; if this happens,
-uninstall xpm and retry the install:
+Troubleshooting: in case `xpm` was already installed, in certain conditions
+the update may not succeed and **xpm** may become unusable; if this happens,
+uninstall **xpm** and retry the install:
 
 ```sh
 npm uninstall --global xpm
@@ -80,7 +81,7 @@ For more details, please refer to the
 
 ## User info
 
-To get an initial glimpse on the program, ask for help:
+To get an initial glimpse on the program, ask it for help:
 
 ```console
 % xpm --help
@@ -112,10 +113,24 @@ Home page: <https://xpack.github.io/xpm/>
 Bug reports: <https://github.com/xpack/xpm-js/issues/>
 ```
 
+## Configuration
+
+Similarly to **npm**, the entire configuration is in `package.json`.
+
+In addition to `name`, `version`, `dependencies` and `devDependencies`,
+there is an `xpack` property that groups **xpm** specific properties:
+
+- `properties`
+- `actions`
+- `buildConfigurations`
+
 ## Template substitutions
 
-To increase reusability, the actions strings allow substitutions, using the
-[LiquidJS](https://liquidjs.com/) template engine syntax, with:
+To increase reusability, it is possible to use substitutions
+in the strings defining actions. The syntax is more elaborate than the simple
+variable substitution, and is using the
+[LiquidJS](https://liquidjs.com/) template engine syntax,
+which accepts:
 
 - variables, like `{{ configuration.name }}`
 - filters, like `{{ configuration.name | downcase }}`
@@ -125,26 +140,27 @@ The following predefined objects are available:
 
 - `package`, with the entire `package.json` content
 - `properties` with the xPack properties
-- `os.platform` with the Node.js platform (possible values are 'aix',
-  'darwin', 'freebsd', 'linux', 'openbsd', 'sunos', and 'win32')
-- `os.arch` with the Node.js architecture (possible values are 'arm',
-  'arm64', 'ia32', 'mips', 'mipsel', 'ppc', 'ppc64', 's390', 's390x',
-  'x32', and 'x64')
+- `os.platform` with the Node.js platform (possible values are `aix`,
+  `darwin`, `freebsd`, `linux`, `openbsd`, `sunos`, and `win32`)
+- `os.arch` with the Node.js architecture (possible values are `arm`,
+  `arm64`, `ia32`, `mips`, `mipsel`, `ppc`, `ppc64`, `s390`, `s390x`,
+  `x32`, and `x64`)
 
-If the xpm command was started with `--config`,
-the following are also available:
+If the **xpm** command was started with `--config`, `properties`
+include the configuration properties _before_ the xPack
+properties and the following are also available:
 
 - `configuration` with the current xPack build configuration;
   the configuration name is available as `configuration.name`
-- `properties` with the configuration properties _preceding_ the xPack
-  properties
 
 For the full list of variables available for substitutions, please
-read the separate [README](https://github.com/xpack/xpm-liquid-ts#readme).
+read the [README](https://github.com/xpack/xpm-liquid-ts#readme) of
+the separate [xpack/xpm-liquid-ts](https://github.com/xpack/xpm-liquid-ts/)
+project.
 
 ## Multi-line actions
 
-In order to acomodate more complex actions, it is possible to define
+In order to accommodate more complex actions, it is possible to define
 sequences of commands as arrays of strings, with each line executed as
 a separate command.
 
@@ -157,8 +173,15 @@ with `{{ os.EOL }}`), for example:
 
 ### The build folder path
 
-The only required property is `buildFolderRelativePath`, which can be
-defined either for each configuration, or for the entire project, using
+When using build configurations, each build should be performed in a
+separate build folder.
+
+This should be done using the reserved property `buildFolderRelativePath`,
+which should define a folder relative to the project root, usually below
+a `build` folder.
+
+This property can be manually defined for each configuration,
+or in a computed property defined for the entire project, using
 a parametrised definition based on the configuration name, like:
 
 ```json
@@ -180,7 +203,8 @@ incompatible API changes require higher major numbers.
 
 This page documents how to use this module in an user application.
 For developer and maintainer information, see the separate
-[`README-DEVELOPER.md`](https://github.com/xpack/xpm-js/blob/master/README-DEVELOPER.md) and
+[`README-DEVELOPER.md`](https://github.com/xpack/xpm-js/blob/master/README-DEVELOPER.md)
+and
 [`README-MAINTAINER.md`](https://github.com/xpack/xpm-js/blob/master/README-MAINTAINER.md)
 pages.
 
