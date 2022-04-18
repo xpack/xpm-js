@@ -53,6 +53,9 @@
     "url": "https://github.com/xpack/xpm-js/issues/"
   },
   "homepage": "https://xpack.github.io/xpm/",
+  "engines": {
+    "node": ">=12"
+  },
   "dependencies": {
     "@ilg/cli-start-options": "^0.6.4",
     "@xpack/cmd-shim": "^4.1.0-2",
@@ -74,32 +77,9 @@
     "semver": "^7.3.7",
     "tar": "^6.1.11"
   },
-  "bundledDependencies": [
-    "@ilg/cli-start-options",
-    "@xpack/es6-promisifier",
-    "@xpack/cmd-shim",
-    "@xpack/xpm-liquid",
-    "cacache",
-    "cp-file",
-    "cross-spawn",
-    "decompress",
-    "del",
-    "is-windows",
-    "liquidjs",
-    "make-dir",
-    "mz",
-    "node-fetch",
-    "pacote",
-    "parse-git-config",
-    "semver",
-    "tar"
-  ],
   "devDependencies": {
     "standard": "^16.0.4",
     "tap": "^16.0.1"
-  },
-  "engines": {
-    "node": ">=12"
   },
   "bundleDependencies": [
     "@ilg/cli-start-options",
