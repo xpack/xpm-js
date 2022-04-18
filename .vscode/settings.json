@@ -9,5 +9,18 @@
   "editor.detectIndentation": false,
   // The number of spaces a tab is equal to. This setting is overriden based on the file contents when `editor.detectIndentation` is on.
   "editor.tabSize": 2,
-  "standard.autoFixOnSave": true
+  "standard.autoFixOnSave": true,
+  "cSpell.ignoreWords": [
+    "Schlueter",
+    "cacache",
+    "cmake",
+    "endfor",
+    "loglevel",
+    "mipsel",
+    "mkdir",
+    "npmignore",
+    "npmjs",
+    "pacote",
+    "sunos"
+  ]
 }
