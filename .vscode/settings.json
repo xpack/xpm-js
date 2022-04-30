@@ -14,13 +14,18 @@
     "Schlueter",
     "cacache",
     "cmake",
+    "dumpconf",
     "endfor",
+    "liquidjs",
     "loglevel",
     "mipsel",
     "mkdir",
     "npmignore",
     "npmjs",
     "pacote",
+    "postpublish",
+    "postversion",
+    "promisifier",
     "sunos"
   ]
 }
