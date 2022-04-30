@@ -64,7 +64,7 @@ In `README.md`, update the `xpm --help` text.
 - check the latest commits `npm run git-log`
 - open the `CHANGELOG.md` file
 - check if all previous fixed issues are in
-- commit with a message like _prepare v0.13.0_
+- commit with a message like _prepare v0.13.2_
 
 ## Prepare a new blog post with the release
 
@@ -73,7 +73,7 @@ In the `xpack/web-jekyll` GitHub repo:
 - select the `develop` branch
 - add a new file to `_posts/releases/xpm`
 - name the file like `2021-12-28-xpm-v0-11-2-released.md`
-- name the post like: **xPack xpm v0.13.0 released**
+- name the post like: **xPack xpm v0.13.2 released**
 - update the `date:` field with the current date
 - update the **Changes** sections
 
@@ -85,7 +85,7 @@ as:
 - [#1] ...
 ```
 
-- commit with a message like **xPack xpm v0.13.0 release**
+- commit with a message like **xPack xpm v0.13.2 release**
 - push
 - wait for the CI job to complete (<https://github.com/xpack/web-jekyll/actions/>)
 
@@ -152,7 +152,7 @@ Check if the page shows at:
 
 - in a separate browser windows, open [TweetDeck](https://tweetdeck.twitter.com/)
 - using the `@xpack_project` account
-- paste the release name like **xPack xpm v0.13.0 released**
+- paste the release name like **xPack xpm v0.13.2 released**
 - paste the link to the Web page
   [release](https://xpack.github.io/xpm/releases/)
 - click the **Tweet** button
