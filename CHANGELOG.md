@@ -3,6 +3,11 @@
 Changes in reverse chronological order.
 Don't forget to close GitHub [issues](https://github.com/xpack/xpm-js/issues/).
 
+## 2022-05-03
+
+* v0.13.3 published
+* 874aafb package.json: bump cli-start-options to 0.6.6
+
 ## 2022-04-30
 
 * v0.13.2 published
