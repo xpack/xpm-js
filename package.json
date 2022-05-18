@@ -1,6 +1,6 @@
 {
   "name": "xpm",
-  "version": "0.13.3",
+  "version": "0.13.4-pre",
   "description": "The xPack project manager command line tool",
   "main": "./index.js",
   "directories": {
@@ -61,25 +61,25 @@
     "@xpack/cmd-shim": "^4.1.0-2",
     "@xpack/es6-promisifier": "^1.0.1",
     "@xpack/xpm-liquid": "^1.2.0",
-    "cacache": "^16.0.4",
+    "cacache": "^16.1.0",
     "cp-file": "^9.0.0",
     "cross-spawn": "^7.0.3",
     "decompress": "^4.2.1",
-    "del": "^6.0.0",
+    "del": "^6.1.0",
     "is-windows": "^1.0.2",
-    "liquidjs": "^9.36.0",
+    "liquidjs": "^9.37.0",
     "make-dir": "^3.1.0",
     "mz": "^2.7.0",
     "node-fetch": "^2.6.7",
-    "npm": "^8.6.0",
-    "pacote": "^13.1.1",
+    "npm": "^8.10.0",
+    "pacote": "^13.4.0",
     "parse-git-config": "^3.0.0",
     "semver": "^7.3.7",
     "tar": "^6.1.11"
   },
   "devDependencies": {
-    "standard": "^16.0.4",
-    "tap": "^16.0.1"
+    "standard": "^17.0.0",
+    "tap": "^16.2.0"
   },
   "bundleDependencies": [
     "@ilg/cli-start-options",
