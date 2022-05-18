@@ -3,6 +3,10 @@
 Changes in reverse chronological order.
 Don't forget to close GitHub [issues](https://github.com/xpack/xpm-js/issues/).
 
+## 2022-05-18
+
+* 049053f #138 avoid warnings when setting links to RO
+
 ## 2022-05-03
 
 * v0.13.3 published
