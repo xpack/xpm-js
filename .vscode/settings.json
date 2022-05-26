@@ -11,6 +11,8 @@
   "editor.tabSize": 2,
   "standard.autoFixOnSave": true,
   "cSpell.ignoreWords": [
+    "Ionescu",
+    "Liviu",
     "Schlueter",
     "cacache",
     "cmake",
@@ -26,6 +28,7 @@
     "postpublish",
     "postversion",
     "promisifier",
-    "sunos"
+    "sunos",
+    "xpack"
   ]
 }
