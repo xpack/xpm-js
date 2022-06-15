@@ -3,6 +3,11 @@
 Changes in reverse chronological order.
 Don't forget to close GitHub [issues](https://github.com/xpack/xpm-js/issues/).
 
+## 2022-06-15
+
+* v0.13.6 published
+* d295c94 #141: fix passing args to actions
+
 ## 2022-05-26
 
 * v0.13.5 published
