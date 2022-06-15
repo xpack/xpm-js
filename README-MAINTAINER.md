@@ -26,6 +26,8 @@ Notes:
 
 - engine: Node.js 12.x
 - keep `node-fetch` to 2.6.x, the new 3.x requires import() instead of require()
+- cacache must be in sync with the one used by
+  [pacote](https://github.com/npm/pacote/blob/main/package.json)
 
 ### Check Git
 
