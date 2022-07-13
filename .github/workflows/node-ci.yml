@@ -33,14 +33,14 @@ jobs:
     strategy:
       matrix:
         # nvm ls-remote --lts
-        node-version: [^12.22.x, ^14.19.x, ^16.14.x]
-        os: [ubuntu-latest, windows-latest, macos-latest]
+        node-version: [^12.22.x, ^14.20.x, ^16.16.x]
+        os: [ubuntu-20.04, windows-2022, macos-11]
 
     steps:
       - name: Checkout
         uses: actions/checkout@v1
       - name: Setup Node.js ${{ matrix.node-version }} on ${{ matrix.os }}
-        uses: actions/setup-node@v1
+        uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node-version }}
       - name: Show node & npm versions, environment
