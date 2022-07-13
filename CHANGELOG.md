@@ -3,6 +3,13 @@
 Changes in reverse chronological order.
 Don't forget to close GitHub [issues](https://github.com/xpack/xpm-js/issues/).
 
+## 2022-07-13
+
+* v0.13.7
+* 95e79ea #142: purge node_modules
+* c4e439e #142: npm install --quiet
+* be2b25c fix typos
+
 ## 2022-06-15
 
 * v0.13.6 published
