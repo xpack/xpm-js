@@ -67,19 +67,19 @@
     "decompress": "^4.2.1",
     "del": "^6.1.1",
     "is-windows": "^1.0.2",
-    "liquidjs": "^9.37.0",
+    "liquidjs": "^9.39.0",
     "make-dir": "^3.1.0",
     "mz": "^2.7.0",
     "node-fetch": "^2.6.7",
-    "npm": "^8.12.1",
-    "pacote": "^13.6.0",
+    "npm": "^8.13.2",
+    "pacote": "^13.6.1",
     "parse-git-config": "^3.0.0",
     "semver": "^7.3.7",
     "tar": "^6.1.11"
   },
   "devDependencies": {
     "standard": "^17.0.0",
-    "tap": "^16.2.0"
+    "tap": "^16.3.0"
   },
   "bundleDependencies": [
     "@ilg/cli-start-options",
