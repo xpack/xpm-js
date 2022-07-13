@@ -16,7 +16,9 @@
     "Schlueter",
     "cacache",
     "cmake",
+    "dirents",
     "dumpconf",
+    "eabi",
     "endfor",
     "liquidjs",
     "loglevel",
@@ -25,10 +27,12 @@
     "npmignore",
     "npmjs",
     "pacote",
+    "pnam",
     "postpublish",
     "postversion",
     "promisifier",
     "sunos",
-    "xpack"
+    "xpack",
+    "xpacks"
   ]
 }
