@@ -1,6 +1,6 @@
 ---
 name: Questions and general support
-about: For questions and general support, use the forums!
+about: For questions and general support, use the Discussions!
 title: ''
 labels: ''
 assignees: ''
