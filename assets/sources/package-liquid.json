@@ -27,6 +27,11 @@
   "dependencies": {},
   "devDependencies": {},
   "xpack": {
-    "minimumXpmRequired": "{{ xpm.version }}"
+    "minimumXpmRequired": "{{ xpm.version }}",
+    "dependencies": {},
+    "devDependencies": {},
+    "properties": {},
+    "actions": {},
+    "buildConfigurations": {}
   }
 }
