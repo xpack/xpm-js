@@ -10,10 +10,10 @@
     "type": "git",
     "url": "https://github.com/<user-id>/{{ gitProjectName }}.git"
   },
+  "homepage": "https://github.com/<user-id>/{{ gitProjectName }}/",
   "bugs": {
     "url": "https://github.com/<user-id>/{{ gitProjectName }}/issues/"
   },
-  "homepage": "https://github.com/<user-id>/{{ gitProjectName }}/",
   "keywords": [
     "xpack"
   ],
