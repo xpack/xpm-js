@@ -192,12 +192,17 @@ a parametrised definition based on the configuration name, like:
   }
 ```
 
-## Compatibility notices
+## Change log - incompatible changes
 
-According to [semver](https://semver.org) requirements,
-incompatible API changes require higher major numbers.
+According to [semver](https://semver.org) rules:
 
-- none so far
+> Major version X (X.y.z | X > 0) MUST be incremented if any
+backwards incompatible changes are introduced to the public API.
+
+The incompatible changes, in reverse chronological order, are:
+
+- v0.14.x: separate xPack from npm dependencies (see
+[0001](https://xpack.github.io/xpm/policies/0001/) policy)
 
 ## Maintainer info
 
