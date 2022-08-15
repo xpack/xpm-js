@@ -42,7 +42,7 @@ In this Git repo:
 
 Use the semantic versioning semantics.
 
-Edit `package.json` to this version suffixed by `-pre` (like `0.13.7-pre`).
+Edit `package.json` to this version suffixed by `-pre` (like `0.14.0-pre`).
 
 ### Update versions in READMEs
 
@@ -59,7 +59,7 @@ In `README.md`, update the `xpm --help` text.
 Check GitHub issues and pull requests:
 
 - in <https://github.com/xpack/xpm-js/milestones>
-add a new milestone like `0.13.7` (without `v`)
+add a new milestone like `0.14.0` (without `v`)
 - <https://github.com/xpack/xpm-js/issues/>
 
 ## Update `CHANGELOG.md`
@@ -67,7 +67,7 @@ add a new milestone like `0.13.7` (without `v`)
 - check the latest commits `npm run git-log`
 - open the `CHANGELOG.md` file
 - check if all previous fixed issues are in
-- commit with a message like _prepare v0.13.7_
+- commit with a message like _prepare v0.14.0_
 
 ## Prepare a new blog post with the release
 
@@ -76,7 +76,7 @@ In the `xpack/web-jekyll` GitHub repo:
 - select the `develop` branch
 - add a new file to `_posts/releases/xpm`
 - name the file like `2021-12-28-xpm-v0-11-2-released.md`
-- name the post like: **xPack xpm v0.13.7 released**
+- name the post like: **xPack xpm v0.14.0 released**
 - update the `date:` field with the current date
 - update the **Changes** sections
 
@@ -88,7 +88,7 @@ as:
 - [#1] ...
 ```
 
-- commit with a message like **xPack xpm v0.13.7 release**
+- commit with a message like **xPack xpm v0.14.0 release**
 - push
 - wait for the CI job to complete (<https://github.com/xpack/web-jekyll/actions/>)
 
@@ -127,7 +127,7 @@ npm install --global xpm@next
 When stable:
 
 - `npm dist-tag ls xpm`
-- `npm dist-tag add xpm@0.13.7 latest`
+- `npm dist-tag add xpm@0.14.0 latest`
 - `npm dist-tag ls xpm`
 
 ### Merge into `master`
@@ -155,7 +155,7 @@ Check if the page shows at:
 
 - in a separate browser windows, open [TweetDeck](https://tweetdeck.twitter.com/)
 - using the `@xpack_project` account
-- paste the release name like **xPack xpm v0.13.7 released**
+- paste the release name like **xPack xpm v0.14.0 released**
 - paste the link to the Web page
   [release](https://xpack.github.io/xpm/releases/)
 - click the **Tweet** button
