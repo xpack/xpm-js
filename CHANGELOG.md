@@ -3,6 +3,32 @@
 Changes in reverse chronological order.
 Don't forget to close GitHub [issues](https://github.com/xpack/xpm-js/issues/).
 
+## 2022-08-15
+
+* v0.14.0
+* da79a0d #143: issue policy warning
+
+## 2022-08-14
+
+* 4f9d89c package.json: 0.14.0-pre
+* 9adce11 #143: install separate dependencies
+* 8c20f6c package-liquid.json: reorder properties
+* 5541e1a #143: uninstall separate xpack dependencies
+* 9bb1029 policies.js: log cosmetics
+* 941e034 xpack.js:  checkMinimumXpmRequired returns minimumXpmRequired
+* b2fda36 #149: Fix xpm list which does not show local packages
+* 240e431 #148: Filter out pre-release in generated minimumXpmRequired
+* 723a3e0 #147: Add default empty properties in package.json for init
+* 16c81f9 #143: add policies.js
+* cba9ead xpack.js: checkMinimumXpmRequired returns version
+* c21b718 update link to latest-v12.x
+* 878cf27 update/shorten copyright notices
+
+## 2022-07-27
+
+* 6d37824 ISSUE_TEMPLATE updates
+* 9401d98 ISSUE_TEMPLATE updates
+
 ## 2022-07-13
 
 * v0.13.7
