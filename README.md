@@ -4,11 +4,11 @@
 
 # xpm - the xPack project manager
 
-This project implements `xpm` - the xPack project manager - as a Node.js CLI
-application.
+This project implements `xpm` - the **xPack project manager** -
+as a Node.js CLI application.
 
-The main purpose of `xpm` is to help manage
-projects during development.
+The main purpose of `xpm` is to orchestrate builds and manage dependencies
+for language neutral, multi-version projects.
 
 More specifically:
 
@@ -20,16 +20,12 @@ associated with various build steps.
 The project is open-source and hosted on GitHub as
 [xpack/xpm-js](https://github.com/xpack/xpm-js.git).
 
-## Release info
-
-For more details on the **xpm** releases, please check the
-[releases](https://xpack.github.io/xpm/releases/) pages on the project web.
-
 ## Quicklinks
 
 If you already know the general facts about `xpm`, you can directly skip to:
 
 - project [web site](https://xpack.github.io/xpm/)
+- [releases](https://xpack.github.io/xpm/releases/)
 - [GitHub](https://github.com/xpack/xpm-js.git)
 - [how to install](https://xpack.github.io/xpm/install/)
 - [how to get support](https://xpack.github.io/xpm/support/)
@@ -40,7 +36,7 @@ If you already know the general facts about `xpm`, you can directly skip to:
 
 **xPacks** are general purpose multi-version software packages,
 much the same as the highly successful
-[npm modules](https://docs.npmjs.com/getting-started/what-is-npm)
+[npm packages](https://docs.npmjs.com/getting-started/what-is-npm)
 in the [Node.js](https://nodejs.org/en/) JavaScript ecosystem.
 
 xPacks are usually Git repositories and can be published on
@@ -108,7 +104,7 @@ xpm <command> -h|--help  Quick help on command
 xpm --version            Show version
 xpm -i|--interactive     Enter interactive mode
 
-npm xpm@0.14.0 '/Users/ilg/.nvm/versions/node/v14.16.0/lib/node_modules/xpm'
+npm xpm@0.14.0 '/Users/ilg/.nvm/versions/node/v16.16.0/lib/node_modules/xpm'
 Home page: <https://xpack.github.io/xpm/>
 Bug reports: <https://github.com/xpack/xpm-js/issues/>
 ```
@@ -117,9 +113,11 @@ Bug reports: <https://github.com/xpack/xpm-js/issues/>
 
 Similarly to **npm**, the entire configuration is in `package.json`.
 
-In addition to `name`, `version`, `dependencies` and `devDependencies`,
+In addition to `name`, `version`,
 there is an `xpack` property that groups **xpm** specific properties:
 
+- `dependencies`
+- `devDependencies`
 - `properties`
 - `actions`
 - `buildConfigurations`
@@ -146,7 +144,7 @@ The following predefined objects are available:
   `arm64`, `ia32`, `mips`, `mipsel`, `ppc`, `ppc64`, `s390`, `s390x`,
   `x32`, and `x64`)
 
-If the **xpm** command was started with `--config`, `properties`
+When the **xpm** command is started with `--config`, `properties`
 include the configuration properties _before_ the xPack
 properties and the following are also available:
 
@@ -173,11 +171,11 @@ with `{{ os.EOL }}`), for example:
 
 ### The build folder path
 
-When using build configurations, each build should be performed in a
+When using build configurations, each build must be performed in a
 separate build folder.
 
 This should be done using the reserved property `buildFolderRelativePath`,
-which should define a folder relative to the project root, usually below
+which must define a folder relative to the project root, usually below
 a `build` folder.
 
 This property can be manually defined for each configuration,
