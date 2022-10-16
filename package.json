@@ -30,7 +30,8 @@
     "link": "npm link @ilg/cli-start-options; npm link @xpack/es6-promisifier",
     "prepublishOnly": "standard && npm run test-tap -s",
     "postpublish": "git push origin --follow-tags",
-    "dumpconf": "env | sort | uniq"
+    "dumpconf": "env | sort | uniq",
+    "deep-clean": "rm -rf node_modules package-lock.json"
   },
   "repository": {
     "type": "git",
