@@ -5,7 +5,7 @@ Don't forget to close GitHub [issues](https://github.com/xpack/xpm-js/issues/).
 
 ## 2022-10-16
 
-* v0.14.1
+* v0.14.2
 * 04616bc #153: remove purgeNodeModules
 
 ## 2022-08-15
