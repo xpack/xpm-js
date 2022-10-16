@@ -3,6 +3,11 @@
 Changes in reverse chronological order.
 Don't forget to close GitHub [issues](https://github.com/xpack/xpm-js/issues/).
 
+## 2022-10-16
+
+* v0.14.1
+* 04616bc #153: remove purgeNodeModules
+
 ## 2022-08-15
 
 * v0.14.0
