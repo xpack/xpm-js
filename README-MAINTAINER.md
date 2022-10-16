@@ -25,10 +25,12 @@ Before making the release, perform some checks and tweaks.
 Notes:
 
 - engine: Node.js 12.x
-- keep `node-fetch` to 2.6.x, the new 3.x requires import() instead of require()
-- keep `cp-file` to 9.0.x, the new 10.x requires import() instead of require()
 - cacache must be in sync with the one used by
   [pacote](https://github.com/npm/pacote/blob/main/package.json)
+- use old versions since they requires import() instead of require()
+  - keep `node-fetch` to 2.6.x
+  - keep `cp-file` to 9.1.x
+  - keep `del` to 6.1.1
 
 ### Check Git
 
