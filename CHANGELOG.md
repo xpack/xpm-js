@@ -3,8 +3,16 @@
 Changes in reverse chronological order.
 Don't forget to close GitHub [issues](https://github.com/xpack/xpm-js/issues/).
 
+## 2023-01-24
+
+* v0.14.5 released
+* f9c855c #154: switch cacache to stream
+
 ## 2023-01-23
 
+* e9b57f6 node-ci.yml: document runners
+* 376eefb node-ci.yml: bump versions, deprecate 12, add 18
+* v0.14.4 released
 * da68982 #154: await cacache.put()
 
 ## 2023-01-03
