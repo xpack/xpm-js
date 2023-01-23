@@ -33,6 +33,7 @@ jobs:
     strategy:
       matrix:
         # nvm ls-remote --lts
+        # https://docs.github.com/en/actions/using-github-hosted-runners/about-github-hosted-runners
         node-version: [^14.x, ^16.x, ^18.x]
         os: [ubuntu-22.04, windows-2022, macos-12]
 
