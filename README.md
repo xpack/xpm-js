@@ -104,7 +104,7 @@ xpm <command> -h|--help  Quick help on command
 xpm --version            Show version
 xpm -i|--interactive     Enter interactive mode
 
-npm xpm@0.14.3 '/Users/ilg/.nvm/versions/node/v16.16.0/lib/node_modules/xpm'
+npm xpm@0.14.4 '/Users/ilg/.nvm/versions/node/v16.16.0/lib/node_modules/xpm'
 Home page: <https://xpack.github.io/xpm/>
 Bug reports: <https://github.com/xpack/xpm-js/issues/>
 ```

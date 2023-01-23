@@ -3,6 +3,10 @@
 Changes in reverse chronological order.
 Don't forget to close GitHub [issues](https://github.com/xpack/xpm-js/issues/).
 
+## 2023-01-23
+
+* da68982 #154: await cacache.put()
+
 ## 2023-01-03
 
 * 02f0bff #154: more verbosity for debug
