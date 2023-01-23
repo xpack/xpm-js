@@ -33,8 +33,8 @@ jobs:
     strategy:
       matrix:
         # nvm ls-remote --lts
-        node-version: [^12.22.x, ^14.20.x, ^16.16.x]
-        os: [ubuntu-20.04, windows-2022, macos-11]
+        node-version: [^14.x, ^16.x, ^18.x]
+        os: [ubuntu-22.04, windows-2022, macos-12]
 
     steps:
       - name: Checkout
