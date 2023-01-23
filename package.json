@@ -1,6 +1,6 @@
 {
   "name": "xpm",
-  "version": "0.14.4",
+  "version": "0.14.5",
   "description": "The xPack project manager command line tool",
   "main": "./index.js",
   "directories": {
