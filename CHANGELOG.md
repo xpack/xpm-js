@@ -5,6 +5,10 @@ Don't forget to close GitHub [issues](https://github.com/xpack/xpm-js/issues/).
 
 ## 2023-01-24
 
+* v0.14.6 released
+* b52d471 #154: rework cacheArchive with pipeline()
+* dc49fda #154: add debug to download
+* b427c37 package.json: bump deps
 * v0.14.5 released
 * f9c855c #154: switch cacache to stream
 

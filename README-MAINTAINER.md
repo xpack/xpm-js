@@ -31,7 +31,7 @@ Notes:
   - keep `node-fetch` to 2.6.x
   - keep `cp-file` to 9.1.x
   - keep `del` to 6.1.1
-  - keep `pacote` to 13.6.1
+  - keep `pacote` to 13.6.x
   - keep `cacache` to 16.0.0
 
 ### Check Git
@@ -46,7 +46,7 @@ In this Git repo:
 
 Use the semantic versioning semantics.
 
-Edit `package.json` to this version suffixed by `-pre` (like `0.14.5-pre`).
+Edit `package.json` to this version suffixed by `-pre` (like `0.14.6-pre`).
 
 ### Update versions in READMEs
 
@@ -63,7 +63,7 @@ In `README.md`, update the `xpm --help` text.
 Check GitHub issues and pull requests:
 
 - in <https://github.com/xpack/xpm-js/milestones>
-add a new milestone like `0.14.5` (without `v`)
+add a new milestone like `0.14.6` (without `v`)
 - <https://github.com/xpack/xpm-js/issues/>
 
 ## Update `CHANGELOG.md`
@@ -71,8 +71,8 @@ add a new milestone like `0.14.5` (without `v`)
 - check the latest commits `npm run git-log`
 - open the `CHANGELOG.md` file
 - check if all previous fixed issues are in
-- add an entry with the new version _* v0.14.5 released_
-- commit with a message like _prepare v0.14.5_
+- add an entry with the new version _* v0.14.6 released_
+- commit with a message like _prepare v0.14.6_
 
 ## Prepare a new blog post with the release
 
@@ -81,7 +81,7 @@ In the `xpack/web-jekyll` GitHub repo:
 - select the `develop` branch
 - add a new file to `_posts/releases/xpm`
 - name the file like `2021-12-28-xpm-v0-11-2-released.md`
-- name the post like: **xPack xpm v0.14.5 released**
+- name the post like: **xPack xpm v0.14.6 released**
 - update the `date:` field with the current date
 - update the **Changes** sections
 
@@ -93,7 +93,7 @@ as:
 - [#1] ...
 ```
 
-- commit with a message like **xPack xpm v0.14.5 release**
+- commit with a message like **xPack xpm v0.14.6 release**
 - push
 - wait for the CI job to complete (<https://github.com/xpack/web-jekyll/actions/>)
 
@@ -132,7 +132,7 @@ npm install --location=global xpm@next
 When stable:
 
 - `npm dist-tag ls xpm`
-- `npm dist-tag add xpm@0.14.5 latest`
+- `npm dist-tag add xpm@0.14.6 latest`
 - `npm dist-tag ls xpm`
 
 ### Merge into `master`
@@ -160,7 +160,7 @@ Check if the page shows at:
 
 - in a separate browser windows, open [TweetDeck](https://tweetdeck.twitter.com/)
 - using the `@xpack_project` account
-- paste the release name like **xPack xpm v0.14.5 released**
+- paste the release name like **xPack xpm v0.14.6 released**
 - paste the link to the Web page
   [release](https://xpack.github.io/xpm/releases/)
 - click the **Tweet** button
