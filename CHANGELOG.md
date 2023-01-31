@@ -5,6 +5,8 @@ Don't forget to close GitHub [issues](https://github.com/xpack/xpm-js/issues/).
 
 ## 2023-01-31
 
+* v0.14.8 released
+* 6b9de01 #154: explicit exceptions for fetch & pipeline
 * v0.14.7 released
 * 8eed65e package.json: bump node-fetch to 2.6.9
 
