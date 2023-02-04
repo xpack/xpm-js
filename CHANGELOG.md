@@ -3,6 +3,14 @@
 Changes in reverse chronological order.
 Don't forget to close GitHub [issues](https://github.com/xpack/xpm-js/issues/).
 
+## 2023-02-04
+
+* v0.14.9 released
+* 3b2e941 #159: retry failed downloads
+* 74ede8c .vscode/settings.json: ignoreWords
+* c25958e consistent use of catch (err)
+* d3c141d #160: log.trace the full error object
+
 ## 2023-01-31
 
 * v0.14.8 released
