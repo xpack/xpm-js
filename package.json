@@ -1,8 +1,11 @@
 {
   "name": "xpm",
-  "version": "0.14.9",
+  "version": "0.15.0-pre",
+  "type": "module",
   "description": "The xPack project manager command line tool",
-  "main": "./index.js",
+  "exports": {
+    "import": "./index.js"
+  },
   "directories": {
     "bin": "./bin",
     "lib": "./lib",
@@ -27,7 +30,7 @@
     "test-coverage": "tap --coverage --reporter=classic --timeout 600 --no-check-coverage \"tests/tap/*.js\"",
     "test-tap": "tap --reporter=classic --timeout 300 --no-coverage \"tests/tap/*.js\"",
     "tap": "tap --reporter=spec --timeout 300 --no-coverage",
-    "link": "npm link @ilg/cli-start-options; npm link @xpack/es6-promisifier",
+    "link": "npm link @ilg/cli-start-options",
     "prepublishOnly": "standard && npm run test-tap -s",
     "postpublish": "git push origin --follow-tags",
     "dumpconf": "env | sort | uniq",
@@ -55,12 +58,11 @@
   },
   "homepage": "https://xpack.github.io/xpm/",
   "engines": {
-    "node": ">=12"
+    "node": " >=14.13.1 || >=15.3.0 || >=16.0.0"
   },
   "dependencies": {
-    "@ilg/cli-start-options": "^0.6.6",
+    "@ilg/cli-start-options": "^0.8.0",
     "@xpack/cmd-shim": "^4.1.0-2",
-    "@xpack/es6-promisifier": "^1.0.1",
     "@xpack/xpm-liquid": "^1.2.2",
     "cacache": "^16.1.3",
     "cp-file": "^9.1.0",
@@ -84,7 +86,6 @@
   },
   "bundleDependencies": [
     "@ilg/cli-start-options",
-    "@xpack/es6-promisifier",
     "@xpack/cmd-shim",
     "@xpack/xpm-liquid",
     "cacache",

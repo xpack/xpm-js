@@ -26,7 +26,9 @@
  */
 
 // ES6: `import { Main } from './lib/main.js'
-const { Main } = require('./lib/main.js')
+import mainCsj from './lib/main.js'
+
+export const { Main } = mainCsj
 
 // ----------------------------------------------------------------------------
 // Node.js specific export definitions.
@@ -34,7 +36,7 @@ const { Main } = require('./lib/main.js')
 // By default, `module.exports = {}`.
 // The Main class is added as a property with the same name to this object.
 
-module.exports.Main = Main
+// module.exports.Main = Main
 
 // In ES6, it would be:
 // export class Main { ... }

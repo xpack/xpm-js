@@ -10,6 +10,7 @@
  */
 
 'use strict'
+
 /* eslint valid-jsdoc: "error" */
 /* eslint max-len: [ "error", 80, { "ignoreUrls": true } ] */
 
@@ -22,12 +23,21 @@
 // ----------------------------------------------------------------------------
 
 // The `[node-tap](http://www.node-tap.org)` framework.
-const test = require('tap').test
+import { test } from 'tap'
 
-const Common = require('../common.js').Common
+// ----------------------------------------------------------------------------
 
 // ES6: `import { CliExitCodes } from 'cli-start-options'
-const { CliExitCodes } = require('@ilg/cli-start-options')
+// import { CliExitCodes } from '@ilg/cli-start-options';
+import cliStartOptionsCsj from '@ilg/cli-start-options'
+
+// ----------------------------------------------------------------------------
+
+import { Common } from '../common.js'
+
+// ----------------------------------------------------------------------------
+
+const { CliExitCodes } = cliStartOptionsCsj
 
 // ----------------------------------------------------------------------------
 

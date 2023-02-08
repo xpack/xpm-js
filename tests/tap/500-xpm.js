@@ -10,6 +10,7 @@
  */
 
 'use strict'
+
 /* eslint valid-jsdoc: "error" */
 /* eslint max-len: [ "error", 80, { "ignoreUrls": true } ] */
 
@@ -22,16 +23,27 @@
 // ----------------------------------------------------------------------------
 
 // https://nodejs.org/docs/latest-v12.x/api/index.htm
-const path = require('path')
+import path from 'path'
+import { fileURLToPath } from 'url'
 
 // ----------------------------------------------------------------------------
 
 // The `[node-tap](http://www.node-tap.org)` framework.
-const { test } = require('tap')
+import { test } from 'tap'
 
-const { Common } = require('../common.js')
+// ----------------------------------------------------------------------------
 
-const { CliApplication } = require('@ilg/cli-start-options')
+// import { CliApplication } from '@ilg/cli-start-options';
+import cliStartOptionsCsj from '@ilg/cli-start-options'
+
+// ----------------------------------------------------------------------------
+
+import { Common } from '../common.js'
+
+// ----------------------------------------------------------------------------
+
+const { CliApplication } = cliStartOptionsCsj
+const __dirname = path.dirname(fileURLToPath(import.meta.url))
 
 // ----------------------------------------------------------------------------
 

@@ -55,7 +55,6 @@ npm outdated
 Details about dependencies:
 
 - <https://www.npmjs.com/package/@ilg/cli-start-options>
-- <https://www.npmjs.com/package/@xpack/es6-promisifier>
 - <https://www.npmjs.com/package/@xpack/xpm-liquid>
 - <https://www.npmjs.com/package/cacache>
 - <https://www.npmjs.com/package/cp-file>
@@ -200,7 +199,7 @@ To be accepted as a template, a project must:
 
 - be an xPack (have a `package.json` which includes an `xpack` property
 - have a property called `main` in `package.json`, pointing to a JavaScript
-  file that can be consumed by `require()`
+  file that can be consumed by `await import()` (formerly `require()`)
 - the main file must export a class called `XpmInitTemplate`
 - an instances of this class must have a `run()` method.
 - have all dependencies bundled in (via `bundleDependencies`)
@@ -225,7 +224,7 @@ The full code is in `init.js`, but a simplified version looks like this:
     context.CliError = CliError
     context.CliExitCodes = CliExitCodes
 
-    const { XpmInitTemplate } = require(mainTemplatePath)
+    const { XpmInitTemplate } = await import(mainTemplatePath)
     const xpmInitTemplate = new XpmInitTemplate(context)
     const code = await xpmInitTemplate.run()
 ```

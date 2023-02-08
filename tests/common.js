@@ -10,25 +10,26 @@
  */
 
 'use strict'
+
 /* eslint valid-jsdoc: "error" */
 /* eslint max-len: [ "error", 80, { "ignoreUrls": true } ] */
 
 // ----------------------------------------------------------------------------
 
 // https://nodejs.org/docs/latest-v12.x/api/index.htm
-const assert = require('assert')
-const fs = require('fs')
-const tar = require('tar')
-const zlib = require('zlib')
+
+import assert from 'assert'
+import { spawn } from 'child_process'
+import { Console } from 'console'
+import fs from 'fs'
+import { Writable } from 'stream'
+import tar from 'tar'
+import zlib from 'zlib'
 
 // ----------------------------------------------------------------------------
 
-const { spawn } = require('child_process')
-const { Console } = require('console')
-const { Writable } = require('stream')
-
 // ES6: `import { CliHelp } from './utils/cli-helps.js'
-const { Xpm } = require('../lib/main.js')
+import { Xpm } from '../lib/main.js'
 
 // ----------------------------------------------------------------------------
 
@@ -47,7 +48,7 @@ const programName = 'xpm'
  * @class Main
  */
 // export
-class Common {
+export class Common {
   /**
    * @summary Run xpm in a separate process.
    *
@@ -160,7 +161,7 @@ class Common {
 // By default, `module.exports = {}`.
 // The Main class is added as a property to this object.
 
-module.exports.Common = Common
+// module.exports.Common = Common
 
 // In ES6, it would be:
 // export class Common { ... }

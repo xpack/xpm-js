@@ -10,6 +10,7 @@
  */
 
 'use strict'
+
 /* eslint valid-jsdoc: "error" */
 /* eslint max-len: [ "error", 80, { "ignoreUrls": true } ] */
 
@@ -22,9 +23,9 @@
 // ----------------------------------------------------------------------------
 
 // The `[node-tap](http://www.node-tap.org)` framework.
-const test = require('tap').test
+import { test } from 'tap'
 
-const { Spawn } = require('../../lib/utils/spawn.js')
+import { Spawn } from '../../lib/utils/spawn.js'
 
 // ----------------------------------------------------------------------------
 

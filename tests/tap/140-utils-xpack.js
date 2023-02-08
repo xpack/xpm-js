@@ -10,6 +10,7 @@
  */
 
 'use strict'
+
 /* eslint valid-jsdoc: "error" */
 /* eslint max-len: [ "error", 80, { "ignoreUrls": true } ] */
 
@@ -22,13 +23,21 @@
 // ----------------------------------------------------------------------------
 
 // The `[node-tap](http://www.node-tap.org)` framework.
-const test = require('tap').test
+import { test } from 'tap'
 
-const { ManifestIds } = require('../../lib/utils/xpack.js')
-const { Xpack } = require('../../lib/utils/xpack.js')
+// ----------------------------------------------------------------------------
 
 // const Common = require('../common.js').Common
-const { CliLogger } = require('@ilg/cli-start-options')
+// const { CliLogger } = require('@ilg/cli-start-options')
+import cliStartOptionsCsj from '@ilg/cli-start-options'
+
+// ----------------------------------------------------------------------------
+
+import { ManifestIds, Xpack } from '../../lib/utils/xpack.js'
+
+// ----------------------------------------------------------------------------
+
+const { CliLogger } = cliStartOptionsCsj
 
 // ----------------------------------------------------------------------------
 

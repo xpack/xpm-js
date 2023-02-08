@@ -10,6 +10,7 @@
  */
 
 'use strict'
+
 /* eslint valid-jsdoc: "error" */
 /* eslint max-len: [ "error", 80, { "ignoreUrls": true } ] */
 
@@ -22,9 +23,9 @@
 // ----------------------------------------------------------------------------
 
 // The `[node-tap](http://www.node-tap.org)` framework.
-const test = require('tap').test
+import { test } from 'tap'
 
-const { GlobalConfig } = require('../../lib/utils/global-config.js')
+import { GlobalConfig } from '../../lib/utils/global-config.js'
 
 // ----------------------------------------------------------------------------
 
