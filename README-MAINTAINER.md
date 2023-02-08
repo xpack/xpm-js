@@ -24,7 +24,7 @@ Before making the release, perform some checks and tweaks.
 
 Notes:
 
-- engine: Node.js 12.x
+- engine: Node.js >=14.13.1 || >=15.3.0 || >=16.0.0
 - cacache must be in sync with the one used by
   [pacote](https://github.com/npm/pacote/blob/main/package.json)
 - use old versions since they requires import() instead of require()
