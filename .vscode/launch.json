@@ -472,6 +472,40 @@
     {
       "type": "node",
       "request": "launch",
+      "name": "xpm init --template hello-world",
+      "program": "${workspaceRoot}/bin/xpm.js",
+      "stopOnEntry": true,
+      "args": [
+        "init",
+        "--template",
+        "/Users/ilg/My Files/WKS Projects/xpack.github/xpm-templates/hello-world-template-xpack.git",
+        "--name 001",
+        "--property", "buildGenerator=cmake",
+        "--property", "language=cpp",
+        "--property", "toolchain=gcc",
+        "-dd",
+        "-C",
+        "/Users/ilg/tmp/hello-world"
+      ],
+      "cwd": "${workspaceRoot}",
+      "preLaunchTask": null,
+      "runtimeExecutable": null,
+      "runtimeArgs": [
+        "--nolazy"
+      ],
+      "skipFiles": [
+        "async_hooks.js",
+        "inspector_async_hook.js"
+      ],
+      "env": {
+        "NODE_ENV": "development"
+      },
+      "console": "internalConsole",
+      "sourceMaps": false
+    },
+    {
+      "type": "node",
+      "request": "launch",
       "name": "xpm install",
       "program": "${workspaceRoot}/bin/xpm.js",
       "stopOnEntry": true,
