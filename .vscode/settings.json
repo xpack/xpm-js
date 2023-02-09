@@ -25,6 +25,7 @@
     "loglevel",
     "mipsel",
     "mkdir",
+    "npmcli",
     "npmignore",
     "npmjs",
     "pacote",
