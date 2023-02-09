@@ -18,7 +18,8 @@ TypeScript is planned.
 The prerequisites are:
 
 - git
-- node >= 10.x & npm
+- node >= 14.13.1 (for stable modules)
+- npm
 
 ## Clone the project repository
 
@@ -29,8 +30,7 @@ The project is hosted on GitHub:
 To clone the `master` branch, use:
 
 ```sh
-mkdir ${HOME}/Work/node-modules
-cd ${HOME}/Work/node-modules
+mkdir "${HOME}/Work/node-modules" && cd "${HOME}/Work/node-modules"
 git clone https://github.com/xpack/xpm-js.git xpm-js.git
 ```
 
@@ -72,7 +72,7 @@ Details about dependencies:
 
 ## Language standard compliance
 
-The module uses ECMAScript 6 class definitions.
+The module uses ECMAScript 6 class definitions and modules.
 
 ## Standard style
 
@@ -96,7 +96,7 @@ To manually fix compliance with the style guide (where possible):
 ```console
 $ npm run fix
 
-> xpm@0.14.8 fix
+> xpm@0.14.9 fix
 > standard --fix
 ```
 
@@ -147,12 +147,12 @@ Fully excluded files:
 The continuous integration tests are performed via
 GitHub Actions.
 
-The tests are currently performed with node 10, 12.
+The tests are currently performed with node 14, 16, 18.
 
 To preserve compatibility with Node 10, use the older
 version of the documentation:
 
-- [Node.js 10 documentation](https://nodejs.org/docs/latest-v10.x/api/)
+- [Node.js 14 documentation](https://nodejs.org/docs/latest-v14.x/api/)
 
 ### Documentation metadata
 

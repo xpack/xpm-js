@@ -27,12 +27,6 @@ Notes:
 - engine: Node.js >=14.13.1 || >=15.3.0 || >=16.0.0
 - cacache must be in sync with the one used by
   [pacote](https://github.com/npm/pacote/blob/main/package.json)
-- use old versions since they requires import() instead of require()
-  - keep `node-fetch` to 2.6.x
-  - keep `cp-file` to 9.1.x
-  - keep `del` to 6.1.1
-  - keep `pacote` to 13.6.x
-  - keep `cacache` to 16.0.0
 
 ### Check Git
 
