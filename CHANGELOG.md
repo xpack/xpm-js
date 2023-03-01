@@ -3,9 +3,38 @@
 Changes in reverse chronological order.
 Don't forget to close GitHub [issues](https://github.com/xpack/xpm-js/issues/).
 
+## 2023-03-01
+
+* v0.15.0 released
+* 5831f99 #80: add setup via HttpsProxyAgent
+* e0b7064 install.js: cosmetic reorders
+* 3115d39 node-ci.yml: explicit node versions
+* 13b7b4e init.js cosmetics
+* 099d711 main.js:
+* 75db16c package.json: add npm-version script
+* 95608c3 type module
+* 67fbb5e package.json: use del-cli in deep-clean
+* 07c37ac package.json: remove npm dep
+
+## 2023-02-09
+
+* 2563618 .vscode/settings.json: ignoreWords
+* 28e5c56 add xpm.cmd
+* c7380b5 package.json: bump deps
+* d5102ce README updates
+* eb1283c launch.json: test hello-world-template
+* d3802ec bump pacote; add @npmcli/arborist
+
+## 2023-02-08
+
+* 431e3a5 bump most deps (except pacote)
+* e9e320f README update
+* 5cb7e78 #162: migrate form CommonJS to ES6 modules
+
 ## 2023-02-04
 
-* v0.14.9 released
+* b15e5dd 0.14.9
+* 29cca3e prepare v0.14.9
 * 3b2e941 #159: retry failed downloads
 * 74ede8c .vscode/settings.json: ignoreWords
 * c25958e consistent use of catch (err)
