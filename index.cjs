@@ -16,7 +16,7 @@
  * `require('<module>')` is called.
  *
  * For this to work, it must be linked from `package.json` as
- * `"main": "./index.js",`, which is, BTW, the default behaviour.
+ * `"exports": { "request": "./index.cjs" }`.
  *
  * To import classes from this module into Node.js applications, use:
  *
@@ -25,10 +25,7 @@
  * ```
  */
 
-// ES6: `import { Main } from './lib/main.js'
-import mainCsj from './lib/main.js'
-
-export const { Main } = mainCsj
+const { Main } = require('./lib/main.js')
 
 // ----------------------------------------------------------------------------
 // Node.js specific export definitions.
@@ -36,11 +33,6 @@ export const { Main } = mainCsj
 // By default, `module.exports = {}`.
 // The Main class is added as a property with the same name to this object.
 
-// module.exports.Main = Main
-
-// In ES6, it would be:
-// export class Main { ... }
-// ...
-// import { Main } from 'module.js'
+module.exports.Main = Main
 
 // ----------------------------------------------------------------------------

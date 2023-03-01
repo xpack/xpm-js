@@ -1,10 +1,11 @@
 {
   "name": "xpm",
   "version": "0.15.0-pre",
-  "type": "module",
   "description": "The xPack project manager command line tool",
+  "type": "module",
   "exports": {
-    "import": "./index.js"
+    "request": "./index.cjs",
+    "import": "./index.mjs"
   },
   "directories": {
     "bin": "./bin",
