@@ -62,6 +62,7 @@
   },
   "dependencies": {
     "@ilg/cli-start-options": "^0.8.1",
+    "@npmcli/arborist": "^6.2.2",
     "@xpack/cmd-shim": "^4.1.0-2",
     "@xpack/xpm-liquid": "^1.2.2",
     "cacache": "^17.0.4",
@@ -74,8 +75,6 @@
     "make-dir": "^3.1.0",
     "mz": "^2.7.0",
     "node-fetch": "^3.3.0",
-    "npm": "^9.4.2",
-    "@npmcli/arborist": "^6.2.2",
     "pacote": "^15.0.8",
     "parse-git-config": "^3.0.0",
     "semver": "^7.3.8",
