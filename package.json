@@ -34,7 +34,7 @@
     "prepublishOnly": "standard && npm run test-tap -s",
     "postpublish": "git push origin --follow-tags",
     "dumpconf": "env | sort | uniq",
-    "deep-clean": "rm -rf node_modules package-lock.json"
+    "deep-clean": "del-cli node_modules package-lock.json",
   },
   "repository": {
     "type": "git",
@@ -81,6 +81,7 @@
     "tar": "^6.1.13"
   },
   "devDependencies": {
+    "del-cli": "^5.0.0",
     "standard": "^17.0.0",
     "tap": "^16.3.4"
   },
