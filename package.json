@@ -36,6 +36,7 @@
     "postpublish": "git push origin --follow-tags",
     "dumpconf": "env | sort | uniq",
     "deep-clean": "del-cli node_modules package-lock.json",
+    "npm-version": "echo $(which node) $(node --version) && echo $(which npm) $(npm --version)"
   },
   "repository": {
     "type": "git",
