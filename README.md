@@ -7,20 +7,29 @@
 This project implements `xpm` - the **xPack project manager** -
 as a Node.js CLI application.
 
-The main purpose of `xpm` is to orchestrate builds and manage dependencies
-for language neutral, multi-version projects.
+The main purpose of `xpm` is to automate common tasks and provide
+reproducible builds for language neutral, multi-version projects.
 
 More specifically:
 
-- to manage dependencies, like to install both source and binary packages,
-and to easily update them when new versions are released
-- to manage build configurations and to run actions
-associated with various build steps.
+- to manage build configurations and to run actions (sequences of commands)
+associated with various build steps
+- to manage versioned dependencies, like to install both source libraries
+and binary archives, and to easily update them when new versions are
+available
+
+So far, two main use cases were considered and successfully implemented:
+
+- to orchestrate complex multi-architecture/multi-platform builds for
+embedded projects (like semihosted unit tests for **µOS++**)
+- to perform the multi-platform builds for all binary tools part of the
+[xPack 3rd Party Development Tools](https://github.com/xpack-dev-tools/)
+project.
 
 The project is open-source and hosted on GitHub as
 [xpack/xpm-js](https://github.com/xpack/xpm-js.git).
 
-## Quicklinks
+## Quick links
 
 If you already know the general facts about `xpm`, you can directly skip to:
 
@@ -47,7 +56,7 @@ For more details, please read the
 
 ## Prerequisites
 
-The current version requires Node.js >= 12.
+The current version requires Node.js >= 16.
 
 Since it is highly recommended to **not** use `sudo` during install,
 and instead
@@ -65,12 +74,7 @@ npm install --global xpm@latest
 
 Troubleshooting: in case `xpm` was already installed, in certain conditions
 the update may not succeed and **xpm** may become unusable; if this happens,
-uninstall **xpm** and retry the install:
-
-```sh
-npm uninstall --global xpm
-npm install --global xpm@latest
-```
+uninstall **xpm** and retry the install.
 
 For more details, please refer to the
 [install](https://xpack.github.io/xpm/install/) page.
@@ -114,7 +118,8 @@ Bug reports: <https://github.com/xpack/xpm-js/issues/>
 Similarly to **npm**, the entire configuration is in `package.json`.
 
 In addition to `name`, `version`,
-there is an `xpack` property that groups **xpm** specific properties:
+there is an `xpack` property that groups several **xpm**
+specific properties:
 
 - `dependencies`
 - `devDependencies`
@@ -124,15 +129,15 @@ there is an `xpack` property that groups **xpm** specific properties:
 
 ## Template substitutions
 
-To increase reusability, it is possible to use substitutions
+To increase reusability, it is possible to use **substitutions**
 in the strings defining actions. The syntax is more elaborate than the simple
 variable substitution, and is using the
 [LiquidJS](https://liquidjs.com/) template engine syntax,
 which accepts:
 
-- variables, like `{{ configuration.name }}`
-- filters, like `{{ configuration.name | downcase }}`
-- tags, like `{% if os.platform != 'win32' %}xpm run execute --config synthetic-posix-cmake-debug{% endif %}`
+- **variables**, like `{{ configuration.name }}`
+- **filters**, like `{{ configuration.name | downcase }}`
+- **tags**, like `{% if os.platform != 'win32' %}xpm run execute --config synthetic-posix-cmake-debug{% endif %}`
 
 The following predefined objects are available:
 
@@ -144,15 +149,15 @@ The following predefined objects are available:
   `arm64`, `ia32`, `mips`, `mipsel`, `ppc`, `ppc64`, `s390`, `s390x`,
   `x32`, and `x64`)
 
-When the **xpm** command is started with `--config`, `properties`
+When the `xpm` command is started with `--config`, `properties`
 include the configuration properties _before_ the xPack
-properties and the following are also available:
+properties and the following object is also available:
 
 - `configuration` with the current xPack build configuration;
   the configuration name is available as `configuration.name`
 
 For the full list of variables available for substitutions, please
-read the [README](https://github.com/xpack/xpm-liquid-ts#readme) of
+read the [documentation](https://xpack.github.io/xpm-liquid-ts/) of
 the separate [xpack/xpm-liquid-ts](https://github.com/xpack/xpm-liquid-ts/)
 project.
 
@@ -176,11 +181,13 @@ separate build folder.
 
 This should be done using the reserved property `buildFolderRelativePath`,
 which must define a folder relative to the project root, usually below
-a `build` folder.
+a top `build` folder.
 
-This property can be manually defined for each configuration,
-or in a computed property defined for the entire project, using
-a parametrised definition based on the configuration name, like:
+This property can be defined either manually for each configuration,
+or globally, as a computed property, available for the entire project.
+
+The definition can be parametrised with the configuration name,
+and possibly converted to a lower case folder name, for example:
 
 ```json
   "xpack": {
@@ -204,7 +211,8 @@ The incompatible changes, in reverse chronological order, are:
 
 ## Maintainer info
 
-This page documents how to use this module in an user application.
+This page documents briefly how to use this tool in an user application.
+
 For developer and maintainer information, see the separate
 [`README-DEVELOPER.md`](https://github.com/xpack/xpm-js/blob/master/README-DEVELOPER.md)
 and
