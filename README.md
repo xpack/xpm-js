@@ -7,15 +7,15 @@
 This project implements `xpm` - the **xPack project manager** -
 as a Node.js CLI application.
 
-The main purpose of `xpm` is to automate common tasks and provide
-reproducible builds for language neutral, multi-version projects.
+The main purpose of `xpm` is to **automate common tasks** and **provide
+reproducible builds** for language neutral, multi-version projects.
 
 More specifically:
 
-- to manage build configurations and to run actions (sequences of commands)
+- to manage **build configurations** and to run **actions** (sequences of commands)
 associated with various build steps
-- to manage versioned dependencies, like to install both source libraries
-and binary archives, and to easily update them when new versions are
+- to manage versioned **dependencies**, like to install both **source libraries**
+and **binary archives**, and to easily update them when new versions are
 available
 
 So far, two main use cases were considered and successfully implemented:
@@ -26,7 +26,7 @@ embedded projects (like semihosted unit tests for **µOS++**)
 [xPack 3rd Party Development Tools](https://github.com/xpack-dev-tools/)
 project.
 
-The project is open-source and hosted on GitHub as
+The project is open-source and is hosted on GitHub as
 [xpack/xpm-js](https://github.com/xpack/xpm-js.git).
 
 ## Quick links
@@ -43,10 +43,10 @@ If you already know the general facts about `xpm`, you can directly skip to:
 
 ## xPacks overview
 
-**xPacks** are general purpose multi-version software packages,
+**xPacks** are general purpose versioned software packages,
 much the same as the highly successful
 [npm packages](https://docs.npmjs.com/getting-started/what-is-npm)
-in the [Node.js](https://nodejs.org/en/) JavaScript ecosystem.
+in the [Node.js](https://nodejs.org/en/) ecosystem.
 
 xPacks are usually Git repositories and can be published on
 [npmjs.com](https://npmjs.com/) or any npm compatible server.
