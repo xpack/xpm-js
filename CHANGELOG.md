@@ -3,6 +3,12 @@
 Changes in reverse chronological order.
 Don't forget to close GitHub [issues](https://github.com/xpack/xpm-js/issues/).
 
+## 2023-05-18
+
+* v0.15.1 released
+* 9ba2445 #165: fix listing package in the root folder
+* 53f32db #164: fix file:// for windows imports
+
 ## 2023-03-01
 
 * v0.15.0 released

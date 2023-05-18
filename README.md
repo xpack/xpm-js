@@ -14,7 +14,7 @@ More specifically:
 
 - to manage **build configurations** and to run **actions** (sequences of commands)
 associated with various build steps
-- to manage versioned **dependencies**, like to install both **source libraries**
+- to manage versioned **dependencies**, like to install both **source code libraries**
 and **binary archives**, and to easily update them when new versions are
 available
 
@@ -108,7 +108,7 @@ xpm <command> -h|--help  Quick help on command
 xpm --version            Show version
 xpm -i|--interactive     Enter interactive mode
 
-npm xpm@0.15.0 '/Users/ilg/.nvm/versions/node/v16.16.0/lib/node_modules/xpm'
+npm xpm@0.15.1 '/Users/ilg/.nvm/versions/node/v16.16.0/lib/node_modules/xpm'
 Home page: <https://xpack.github.io/xpm/>
 Bug reports: <https://github.com/xpack/xpm-js/issues/>
 ```
