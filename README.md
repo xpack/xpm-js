@@ -29,6 +29,17 @@ project.
 The project is open-source and is hosted on GitHub as
 [xpack/xpm-js](https://github.com/xpack/xpm-js.git).
 
+## Maintainer info
+
+This page is intended as a brief introduction for those who consider
+using this tool to manage their projects.
+
+For developer and maintainer information, see the separate
+[`README-DEVELOPER.md`](https://github.com/xpack/xpm-js/blob/master/README-DEVELOPER.md)
+and
+[`README-MAINTAINER.md`](https://github.com/xpack/xpm-js/blob/master/README-MAINTAINER.md)
+pages.
+
 ## Quick links
 
 If you already know the general facts about `xpm`, you can directly skip to:
@@ -115,9 +126,9 @@ Bug reports: <https://github.com/xpack/xpm-js/issues/>
 
 ## Configuration
 
-Similarly to **npm**, the entire configuration is in `package.json`.
+Similarly to **npm**, the project configuration is in `package.json`.
 
-In addition to `name`, `version`,
+In addition to `name` and `version` which must uniquely identify the project,
 there is an `xpack` property that groups several **xpm**
 specific properties:
 
@@ -126,6 +137,12 @@ specific properties:
 - `properties`
 - `actions`
 - `buildConfigurations`
+
+`dependencies` and `devDependencies` are similar to **npm**, but refer to
+xPacks. `properties` define values used in substitutions. `actions` are a
+more generalised form of the **npm** scripts, which allow arrays of
+commands with substitutions. `buildConfigurations` define multiple
+configurations, like debug/release.
 
 ## Template substitutions
 
@@ -139,7 +156,7 @@ which accepts:
 - **filters**, like `{{ configuration.name | downcase }}`
 - **tags**, like `{% if os.platform != 'win32' %}xpm run execute --config synthetic-posix-cmake-debug{% endif %}`
 
-The following predefined objects are available:
+The substitution values come from the following predefined objects:
 
 - `package`, with the entire `package.json` content
 - `properties` with the xPack properties
@@ -149,11 +166,12 @@ The following predefined objects are available:
   `arm64`, `ia32`, `mips`, `mipsel`, `ppc`, `ppc64`, `s390`, `s390x`,
   `x32`, and `x64`)
 
-When the `xpm` command is started with `--config`, `properties`
-include the configuration properties _before_ the xPack
-properties and the following object is also available:
+When the `xpm` command is started with `--config`,
+the configuration properties are preferred to the xPack
+properties and the following object is also added to `properties`:
 
-- `configuration` with the current xPack build configuration;
+- `configuration` with the full content of the current xPack build
+  configuration;
   the configuration name is available as `configuration.name`
 
 For the full list of variables available for substitutions, please
@@ -208,16 +226,6 @@ The incompatible changes, in reverse chronological order, are:
 
 - v0.14.x: separate xPack from npm dependencies (see
 [0001](https://xpack.github.io/xpm/policies/0001/) policy)
-
-## Maintainer info
-
-This page documents briefly how to use this tool in an user application.
-
-For developer and maintainer information, see the separate
-[`README-DEVELOPER.md`](https://github.com/xpack/xpm-js/blob/master/README-DEVELOPER.md)
-and
-[`README-MAINTAINER.md`](https://github.com/xpack/xpm-js/blob/master/README-MAINTAINER.md)
-pages.
 
 ## License
 
