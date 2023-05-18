@@ -15,6 +15,10 @@ maintenance procedures related to making releases for the
 
 Before making the release, perform some checks and tweaks.
 
+### Switch to node 14
+
+For backward compatibility with previous nodes, especially the `package-lock.json`, build the release with node 14.x.
+
 ### Update npm packages
 
 - `npm outdated`
