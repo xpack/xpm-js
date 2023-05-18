@@ -63,7 +63,7 @@
     "node": " >=14.13.1 || >=15.3.0 || >=16.0.0"
   },
   "dependencies": {
-    "@ilg/cli-start-options": "^0.8.1",
+    "@ilg/cli-start-options": "^0.8.2",
     "@npmcli/arborist": "^6.2.2",
     "@xpack/cmd-shim": "^4.1.0-2",
     "@xpack/xpm-liquid": "^1.2.2",
