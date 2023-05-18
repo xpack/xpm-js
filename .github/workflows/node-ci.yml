@@ -23,6 +23,9 @@ on:
       - '.gitignore'
       - '.npmignore'
       - '.vscode/**'
+      - 'README*'
+      - 'NOTES.md'
+      - 'CHANGELOG.md'
 
 
 jobs:
