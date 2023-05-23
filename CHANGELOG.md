@@ -3,8 +3,16 @@
 Changes in reverse chronological order.
 Don't forget to close GitHub [issues](https://github.com/xpack/xpm-js/issues/).
 
+## 2023-05-23
+
+* v0.15.2 released
+* 37d108c package.json: bump deps
+* a497608 #166: create global store folder before list
+* 793fa16 #167: Use a temporary folder to install
+
 ## 2023-05-18
 
+* 6a27a97 package-lock.json: v1
 * v0.15.1 released
 * 9ba2445 #165: fix listing package in the root folder
 * 53f32db #164: fix file:// for windows imports
