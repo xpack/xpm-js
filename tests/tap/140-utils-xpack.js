@@ -35,6 +35,8 @@ import cliStartOptionsCsj from '@ilg/cli-start-options'
 
 import { ManifestIds, Xpack } from '../../lib/utils/xpack.js'
 
+import { Policies } from '../../lib/utils/policies.js'
+
 // ----------------------------------------------------------------------------
 
 const { CliLogger } = cliStartOptionsCsj
@@ -50,7 +52,10 @@ test('utils/xpack', (t) => {
 
   const xpack = new Xpack('x', context)
   t.ok(xpack, 'spawn set')
-  const mid = new ManifestIds({ _id: 'xx' })
+
+  const policies = new Policies('0.0.0', context)
+
+  const mid = new ManifestIds({ _id: 'xx' }, policies)
   t.ok(mid, 'mid set')
 
   t.end()
