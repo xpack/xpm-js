@@ -3,6 +3,21 @@
 Changes in reverse chronological order.
 Don't forget to close GitHub [issues](https://github.com/xpack/xpm-js/issues/).
 
+## 2023-06-02
+
+* v0.16.0 released
+* 35eb013 #171: add support for xpm install (copy devDeps)
+* 3a6202f install.js: rename downloadAndProcessDependencies
+* f0ac19e #171: cleanups
+* 273b3de #171: warn useless --copy for global installs
+* 3e1c711 launch.json: add install --copy
+* 2c8c9ec #171: implement --copy in install with package
+* b249258 #171: add onlyStringDependencies to policies
+* 7e6eb46 install.js: setReadOnly for pacoteExtractPackage
+* 527b5b3 rename pacoteExtractPackage()
+* fde91b8 rename temporary folder .tmp
+* 972bd44 #170: revert to xpacks/@scope/name
+
 ## 2023-05-23
 
 * v0.15.2 released
