@@ -72,7 +72,7 @@
     "cross-spawn": "^7.0.3",
     "decompress": "^4.2.1",
     "del": "^7.0.0",
-    "https-proxy-agent": "^6.2.0",
+    "https-proxy-agent": "^6.2.1",
     "is-windows": "^1.0.2",
     "liquidjs": "^10.4.0",
     "make-dir": "^3.1.0",
@@ -86,7 +86,7 @@
   },
   "devDependencies": {
     "del-cli": "^5.0.0",
-    "standard": "^17.0.0",
+    "standard": "^17.1.0",
     "tap": "^16.3.4"
   },
   "bundleDependencies": [
