@@ -563,7 +563,7 @@
     {
       "type": "node",
       "request": "launch",
-      "name": "xpm install --copy",
+      "name": "xpm install ... --copy",
       "program": "${workspaceRoot}/bin/xpm.js",
       "stopOnEntry": true,
       "args": [
@@ -574,6 +574,34 @@
         "/Users/ilg/tmp/copy",
         "@micro-os-plus/startup",
         "@xpack-dev-tools/arm-none-eabi-gcc"
+      ],
+      "cwd": "${workspaceRoot}",
+      "preLaunchTask": null,
+      "runtimeExecutable": null,
+      "runtimeArgs": [
+        "--nolazy"
+      ],
+      "skipFiles": [
+        "async_hooks.js",
+        "inspector_async_hook.js"
+      ],
+      "env": {
+        "NODE_ENV": "development"
+      },
+      "console": "internalConsole",
+      "sourceMaps": false
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "xpm install (local: copy)",
+      "program": "${workspaceRoot}/bin/xpm.js",
+      "stopOnEntry": true,
+      "args": [
+        "install",
+        "-dd",
+        "-C",
+        "/Users/ilg/tmp/copy"
       ],
       "cwd": "${workspaceRoot}",
       "preLaunchTask": null,
