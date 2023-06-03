@@ -3,9 +3,14 @@
 Changes in reverse chronological order.
 Don't forget to close GitHub [issues](https://github.com/xpack/xpm-js/issues/).
 
+## 2023-06-03
+
+* a978b7f xpack.js: fix ManifestIds undefined policies
+
 ## 2023-06-02
 
-* v0.16.0 released
+* 02e113a 0.16.0
+* 4a11772 prepare v0.16.0
 * 35eb013 #171: add support for xpm install (copy devDeps)
 * 3a6202f install.js: rename downloadAndProcessDependencies
 * f0ac19e #171: cleanups
