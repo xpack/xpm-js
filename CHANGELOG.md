@@ -5,6 +5,8 @@ Don't forget to close GitHub [issues](https://github.com/xpack/xpm-js/issues/).
 
 ## 2023-06-03
 
+* 64ca281 0.16.1
+* c3eba0b prepare v0.16.1
 * a978b7f xpack.js: fix ManifestIds undefined policies
 
 ## 2023-06-02
