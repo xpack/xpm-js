@@ -3,6 +3,11 @@
 Changes in reverse chronological order.
 Don't forget to close GitHub [issues](https://github.com/xpack/xpm-js/issues/).
 
+## 2023-07-02
+
+* v0.16.2 released
+* 81f2858 #174: fix enhanced dependencies (github:)
+
 ## 2023-06-03
 
 * 64ca281 0.16.1
