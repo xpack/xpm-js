@@ -69,7 +69,7 @@ For more details, please read the
 
 The current version requires Node.js >= 16.
 
-Since it is highly recommended to **not** use `sudo` during install,
+Since it is highly recommended to **do not** use `sudo` during install,
 and instead
 **use a version manager** or to customize the **npm** install location,
 please read the
