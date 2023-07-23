@@ -513,7 +513,7 @@
         "install",
         "-dd",
         "-C",
-        "/Users/ilg/tmp/xp"
+        "/Users/ilg/tmp/copy"
       ],
       "cwd": "${workspaceRoot}",
       "preLaunchTask": null,
@@ -969,6 +969,34 @@
     {
       "type": "node",
       "request": "launch",
+      "name": "xpm uninstall -g 3rd",
+      "program": "${workspaceRoot}/bin/xpm.js",
+      "stopOnEntry": true,
+      "args": [
+        "uninstall",
+        "-g",
+        "@xpack-3rd-party/libucontext@1.2.0-1.pre",
+        "-dd"
+      ],
+      "cwd": "${workspaceRoot}",
+      "preLaunchTask": null,
+      "runtimeExecutable": null,
+      "runtimeArgs": [
+        "--nolazy"
+      ],
+      "skipFiles": [
+        "async_hooks.js",
+        "inspector_async_hook.js"
+      ],
+      "env": {
+        "NODE_ENV": "development"
+      },
+      "console": "internalConsole",
+      "sourceMaps": false
+    },
+    {
+      "type": "node",
+      "request": "launch",
       "name": "xpm ls",
       "program": "${workspaceRoot}/bin/xpm.js",
       "stopOnEntry": true,
@@ -976,7 +1004,7 @@
         "list",
         "-dd",
         "-C",
-        "/Users/ilg/tmp/tt"
+        "/Users/ilg/tmp/copy"
       ],
       "cwd": "${workspaceRoot}",
       "preLaunchTask": null,
