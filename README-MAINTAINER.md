@@ -149,6 +149,12 @@ In this Git repo:
 - merge `develop`
 - push all branches
 
+### Close milestone
+
+In the issues milestones, close 0.16.3:
+
+- <https://github.com/xpack/xpm-js/milestones>
+
 ### Update the blog post to release
 
 In the `xpack/web-jekyll` GitHub repo:
