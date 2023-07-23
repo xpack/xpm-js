@@ -1,6 +1,6 @@
 {
   "name": "xpm",
-  "version": "0.16.2",
+  "version": "0.16.3-pre",
   "description": "The xPack project manager command line tool",
   "type": "module",
   "exports": {
@@ -64,7 +64,7 @@
   },
   "dependencies": {
     "@ilg/cli-start-options": "^0.8.2",
-    "@npmcli/arborist": "^6.2.10",
+    "@npmcli/arborist": "^6.3.0",
     "@xpack/cmd-shim": "^4.1.0-2",
     "@xpack/xpm-liquid": "^1.2.2",
     "cacache": "^17.0.4",
@@ -72,16 +72,16 @@
     "cross-spawn": "^7.0.3",
     "decompress": "^4.2.1",
     "del": "^7.0.0",
-    "https-proxy-agent": "^7.0.0",
+    "https-proxy-agent": "^7.0.1",
     "is-windows": "^1.0.2",
-    "liquidjs": "^10.8.3",
+    "liquidjs": "^10.8.4",
     "make-dir": "^4.0.0",
     "mz": "^2.7.0",
     "node-fetch": "^3.3.0",
     "pacote": "^15.0.8",
     "parse-git-config": "^3.0.0",
     "proxy-from-env": "^1.1.0",
-    "semver": "^7.3.8",
+    "semver": "^7.5.3",
     "tar": "^6.1.13"
   },
   "devDependencies": {
