@@ -3,6 +3,20 @@
 Changes in reverse chronological order.
 Don't forget to close GitHub [issues](https://github.com/xpack/xpm-js/issues/).
 
+## 2023-07-23
+
+* v0.16.3 released
+* 733633c #179: fix install copied deps
+* 6f75c9e #178: local uninstall silently ignores version
+
+## 2023-07-22
+
+* 7bc00ea #177: fix uninstall local packages
+* 31a9f9c #176: list no longer shows npm packages (policies)
+* f0235f8 Revert "#176: list no longer shows npm packages"
+* ad996ac #176: list no longer shows npm packages
+* 92b9da3 #175: increase maxDepth: 2 for list
+
 ## 2023-07-02
 
 * v0.16.2 released
