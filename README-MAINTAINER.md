@@ -37,6 +37,8 @@ Restart code in the new environment.
 Notes:
 
 - engine: Node.js >=14.13.1 || >=15.3.0 || >=16.0.0
+- @nodecli/arborist: 6.3.0
+- pacote: 15.2.0
 - cacache must be in sync with the one used by
   [pacote](https://github.com/npm/pacote/blob/main/package.json)
 
