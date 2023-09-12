@@ -3,9 +3,34 @@
 Changes in reverse chronological order.
 Don't forget to close GitHub [issues](https://github.com/xpack/xpm-js/issues/).
 
+## 2023-09-12
+
+* 072de50 package.json: version 0.1.6.4-pre
+* a9c7a59 #184: support 'git+' urls
+* edcb59b .vscode/settings.json: ignoreWords
+* d10bb2e package.json: bump deps
+
+## 2023-09-01
+
+* 6d0797a install.sh: rewrite gitLinkRegexp to pass standard
+* 6bda979 Merge pull request #185 from JoeBenczarski/master
+
+## 2023-08-31
+
+* de30ea3 Support any git URL
+
+## 2023-07-27
+
+* 2c9167b lib/main-dev.js: use export
+
 ## 2023-07-23
 
-* v0.16.3 released
+* 7efa49d README update
+* 0c8d8ab install.js: rename manifestFrom
+* d0b0de8 0.16.3
+* 49240bc prepare v0.16.3
+* 4703f0d .vscode/launch.json update
+* d140c26 package.json: bump deps
 * 733633c #179: fix install copied deps
 * 6f75c9e #178: local uninstall silently ignores version
 
@@ -249,7 +274,7 @@ Don't forget to close GitHub [issues](https://github.com/xpack/xpm-js/issues/).
 * v0.12.3 published
 * [#129] rework spawn()
 * v0.12.2 published
-* [#128] fix windows paths to use the npm cmdShim pacakge
+* [#128] fix windows paths to use the npm cmdShim package
 
 ## 2021-12-30
 
