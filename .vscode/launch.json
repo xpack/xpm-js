@@ -563,6 +563,34 @@
     {
       "type": "node",
       "request": "launch",
+      "name": "xpm install in ninja",
+      "program": "${workspaceRoot}/bin/xpm.js",
+      "stopOnEntry": true,
+      "args": [
+        "install",
+        "-dd",
+        "-C",
+        "/Users/ilg/MyProjects/xpack-dev-tools.github/xPacks/ninja-build-xpack.git"
+      ],
+      "cwd": "${workspaceRoot}",
+      "preLaunchTask": null,
+      "runtimeExecutable": null,
+      "runtimeArgs": [
+        "--nolazy"
+      ],
+      "skipFiles": [
+        "async_hooks.js",
+        "inspector_async_hook.js"
+      ],
+      "env": {
+        "NODE_ENV": "development"
+      },
+      "console": "internalConsole",
+      "sourceMaps": false
+    },
+    {
+      "type": "node",
+      "request": "launch",
       "name": "xpm install (in devdep)",
       "program": "${workspaceRoot}/bin/xpm.js",
       "stopOnEntry": true,
