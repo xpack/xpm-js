@@ -5,6 +5,18 @@ Don't forget to close GitHub [issues](https://github.com/xpack/xpm-js/issues/).
 
 ## 2023-09-12
 
+* v0.16.4 released
+* daa46cf launch.json update
+* 9fde607 #184: fix semver for registry references
+* 0e18fbe launch.json: add xpm init --ignore-errors
+* 01050aa .vscode/settings.json: ignoreWords
+* 4720b5c cosmetise trailing dots in messages
+* 8125608 #188: xpm init npm package
+* d55af65 #189: get author.name & email from git config
+* e1f8edd #187: xom init --ignore-errors
+* 197fb9d README update
+* 33f5024 package.json: revert arborist, cacache, pacote
+* aa881c3 prepare v0.16.4
 * 072de50 package.json: version 0.1.6.4-pre
 * a9c7a59 #184: support 'git+' urls
 * edcb59b .vscode/settings.json: ignoreWords
