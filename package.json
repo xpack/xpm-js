@@ -64,30 +64,30 @@
   },
   "dependencies": {
     "@ilg/cli-start-options": "^0.8.2",
-    "@npmcli/arborist": "^6.3.0",
+    "@npmcli/arborist": "^7.1.0",
     "@xpack/cmd-shim": "^4.1.0-2",
     "@xpack/xpm-liquid": "^1.2.2",
-    "cacache": "^17.0.4",
+    "cacache": "^18.0.0",
     "cp-file": "^10.0.0",
     "cross-spawn": "^7.0.3",
     "decompress": "^4.2.1",
-    "del": "^7.0.0",
-    "https-proxy-agent": "^7.0.1",
+    "del": "^7.1.0",
+    "https-proxy-agent": "^7.0.2",
     "is-windows": "^1.0.2",
-    "liquidjs": "^10.8.4",
+    "liquidjs": "^10.9.2",
     "make-dir": "^4.0.0",
     "mz": "^2.7.0",
-    "node-fetch": "^3.3.0",
-    "pacote": "^15.0.8",
+    "node-fetch": "^3.3.2",
+    "pacote": "^17.0.4",
     "parse-git-config": "^3.0.0",
     "proxy-from-env": "^1.1.0",
-    "semver": "^7.5.3",
-    "tar": "^6.1.13"
+    "semver": "^7.5.4",
+    "tar": "^6.2.0"
   },
   "devDependencies": {
-    "del-cli": "^5.0.0",
+    "del-cli": "^5.1.0",
     "standard": "^17.1.0",
-    "tap": "^16.3.7"
+    "tap": "^16.3.8"
   },
   "bundleDependencies": [
     "@ilg/cli-start-options",
