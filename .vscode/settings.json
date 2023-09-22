@@ -35,6 +35,7 @@
     "loglevel",
     "mipsel",
     "mkdir",
+    "nodecli",
     "npmcli",
     "npmignore",
     "npmjs",
