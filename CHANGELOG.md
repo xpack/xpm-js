@@ -3,9 +3,19 @@
 Changes in reverse chronological order.
 Don't forget to close GitHub [issues](https://github.com/xpack/xpm-js/issues/).
 
+## 2023-09-22
+
+* v0.16.5 released
+* ace8f37 .npmignore /tmp/
+* cc1c7b6 package-lock.json update
+* 3ae2f65 .vscode/settings.json
+* bf9753c tests/520-xpm-init.js: test init
+* cadd61a #190: process gitConfig errors
+
 ## 2023-09-12
 
-* v0.16.4 released
+* 0bd9106 0.16.4
+* 000f75b prepare v0.16.4
 * daa46cf launch.json update
 * 9fde607 #184: fix semver for registry references
 * 0e18fbe launch.json: add xpm init --ignore-errors
