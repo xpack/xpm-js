@@ -25,6 +25,9 @@
 // The `[node-tap](http://www.node-tap.org)` framework.
 import { test } from 'tap'
 
+// https://www.npmjs.com/package/del
+import { deleteAsync } from 'del'
+
 // ----------------------------------------------------------------------------
 
 // ES6: `import { CliExitCodes } from 'cli-start-options'
@@ -92,6 +95,35 @@ test('xpm ini -h',
         t.match(outLines[1], 'create an xPack', 'has title')
         t.match(outLines[2], 'Usage: xpm init [options...] ' +
           '[--template <xpack>] [--name <string>]', 'has Usage')
+      }
+      // There should be no error messages.
+      t.equal(stderr, '', 'stderr is empty')
+    } catch (err) {
+      t.fail(err.message)
+    }
+    t.end()
+  })
+
+test('xpm init',
+  async (t) => {
+    const initPath = 'tmp/tests/init'
+
+    await deleteAsync(initPath, { force: true })
+
+    try {
+      const { code, stdout, stderr } = await Common.xpmCli([
+        'init',
+        '-C', initPath
+      ])
+      // Check exit code.
+      t.equal(code, CliExitCodes.SUCCESS, 'exit code is success')
+      const outLines = stdout.split(/\r?\n/)
+      t.ok(outLines.length > 3, 'has enough output')
+      if (outLines.length > 3) {
+        // console.log(outLines)
+        t.match(outLines[1], 'Creating project', 'creating')
+        t.match(outLines[2], 'File \'package.json\' generated', 'package.json')
+        t.match(outLines[3], 'File \'LICENSE\' generated', 'LICENSE')
       }
       // There should be no error messages.
       t.equal(stderr, '', 'stderr is empty')
