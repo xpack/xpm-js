@@ -60,7 +60,7 @@
   },
   "homepage": "https://xpack.github.io/xpm/",
   "engines": {
-    "node": " >=14.13.1 || >=15.3.0 || >=16.0.0"
+    "node": " >=16.14.0"
   },
   "dependencies": {
     "@ilg/cli-start-options": "^0.8.2",
