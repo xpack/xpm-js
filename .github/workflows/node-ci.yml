@@ -37,8 +37,9 @@ jobs:
       matrix:
         # nvm ls-remote --lts
         # https://docs.github.com/en/actions/using-github-hosted-runners/about-github-hosted-runners
-        node-version: [^14.21.2, ^16.19.0, ^18.14.0]
-        os: [ubuntu-22.04, windows-2022, macos-12]
+        os: [ ubuntu-22.04, windows-2022, macos-12 ]
+        # https://github.com/actions/setup-node
+        node-version: [ 16, 18, 20 ]
 
     steps:
       - name: Checkout
