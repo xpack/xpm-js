@@ -3,9 +3,18 @@
 Changes in reverse chronological order.
 Don't forget to close GitHub [issues](https://github.com/xpack/xpm-js/issues/).
 
+2023-09-26
+
+* v0.17.0 released
+* c1232cc package.json: update test scripts
+* d94718c package.json: bump deps
+* 1cc619c package.json: node >= 16.14.0
+* e6485d9 ignore .tap
+
 ## 2023-09-22
 
-* v0.16.5 released
+* b548ef8 0.16.5
+* 9137bfd prepare v0.16.5
 * ace8f37 .npmignore /tmp/
 * cc1c7b6 package-lock.json update
 * 3ae2f65 .vscode/settings.json
