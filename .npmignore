@@ -55,5 +55,6 @@
 /tests/
 
 /tmp/
+/.tap/
 
-#end
+# end

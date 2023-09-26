@@ -46,3 +46,7 @@ vscode.mac.command
 
 tmp/
 
+.tap/
+
+# end
+
