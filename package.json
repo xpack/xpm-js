@@ -27,10 +27,11 @@
     "git-log": "git log --pretty='%cd * %h %s' --date=short",
     "lint": "standard",
     "test": "npm run lint && npm run test-tap -s",
-    "test-tap": "tap --timeout 300 --disable-coverage --allow-empty-coverage run \"tests/tap/*.js\"",
-    "test-tap100": "tap --timeout 300 run \"tests/tap/*.js\"",
+    "test-tap": "tap --disable-coverage --allow-empty-coverage run \"tests/tap/*.js\"",
+    "test-tap100": "tap run \"tests/tap/*.js\"",
     "test-coverage": "tap --timeout 600 --allow-incomplete-coverage run \"tests/tap/*.js\"",
-    "tap": "tap --timeout 300 --disable-coverage --allow-empty-coverage run",
+    "tap": "tap --disable-coverage --allow-empty-coverage run",
+    "tap-config-dump": "tap config dump",
     "link": "npm link @ilg/cli-start-options",
     "prepublishOnly": "standard && npm run test-tap -s",
     "postpublish": "git push origin --follow-tags",
@@ -87,7 +88,8 @@
   "devDependencies": {
     "del-cli": "^5.1.0",
     "standard": "^17.1.0",
-    "tap": "^18.1.5"
+    "tap": "^18.4.0",
+    "tap-mocha-reporter": "^5.0.4"
   },
   "bundleDependencies": [
     "@ilg/cli-start-options",
@@ -110,5 +112,12 @@
     "proxy-from-env",
     "semver",
     "tar"
-  ]
+  ],
+  "tap": {
+    "reporter": "tap-mocha-reporter",
+    "reporter-arg": [
+      "classic"
+    ],
+    "timeout": 300
+  }
 }
