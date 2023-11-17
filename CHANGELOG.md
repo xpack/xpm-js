@@ -3,9 +3,21 @@
 Changes in reverse chronological order.
 Don't forget to close GitHub [issues](https://github.com/xpack/xpm-js/issues/).
 
-2023-09-26
+## 2023-11-17
 
-* v0.17.0 released
+* v0.18.0 released
+* fff8746 package.json: bump deps
+* fd55b17 #191: add --all-configs to xpm run
+
+## 2023-09-30
+
+* 300d61e package.json: update tap reporter & config
+
+## 2023-09-26
+
+* deef4f5 node-ci.yml: node 16, 18, 20
+* 18feac8 0.17.0
+* d4ed423 prepare v0.17.0
 * c1232cc package.json: update test scripts
 * d94718c package.json: bump deps
 * 1cc619c package.json: node >= 16.14.0

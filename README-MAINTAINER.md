@@ -52,7 +52,7 @@ In this Git repo:
 
 Use the semantic versioning semantics.
 
-Edit `package.json` to this version suffixed by `-pre` (like `0.17.0-pre`).
+Edit `package.json` to this version suffixed by `-pre` (like `0.18.0-pre`).
 
 ### Update versions in READMEs
 
@@ -69,7 +69,7 @@ In `README.md`, update the `xpm --help` text.
 Check GitHub issues and pull requests:
 
 - in <https://github.com/xpack/xpm-js/milestones>
-add a new milestone like `0.17.0` (without `v`)
+add a new milestone like `0.18.0` (without `v`)
 - <https://github.com/xpack/xpm-js/issues/>
 
 ## Update `CHANGELOG.md`
@@ -77,8 +77,8 @@ add a new milestone like `0.17.0` (without `v`)
 - check the latest commits `npm run git-log`
 - open the `CHANGELOG.md` file
 - check if all previous fixed issues are in
-- add an entry with the new version _* v0.17.0 released_
-- commit with a message like _prepare v0.17.0_
+- add an entry with the new version _* v0.18.0 released_
+- commit with a message like _prepare v0.18.0_
 
 ## Prepare a new blog post with the release
 
@@ -87,7 +87,7 @@ In the `xpack/web-jekyll` GitHub repo:
 - select the `develop` branch
 - add a new file to `_posts/releases/xpm`
 - name the file like `2023-09-26-xpm-v0-17-0-released.md`
-- name the post like: **xPack xpm v0.17.0 released**
+- name the post like: **xPack xpm v0.18.0 released**
 - update the `date:` field with the current date
 - update the **Changes** sections
 
@@ -99,7 +99,7 @@ as:
 - [#1] ...
 ```
 
-- commit with a message like **xPack xpm v0.17.0 release**
+- commit with a message like **xPack xpm v0.18.0 release**
 - push
 - wait for the CI job to complete (<https://github.com/xpack/web-jekyll/actions/>)
 
@@ -138,7 +138,7 @@ npm install --location=global xpm@next
 When stable:
 
 - `npm dist-tag ls xpm`
-- `npm dist-tag add xpm@0.17.0 latest`
+- `npm dist-tag add xpm@0.18.0 latest`
 - `npm dist-tag ls xpm`
 
 ### Merge into `master`
@@ -151,7 +151,7 @@ In this Git repo:
 
 ### Close milestone
 
-In the issues milestones, close 0.17.0:
+In the issues milestones, close 0.18.0:
 
 - <https://github.com/xpack/xpm-js/milestones>
 
@@ -172,7 +172,7 @@ Check if the page shows at:
 
 - in a separate browser windows, open [TweetDeck](https://tweetdeck.twitter.com/)
 - using the `@xpack_project` account
-- paste the release name like **xPack xpm v0.17.0 released**
+- paste the release name like **xPack xpm v0.18.0 released**
 - paste the link to the Web page
   [release](https://xpack.github.io/xpm/releases/)
 - click the **Tweet** button
