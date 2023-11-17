@@ -736,6 +736,36 @@
     {
       "type": "node",
       "request": "launch",
+      "name": "xpm run --all-configs",
+      "program": "${workspaceRoot}/bin/xpm.js",
+      "stopOnEntry": true,
+      "args": [
+        "run",
+        "link-deps",
+        "--all-configs",
+        "-dd",
+        "-C",
+        "/Users/ilg/MyProjects/micro-os-plus.github/xPacks/micro-test-plus-xpack.git/tests"
+      ],
+      "cwd": "${workspaceRoot}",
+      "preLaunchTask": null,
+      "runtimeExecutable": null,
+      "runtimeArgs": [
+        "--nolazy"
+      ],
+      "skipFiles": [
+        "async_hooks.js",
+        "inspector_async_hook.js"
+      ],
+      "env": {
+        "NODE_ENV": "development"
+      },
+      "console": "internalConsole",
+      "sourceMaps": false
+    },
+    {
+      "type": "node",
+      "request": "launch",
       "name": "xpm install git",
       "program": "${workspaceRoot}/bin/xpm.js",
       "stopOnEntry": true,
