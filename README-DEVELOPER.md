@@ -57,7 +57,7 @@ Details about dependencies:
 - <https://www.npmjs.com/package/@ilg/cli-start-options>
 - <https://www.npmjs.com/package/@xpack/xpm-liquid>
 - <https://www.npmjs.com/package/cacache>
-- <https://www.npmjs.com/package/cp-file>
+- <https://www.npmjs.com/package/copy-file>
 - <https://www.npmjs.com/package/decompress>
 - <https://www.npmjs.com/package/del>
 - <https://www.npmjs.com/package/is-windows>
