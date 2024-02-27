@@ -5,7 +5,9 @@ Don't forget to close GitHub [issues](https://github.com/xpack/xpm-js/issues/).
 
 ## 2024-02-27
 
-* v0.19.0 released
+* 28273b6 #194: remove possible entries in dependencies
+* 6974c72 prepare v0.19.0
+* 4eb4a64 bump deps
 
 ## 2023-11-17
 
