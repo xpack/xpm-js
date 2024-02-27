@@ -3,9 +3,14 @@
 Changes in reverse chronological order.
 Don't forget to close GitHub [issues](https://github.com/xpack/xpm-js/issues/).
 
+## 2024-02-27
+
+* v0.19.0 released
+
 ## 2023-11-17
 
-* v0.18.0 released
+* af786e6 0.18.0
+* 51e4c05 prepare v0.18.0
 * fff8746 package.json: bump deps
 * fd55b17 #191: add --all-configs to xpm run
 
