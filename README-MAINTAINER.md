@@ -170,7 +170,7 @@ Check if the page shows at:
 
 ## Share on Twitter
 
-- in a separate browser windows, open [TweetDeck](https://tweetdeck.twitter.com/)
+- in a separate browser windows, open [X/Twitter](https://twitter.com/)
 - using the `@xpack_project` account
 - paste the release name like **xPack xpm v0.19.0 released**
 - paste the link to the Web page
