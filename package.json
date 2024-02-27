@@ -61,34 +61,34 @@
   },
   "homepage": "https://xpack.github.io/xpm/",
   "engines": {
-    "node": " >=16.14.0"
+    "node": " >=18"
   },
   "dependencies": {
     "@ilg/cli-start-options": "^0.8.2",
-    "@npmcli/arborist": "^7.2.1",
+    "@npmcli/arborist": "^7.3.1",
     "@xpack/cmd-shim": "^4.1.0-2",
     "@xpack/xpm-liquid": "^1.2.2",
-    "cacache": "^18.0.0",
+    "cacache": "^18.0.2",
     "copy-file": "^11.0.0",
     "cross-spawn": "^7.0.3",
     "decompress": "^4.2.1",
     "del": "^7.1.0",
-    "https-proxy-agent": "^7.0.2",
+    "https-proxy-agent": "^7.0.4",
     "is-windows": "^1.0.2",
-    "liquidjs": "^10.9.4",
+    "liquidjs": "^10.10.1",
     "make-dir": "^4.0.0",
     "mz": "^2.7.0",
     "node-fetch": "^3.3.2",
-    "pacote": "^17.0.4",
+    "pacote": "^17.0.6",
     "parse-git-config": "^3.0.0",
     "proxy-from-env": "^1.1.0",
-    "semver": "^7.5.4",
+    "semver": "^7.6.0",
     "tar": "^6.2.0"
   },
   "devDependencies": {
     "del-cli": "^5.1.0",
     "standard": "^17.1.0",
-    "tap": "^18.6.1",
+    "tap": "^18.7.0",
     "tap-mocha-reporter": "^5.0.4"
   },
   "bundleDependencies": [
