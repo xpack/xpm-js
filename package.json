@@ -67,7 +67,7 @@
     "@ilg/cli-start-options": "^0.8.2",
     "@npmcli/arborist": "^7.3.1",
     "@xpack/cmd-shim": "^4.1.0-2",
-    "@xpack/xpm-liquid": "^1.2.2",
+    "@xpack/xpm-liquid": "^2.0.0",
     "cacache": "^18.0.2",
     "copy-file": "^11.0.0",
     "cross-spawn": "^7.0.3",
