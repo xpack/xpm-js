@@ -3,8 +3,25 @@
 Changes in reverse chronological order.
 Don't forget to close GitHub [issues](https://github.com/xpack/xpm-js/issues/).
 
+## 2024-03-10
+
+* v0.19.1 released
+* ad6dd27 #195: standalone message fixed
+* 3af99bd package.json: bump deps
+
+## 2024-03-07
+
+* b933f41 #196: fix lenientIf
+
+## 2024-02-28
+
+* 96bd095 README update
+
 ## 2024-02-27
 
+* 11f9e39 0.19.0
+* 447e189 package.json: fix url
+* 3015904 CHANGELOG update
 * 28273b6 #194: remove possible entries in dependencies
 * 6974c72 prepare v0.19.0
 * 4eb4a64 bump deps
