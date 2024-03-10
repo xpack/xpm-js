@@ -224,6 +224,7 @@ backwards incompatible changes are introduced to the public API.
 
 The incompatible changes, in reverse chronological order, are:
 
+- v0.19.x: compatible, but based on node 18
 - v0.14.x: separate xPack from npm dependencies (see
 [0001](https://xpack.github.io/xpm/policies/0001/) policy)
 
