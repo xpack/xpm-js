@@ -22,13 +22,15 @@
 
 // ----------------------------------------------------------------------------
 
+import * as path from 'path'
+
 // The `[node-tap](http://www.node-tap.org)` framework.
 import { test } from 'tap'
 
 // ----------------------------------------------------------------------------
 
 // ES6: `import { CliExitCodes } from 'cli-start-options'
-// import { CliExitCodes } from '@ilg/cli-start-options';
+// import { CliExitCodes } from '@ilg/cli-start-options'
 import cliStartOptionsCsj from '@ilg/cli-start-options'
 
 // ----------------------------------------------------------------------------
@@ -98,5 +100,63 @@ test('xpm run -h',
     }
     t.end()
   })
+
+/**
+ * Test if environment injection works.
+ */
+test('xpm run prepare',
+  async (t) => {
+    try {
+      const { code, stdout, stderr } = await Common.xpmCli([
+        'run',
+        'prepare',
+        '-q',
+        '-C',
+        path.join('tests', 'mock', 'devdep')
+      ])
+      // Check exit code.
+      t.equal(code, CliExitCodes.SUCCESS, 'exit code is success')
+      const outLines = stdout.split(/\r?\n/)
+      t.ok(outLines.length > 0, 'has enough output')
+      if (outLines.length > 0) {
+        t.match(outLines[0],
+          'VALUE1', 'has global environment variable')
+      }
+      // There should be no error messages.
+      t.equal(stderr, '', 'stderr is empty')
+    } catch (err) {
+      t.fail(err.message)
+    }
+    t.end()
+  })
+
+test('xpm run prepare --config conf1',
+  async (t) => {
+    try {
+      const { code, stdout, stderr } = await Common.xpmCli([
+        'run',
+        'prepare',
+        '-q',
+        '--config',
+        'conf1',
+        '-C',
+        path.join('tests', 'mock', 'devdep')
+      ])
+      // Check exit code.
+      t.equal(code, CliExitCodes.SUCCESS, 'exit code is success')
+      const outLines = stdout.split(/\r?\n/)
+      t.ok(outLines.length > 0, 'has enough output')
+      if (outLines.length > 0) {
+        t.match(outLines[0],
+          'VALUE1 VALUE2', 'has configuration environment variable')
+      }
+      // There should be no error messages.
+      t.equal(stderr, '', 'stderr is empty')
+    } catch (err) {
+      t.fail(err.message)
+    }
+    t.end()
+  })
+
 
 // ----------------------------------------------------------------------------
