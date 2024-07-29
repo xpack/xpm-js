@@ -3,9 +3,16 @@
 Changes in reverse chronological order.
 Don't forget to close GitHub [issues](https://github.com/xpack/xpm-js/issues/).
 
+## 2024-07-29
+
+* v0.19.2 released
+* a88a1af #200: skip manifest.dependencies
+
 ## 2024-03-10
 
-* v0.19.1 released
+* 262bfac README update
+* 36cc9e6 0.19.1
+* e3c301b prepare v0.19.1
 * ad6dd27 #195: standalone message fixed
 * 3af99bd package.json: bump deps
 
