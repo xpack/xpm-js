@@ -3,9 +3,16 @@
 Changes in reverse chronological order.
 Don't forget to close GitHub [issues](https://github.com/xpack/xpm-js/issues/).
 
+## 2024-07-15
+
+* v0.19.3 released
+* 273fcb4 #206: fix *-ld.gold issue
+
 ## 2024-07-29
 
-* v0.19.2 released
+* 7ca43ce node-ci.yml: remove node 16
+* 228a1fd 0.19.2
+* 667f0e4 prepare v0.19.2
 * a88a1af #200: skip manifest.dependencies
 
 ## 2024-03-10
