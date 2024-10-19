@@ -34,7 +34,7 @@ script_path="$0"
 if [[ "${script_path}" != /* ]]
 then
   # Make relative path absolute.
-  script_path="$(pwd)/$0"
+  script_path="$(cd "$(dirname "$0")"; pwd -P)/$(basename "$0")"
 fi
 
 script_name="$(basename "${script_path}")"
