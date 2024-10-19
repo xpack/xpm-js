@@ -120,5 +120,10 @@
     ],
     "timeout": 300,
     "jobs": 1
+  },
+  "standard": {
+    "ignore": [
+      "/website/"
+    ]
   }
 }
