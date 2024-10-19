@@ -18,6 +18,7 @@ on:
       - '**'
     paths-ignore:
       - 'docs/**'
+      - 'website/**'
       - 'LICENSE'
       - '**.md'
       - '.gitignore'
