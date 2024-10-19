@@ -3,9 +3,21 @@
 Changes in reverse chronological order.
 Don't forget to close GitHub [issues](https://github.com/xpack/xpm-js/issues/).
 
+## 2024-10-19
+
+* v0.19.4 released
+* 29775e7 #207: fix HttpsProxyAgent import
+* 9fc362f test-hello-world.sh: use pwd -P
+* cc7a8eb node-ci.yml: ignore website
+
+## 2024-10-18
+
+* 9d61baf website: npx create-docusaurus
+
 ## 2024-07-15
 
-* v0.19.3 released
+* a15f7fb 0.19.3
+* 574c6b5 prepare v0.19.3
 * 273fcb4 #206: fix *-ld.gold issue
 
 ## 2024-07-29
