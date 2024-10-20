@@ -36,8 +36,40 @@
         "platforms": "all"
       }
     },
-    "properties": {},
-    "actions": {},
-    "buildConfigurations": {}
+    "properties": {
+      "commandEchoGLOBAL": {
+        "linux": "echo $GLOBAL",
+        "darwin": "echo $GLOBAL",
+        "win32": "echo %GLOBAL%"
+      },
+      "buildFolderRelativePath": "{{ 'build' | path_join: configuration.name | to_filename | downcase }}"
+    },
+    "environment": {
+      "GLOBAL": "VALUE1"
+    },
+    "actions": {
+      "prepare": [
+        "{{ properties.commandEchoGLOBAL[os.platform] }}"
+      ]
+    },
+    "buildConfigurations": {
+      "conf1": {
+        "properties": {
+          "commandEchoCONF": {
+            "linux": "echo $GLOBAL $CONF",
+            "darwin": "echo $GLOBAL $CONF",
+            "win32": "echo %GLOBAL% %CONF%"
+          }
+        },
+        "environment": {
+          "CONF": "VALUE2"
+        },
+        "actions": {
+          "prepare": [
+            "{{ properties.commandEchoCONF[os.platform] }}"
+          ]
+        }
+      }
+    }
   }
 }
