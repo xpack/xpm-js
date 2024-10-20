@@ -46,7 +46,7 @@ logger.info(customFields);
 // ----------------------------------------------------------------------------
 
 const config: Config = {
-  title: 'xpm - the xPack Project Manager',
+  title: 'xpm - The xPack Project Manager',
   tagline: 'A tool to automate builds, tests and manage C/C++ dependencies, inspired by npm',
   favicon: 'img/favicon.ico',
 
