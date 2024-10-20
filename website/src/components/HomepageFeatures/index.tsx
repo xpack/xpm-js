@@ -1,6 +1,7 @@
 import clsx from 'clsx';
 import Heading from '@theme/Heading';
 import styles from './styles.module.css';
+import Link from '@docusaurus/Link';
 
 type FeatureItem = {
   title: string;
@@ -10,32 +11,38 @@ type FeatureItem = {
 
 const FeatureList: FeatureItem[] = [
   {
-    title: 'Easy to Use',
-    Svg: require('@site/static/img/undraw_docusaurus_mountain.svg').default,
+    title: 'Multi-configurations, cross-platform',
+    Svg: require('@site/static/img/mosaic.svg').default,
     description: (
       <>
-        Docusaurus was designed from the ground up to be easily installed and
-        used to get your website up and running quickly.
+        The <b>xPack Framework</b> aims to automate building and testing of <b>multiple configuration</b> projects, and installing <b>multiple versions</b> of packages, across multiple platforms (<b>Windows</b>, <b>macOS</b>, <b>GNU/Linux</b>).
       </>
     ),
   },
   {
-    title: 'Focus on What Matters',
-    Svg: require('@site/static/img/undraw_docusaurus_tree.svg').default,
+    title: 'Easy to Use & Reproducible',
+    Svg: require('@site/static/img/check-badge.svg').default,
     description: (
       <>
-        Docusaurus lets you focus on your docs, and we&apos;ll do the chores. Go
-        ahead and move your docs into the <code>docs</code> directory.
+        Source libraries and binary packages can be added to projects
+        as <b>dependencies</b>,
+        and conveniently installed with <code>xpm install</code>.
+        This feature also ensures reproducibility, which is particularly
+        beneficial in <b>CI/CD</b> environments.
       </>
     ),
   },
   {
-    title: 'Powered by React',
-    Svg: require('@site/static/img/undraw_docusaurus_react.svg').default,
+    title: 'Part of the Node.js ecosystem',
+    Svg: require('@site/static/img/globe.svg').default,
     description: (
       <>
-        Extend or customize your website layout by reusing React. Docusaurus can
-        be extended while reusing the same header and footer.
+        The <b><Link to="https://xpack.github.io/xpm/">xpm</Link></b> CLI tool
+        complements <b><Link to="https://docs.npmjs.com/cli/">npm</Link></b> with
+        several extra features specific to <b>C/C++ projects</b>.
+        This allows source libraries and
+        binary packages to nicely integrate into the Node.js ecosystem,
+        while still allowing them to be installed manually.
       </>
     ),
   },

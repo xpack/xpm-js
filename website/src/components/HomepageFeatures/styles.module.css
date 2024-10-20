@@ -1,11 +1,19 @@
 .features {
   display: flex;
   align-items: center;
-  padding: 2rem 0;
+  padding: 2rem 0 0.5rem 0; /* 2rem 0; */
   width: 100%;
 }
 
 .featureSvg {
-  height: 200px;
-  width: 200px;
+  height: 100px; /* 200px; */
+  width: 100px; /* 200px; */
 }
+
+/* ------------------------------------------------------------------------- */
+
+svg.featureSvg path {
+  stroke: var(--docusaurus-svg-color);
+}
+
+/* ------------------------------------------------------------------------- */

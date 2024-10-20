@@ -1,0 +1,147 @@
+---
+title: xPack xpm v0.13.6 released
+seo_title: Version 0.13.6 released
+description: Version 0.13.6 is a maintenance release.
+keywords:
+  - xpack
+  - xpm
+  - release
+
+date: 2022-06-15 19:27:00 +0300
+
+authors: ilg-ul
+
+# To be listed in the Releases page.
+tags:
+  - releases
+
+# ----- Custom properties -----------------------------------------------------
+
+version: 0.13.6
+
+---
+
+import {PageMetadata} from '@docusaurus/theme-common';
+import Image from '@theme/IdealImage';
+import CodeBlock from '@theme/CodeBlock';
+
+Version **0.13.6** is a maintenance release; it fixes passing args to single command actions.
+
+<!-- truncate -->
+
+<PageMetadata title={frontMatter.seo_title} />
+
+**xpm** is a
+[Node.js](https://nodejs.org/en/) CLI
+application to manage
+[xPacks](https://xpack.github.io/intro/#but-what-are-xpacks) dependencies.
+
+## Install
+
+**xpm** is a Node.js module that can be installed with `npm`.
+
+For the prerequisites, since it is recommended
+to use a version manager or to customize the **npm** install location,
+please read the
+[Install](/docs/install/) page for more details.
+
+To install the **latest stable** version available, use:
+
+```sh
+npm uninstall --global xpm
+npm install --global xpm@latest
+```
+
+To install this specific version, use:
+
+<CodeBlock language="sh"> {
+`xpm install --global xpm@${frontMatter.version}`
+} </CodeBlock>
+
+## Changes
+
+The {frontMatter.version} release
+is generally compatible with previous releases.
+
+### Bug fixes
+
+- [#141] single command actions are allowed to take extra args form the
+  command line, but, due to a bug, reported _optional arguments not
+  supported for array of command_; fixed.
+
+### Enhancements
+
+- none
+
+### Other changes
+
+- none
+
+### Known problems
+
+- [#57] when multiple versions of the same package are referenced
+  via different dependencies paths, the program fails; version
+  mitigation will be implemented in a future release.
+
+## Documentation
+
+The program interprets `--help` and displays a top help page:
+
+```console
+% xpm --help
+
+The xPack project manager command line tool
+Usage: xpm <command> [<subcommand>...] [<options> ...] [<args>...]
+
+where <command> is one of:
+  init, install, link, list, run, uninstall
+
+Common options:
+  --loglevel <level>     Set log level (silent|warn|info|verbose|debug|trace)
+  -s|--silent            Disable all messages (--loglevel silent)
+  -q|--quiet             Mostly quiet, warnings and errors (--loglevel warn)
+  --informative          Informative (--loglevel info)
+  -v|--verbose           Verbose (--loglevel verbose)
+  -d|--debug             Debug messages (--loglevel debug)
+  -dd|--trace            Trace messages (--loglevel trace, -d -d)
+  --no-update-notifier   Skip check for a more recent version
+  -C <folder>            Set current folder
+
+xpm -h|--help            Quick help
+xpm <command> -h|--help  Quick help on command
+xpm --version            Show version
+xpm -i|--interactive     Enter interactive mode
+
+npm xpm@0.13.6 '/Users/ilg/.nvm/versions/node/v14.16.0/lib/node_modules/xpm'
+Home page: <https://xpack.github.io/xpm/>
+Bug reports: <https://github.com/xpack/xpm-js/issues/>
+```
+
+Similar pages are available for each command.
+
+For more details, the project documentation is available online from the
+[web site](/).
+
+## Supported platforms
+
+**npm** is a portable application that can run on
+**Windows**, **macOS** and **GNU/Linux**, both Intel and Arm.
+
+## CI tests
+
+Continuous integration tests are done via GitHub
+[Actions](https://github.com/xpack/xpm-js/actions/).
+
+## Download analytics
+
+- npmjs.com [xpm](https://www.npmjs.com/package/xpm)
+  - last week [![npm](https://img.shields.io/npm/dw/xpm.svg)](https://www.npmjs.com/package/xpm/)
+  - all time [![npm](https://img.shields.io/npm/dt/xpm.svg)](https://www.npmjs.com/package/xpm/)
+
+Credit to [Shields IO](https://shields.io) for the badges.
+
+:::caution
+
+The **xpm** tool is currently _work in progress_ and should be used with caution.
+
+:::
