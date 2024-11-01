@@ -84,24 +84,9 @@ const config: Config = {
         id: 'docs',
         path: './docs',
         routeBasePath: 'docs',
-        sidebarPath: './sidebars-docs.ts',
+        sidebarPath: './sidebars.ts',
         // Remove this to remove the "edit this page" links.
-        editUrl:
-        'https://github.com/xpack/xpm-js/edit/master/website/',
-        // showLastUpdateAuthor: true,
-        showLastUpdateTime: true,
-      },
-    ],
-    [
-      '@docusaurus/plugin-content-docs',
-      {
-        id: 'cli',
-        path: './cli',
-        routeBasePath: 'cli',
-        sidebarPath: './sidebars-cli.ts',
-        // Remove this to remove the "edit this page" links.
-        editUrl:
-        'https://github.com/xpack/xpm-js/edit/master/website/',
+        editUrl: 'https://github.com/xpack/xpm-js/edit/master/website/',
         // showLastUpdateAuthor: true,
         showLastUpdateTime: true,
       },
@@ -316,39 +301,44 @@ const config: Config = {
         },
         {
           type: 'dropdown',
-          label: 'CLI',
-          to: 'cli',
+          label: 'CLI Reference',
+          to: '/docs/cli/xpm',
           position: 'left',
           items: [
             {
               label: 'xpm',
-              to: '/cli'
+              to: '/docs/cli/xpm'
             },
             {
               label: 'xpm init',
-              to: '/cli/init'
+              to: '/docs/cli/xpm/init'
             },
             {
               label: 'xpm install',
-              to: '/cli/install'
+              to: '/docs/cli/xpm/install'
             },
             {
               label: 'xpm link',
-              to: '/cli/link'
+              to: '/docs/cli/xpm/link'
             },
             {
               label: 'xpm list',
-              to: '/cli/list'
+              to: '/docs/cli/xpm/list'
             },
             {
               label: 'xpm run',
-              to: '/cli/run'
+              to: '/docs/cli/xpm/run'
             },
             {
               label: 'xpm uninstall',
-              to: '/cli/uninstall'
+              to: '/docs/cli/xpm/uninstall'
             },
           ],
+        },
+        {
+          to: '/docs/api',
+          label: 'API Reference',
+          position: 'left',
         },
         {
           type: 'dropdown',

@@ -59,6 +59,50 @@ const sidebars: SidebarsConfig = {
       label: 'Maintainer Information'
     }, */
   ],
+  cliSidebar: [
+    {
+      type: 'doc',
+      id: 'cli/xpm/index',
+      label: 'xpm'
+    },
+    {
+      type: 'doc',
+      id: 'cli/xpm/init/index',
+      label: 'xpm init'
+    },
+    {
+      type: 'doc',
+      id: 'cli/xpm/install/index',
+      label: 'xpm install'
+    },
+    {
+      type: 'doc',
+      id: 'cli/xpm/link/index',
+      label: 'xpm link'
+    },
+    {
+      type: 'doc',
+      id: 'cli/xpm/list/index',
+      label: 'xpm list'
+    },
+    {
+      type: 'doc',
+      id: 'cli/xpm/run/index',
+      label: 'xpm run'
+    },
+    {
+      type: 'doc',
+      id: 'cli/xpm/uninstall/index',
+      label: 'xpm uninstall'
+    },
+  ],
+  apiSidebar: [
+    {
+      type: 'doc',
+      id: 'api/index',
+      label: 'API Reference (TypeDoc)'
+    },
+  ]
 };
 
 export default sidebars;
