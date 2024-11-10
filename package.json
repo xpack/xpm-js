@@ -1,7 +1,7 @@
 {
   "name": "xpm",
   "version": "0.19.4",
-  "description": "A tool to automate builds, tests and manage C/C++ dependencies, inspired by npm",
+  "description": "The xPack project manager command line tool",
   "type": "module",
   "exports": {
     "request": "./index.cjs",
@@ -130,6 +130,9 @@
     "ignore": [
       "/website/"
     ]
+  },
+  "cliConfig": {
+    "greeting": "The xPack project manager command line tool"
   },
   "websiteConfig": {
     "shortName": "xpm",
