@@ -28,7 +28,6 @@ on:
       - 'NOTES.md'
       - 'CHANGELOG.md'
 
-
 jobs:
   npm-test:
 
@@ -37,24 +36,30 @@ jobs:
     strategy:
       matrix:
         # nvm ls-remote --lts
-        # https://docs.github.com/en/actions/using-github-hosted-runners/about-github-hosted-runners
-        os: [ ubuntu-22.04, windows-2022, macos-12 ]
+        # https://docs.github.com/en/actions/using-github-hosted-runners/using-github-hosted-runners/about-github-hosted-runners
+        os: [ ubuntu-24.04, macos-13, windows-2022 ]
         # https://github.com/actions/setup-node
         node-version: [ 18, 20 ]
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v1
+        # https://github.com/actions/checkout
+        uses: actions/checkout@v4
+
       - name: Setup Node.js ${{ matrix.node-version }} on ${{ matrix.os }}
-        uses: actions/setup-node@v3
+        # https://github.com/actions/setup-node
+        uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node-version }}
+
       - name: Show node & npm versions, environment
         run: |
           node --version
           npm --version
           env
+
       - name: Install dependencies
         run: npm ci
+
       - name: Run tests
         run: npm run test
