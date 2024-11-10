@@ -1,26 +1,43 @@
+/*
+ * DO NOT EDIT!
+ * Automatically generated from docusaurus-template-liquid/templates/docusaurus.
+ *
+ * This file is part of the xPack project (http://xpack.github.io).
+ * Copyright (c) 2024 Liviu Ionescu. All rights reserved.
+ *
+ * Permission to use, copy, modify, and/or distribute this software
+ * for any purpose is hereby granted, under the terms of the MIT license.
+ *
+ * If a copy of the license was not distributed with this file, it can
+ * be obtained from https://opensource.org/licenses/MIT/.
+ */
+
+import React from 'react';
 import clsx from 'clsx';
-import Link from '@docusaurus/Link';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import Layout from '@theme/Layout';
-import HomepageFeatures from '@site/src/components/HomepageFeatures';
 import Heading from '@theme/Heading';
-
-import InstallWithCopy from '@site/src/components/InstallWithCopy';
+import HeadTitle from '@site/src/components/HeadTitle';
 
 import styles from './index.module.css';
+import HomepageFeatures from '@site/src/components/HomepageFeatures';
+import InstallWithCopy from '@site/src/components/InstallWithCopy';
 
 function HomepageHeader() {
   const {siteConfig} = useDocusaurusContext();
   return (
     <header className={clsx('hero hero--primary', styles.heroBanner)}>
+      <HeadTitle title="Welcome to xpm - The xPack Project Manager!" />
       <div className="container">
         <Heading as="h1" className="hero__title">
           {siteConfig.title}
         </Heading>
         <p className="hero__subtitle">{siteConfig.tagline}</p>
+
         <div className={styles.installWithCopy}>
           <InstallWithCopy>npm install --location=global xpm@latest</InstallWithCopy>
         </div>
+
       </div>
     </header>
   );
@@ -31,7 +48,7 @@ export default function Home(): JSX.Element {
   return (
     <Layout
       title="Welcome!"
-      description="Description will go into a meta tag in <head />">
+      description={siteConfig.tagline} >
       <HomepageHeader />
       <main>
         <HomepageFeatures />

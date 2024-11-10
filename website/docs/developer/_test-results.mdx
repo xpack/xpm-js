@@ -1,0 +1,35 @@
+
+import CodeBlock from '@theme/CodeBlock';
+
+import customField from '@site/src/libs/customField';
+
+{/* ------------------------------------------------------------------------ */}
+
+A typical test result looks like:
+
+<CodeBlock language="console"> {
+`% npm run test
+
+> xpm@${customField('npmVersion')} test
+> npm run lint && npm run test-tap -s
+
+
+> xpm@${customField('npmVersion')} lint
+> standard
+
+tests/tap/120-utils-global-config.js .................. 1/1 1s
+tests/tap/130-utils-spawn.js .......................... 1/1 924ms
+tests/tap/140-utils-xpack.js .......................... 2/2 1s
+
+
+...
+`} </CodeBlock>
+
+To run a specific test with more verbose output, use `npm run tap`:
+
+<CodeBlock language="console"> {
+`% npm run tap tests/tap/010-xxx.ts
+
+...
+`} </CodeBlock>
+

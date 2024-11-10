@@ -1,0 +1,91 @@
+---
+title: xPack Project Manager v{{npmVersion}} released
+seo_tile: Version {{npmVersion}} released
+description: Version v{{npmVersion}} is a TODO new/maintenance release
+keywords:
+  - xpack
+  - xpm
+  - release
+
+date: {{releaseDate}}
+
+authors: ilg-ul
+
+# To be listed in the Releases page.
+tags:
+  - releases
+
+# ----- Custom properties -----------------------------------------------------
+
+version: "{{npmVersion}}"
+
+release_tag_url: "https://github.com/xpack/xpm-js/tree/v{{npmVersion}}"
+
+---
+
+import {PageMetadata} from '@docusaurus/theme-common';
+import Image from '@theme/IdealImage';
+import CodeBlock from '@theme/CodeBlock';
+import Link from '@docusaurus/Link';
+
+import Prerequisites from './_common/_prerequisites.mdx'
+import DownloadAnalytics from './_common/_download-analytics.mdx'
+
+TODO: select one summary
+
+Version **{{npmVersion}}** is a maintenance release; it fixes ...
+
+Version **{{npmVersion}}** is a new release; it adds ....
+
+<!-- truncate -->
+
+<PageMetadata title={frontMatter.seo_title} />
+
+The [xPack Project Manager](https://xpack.github.io/xpm-js/)
+project is a TypeScript and dual mode CommonJS/ECMAScript Node.js module.
+
+<Prerequisites nodeVersion="18"/>
+
+## Install
+
+For installation instructions, please refer to the
+[Install Guide](/docs/install/)
+page.
+
+## Import
+
+To include this module in TypeScript and ECMAScript modules, use `import`:
+
+```typescript
+import { Xxx } from '@xpm/xpm'
+```
+
+In JavaScript with CommonJS, use `require()`:
+
+```javascript
+const { Xxx } = request('@xpm/xpm')
+```
+
+## Source code
+
+- <Link to={frontMatter.release_tag_url}>GitHub tag v{frontMatter.version} tree</Link>
+
+## Bug fixes
+
+- none
+
+## Enhancements
+
+- none
+
+## Known problems
+
+- none
+
+## CI tests
+
+Before publishing, a set of tests were performed .
+The results are available from:
+
+- [GitHub Actions](https://github.com/xpack/xpm-js/actions)
+

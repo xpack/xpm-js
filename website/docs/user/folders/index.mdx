@@ -1,0 +1,443 @@
+---
+
+title: xpm folders
+
+date: 2017-10-09 14:14:00 +0300
+
+# redirect_from:
+#   - /xpm/files/folders/
+
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+{/* ------------------------------------------------------------------------ */}
+
+# xpm folders
+
+## Overview
+
+**xpm** uses several folders to store the installed packages.
+
+## tl;dr
+
+- local install (default): packages are available in `./xpacks` in the current
+project or build configuration
+- global install (`--global`): packages are stored in a central location in
+the user home folder
+
+## The local `xpacks` folder
+
+When installing packages into a project, they end in a folder with the
+package name below `xpacks`, similarly to **npm** packages ending
+below `node_modules`.
+
+For example installing two source libraries from the `@micro-os-plus`
+scope with local copies results in this hierarchy:
+
+```console
+% tree -a -L3 xpacks
+xpacks
+└── @micro-os-plus
+    ├── micro-test-plus
+    │   ├── CHANGELOG.md
+    │   ├── CMakeLists.txt
+    │   ├── LICENSE
+    │   ├── LICENSE-Boost
+    │   ├── README.md
+    │   ├── include
+    │   ├── meson.build
+    │   ├── package.json
+    │   └── src
+    └── utils-lists
+        ├── CHANGELOG.md
+        ├── CMakeLists.txt
+        ├── LICENSE
+        ├── README.md
+        ├── include
+        ├── meson.build
+        ├── package.json
+        ├── src
+        └── xpack.json
+
+9 directories, 14 files
+```
+
+Installing the binary package `@xpack-dev-tools/cmake` adds a few more folders and files:
+
+```console
+% tree -a -L3 xpacks
+xpacks
+├── .bin
+│   ├── ccmake -> ../@xpack-dev-tools/cmake/.content/bin/ccmake
+│   ├── cmake -> ../@xpack-dev-tools/cmake/.content/bin/cmake
+│   ├── cpack -> ../@xpack-dev-tools/cmake/.content/bin/cpack
+│   └── ctest -> ../@xpack-dev-tools/cmake/.content/bin/ctest
+├── @micro-os-plus
+│   ├── micro-test-plus
+│   │   ├── CHANGELOG.md
+│   │   ├── CMakeLists.txt
+│   │   ├── LICENSE
+│   │   ├── LICENSE-Boost
+│   │   ├── README.md
+│   │   ├── include
+│   │   ├── meson.build
+│   │   ├── package.json
+│   │   └── src
+│   └── utils-lists
+│       ├── CHANGELOG.md
+│       ├── CMakeLists.txt
+│       ├── LICENSE
+│       ├── README.md
+│       ├── include
+│       ├── meson.build
+│       ├── package.json
+│       ├── src
+│       └── xpack.json
+└── @xpack-dev-tools
+    └── cmake
+        ├── .content
+        ├── CHANGELOG.md
+        ├── LICENSE
+        ├── README.md
+        └── package.json
+
+12 directories, 22 files
+```
+
+However this structure is created only when the explicit `--copy` option is
+used. Using local project copies is not a big problem for source libraries, but
+it may be for binary packages since some, like toolchains, are huge,
+hundreads of MB, and it is not reasonable to install a copy
+in each project.
+
+Therefore, by default, **xpm** aims to save space by installing a
+single read-only instance in a central folder and creating links
+from the project to that folder.
+
+The same packages installed with the default configuration,  without `--copy`,
+results in this:
+
+```console
+% tree -a -L3 xpacks
+xpacks
+├── .bin
+│   ├── ccmake -> ../@xpack-dev-tools/cmake/.content/bin/ccmake
+│   ├── cmake -> ../@xpack-dev-tools/cmake/.content/bin/cmake
+│   ├── cpack -> ../@xpack-dev-tools/cmake/.content/bin/cpack
+│   └── ctest -> ../@xpack-dev-tools/cmake/.content/bin/ctest
+├── @micro-os-plus
+│   ├── micro-test-plus -> /Users/ilg/Library/xPacks/@micro-os-plus/micro-test-plus/3.1.2
+│   └── utils-lists -> /Users/ilg/Library/xPacks/@micro-os-plus/utils-lists/4.0.0
+└── @xpack-dev-tools
+    └── cmake -> /Users/ilg/Library/xPacks/@xpack-dev-tools/cmake/3.28.6-1.1
+
+7 directories, 4 files
+```
+
+:::note
+
+This hierarchy is from macOS; on GNU/Linux the global folder is different;
+on Windows, in the `.bin` folder, instead of symbolic links are `.cmd`
+shims/forwarders.
+
+:::
+
+### The local `xpacks/.bin` folder
+
+As it can be seen above, **xpm** creates links (forwarders on Windows)
+to executables in the
+`xpacks/.bin`, similarly to those created by **npm** in `node_modules/.bin`.
+
+With this setup, the project needs to prepend only this `.bin` folder
+to the PATH, and all the required tools are accesible and prefered
+to possible system tools.
+
+## The global `xPacks` folder
+
+The global xPack store is a folder in the user home folder where
+read-only instances of the packages are installed, to be used by
+multiple projects.
+
+Individual packages are stored as separate folders:
+
+- `[@{scope}/]{name}/{version}`
+
+For the example above, the hierarchy would look like:
+
+```console
+% tree -L3 ~/Library/xpacks
+/Users/ilg/Library/xpacks
+├── @micro-os-plus
+│   ├── micro-test-plus
+│   │   └── 3.1.2
+│   ├── utils-lists
+│   │   └── 4.0.0
+└── @xpack-dev-tools
+    └── cmake
+        └── 3.28.6-1.1
+
+9 directories, 0 files
+```
+
+### The `.link` development links
+
+Running `xpm link` inside the development folder of a project
+creates a symbolic link from the local package folder to something like:
+
+- `[@{scope}/]{name}/.link`
+
+For example, adding development links for the above packages would result
+in a hierarchy like:
+
+```console
+% tree -L3 ~/Library/xpacks
+/Users/ilg/Library/xpacks
+├── @micro-os-plus
+│   ├── micro-test-plus
+│   │   ├── .link -> /Users/ilg/MyProjects/micro-os-plus.github/xPacks/micro-test-plus-xpack.git
+│   │   └── 3.1.2
+│   ├── utils-lists
+│   │   ├── .link -> /Users/ilg/MyProjects/micro-os-plus.github/xPacks/utils-lists-xpack.git
+│   │   └── 4.0.0
+└── @xpack-dev-tools
+    └── cmake
+        └── 3.28.6-1.1
+
+9 directories, 0 files
+```
+
+To reconfiguring the test project to use the development links,
+use the following command:
+
+```sh
+xpm link @micro-os-plus/micro-test-plus @micro-os-plus/utils-lists
+```
+
+This would result in a hierarchy like:
+
+```console
+% tree -a -L2 xpacks
+xpacks
+├── .bin
+│   ├── ccmake -> ../@xpack-dev-tools/cmake/.content/bin/ccmake
+│   ├── cmake -> ../@xpack-dev-tools/cmake/.content/bin/cmake
+│   ├── cpack -> ../@xpack-dev-tools/cmake/.content/bin/cpack
+│   └── ctest -> ../@xpack-dev-tools/cmake/.content/bin/ctest
+├── @micro-os-plus
+│   ├── micro-test-plus -> /Users/ilg/Library/xPacks/@micro-os-plus/micro-test-plus/.link
+│   └── utils-lists -> /Users/ilg/Library/xPacks/@micro-os-plus/utils-lists/.link
+└── @xpack-dev-tools
+    └── cmake -> /Users/ilg/Library/xPacks/@xpack-dev-tools/cmake/3.28.6-1.1
+
+7 directories, 4 files
+```
+
+As it can be seen, the links from the project to the specific verions were
+replaced by links to the special `.link` links, which is in fact a
+two levels link to the location where the development sources are located.
+
+## The xPacks cache folder
+
+The xPacks cache folder is used to store downloaded packages, to avoid
+downloading them again if referred in other projects.
+
+Further downloads of binary archives (like toolchain binaries) are
+also cached and subsequent installs get them from the cache.
+
+## No global links!
+
+:::info
+
+Since installing binaries globally is strongly discouraged
+in favour of creating links into each project, by default **xpm**
+does not create links in the global or system `.bin` folders.
+
+:::
+
+<details>
+<summary>Why installing binaries globally is strongly discouraged?</summary>
+
+Because multiple versions of the same packages can be installed on the same
+system. To which version should the global links point? The latest installed?
+The highest version? There is no obvious answer, packages can be installed
+in any order.
+
+</details>
+
+## Environment variables
+
+The locations of folders used by **xpm** can be controlled by several environment
+variables.
+
+:::tip
+
+When the variables must be available in GUI applications,
+setting them in shell init scripts is not effective, since the windows manager
+usually is not started by a shell, but by other system mechanism, which has
+its own configuration files.
+
+:::
+
+User global xPack store:
+
+- `XPACKS_STORE_FOLDER` (was `XPACKS_REPO_FOLDER`)
+- `XPACKS_CACHE_FOLDER`
+
+System xPack store:
+
+- `XPACKS_SYSTEM_STORE_FOLDER` (not implemented yet; was `XPACKS_SYSTEM_FOLDER`)
+- `XPACKS_SYSTEM_CACHE_FOLDER` (not implemented yet)
+
+<Tabs groupId="operating-systems">
+
+<TabItem value="windows" label="Windows" default>
+
+User global (home) install:
+
+- `%APPDATA%\xPacks` (like `C:\Users\ilg\AppData\Roaming\xPacks`)
+- `%LOCALAPPDATA%\Caches\xPacks` (like `C:\Users\ilg\AppData\Local\Caches\xPacks`)
+- `%APPDATA%\xPacks\.bin` (not in `Path`; not used by **xpm**)
+
+System install (not implemented):
+
+- `%ProgramFiles%\xPacks` (like `C:\Program Files\xPacks`)
+- `%ProgramFiles%\xPacks\.cache`
+- `%ProgramFiles%\xPacks\.bin` (not in `Path`; not used by **xpm**)
+
+</TabItem>
+
+<TabItem value="macos" label="macOS">
+
+User global (home) install:
+
+- `${HOME}/Library/xPacks`
+- `${HOME}/Library/Caches/xPacks`
+- `${HOME}/Library/xPacks/.bin` (not in `PATH`; not used by **xpm**)
+
+System install (not implemented yet):
+
+- `/Library/xPacks`
+- `/Library/Caches/xPacks`
+- `/Library/xPacks/.bin` (not in `PATH`; not used by **xpm**)
+
+</TabItem>
+
+<TabItem value="linux" label="GNU/Linux">
+
+User global (home) install:
+
+- `${HOME}/.local/xPacks` (was `${HOME}/opt/xPacks` in earlier versions)
+- `${HOME}/.cache/xPacks`
+- `${HOME}/.local/xPacks/.bin` (not in `PATH`; not used by **xpm**)
+
+System install (not implemented yet):
+
+- `/opt/xPacks`
+- `/opt/xPacks/.cache`
+- `/opt/xPacks/.bin` (not in `PATH`; not used by **xpm**)
+
+</TabItem>
+
+</Tabs>
+
+The previously mentioned `.bin` folders are only recommendations and
+are intentionally not included in the PATH. However, in specific
+setups, users can create links to binaries from any folders they choose.
+
+## Setting session wide environment variables
+
+<Tabs groupId="operating-systems">
+
+<TabItem value="windows" label="Windows" default>
+
+To define session wide environment variables on Windows 11/10, use the
+Control Panel and add the variables.
+
+From a terminal, try `set` to set the variables and `setx` to make
+them persistent:
+
+```txt
+set XPACKS_STORE_FOLDER=%APPDATA%\My-xPacks
+setx XPACKS_STORE_FOLDER "%APPDATA%\My-xPacks"
+```
+
+:::note
+
+These commands may not work with all shells and all Windows versions.
+You are welcome to contribute to the documentation with other commands.
+
+:::
+
+</TabItem>
+
+<TabItem value="macos" label="macOS">
+
+To define session wide environment variables on recent macOS systems,
+define a User Agent that will issue the `launchctl setenv` command.
+
+Create a special `environment.plist` file in the users home directory,
+for example in `~/Library/LaunchAgents/`:
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+
+<plist version="1.0">
+<dict>
+ <key>Label</key>
+ <string>my.variables</string>
+ <key>ProgramArguments</key>
+ <array>
+  <string>sh</string>
+  <string>-c</string>
+  <string>launchctl setenv XPACKS_STORE_FOLDER /Users/myself/location/xpacks</string>
+ </array>
+ <key>RunAtLoad</key>
+ <true/>
+</dict>
+</plist>
+```
+
+To activate this, run
+
+```console
+launchctl load ~/Library/LaunchAgents/environment.plist
+launchctl start ~/Library/LaunchAgents/environment.plist
+```
+
+Logout and login.
+
+The new variable should be in the environment, and available to
+all applications, all shells, etc.
+
+TODO: check if this definition is limited to a user.
+
+Links:
+
+- [www.launchd.info](https://www.launchd.info)
+- [support.apple.com](https://support.apple.com/en-in/guide/terminal/apdc6c1077b-5d5d-4d35-9c19-60f2397b2369/mac)
+
+</TabItem>
+
+<TabItem value="linux" label="GNU/Linux">
+
+Unfortunately the wide selection of graphical environments on GNU/Linux
+makes very difficult to document a generic solution.
+
+You are welcome to contribute to the documentation solutions for the major
+distributions.
+
+</TabItem>
+
+</Tabs>
+
+
+:::tip
+
+To avoid the additional complexity, it is
+recommended to use the default locations.
+
+:::

@@ -1,0 +1,85 @@
+
+import CommonJsCompatibility from './_common/_commonjs-compatibility.mdx'
+import GithubAndNpmjs from './_common/_github-and-npmjs.mdx'
+
+{/* ------------------------------------------------------------------------ */}
+
+## First, let's clarify what xpm is NOT
+
+- **xpm** is NOT a **npm** replacement
+- **xpm** is NOT just another package manager
+- **xpm** is NOT introducing a new package format
+
+## Then what is it?
+
+**xpm**, short for **x**Pack **P**roject **M**anager, is a
+[Node.js](https://nodejs.org/en/) CommonJS  module and a CLI
+application designed to **automate builds**, **tests** and
+**manage C/C++ dependencies**. It draws inspiration from **npm**.
+
+<CommonJsCompatibility />
+
+<GithubAndNpmjs />
+
+## xPacks
+
+
+**xPacks** (short for **xpm packages**) are general-purpose, language-neutral software packages.
+
+<details>
+<summary>What the heck are xPacks? Please, do not introduce another package format!</summary>
+
+Based on the content, there are two types of packages:
+
+- packages with source libraries (source xPacks)
+- packages with executables, usually platform specific binary tools (binary xPacks)
+
+The source xPacks are regular npm packages, and include the source files.
+
+The binary xPacks are also regular npm packages, but with a minimal content,
+mandatory being only the `package.json` file. Since the binary xPacks provide
+executables for multiple platforms, some very large, it is not reasonable to pack all together in the npm package. Instead, the `package.json` file
+includes references to archives with the platform specific binaries
+(such as .tar.gz for Unix or .zip for Windows).
+
+Simply put, xPacks can be used to further automate the installation of source libraries and tools.
+</details>
+
+By design, xPacks support multiple versions, allowing packages to have
+**various versions installed simultaneously**. Each project or configuration
+can maintain its own set of dependencies, ensuring that system upgrades do
+not affect existing projects.
+
+## Features
+
+**xpm** complements **npm**; it streamlines cross-platform builds
+and tests with its distinctive set of features:
+
+- is capable to install the same format of packages as
+**npm**, including those from Git repositories and from the same public
+repository ([npmjs.com](https://www.npmjs.com))
+- can lock specific versions of source and binary packages as project **dependencies**, and install them on demand
+- can manage multiple **build configurations**, such as debug/release builds, or platform specific tests
+- can lock specific versions of packages as build configuration **dependencies**
+- enables the definition of **multi-line command actions** at the project or
+build configuration level
+- manages **properties**, possibly with **complex substitutions** (performed via the
+  [LiquidJS](https://liquidjs.com) engine)
+- runs on **Windows**, **macOS** and **GNU/Linux**
+
+
+## Benefits
+
+- being able to develop exactly the same project on Windows, macOS and
+GNU/Linux allows team members the **freedom to use their preferred platform**
+- locking the project to specific versions of dependencies provides a **good
+reproducibility** (stability over time and across different environments)
+- defining dependencies at build configuration levels allows to **run
+tests for different architechtures** (like native vs Arm vs RISC-V)
+- being able to install multiple versions of the same package at the same time
+allows to run tests with **multiple versions of the same toolchain**
+- multi-line commands, with parameters and substitutions provide a very
+**powerful portable scripting mechanism**
+- being able to install packages directly from Git/GitHub **simplifies
+maintenance** of some packages during development
+

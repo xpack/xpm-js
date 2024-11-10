@@ -1,0 +1,377 @@
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import CodeBlock from '@theme/CodeBlock';
+import Heading from '@theme/Heading';
+
+import customField from '@site/src/libs/customField';
+
+{/* ------------------------------------------------------------------------ */}
+
+## Prerequisites
+
+- a recent [Node.js](https://nodejs.org) ("engines.node": ">=18.0.0")
+- a recent [npm](https://docs.npmjs.com/cli/npm) (installed by **node**).
+
+If this is your first time using **node**, it is highly recommended
+to read the instructions
+on the [Prerequisites](https://xpack.github.io/install/) page.
+
+### Quick instructions
+
+For those who have already performed the install steps on the
+[Prerequisites](https://xpack.github.io/install/) page and are
+familiar with the process, here are the commands you need.
+Simply copy and paste them into your terminal.
+
+<Tabs groupId="operating-systems">
+
+<TabItem value="windows" label="Windows" default>
+
+Download the Windows **Prebuilt Installer** (a `node-v*-x64.msi` file) from the
+[Download Node.js](https://nodejs.org/en/download/prebuilt-installer)
+page and install it as usual, with administrative rights.
+**Avoid** selecting the **Tools for Native Modules** during installation.
+
+Although not mandatory, it is recommended to update **npm** to the
+latest version:
+
+```txt
+npm install -location=global npm@latest
+```
+
+Update the user `Path` and make it persistent:
+
+```txt
+set Path=%APPDATA%\npm;%Path%
+setx Path "%APPDATA%\npm;%Path%"
+```
+
+Configure PowerShell to allow the execution of node.js applications:
+
+```txt
+Set-ExecutionPolicy -ExecutionPolicy Bypass -Scope CurrentUser
+```
+
+</TabItem>
+
+<TabItem value="macos" label="macOS">
+
+To install **node** via the **nvm** version manager,
+run the following script through your shell:
+
+```sh
+curl https://raw.githubusercontent.com/xpack/assets/master/scripts/install-nvm-node-npm-xpm.sh | ${SHELL}
+
+export NVM_DIR="$HOME/.nvm"
+source "$NVM_DIR/nvm.sh"
+```
+
+:::tip
+
+This script, in addition to installing **node** and **npm**,
+also installs **xpm**, so you can safely skip the next section.
+
+:::
+
+</TabItem>
+
+<TabItem value="linux" label="GNU/Linux">
+
+To install **node** via the **nvm** version manager,
+run the following script through your shell:
+
+```sh
+wget -q -O - https://raw.githubusercontent.com/xpack/assets/master/scripts/install-nvm-node-npm-xpm.sh | ${SHELL}
+
+export NVM_DIR="$HOME/.nvm"
+source "$NVM_DIR/nvm.sh"
+```
+
+:::tip
+
+This script, in addition to installing **node** and **npm**,
+also installs **xpm**, so you can safely skip the next section.
+
+:::
+
+</TabItem>
+
+</Tabs>
+
+## Install
+
+:::caution
+
+Please be sure that the **xpm** you are trying to install is the
+**xPack Project Manager**, since there are other projects that
+unfortunately use the same name
+(for example verseles/xpm, the _uniX Package Manager_).
+
+:::
+
+With the environment properly set, the command to install **xpm** is:
+
+```sh
+npm install --location=global xpm@latest
+```
+
+This command installs the latest available version.
+
+To install a specific version, mention it explicitly:
+
+<CodeBlock language="sh"> {
+`npm install --location=global xpm@${customField('releaseVersion')}
+`} </CodeBlock>
+
+<Tabs groupId="operating-systems">
+
+<TabItem value="windows" label="Windows" default>
+
+On Windows, global Node.js packages are installed in the
+user home folder, in `%APPDATA%\npm`
+(like `C:\Users\ilg\AppData\Roaming\npm`), and managing packages
+does not require administrative rights.
+
+The result of installing **xpm** is a set of files in the `%APPDATA%\npm` folder:
+
+```txt
+C:\>dir "%APPDATA%"\npm\xpm*
+ Volume in drive C has no label.
+ Volume Serial Number is B02D-925C
+
+ Directory of C:\Users\ilg\AppData\Roaming\npm
+
+29/07/2024  07:24               397 xpm
+29/07/2024  07:24               329 xpm.cmd
+29/07/2024  07:24               821 xpm.ps1
+               3 File(s)          1,547 bytes
+               0 Dir(s)  39,088,439,296 bytes free
+```
+
+If you followed the instructions in the
+prerequisites section, you should
+already have this path configured and the program should start normally:
+
+<CodeBlock language="console"> {
+`C:\>xpm --version
+${customField('releaseVersion')}
+`} </CodeBlock>
+
+</TabItem>
+
+<TabItem value="macos" label="macOS">
+
+On macOS, if you followed the instructions in the
+prerequisites section, you should
+already have **npm** configured to use a location in the home folder.
+
+```sh
+% which xpm
+/Users/ilg/.nvm/versions/node/${props.nodeVersion}/bin/xpm
+```
+
+To test if **xpm** starts:
+
+<CodeBlock language="console"> {
+`% xpm --version
+${customField('releaseVersion')}
+`} </CodeBlock>
+
+<Heading as="h3">Show macOS hidden files</Heading>
+
+The default location used to install the global packages is
+below `~/Library`, a folder that, due to an unfortunate Apple decision,
+is hidden for regular browsing in Finder.
+
+To make it back visible, use:
+
+```sh
+/usr/bin/chflags nohidden ~/Library
+xattr -d com.apple.FinderInfo ~/Library
+```
+
+A more general solution is to make all hidden files visible:
+
+```sh
+defaults write com.apple.Finder AppleShowAllFiles true
+killall Finder
+```
+
+Another annoying behaviour of the file browser is to hide names starting
+with `.` (dot), which is a real pity since the binary packages are
+extracted in a folder named `.content`.
+
+Fortunately there is a workaround for this too:
+
+```console
+cmd+shift+'.'
+```
+
+This keyboard shortcut works like a toggle, using it once makes files
+starting with dot visible,
+using it again reverts to hiding them.
+
+</TabItem>
+
+<TabItem value="linux" label="GNU/Linux">
+
+On GNU/Linux, by default, global Node.js packages are installed in
+`/usr/local`, and managing them requires administrative rights,
+but if you followed the instructions in the
+[prerequisites](/docs/install/) page, you should
+already have configured npm to use a location in the home folder.
+
+:::note
+
+Support for Arm platforms was
+added in the 0.6.2 release of xpm.
+
+:::
+
+To test if xpm starts:
+
+<CodeBlock language="console"> {
+`$ which xpm
+/home/ilg/.nvm/versions/node/${props.nodeVersion}/bin/xpm
+$ xpm --version
+${customField('releaseVersion')}
+`} </CodeBlock>
+
+</TabItem>
+
+</Tabs>
+
+## Uninstall
+
+To remove **xpm**, the command is:
+
+```sh
+npm uninstall --location=global xpm
+```
+
+## Do not install with administrative rights!
+
+Installing **npm** with administrative rights is strongly discouraged,
+as it leads to installing **xpm** with administrative rights as well.
+Instead, use a node version manager.
+
+For completeness, the official page explaining how to install **npm** in
+a custom folder is
+[Resolving EACCES permissions errors when installing packages globally](https://docs.npmjs.com/getting-started/fixing-npm-permissions).
+
+## npx
+
+If, for any reason, you decide not to install **xpm**, you can still
+benefit from it by using the `npx` command, as a trampoline to start **xpm**:
+
+<CodeBlock language="console"> {
+`$ npx xpm --version
+${customField('releaseVersion')}
+`} </CodeBlock>
+
+However, for regular usage, this method is not efficient, since
+**npx** will need to prepare the Node.js module
+for each run, and this takes some time.
+
+## npm folders
+
+For more details on the folders used by npm, see
+[npm-folders](https://docs.npmjs.com/files/folders).
+
+## xpm folders
+
+To avoid security issues and the need for elevaated user privileges,
+**xpm** operates entirely within the user home folder, avoiding
+the use of system folders.
+
+There are the folders in use:
+
+- a cache folder, where all downloaded files are stored
+- a global xPacks store folder, where the xpm packages are expanded
+
+<details>
+<summary>Clean-ups</summary>
+
+For a thorough clean-up, these two folders can be removed at any time;
+**xpm** will recreate them on new installs.
+
+<Tabs groupId="operating-systems">
+
+<TabItem value="windows" label="Windows" default>
+
+- `%APPDATA%\Roaming\xPacks`
+- `%APPDATA%\Local\Caches\xPacks`
+
+</TabItem>
+
+<TabItem value="macos" label="macOS">
+
+- `${HOME}/Library/xPacks`
+- `${HOME}/Library/Caches/xPacks`
+
+</TabItem>
+
+<TabItem value="linux" label="GNU/Linux">
+
+- `${HOME}/.local/xPacks`
+- `${HOME}/.cache/xPacks`
+
+</TabItem>
+
+</Tabs>
+
+</details>
+
+For more details see [xpm folders](/docs/user/folders/).
+
+## Proxy
+
+If you are behind a firewall, you need to configure
+a proxy.
+
+**xpm** uses `pacote` (the same Node.js module as **npm**) to fetch
+the packages. Therefore, setting a proxy for **npm** will also work for **xpm**.
+
+In addition, **xpm** uses `node-fetch`,
+`https-proxy-agent`, `proxy-from-env` to download the binary
+archives. These packages require setting the `http_proxy` & `https_proxy`
+variables in the environment.
+See [proxy-from-env](https://www.npmjs.com/package/proxy-from-env) for
+details.
+
+## Quick info
+
+To get an initial overview of the program,
+request help by using the following command:
+
+<CodeBlock language="console"> {
+`% xpm --help
+
+The xPack project manager command line tool
+Usage: xpm <command> [<subcommand>...] [<options> ...] [<args>...]
+
+where <command> is one of:
+  init, install, link, list, run, uninstall
+
+Common options:
+  --loglevel <level>     Set log level (silent|warn|info|verbose|debug|trace)
+  -s|--silent            Disable all messages (--loglevel silent)
+  -q|--quiet             Mostly quiet, warnings and errors (--loglevel warn)
+  --informative          Informative (--loglevel info)
+  -v|--verbose           Verbose (--loglevel verbose)
+  -d|--debug             Debug messages (--loglevel debug)
+  -dd|--trace            Trace messages (--loglevel trace, -d -d)
+  --no-update-notifier   Skip check for a more recent version
+  -C <folder>            Set current folder
+
+xpm -h|--help            Quick help
+xpm <command> -h|--help  Quick help on command
+xpm --version            Show version
+xpm -i|--interactive     Enter interactive mode
+
+npm xpm@${customField('releaseVersion')} '/Users/ilg/.nvm/versions/node/${frontMatter.node_version}/lib/node_modules/xpm'
+Home page: <https://xpack.github.io/xpm/>
+Bug reports: <https://github.com/xpack/xpm-js/issues/>
+%
+`} </CodeBlock>

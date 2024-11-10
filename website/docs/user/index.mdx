@@ -6,6 +6,618 @@ title: User Information
 
 ---
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+{/* ------------------------------------------------------------------------ */}
+
 # How to use xpm
 
-TBD
+This section is intended for those who plan to integrate **xpm**
+into their workflows.
+
+## Using existing projects
+
+At its most basic level, the **xpm** workflow involves two key tasks:
+
+1. Installing dependencies
+2. Running various actions related to significant development steps
+
+
+The easiest way to experiment with this is to use an existing project.
+For instance, you can start with a simple C project that prints the
+traditional _Hello, World!_ message.
+
+The first step is to clone the project into a temporary folder of your choice:
+
+```sh
+git clone https://github.com/xpack/xpm-demo-hello1.git
+```
+
+The next major step in the workflow is to satisfy the project dependencies.
+In this case, **xpm** will install GCC.
+
+```sh
+cd xpm-demo-hello1
+xpm install
+```
+
+:::info
+
+It should be noted that this will not install just any version of GCC,
+but a specific version (14.2.0 in this case), which is hard-coded into
+the project configuration. This ensures that whenever the project is
+used, on any platform, the same specific version will be utilized.
+
+:::
+
+The next steps involve running several actions, beginning with
+one that prepares the build folder:
+
+```sh
+xpm run prepare
+```
+
+The next action is to build the executable:
+
+```sh
+xpm run build
+```
+
+The final action is to execute the program:
+
+```sh
+xpm run execute
+```
+
+As expected, the result is:
+
+```console
+Hello world!
+```
+
+:::info
+
+It should be noted that all these commands work the same on all
+major platforms (Windows, macOS, and GNU/Linux).
+
+
+:::
+
+
+## Create a new project
+
+As it can be seen, the workflow for existing projects is trivial.
+
+However, for a better understanding, it is useful to also understanding
+how to create a project from scratch.
+
+### Initialise project
+
+Similarly to **npm**, a project must be prepared for **xpm** use.
+
+Run the following commands in a temporary folder of your choice:
+
+```sh
+mkdir xpm-demo-hello && cd xpm-demo-hello
+xpm init
+```
+
+This adds an empty `package.json` where further definitions will be stored.
+
+### Add source code
+
+Add a simple C program that prints the traditional _Hello world!_ message:
+
+```c title="xpm-demo-hello/src/hello.c"
+#include <stdio.h>
+
+int
+main (int argc, char* argv[])
+{
+  printf ("Hello world!\n");
+
+  return 0;
+}
+```
+
+### Install toolchain
+
+To compile this C program, we'll use GCC 14.2, which must be installed:
+
+```sh
+xpm install @xpack-dev-tools/gcc@14.2.0-1.1
+```
+
+This command will add the following links to the project:
+
+```console
+% tree -a -L2 xpacks
+xpacks
+├── .bin
+│   ├── c++ -> ../@xpack-dev-tools/gcc/.content/bin/c++
+│   ├── cpp -> ../@xpack-dev-tools/gcc/.content/bin/cpp
+│   ├── g++ -> ../@xpack-dev-tools/gcc/.content/bin/g++
+│   ├── gcc -> ../@xpack-dev-tools/gcc/.content/bin/gcc
+│   ├── gcov -> ../@xpack-dev-tools/gcc/.content/bin/gcov
+│   ├── gcov-dump -> ../@xpack-dev-tools/gcc/.content/bin/gcov-dump
+│   ├── gcov-tool -> ../@xpack-dev-tools/gcc/.content/bin/gcov-tool
+│   ├── gdb -> ../@xpack-dev-tools/gcc/.content/bin/gdb
+│   ├── gdb-add-index -> ../@xpack-dev-tools/gcc/.content/bin/gdb-add-index
+│   ├── gfortran -> ../@xpack-dev-tools/gcc/.content/bin/gfortran
+│   └── lto-dump -> ../@xpack-dev-tools/gcc/.content/bin/lto-dump
+└── @xpack-dev-tools
+    └── gcc -> /Users/ilg/Library/xPacks/@xpack-dev-tools/gcc/14.2.0-1.1
+
+4 directories, 11 files
+```
+
+This command will also remeber the actual GCC version in the
+`xpacks.devDependencies` section of `package.json`, ensuring that
+the project is locked to this version:
+
+```json {4-7}
+{
+  "xpacks": {
+    "devDependencies": {
+      "@xpack-dev-tools/gcc": {
+        "specifier": "14.2.0-1.1",
+        "local": "link",
+        "platforms": "all"
+      }
+    },
+  }
+}
+```
+
+:::note
+
+On Windows, where symbolic links to files are problematic, forwarders/shims
+are used. For example:
+
+```console
+...
+│       gcc
+│       gcc.cmd
+│       gcc.ps1
+```
+
+:::
+
+To test if `gcc` starts properly, invoke it via the link/shim in the
+`.bin` folder:
+
+<Tabs groupId="operating-systems">
+
+<TabItem value="windows" label="Windows" default>
+
+```console
+PS C:\Users\ilg\xpm-demo-hello> .\xpacks\.bin\gcc --version
+gcc.exe (xPack MinGW-w64 GCC x86_64) 14.2.0
+```
+
+</TabItem>
+
+<TabItem value="macos" label="macOS">
+
+```console
+% ./xpacks/.bin/gcc --version
+gcc (xPack GCC x86_64) 14.2.0
+```
+
+</TabItem>
+
+<TabItem value="linux" label="GNU/Linux">
+
+```console
+$ ./xpacks/.bin/gcc --version
+gcc (xPack GCC x86_64) 14.2.0
+```
+
+</TabItem>
+
+</Tabs>
+
+
+### Add actions
+
+For traditional development environments, adding `xpacks/.bin` to the
+`PATH` is sufficient to enable build tools, such as make or cmake, to
+access the installed GCC.
+
+However, the workflow can be further automated, by starting the build tools
+via `xpm run`, which adjusts the `PATH` itself.
+
+For this, edit `package.json` and add the `gcc --version` command in the
+`xpack.actions` section, with a name (for example `gcc-version`):
+
+```json {4}
+{
+  "xpacks": {
+    "actions": {
+      "gcc-version": "gcc --version"
+    }
+  }
+}
+```
+
+With this definition, the compiler version can be obtained without manually
+entering the path:
+
+<Tabs groupId="operating-systems">
+
+<TabItem value="windows" label="Windows" default>
+
+```console
+PS C:\Users\ilg\xpm-demo-hello> xpm run gcc-version
+> gcc --version
+gcc.exe (xPack MinGW-w64 GCC x86_64) 14.2.0
+```
+
+</TabItem>
+
+<TabItem value="macos" label="macOS">
+
+```console
+% xpm run gcc-version
+> gcc --version
+gcc (xPack GCC x86_64) 14.2.0
+```
+
+</TabItem>
+
+<TabItem value="linux" label="GNU/Linux">
+
+```console
+$ xpm run gcc-version
+> gcc --version
+gcc (xPack GCC x86_64) 14.2.0
+```
+
+</TabItem>
+
+</Tabs>
+
+With the compiler functional, we can add `xpack.actions` to do the actual work,
+i.e. to prepare the build environment, to perform the build and to
+execute the resulting program:
+
+```json {5-7}
+{
+  "xpacks": {
+    "actions": {
+      "gcc-version": "gcc --version",
+      "prepare": "mkdir build",
+      "build": "gcc src/hello.c -o build/hello",
+      "execute": "build{{path.sep}}hello"
+    }
+  }
+}
+```
+
+:::tip[Tip 1]
+
+The `{{path.sep}}` syntax is a LiquidJS substitution used to
+accommodate platform-specific path separators. It is necessary
+in the `execute` command because it is parsed by the system shell.
+However, it is not required in the compile command since GCC also
+understands POSIX paths.
+
+:::
+
+:::tip[Tip 2]
+
+In this simple demo case, the `prepare` action is straightforward and can
+be directly executed in the terminal. However, for real-life projects,
+preparing the build often involves using tools like CMake or Meson.
+Therefore, as a best practice, it is recommended to always define a
+`prepare` action.
+
+:::
+
+With these actions defined, the workflow becomes:
+
+<Tabs groupId="operating-systems">
+
+<TabItem value="windows" label="Windows" default>
+
+```console
+PS C:\Users\ilg\xpm-demo-hello> xpm run prepare
+> mkdir build
+
+PS C:\Users\ilg\xpm-demo-hello> xpm run build
+> gcc src/hello.c -o build/hello
+
+PS C:\Users\ilg\xpm-demo-hello> xpm run execute
+> build\hello
+Hello world!
+```
+
+</TabItem>
+
+<TabItem value="macos" label="macOS">
+
+```console
+% xpm run prepare
+> mkdir build
+
+% xpm run build
+> gcc src/hello.c -o build/hello
+
+% xpm run execute
+> build/hello
+Hello world!
+```
+
+</TabItem>
+
+<TabItem value="linux" label="GNU/Linux">
+
+```console
+$ xpm run prepare
+> mkdir build
+
+$ xpm run build
+> gcc src/hello.c -o build/hello
+
+$ xpm run execute
+> build/hello
+Hello world!
+```
+
+</TabItem>
+
+</Tabs>
+
+### Visual Studio Code
+
+For convenience, when using
+[Visual Studio Code](https://code.visualstudio.com) with the
+[xPack C/C++ Managed Build Tools](https://marketplace.visualstudio.com/items?itemName=ilg-vscode.xpack) extension,
+the actions are displayed in the bottom left corner and can be executed
+with a single mouse click.
+
+![gcc-version](./img/xpack-actions.png)
+
+## Instantiate a template
+
+The above resulting projects, although functional, are still quite
+simple.
+
+A real world project will probably have multiple configurations, at least
+to build separate debug/release executables, if not even to run tests
+in multiple environments.
+
+Also, more elaborate projects will probably use CMake or meson.
+
+These kind of projects can be created manually, but the process can be
+further automated by using project templates.
+
+To generate the traditional Hello World! project, there is an
+[xpack/hello-world-template-xpack](https://github.com/xpack/hello-world-template-xpack),
+project, also available from npmjs.com as
+[@xpack/hello-world-template](https://www.npmjs.com/package/@xpack/hello-world-template).
+
+Both C and C++ are supported, with **CMake** and **meson** as build system
+generators.
+
+Instantiating the template in interractive mode looks like this:
+
+```console
+ % xpm init --template @xpack/hello-world-template@latest
+
+Checking package @xpack/hello-world-template@latest metadata...
+Installing @xpack/hello-world-template@0.6.1...
+Processing @xpack/hello-world-template@0.6.1...
+
+Programming language? (c, cpp, ?) [cpp]: c
+Build System? (cmake, meson, autotools, ?) [cmake]:
+Toolchain? (gcc, clang, system, ?) [gcc]:
+Creating the C project 'my-project'...
+File 'include/hello-world.h' copied.
+File 'src/hello-world.c' copied.
+File 'libs/adder/include/add/add.h' copied.
+File 'libs/adder/src/add.c' copied.
+Folder 'cmake' copied.
+File 'CMakeLists.txt' generated.
+File '.vscode/tasks.json' copied.
+File '.vscode/settings.json' copied.
+File '.gitignore' copied.
+File '.npmignore' copied.
+File 'README.md' generated.
+File 'LICENSE' generated.
+File 'package.json' generated.
+```
+
+The next step is to satisfy dependencies:
+
+```console
+% xpm install
+@my-scope/my-project...
++ @xpack-dev-tools/ninja-build@1.11.1-3.1
++ @xpack-dev-tools/gcc@14.2.0-1.1
++ @xpack-dev-tools/cmake@3.28.6-1.1
+'xpacks/@xpack-dev-tools/cmake' -> '/Users/ilg/Library/xPacks/@xpack-dev-tools/cmake/3.28.6-1.1'
+'xpacks/@xpack-dev-tools/gcc' -> '/Users/ilg/Library/xPacks/@xpack-dev-tools/gcc/14.2.0-1.1'
+'xpacks/.bin/ccmake' -> '../@xpack-dev-tools/cmake/.content/bin/ccmake'
+'xpacks/@xpack-dev-tools/ninja-build' -> '/Users/ilg/Library/xPacks/@xpack-dev-tools/ninja-build/1.11.1-3.1'
+'xpacks/.bin/cmake' -> '../@xpack-dev-tools/cmake/.content/bin/cmake'
+'xpacks/.bin/ninja' -> '../@xpack-dev-tools/ninja-build/.content/bin/ninja'
+'xpacks/.bin/c++' -> '../@xpack-dev-tools/gcc/.content/bin/c++'
+'xpacks/.bin/cpack' -> '../@xpack-dev-tools/cmake/.content/bin/cpack'
+'xpacks/.bin/ctest' -> '../@xpack-dev-tools/cmake/.content/bin/ctest'
+'xpacks/.bin/cpp' -> '../@xpack-dev-tools/gcc/.content/bin/cpp'
+'xpacks/.bin/g++' -> '../@xpack-dev-tools/gcc/.content/bin/g++'
+'xpacks/.bin/gcc' -> '../@xpack-dev-tools/gcc/.content/bin/gcc'
+'xpacks/.bin/gcov' -> '../@xpack-dev-tools/gcc/.content/bin/gcov'
+'xpacks/.bin/gcov-dump' -> '../@xpack-dev-tools/gcc/.content/bin/gcov-dump'
+'xpacks/.bin/gcov-tool' -> '../@xpack-dev-tools/gcc/.content/bin/gcov-tool'
+'xpacks/.bin/gdb' -> '../@xpack-dev-tools/gcc/.content/bin/gdb'
+'xpacks/.bin/gdb-add-index' -> '../@xpack-dev-tools/gcc/.content/bin/gdb-add-index'
+'xpacks/.bin/gfortran' -> '../@xpack-dev-tools/gcc/.content/bin/gfortran'
+'xpacks/.bin/lto-dump' -> '../@xpack-dev-tools/gcc/.content/bin/lto-dump'
+```
+
+The final step is to run the tests:
+
+```console
+% xpm run test-all
+> xpm run test-debug
+> xpm run prepare --config debug
+> cmake -S . -B build/debug -G Ninja  -D CMAKE_BUILD_TYPE=Debug -D CMAKE_EXPORT_COMPILE_COMMANDS=ON -D CMAKE_TOOLCHAIN_FILE=cmake/toolchains/gcc.cmake
+-- The C compiler identification is GNU 14.2.0
+-- The CXX compiler identification is GNU 14.2.0
+-- Checking whether C compiler has -isysroot
+-- Checking whether C compiler has -isysroot - yes
+-- Checking whether C compiler supports OSX deployment target flag
+-- Checking whether C compiler supports OSX deployment target flag - yes
+-- Detecting C compiler ABI info
+-- Detecting C compiler ABI info - done
+-- Check for working C compiler: /Users/ilg/tmp/my-project/xpacks/.bin/gcc - skipped
+-- Detecting C compile features
+-- Detecting C compile features - done
+-- Checking whether CXX compiler has -isysroot
+-- Checking whether CXX compiler has -isysroot - yes
+-- Checking whether CXX compiler supports OSX deployment target flag
+-- Checking whether CXX compiler supports OSX deployment target flag - yes
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Check for working CXX compiler: /Users/ilg/tmp/my-project/xpacks/.bin/g++ - skipped
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+-- The ASM compiler identification is GNU
+-- Found assembler: /Users/ilg/tmp/my-project/xpacks/.bin/gcc
+-- Build type: Debug
+-- Project path: /Users/ilg/tmp/my-project
+-- PATH: /Users/ilg/tmp/my-project/xpacks/.bin:/Users/ilg/tmp/my-project/xpacks/.bin:/Users/ilg/tmp/my-project/xpacks/.bin:/Users/ilg/.nvm/versions/node/v22.11.0/bin:/usr/local/bin:/System/Cryptexes/App/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/local/bin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin
+-- CMake version: 3.28.6
+-- Compiler: GNU 14.2.0
+-- A> hello-world
+-- Configuring done (2.2s)
+-- Generating done (0.0s)
+-- Build files have been written to: /Users/ilg/tmp/my-project/build/debug
+> xpm run build --config debug
+> cmake -S . -B build/debug -G Ninja  -D CMAKE_BUILD_TYPE=Debug -D CMAKE_EXPORT_COMPILE_COMMANDS=ON
+-- Build type: Debug
+-- Project path: /Users/ilg/tmp/my-project
+-- PATH: /Users/ilg/tmp/my-project/xpacks/.bin:/Users/ilg/tmp/my-project/xpacks/.bin:/Users/ilg/tmp/my-project/xpacks/.bin:/Users/ilg/.nvm/versions/node/v22.11.0/bin:/usr/local/bin:/System/Cryptexes/App/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/local/bin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin
+-- CMake version: 3.28.6
+-- Compiler: GNU 14.2.0
+-- A> hello-world
+-- Configuring done (0.1s)
+-- Generating done (0.0s)
+-- Build files have been written to: /Users/ilg/tmp/my-project/build/debug
+> cmake --build build/debug --verbose
+Change Dir: '/Users/ilg/tmp/my-project/build/debug'
+
+Run Build Command(s): /Users/ilg/tmp/my-project/xpacks/.bin/ninja -v
+[1/3] /Users/ilg/tmp/my-project/xpacks/.bin/gcc -DDEBUG -I/Users/ilg/tmp/my-project/include -I/Users/ilg/tmp/my-project/libs/adder/include -O0 -g3 -std=c11 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk -static-libgcc -static-libstdc++ -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections -flto -MD -MT CMakeFiles/hello-world.dir/libs/adder/src/add.c.o -MF CMakeFiles/hello-world.dir/libs/adder/src/add.c.o.d -o CMakeFiles/hello-world.dir/libs/adder/src/add.c.o -c /Users/ilg/tmp/my-project/libs/adder/src/add.c
+[2/3] /Users/ilg/tmp/my-project/xpacks/.bin/gcc -DDEBUG -I/Users/ilg/tmp/my-project/include -I/Users/ilg/tmp/my-project/libs/adder/include -O0 -g3 -std=c11 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk -static-libgcc -static-libstdc++ -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections -flto -MD -MT CMakeFiles/hello-world.dir/src/hello-world.c.o -MF CMakeFiles/hello-world.dir/src/hello-world.c.o.d -o CMakeFiles/hello-world.dir/src/hello-world.c.o -c /Users/ilg/tmp/my-project/src/hello-world.c
+[3/3] : && /Users/ilg/tmp/my-project/xpacks/.bin/gcc -O0 -g3 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk -Wl,-search_paths_first -Wl,-headerpad_max_install_names -static-libgcc -static-libstdc++ -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections -flto -Wl,-dead_strip CMakeFiles/hello-world.dir/src/hello-world.c.o CMakeFiles/hello-world.dir/libs/adder/src/add.c.o -o hello-world   && :
+-macosx_version_min has been renamed to -macos_version_min
+-macosx_version_min has been renamed to -macos_version_min
+
+> xpm run execute --config debug
+> build/debug/hello-world
+Hello World!
+(in debug mode)
+Check adder lib: 41 + 1 = 42
+> xpm run test-release
+> xpm run prepare --config release
+> cmake -S . -B build/release -G Ninja  -D CMAKE_BUILD_TYPE=Release -D CMAKE_EXPORT_COMPILE_COMMANDS=ON -D CMAKE_TOOLCHAIN_FILE=cmake/toolchains/gcc.cmake
+-- The C compiler identification is GNU 14.2.0
+-- The CXX compiler identification is GNU 14.2.0
+-- Checking whether C compiler has -isysroot
+-- Checking whether C compiler has -isysroot - yes
+-- Checking whether C compiler supports OSX deployment target flag
+-- Checking whether C compiler supports OSX deployment target flag - yes
+-- Detecting C compiler ABI info
+-- Detecting C compiler ABI info - done
+-- Check for working C compiler: /Users/ilg/tmp/my-project/xpacks/.bin/gcc - skipped
+-- Detecting C compile features
+-- Detecting C compile features - done
+-- Checking whether CXX compiler has -isysroot
+-- Checking whether CXX compiler has -isysroot - yes
+-- Checking whether CXX compiler supports OSX deployment target flag
+-- Checking whether CXX compiler supports OSX deployment target flag - yes
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Check for working CXX compiler: /Users/ilg/tmp/my-project/xpacks/.bin/g++ - skipped
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+-- The ASM compiler identification is GNU
+-- Found assembler: /Users/ilg/tmp/my-project/xpacks/.bin/gcc
+-- Build type: Release
+-- Project path: /Users/ilg/tmp/my-project
+-- PATH: /Users/ilg/tmp/my-project/xpacks/.bin:/Users/ilg/tmp/my-project/xpacks/.bin:/Users/ilg/tmp/my-project/xpacks/.bin:/Users/ilg/.nvm/versions/node/v22.11.0/bin:/usr/local/bin:/System/Cryptexes/App/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/local/bin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin
+-- CMake version: 3.28.6
+-- Compiler: GNU 14.2.0
+-- A> hello-world
+-- Configuring done (1.8s)
+-- Generating done (0.0s)
+-- Build files have been written to: /Users/ilg/tmp/my-project/build/release
+> xpm run build --config release
+> cmake -S . -B build/release -G Ninja  -D CMAKE_BUILD_TYPE=Release -D CMAKE_EXPORT_COMPILE_COMMANDS=ON
+-- Build type: Release
+-- Project path: /Users/ilg/tmp/my-project
+-- PATH: /Users/ilg/tmp/my-project/xpacks/.bin:/Users/ilg/tmp/my-project/xpacks/.bin:/Users/ilg/tmp/my-project/xpacks/.bin:/Users/ilg/.nvm/versions/node/v22.11.0/bin:/usr/local/bin:/System/Cryptexes/App/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/local/bin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin
+-- CMake version: 3.28.6
+-- Compiler: GNU 14.2.0
+-- A> hello-world
+-- Configuring done (0.1s)
+-- Generating done (0.0s)
+-- Build files have been written to: /Users/ilg/tmp/my-project/build/release
+> cmake --build build/release --verbose
+Change Dir: '/Users/ilg/tmp/my-project/build/release'
+
+Run Build Command(s): /Users/ilg/tmp/my-project/xpacks/.bin/ninja -v
+[1/3] /Users/ilg/tmp/my-project/xpacks/.bin/gcc  -I/Users/ilg/tmp/my-project/include -I/Users/ilg/tmp/my-project/libs/adder/include -O3 -DNDEBUG -std=c11 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk -static-libgcc -static-libstdc++ -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections -flto -MD -MT CMakeFiles/hello-world.dir/libs/adder/src/add.c.o -MF CMakeFiles/hello-world.dir/libs/adder/src/add.c.o.d -o CMakeFiles/hello-world.dir/libs/adder/src/add.c.o -c /Users/ilg/tmp/my-project/libs/adder/src/add.c
+[2/3] /Users/ilg/tmp/my-project/xpacks/.bin/gcc  -I/Users/ilg/tmp/my-project/include -I/Users/ilg/tmp/my-project/libs/adder/include -O3 -DNDEBUG -std=c11 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk -static-libgcc -static-libstdc++ -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections -flto -MD -MT CMakeFiles/hello-world.dir/src/hello-world.c.o -MF CMakeFiles/hello-world.dir/src/hello-world.c.o.d -o CMakeFiles/hello-world.dir/src/hello-world.c.o -c /Users/ilg/tmp/my-project/src/hello-world.c
+[3/3] : && /Users/ilg/tmp/my-project/xpacks/.bin/gcc -O3 -DNDEBUG -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk -Wl,-search_paths_first -Wl,-headerpad_max_install_names -static-libgcc -static-libstdc++ -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections -flto -Wl,-dead_strip CMakeFiles/hello-world.dir/src/hello-world.c.o CMakeFiles/hello-world.dir/libs/adder/src/add.c.o -o hello-world   && :
+-macosx_version_min has been renamed to -macos_version_min
+-macosx_version_min has been renamed to -macos_version_min
+
+> xpm run execute --config release
+> build/release/hello-world
+Hello World!
+(in release mode)
+(no asserts)
+Check adder lib: 41 + 1 = 42
+```
+
+## Final considerations
+
+The **xpm** workflow described above can be successfully applied
+in various scenarios:
+
+-  **Source code libraries**: These can be included as dependencies
+in other projects.
+-  **Projects with executables**: These can also be included as
+dependencies in other projects.
+-  **Final projects**: These produce various artefacts and can
+run natively or on embedded platforms.
+
+Once the mechanism for defining `xpack.actions` is understood,
+it becomes possible to implement highly complex configurations.
+For example, you can create intricate build configurations for
+very elaborate multi-platform tests.
+
+For final projects that are not intended to be used as dependencies in
+other projects, having a complex top-level package.json is not a
+significant issue.
+
+However, for projects intended to produce packages for use as dependencies
+in other projects, it is recommended to keep only the necessary definitions
+in the top-level `package.json`.
+
+### Separate `tests/package.json`
+
+To reduce clutter, it is recommended to move all test-related definitions
+to a separate `tests` folder, with its own `package.json`.
+
+### Separate `build_assets/package.json`
+
+Similarly, if the project produces executables to be used as dependencies,
+it is recommended to move all build related files into a separate folder,
+for example `build-assets`, with its own `package.json`.
+

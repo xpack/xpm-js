@@ -1,4 +1,7 @@
 /**
+ * DO NOT EDIT!
+ * Automatically generated from docusaurus-template-liquid/templates/docusaurus.
+ *
  * Any CSS included here will be global. The classic template
  * bundles Infima by default. Infima is a CSS framework designed to
  * work well for content-centric websites.
@@ -37,6 +40,8 @@
 p.hero__code code  {
   color: var(--ifm-font-color-base)
 }
+
+
 
 hr.hero__hr {
   /* background-color: var(--ifm-color-primary); */
@@ -111,6 +116,10 @@ h2[class*="title"]
 img.mac-stadium-img {
   float: right;
   width: 200px;
+}
+
+code {
+  vertical-align: baseline;
 }
 
 /* ------------------------------------------------------------------------- */

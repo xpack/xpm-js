@@ -1,4 +1,9 @@
+// DO NOT EDIT!
+// Automatically generated from docusaurus-template-liquid/templates/docusaurus.
+
 import type {SidebarsConfig} from '@docusaurus/plugin-content-docs';
+import cliSidebar from "./sidebar-cli";
+import {userSidebarCategory} from "./sidebar-user";
 
 /**
  * Creating a sidebar enables you to:
@@ -11,7 +16,7 @@ import type {SidebarsConfig} from '@docusaurus/plugin-content-docs';
  Create as many sidebars as you want.
  */
 const sidebars: SidebarsConfig = {
-  // But you can create a sidebar manually
+
   docsSidebar: [
     {
       type: 'doc',
@@ -23,11 +28,7 @@ const sidebars: SidebarsConfig = {
       id: 'install/index',
       label: 'Install Guide'
     },
-    {
-      type: 'doc',
-      id: 'user/index',
-      label: 'User Information'
-    },
+    userSidebarCategory,
     {
       type: 'doc',
       id: 'faq/index',
@@ -44,10 +45,27 @@ const sidebars: SidebarsConfig = {
       label: 'Releases'
     },
     {
-      type: 'doc',
-      id: 'about/index',
-      label: 'About'
-    }, /*
+      type: 'category',
+      label: 'Project',
+      collapsed: false,
+      items: [
+        {
+          type: 'doc',
+          id: 'project/about/index',
+          label: 'About'
+        },
+        {
+          type: 'doc',
+          id: 'project/history/index',
+          label: 'History'
+        },
+        {
+          type: 'link',
+          label: 'License',
+          href: 'https://opensource.org/license/MIT',
+        },
+      ]
+    },
     {
       type: 'doc',
       id: 'developer/index',
@@ -57,52 +75,10 @@ const sidebars: SidebarsConfig = {
       type: 'doc',
       id: 'maintainer/index',
       label: 'Maintainer Information'
-    }, */
-  ],
-  cliSidebar: [
-    {
-      type: 'doc',
-      id: 'cli/xpm/index',
-      label: 'xpm'
-    },
-    {
-      type: 'doc',
-      id: 'cli/xpm/init/index',
-      label: 'xpm init'
-    },
-    {
-      type: 'doc',
-      id: 'cli/xpm/install/index',
-      label: 'xpm install'
-    },
-    {
-      type: 'doc',
-      id: 'cli/xpm/link/index',
-      label: 'xpm link'
-    },
-    {
-      type: 'doc',
-      id: 'cli/xpm/list/index',
-      label: 'xpm list'
-    },
-    {
-      type: 'doc',
-      id: 'cli/xpm/run/index',
-      label: 'xpm run'
-    },
-    {
-      type: 'doc',
-      id: 'cli/xpm/uninstall/index',
-      label: 'xpm uninstall'
     },
   ],
-  apiSidebar: [
-    {
-      type: 'doc',
-      id: 'api/index',
-      label: 'API Reference (TypeDoc)'
-    },
-  ]
+  cliSidebar
+  
 };
 
 export default sidebars;

@@ -1,7 +1,15 @@
-import { themes as prismThemes } from 'prism-react-renderer';
-import type { Config } from '@docusaurus/types';
+// DO NOT EDIT!
+// Automatically generated from docusaurus-template-liquid/templates/docusaurus.
+
+import {themes as prismThemes} from 'prism-react-renderer';
+import type {Config} from '@docusaurus/types';
 import type * as Preset from '@docusaurus/preset-classic';
 import logger from '@docusaurus/logger';
+
+import cliNavbar from './docusaurus-config-navbar-cli'
+
+
+import {redirects} from './docusaurus-config-redirects'
 
 // The node.js modules cannot be used in modules imported in browser code:
 // webpack < 5 used to include polyfills for node.js core modules by default.
@@ -24,14 +32,14 @@ function getCustomFields() {
   const topFileContent = fs.readFileSync(topFilePath);
 
   const topPackageJson = JSON.parse(topFileContent.toString());
-  const npmVersion = topPackageJson.version.replace(/[.-]pre/, '');
+  const releaseVersion = topPackageJson.version.replace(/[.-]pre/, '');
 
   logger.info(`package version: ${topPackageJson.version}`);
 
   const customFields = {}
 
   return {
-    npmVersion,
+    releaseVersion,
     docusaurusVersion: require('@docusaurus/core/package.json').version,
     buildTime: new Date().getTime(),
     ...customFields,
@@ -54,7 +62,7 @@ const config: Config = {
   url: 'https://xpack.github.io/',
   // Set the /<baseUrl>/ pathname under which your site is served
   // For GitHub pages deployment, it is often '/<projectName>/'
-  baseUrl: '/xpm/',
+  baseUrl: '/xpm-js/',
 
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
@@ -76,83 +84,51 @@ const config: Config = {
     locales: ['en'],
   },
 
+  presets: [
+    [
+      'classic',
+      {
+        docs: {
+          sidebarPath: './sidebars.ts',
+          // Please change this to your repo.
+          // Remove this to remove the "edit this page" links.
+          editUrl: 'https://github.com/xpack/xpm-js/edit/master/website/',
+          // showLastUpdateAuthor: true,
+          showLastUpdateTime: true,
+        },
+        blog: {
+          showReadingTime: true,
+          feedOptions: {
+            type: ['rss', 'atom'],
+            xslt: true,
+          },
+          // Please change this to your repo.
+          // Remove this to remove the "edit this page" links.
+          editUrl: 'https://github.com/xpack/xpm-js/edit/master/website/',
+          // Useful options to enforce blogging best practices
+          onInlineTags: 'warn',
+          onInlineAuthors: 'warn',
+          onUntruncatedBlogPosts: 'warn',
+        },
+        sitemap: {
+          // https://docusaurus.io/docs/api/plugins/@docusaurus/plugin-sitemap
+          changefreq: 'weekly',
+          priority: 0.5,
+          // ignorePatterns: ['/tags/**'],
+          filename: 'sitemap.xml',
+        },
+        theme: {
+          customCss: './src/css/custom.css',
+        },
+      } satisfies Preset.Options,
+    ],
+  ],
 
   plugins: [
     [
-      '@docusaurus/plugin-content-docs',
-      {
-        id: 'docs',
-        path: './docs',
-        routeBasePath: 'docs',
-        sidebarPath: './sidebars.ts',
-        // Remove this to remove the "edit this page" links.
-        editUrl: 'https://github.com/xpack/xpm-js/edit/master/website/',
-        // showLastUpdateAuthor: true,
-        showLastUpdateTime: true,
-      },
-    ],
-    [
-      // https://docusaurus.io/docs/api/plugins/@docusaurus/plugin-content-blog
-      '@docusaurus/plugin-content-blog',
-      {
-        showReadingTime: true,
-        feedOptions: {
-          type: ['rss', 'atom'],
-          xslt: true,
-        },
-        // Remove this to remove the "edit this page" links.
-        editUrl:
-          'https://github.com/xpack/xpm-js/edit/master/website/',
-        // Useful options to enforce blogging best practices
-        onInlineTags: 'warn',
-        onInlineAuthors: 'warn',
-        onUntruncatedBlogPosts: 'warn',
-        showLastUpdateTime: true,
-        blogSidebarCount: 8,
-        authorsMapPath: '../authors.yml',
-      },
-    ],
-    [
-      '@docusaurus/plugin-content-pages',
-      {}
-    ],
-    [
       // https://docusaurus.io/docs/next/api/plugins/@docusaurus/plugin-client-redirects#redirects
       '@docusaurus/plugin-client-redirects',
-      {
-        // fromExtensions: ['html', 'htm'], // /myPage.html -> /myPage
-        // toExtensions: ['exe', 'zip'], // /myAsset -> /myAsset.zip (if latter exists)
-        redirects: [
-          //   // /docs/oldDoc -> /docs/newDoc
-          //   {
-          //     to: '/docs/newDoc',
-          //     from: '/docs/oldDoc',
-          //   },
-          //   // Redirect from multiple old paths to the new path
-          //   {
-          //     to: '/docs/newDoc2',
-          //     from: ['/docs/oldDocFrom2019', '/docs/legacyDocFrom2016'],
-          //   },
-        ],
-        createRedirects(existingPath) {
-          logger.info(existingPath);
-          //   if (existingPath.includes('/evenimente')) {
-          //     // logger.info(`to ${existingPath} from ${existingPath.replace('/evenimente', '/events')}`);
-          //     // Redirect from /events/X to /evenimente/X
-          //     return [
-          //       existingPath.replace('/evenimente', '/events')
-          //     ];
-          //   } else if (existingPath.includes('/amintiri')) {
-          //     // logger.info(`to ${existingPath} from ${existingPath.replace('/amintiri', '/blog')}`);
-          //     // Redirect from /blog/Z to /amintiri/X
-          //     return [
-          //       existingPath.replace('/amintiri', '/blog')
-          //     ];
-          //   }
-          //   return undefined; // Return a falsy value: no redirect created
-          //   },
-        }
-      }
+      redirects
     ],
     [
       // https://docusaurus.io/docs/api/plugins/@docusaurus/plugin-google-gtag
@@ -161,17 +137,6 @@ const config: Config = {
       {
         trackingID: 'G-T50NMR8JZ1',
         anonymizeIP: false,
-      }
-    ],
-    [
-      // https://docusaurus.io/docs/api/plugins/@docusaurus/plugin-sitemap
-      // https://cronica-it.github.io/sitemap.xml
-      '@docusaurus/plugin-sitemap',
-      {
-        changefreq: 'weekly',
-        priority: 0.5,
-        // ignorePatterns: ['/tags/**'],
-        filename: 'sitemap.xml',
       }
     ],
     [
@@ -184,9 +149,11 @@ const config: Config = {
         disableInDev: false,
       },
     ],
+
     // Local plugins.
     './src/plugins/SelectReleasesPlugin',
   ],
+
 
   // https://docusaurus.io/docs/api/docusaurus-config#headTags
   headTags: [
@@ -195,7 +162,7 @@ const config: Config = {
       attributes: {
         rel: 'icon',
         type: 'image/png',
-        href: '/xpm/favicons/favicon-48x48.png',
+        href: '/xpm-js/favicons/favicon-48x48.png',
         sizes: '48x48'
       }
     },
@@ -204,14 +171,14 @@ const config: Config = {
       attributes: {
         rel: 'icon',
         type: 'image/svg+xml',
-        href: '/xpm/favicons/favicon.svg'
+        href: '/xpm-js/favicons/favicon.svg'
       }
     },
     {
       tagName: 'link',
       attributes: {
         rel: 'shortcut icon',
-        href: '/xpm/favicons/favicon.ico'
+        href: '/xpm-js/favicons/favicon.ico'
       }
     },
     {
@@ -226,18 +193,9 @@ const config: Config = {
       tagName: 'link',
       attributes: {
         rel: 'manifest',
-        href: '{{baseUrl}}favicons/site.webmanifest'
+        href: '/xpm-js/favicons/site.webmanifest'
       }
     }
-  ],
-
-  themes: [
-    [
-      '@docusaurus/theme-classic',
-      {
-        customCss: './src/css/custom.css',
-      }
-    ],
   ],
 
   themeConfig: {
@@ -247,10 +205,9 @@ const config: Config = {
     metadata: [
       {
         name: 'keywords',
-        content: 'xpm, xpack, build, test, dependencies, npm, reproducibility'
+        content: 'xpm, xpack, project, manager, build, test, dependencies, npm, reproducibility'
       }
     ],
-
     navbar: {
       // Overriden by i18n/en/docusaurus-theme-classic.
       title: 'The xPack Project',
@@ -295,51 +252,11 @@ const config: Config = {
             },
             {
               label: 'About',
-              to: '/docs/about'
+              to: '/docs/project/about'
             }
           ],
         },
-        {
-          type: 'dropdown',
-          label: 'CLI Reference',
-          to: '/docs/cli/xpm',
-          position: 'left',
-          items: [
-            {
-              label: 'xpm',
-              to: '/docs/cli/xpm'
-            },
-            {
-              label: 'xpm init',
-              to: '/docs/cli/xpm/init'
-            },
-            {
-              label: 'xpm install',
-              to: '/docs/cli/xpm/install'
-            },
-            {
-              label: 'xpm link',
-              to: '/docs/cli/xpm/link'
-            },
-            {
-              label: 'xpm list',
-              to: '/docs/cli/xpm/list'
-            },
-            {
-              label: 'xpm run',
-              to: '/docs/cli/xpm/run'
-            },
-            {
-              label: 'xpm uninstall',
-              to: '/docs/cli/xpm/uninstall'
-            },
-          ],
-        },
-        {
-          to: '/docs/api',
-          label: 'API Reference',
-          position: 'left',
-        },
+        cliNavbar,
         {
           type: 'dropdown',
           to: '/blog',
@@ -367,9 +284,9 @@ const config: Config = {
           'aria-label': 'GitHub repository',
         },
         {
-          label: `v${customFields.npmVersion}`,
+          label: `v${customFields.releaseVersion}`,
           position: 'right',
-          href: `https://www.npmjs.com/package/xpm/v/${customFields.npmVersion}`,
+          href: `https://www.npmjs.com/package/xpm/v/${customFields.releaseVersion}`,
         },
         {
           href: 'https://github.com/xpack/',

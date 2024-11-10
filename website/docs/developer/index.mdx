@@ -1,0 +1,176 @@
+---
+
+# DO NOT EDIT!
+# Automatically generated from docusaurus-template-liquid/templates/docusaurus.
+
+title: Developer Information
+description: Assistance for developers looking to build the module, including prerequisites, repositories used, and scripts.
+keywords:
+  - xpack
+  - xpm
+  - prerequisites
+  - repositories
+  - build
+
+date: 2024-10-25 13:10:00 +0300
+
+node_version: 18.20.4
+
+---
+
+import customField from '@site/src/libs/customField';
+import CodeBlock from '@theme/CodeBlock';
+
+import Prerequisites from './_common/_prerequisites.mdx';
+import GetProjectSources from './_common/_get-project-sources.mdx';
+
+import TestResults from './_test-results.mdx';
+
+{/* ------------------------------------------------------------------------ */}
+
+[![license](https://img.shields.io/github/license/xpack/xpm-js.svg)](https://github.com/xpack/xpm-js/blob/xpack/LICENSE)
+[![GitHub issues](https://img.shields.io/github/issues/xpack/xpm-js.svg)](https://github.com/xpack/xpm-js/issues)
+[![GitHub pulls](https://img.shields.io/github/issues-pr/xpack/xpm-js.svg)](https://github.com/xpack/xpm-js/pulls/)
+[![TS-Standard - TypeScript Standard Style Guide](https://badgen.net/badge/code%20style/ts-standard/blue?icon=typescript)](https://github.com/standard/ts-standard/)
+
+# How to build xpm
+
+This page is designed for developers of the
+**xPack Project Manager**
+project and provides documentation on how to build and test the package.
+
+<Prerequisites nodeVersion="18.0.0" nodeVersionMajor="18"/>
+
+<GetProjectSources />
+
+## Satisfy dependencies
+
+```sh
+npm --prefix ~/Work/npm-modules/xpm-js.git install
+```
+
+## Add links for development
+
+To facilitate the use of this module in other packages, add a link
+from the central npm storage to this local development folder:
+
+```sh
+npm --prefix ~/Work/npm-modules/xpm-js.git link
+```
+
+And in the projects referring it:
+
+```sh
+npm link xpm
+```
+
+## Start the compile background task
+
+The TypeScript compiler can automatically recompile modified files. For
+this, start it in `watch` mode.
+
+```sh
+npm --prefix ~/Work/npm-modules/xpm-js.git run compile-watch
+```
+
+## Language standard compliance
+
+The current version is compiled with TypeScript :
+
+- https://www.typescriptlang.org
+- https://www.typescriptlang.org/docs/handbook
+
+The compiler is configured to produce `es2020` & `commonjs` files,
+which means ECMAScript6 with legacy CommonJS modules, that can be imported
+by any other project either via `require()` or `import`.
+
+For more details on how to configure `tsconfig.json`, please see:
+
+- [TSConfig](https://www.typescriptlang.org/tsconfig/)
+
+## Standard style
+
+As style, the project uses `ts-standard`, the TypeScript variant of
+[Standard Style](https://standardjs.com/#typescript),
+automatically checked at each commit via CI.
+
+```js
+// eslint-disable-next-line @typescript-eslint/no-xxx-yyy
+```
+
+The known rules are documented in the
+[typescript-eslint](https://github.com/typescript-eslint/typescript-eslint/tree/main/packages/eslint-plugin/docs/rules)
+project.
+
+Generally, to fit two editor windows side by side in a screen,
+all files should limit the line length to 80.
+
+```js
+/* eslint max-len: [ "error", 80, { "ignoreUrls": true } ] */
+```
+
+Known and accepted exceptions:
+
+- none
+
+To manually fix compliance with the style guide (where possible):
+
+<CodeBlock language="console"> {
+`% npm run fix
+
+> xpm@${customField('version')} fix
+> ts-standard --fix src && standard --fix test
+...
+`} </CodeBlock>
+
+## Documentation metadata
+
+The documentation metadata uses the
+[TypeDoc](https://typedoc.org/guides/doccomments/) tags, without
+explicit types, since they are provided by TypeScript.
+
+:::note
+
+Microsoft is currently developing a new project ([TSDoc](https://tsdoc.org))
+which tries to standardise TypeScript documentation metadata.
+
+This standard is generaly compatible with TypeDoc; at the time of
+this writing, among the visible differences is the lack
+of the `@category` or `@group` tags.
+
+:::
+
+## Tests
+
+The tests use the [`node-tap`](http://www.node-tap.org) framework
+(_A Test-Anything-Protocol library for Node.js_, written by Isaac Schlueter).
+
+Tests can be written in TypeScript, assuming `ts-node` is also installed
+(https://node-tap.org/docs/using-with/#using-tap-with-typescript)
+
+As for any `npm` package, the standard way to run the project tests is via
+`npm run test`:
+
+```sh
+npm --prefix ~/Work/npm-modules/xpm-js.git install
+npm --prefix ~/Work/npm-modules/xpm-js.git run test
+```
+
+<TestResults />
+
+
+
+### Continuous Integration (CI)
+
+The module is 
+CI tested on every push via
+[GitHub Actions](https://github.com/xpack/xpm-js/actions), on Ubuntu,
+Windows and macOS, using node 18 and 20.
+
+## Tricks & tips
+
+To trace TypeScript module resolution:
+
+```json
+    "compile": "tsc --traceResolution  -p ./",
+```

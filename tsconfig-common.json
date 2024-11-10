@@ -1,0 +1,41 @@
+{
+  /* https://www.typescriptlang.org/tsconfig */
+  "$schema": "https://json.schemastore.org/tsconfig",
+
+  "compilerOptions": {
+    "sourceMap": true,
+    "declaration": true,
+    "target": "es2020",
+    "lib": [
+      "es2020"
+    ],
+    "allowUnreachableCode": false,
+    "allowUnusedLabels": false,
+    "exactOptionalPropertyTypes": true,
+    "alwaysStrict": true,
+    "esModuleInterop": true,
+    "declarationMap": true,
+    "forceConsistentCasingInFileNames": true,
+    "module": "node16",
+    "moduleResolution": "node16",
+    "noEmitOnError": true,
+    "noFallthroughCasesInSwitch": true,
+    "noImplicitAny": true,
+    "noImplicitOverride": true,
+    "noImplicitReturns": true,
+    "noImplicitThis": true,
+    "noPropertyAccessFromIndexSignature": true,
+    "noUncheckedIndexedAccess": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "preserveConstEnums": true,
+    "removeComments": true,
+    "skipLibCheck": true,
+    "strict": true,
+    "typeRoots": [
+      "./node_modules/@types",
+      "./typings"
+    ],
+    "useUnknownInCatchVariables": true
+  }
+}
