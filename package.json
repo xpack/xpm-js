@@ -16,30 +16,43 @@
     "xpm": "bin/xpm.js"
   },
   "scripts": {
-    "npm-install ": "npm install",
+    "fix": "standard --fix lib tests",
+    "dev-cycle": "npm run fix && npm run compile && npm run test-100-c8",
+    "npm-install": "npm install",
     "npm-link-deps": "npm link @ilg/cli-start-options @xpack/node-modules-helper",
-    "fix": "standard --fix",
-    "outdated": "npm outdated",
-    "update": "npm update",
-    "version-patch": "npm version patch",
-    "version-minor": "npm version minor",
+    "npm-outdated": "npm outdated",
+    "npm-update": "npm update",
+    "npm-version-patch": "npm version patch",
+    "npm-version-minor": "npm version minor",
+    "npm-pack": "npm pack",
+    "npm-link": "npm link",
     "postversion": "git push origin --all && git push origin --tags",
-    "pack": "npm pack",
     "git-log": "git log --pretty='%cd * %h %s' --date=short",
-    "lint": "standard",
-    "test": "npm run lint && npm run test-tap -s",
-    "test-tap": "tap --disable-coverage --allow-empty-coverage run \"tests/tap/*.js\"",
-    "test-tap100": "tap run \"tests/tap/*.js\"",
-    "test-coverage": "tap --timeout 600 --allow-incomplete-coverage run \"tests/tap/*.js\"",
-    "tap": "tap --disable-coverage --allow-empty-coverage run",
-    "tap-config-dump": "tap config dump",
-    "prepublishOnly": "standard && npm run test-tap -s",
+    "lint": "standard lib",
+    "prepare": "npm run compile && npm run lint",
+    "pretest": "npm run lint",
+    "pretest-100": "npm run lint",
+    "pretest-100-c8": "npm run lint",
+    "tap": "tap --reporter=spec",
+    "tap-c8": "c8 tap --reporter=spec",
+    "test-tap": "tap --disable-coverage --allow-empty-coverage",
+    "test-tap-coverage": "tap --coverage",
+    "test-tap-coverage-c8": "c8 -- tap",
+    "test-tap-coverage-100": "tap --coverage --100",
+    "test-tap-coverage-100-c8": "c8 --100 -- tap",
+    "test": "npm run test-tap -s",
+    "test-100": "npm run test-tap-coverage-100 -s",
+    "test-100-c8": "npm run test-tap-coverage-100-c8 -s",
+    "test-ci": "npm run test",
+    "prepublishOnly": "npm run lint && npm run test-tap -s",
     "postpublish": "git push origin --follow-tags",
     "dumpconf": "env | sort | uniq",
-    "deep-clean": "del-cli node_modules package-lock.json",
-    "npm-version": "echo $(which node) $(node --version) && echo $(which npm) $(npm --version)",
-    "generate-top-commons": "bash node_modules/@xpack/node-modules-helper/maintenance-scripts/generate-top-commons.sh"
-
+    "show-versions": "echo $(which node) $(node --version) && echo $(which npm) $(npm --version)",
+    "compile": "echo nothing to compile",
+    "clean": "del-cli cjs 'tests/**/cjs' 'src/**/*.d.ts' 'src/**/*.d.ts.map' 'src/**/*.js' 'src/**/*.js.map' 'tests/**/*.d.ts' 'tests/**/*.d.ts.map' 'tests/**/*.js' 'tests/**/*.js.map' '**/tsconfig.tsbuildinfo' .nyc_output coverage",
+    "deep-clean": "npm run clean && rm -rf node_modules package-lock.json",
+    "generate-top-commons": "bash node_modules/@xpack/node-modules-helper/maintenance-scripts/generate-top-commons.sh",
+    "create-website": "mkdir -p website && cd website && npm link @xpack/docusaurus-template-liquid @xpack/node-modules-helper && bash node_modules/@xpack/docusaurus-template-liquid/maintenance-scripts/generate-commons.sh"
   },
   "repository": {
     "type": "git",
@@ -56,12 +69,12 @@
   "author": {
     "name": "Liviu Ionescu",
     "email": "ilg@livius.net",
-    "url": "https://github.com/ilg-ul/"
+    "url": "https://github.com/ilg-ul"
   },
   "contributors": [],
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/xpack/xpm-js/issues/"
+    "url": "https://github.com/xpack/xpm-js/issues"
   },
   "homepage": "https://xpack.github.io/xpm-js/",
   "engines": {
@@ -76,25 +89,27 @@
     "copy-file": "^11.0.0",
     "cross-spawn": "^7.0.3",
     "decompress": "^4.2.1",
-    "del": "^7.1.0",
+    "del": "^8.0.0",
     "https-proxy-agent": "^7.0.4",
     "is-windows": "^1.0.2",
     "json": "^11.0.0",
     "liquidjs": "^10.18.0",
-    "make-dir": "^4.0.0",
+    "make-dir": "^5.0.0",
     "mz": "^2.7.0",
     "node-fetch": "^3.3.2",
     "pacote": "^17.0.6",
     "parse-git-config": "^3.0.0",
     "proxy-from-env": "^1.1.0",
     "semver": "^7.6.0",
-    "tar": "^6.2.0"
+    "tar": "^7.4.3"
   },
   "devDependencies": {
-    "del-cli": "^5.1.0",
-    "standard": "^17.1.0",
+    "del-cli": "^6.0.0",
+    "standard": "^17.1.2",
     "tap": "^18.7.1",
-    "tap-mocha-reporter": "^5.0.4"
+    "tap-mocha-reporter": "^5.0.4",
+    "json": "^11.0.0",
+    "liquidjs": "^10.18.0"
   },
   "bundleDependencies": [
     "@ilg/cli-start-options",
@@ -123,29 +138,39 @@
     "reporter-arg": [
       "classic"
     ],
-    "timeout": 300,
-    "jobs": 1
+    "timeout": 30,
+    "jobs": 1,
+    "files": [
+      "tests/tap/*.js",
+      "tests/tap/*.ts"
+    ],
+    "node-arg": []
   },
   "standard": {
     "ignore": [
       "/website/"
     ]
   },
-  "cliConfig": {
-    "greeting": "The xPack project manager command line tool"
+  "buildConfig": {
+    "greeting": "The xPack project manager command line tool",
+    "isJavaScript": "true"
   },
-  "websiteConfig": {
-    "shortName": "xpm",
-    "name": "Project Manager",
-    "longName": "xPack Project Manager",
-    "title": "xpm - The xPack Project Manager",
-    "metadataDescription": "The xPack Project Manager command line tool",
-    "metadataKeywords": "xpm, xpack, project, manager, build, test, dependencies, npm, reproducibility",
-    "hasCli": "true",
-    "isInstallGlobally": "true",
-    "shareOnTwitter": "true",
-    "hasCustomHomepageFeatures": "true",
-    "hasCustomUserSidebar": "true",
-    "hasCustomUserInformation": "true"
+  "bundledDependencies": [],
+  "eslintConfig": {
+    "rules": {
+      "max-len": [
+        "error",
+        80,
+        {
+          "ignoreUrls": true
+        }
+      ]
+    }
+  },
+  "ts-standard": {
+    "ignore": [
+      "**/*.d.ts",
+      "**/*.js"
+    ]
   }
 }
