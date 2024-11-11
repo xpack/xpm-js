@@ -34,52 +34,59 @@ Based on the content, there are two types of packages:
 - packages with source libraries (source xPacks)
 - packages with executables, usually platform specific binary tools (binary xPacks)
 
-The source xPacks are regular npm packages, and include the source files.
+Source xPacks are **regular npm packages** that include library
+source files, typically in C/C++, though there are no language restrictions.
 
-The binary xPacks are also regular npm packages, but with a minimal content,
-mandatory being only the `package.json` file. Since the binary xPacks provide
-executables for multiple platforms, some very large, it is not reasonable to pack all together in the npm package. Instead, the `package.json` file
-includes references to archives with the platform specific binaries
-(such as .tar.gz for Unix or .zip for Windows).
+Binary xPacks are also regular npm packages, but with minimal content,
+typically just the `package.json` file. Since these xPacks provide
+executables for multiple platforms, some of which are quite large,
+it is impractical to include all binaries within the npm package itself.
+Instead, the `package.json` file contains references to platform-specific
+binary archives (e.g., `.tar.gz` for Unix or `.zip` for Windows).
 
-Simply put, xPacks can be used to further automate the installation of source libraries and tools.
+Simply put, xPacks can enhance and automate the installation process for source libraries and tools.
+
 </details>
 
 By design, xPacks support multiple versions, allowing packages to have
-**various versions installed simultaneously**. Each project or configuration
+**various versions installed simultaneously**. Each project or
+build configuration
 can maintain its own set of dependencies, ensuring that system upgrades do
 not affect existing projects.
 
 ## Features
 
-**xpm** complements **npm**; it streamlines cross-platform builds
-and tests with its distinctive set of features:
+**xpm** complements **npm** by streamlining cross-platform builds and
+tests with its distinctive features:
 
-- is capable to install the same format of packages as
-**npm**, including those from Git repositories and from the same public
-repository ([npmjs.com](https://www.npmjs.com))
-- can lock specific versions of source and binary packages as project **dependencies**, and install them on demand
-- can manage multiple **build configurations**, such as debug/release builds, or platform specific tests
-- can lock specific versions of packages as build configuration **dependencies**
-- enables the definition of **multi-line command actions** at the project or
-build configuration level
-- manages **properties**, possibly with **complex substitutions** (performed via the
-  [LiquidJS](https://liquidjs.com) engine)
-- runs on **Windows**, **macOS** and **GNU/Linux**
-
+- **Package Installation**: Installs the same format of packages as **npm**,
+including those from Git repositories and the **npm** public repository
+([npmjs.com](https://www.npmjs.com)).
+- **Version Locking**: Locks specific versions of source and binary
+packages as project dependencies, installing them on demand.
+- **Build Configurations**: Manages multiple build configurations,
+such as debug/release builds or platform-specific tests.
+- **Configuration Dependencies**: Locks specific versions of
+packages as build configuration dependencies.
+- **Command Actions**: Defines multi-line command actions at the
+project or build configuration level.
+- **Property Management**: Manages properties with complex
+substitutions, using the [LiquidJS](https://liquidjs.com) engine.
+- **Cross-Platform Support**: Runs on **Windows**, **macOS**, and **GNU/Linux**.
 
 ## Benefits
 
-- being able to develop exactly the same project on Windows, macOS and
-GNU/Linux allows team members the **freedom to use their preferred platform**
-- locking the project to specific versions of dependencies provides a **good
-reproducibility** (stability over time and across different environments)
-- defining dependencies at build configuration levels allows to **run
-tests for different architechtures** (like native vs Arm vs RISC-V)
-- being able to install multiple versions of the same package at the same time
-allows to run tests with **multiple versions of the same toolchain**
-- multi-line commands, with parameters and substitutions provide a very
-**powerful portable scripting mechanism**
-- being able to install packages directly from Git/GitHub **simplifies
-maintenance** of some packages during development
+- Being able to develop exactly the same project on Windows, macOS and
+GNU/Linux gives team members the flexibility to use their preferred platform.
+- Locking projects to specific versions of dependencies ensures
+**reproducibility**, providing stability over time and across different
+environments.
+- Defining dependencies at the build configuration level allows for
+**testing across different architectures**, such as native, Arm, and RISC-V.
+- Installing multiple versions of the same package simultaneously
+enables testing with **various versions of the same toolchain**.
+- Multi-line commands with parameters and substitutions offer a
+**robust and portable scripting mechanism**.
+- Installing packages directly from Git/GitHub **simplifies the
+maintenance** of some packages during development.
 
