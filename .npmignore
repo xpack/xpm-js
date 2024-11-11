@@ -32,7 +32,7 @@
 
 # tap
 /coverage/
-/test/
+/tests/
 
 # nyc test coverage
 /.nyc_output/
@@ -40,23 +40,31 @@
 # VS Code
 /.vscode/
 
-# GitHub
-/.github/
-
 # CI
+/.github/
 /.travis.yml
 /.appveyor.yml
 
-# Project specfic
-/NOTES*.md
-/README-*.md
-/docs/
-/doc/
+README-*.md
+
+/src/
+**/tsconfig*.json
+
+*.ts
+lib/**/*.ts
+# The above removes all TypeScript including the .d.ts files.
+# Bring those later back.
+!*.d.ts
+!lib/*.d.ts
+
+tsconfig.tsbuildinfo
+
 /tests/
 
-/tmp/
-/.tap/
-
+typedoc.json
+/docs/
+/assets/
+/scripts/
 /website/
 
-# end
+#end
