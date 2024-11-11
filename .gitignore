@@ -70,4 +70,6 @@ typings/
 
 tsconfig.tsbuildinfo
 
+/tmp/
+
 #end
