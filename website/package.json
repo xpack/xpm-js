@@ -55,5 +55,20 @@
   },
   "engines": {
     "node": ">=18.0"
+  },
+  "websiteConfig": {
+    "shortName": "xpm",
+    "name": "Project Manager",
+    "longName": "xPack Project Manager",
+    "title": "xpm - The xPack Project Manager",
+    "metadataDescription": "The xPack Project Manager command line tool",
+    "metadataKeywords": "xpm, xpack, project, manager, build, test, dependencies, npm, reproducibility",
+    "hasCli": "true",
+    "isInstallGlobally": "true",
+    "shareOnTwitter": "true",
+    "hasCustomHomepageFeatures": "true",
+    "hasCustomUserSidebar": "true",
+    "hasCustomUserInformation": "true",
+    "nodeVersion": "18.20.4"
   }
 }
