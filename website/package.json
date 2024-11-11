@@ -61,6 +61,7 @@
     "name": "Project Manager",
     "longName": "xPack Project Manager",
     "title": "xpm - The xPack Project Manager",
+    "tagline": "A tool to automate builds, tests and manage C/C++ dependencies, inspired by npm",
     "metadataDescription": "The xPack Project Manager command line tool",
     "metadataKeywords": "xpm, xpack, project, manager, build, test, dependencies, npm, reproducibility",
     "hasCli": "true",
