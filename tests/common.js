@@ -23,7 +23,7 @@ import { spawn } from 'child_process'
 import { Console } from 'console'
 import fs from 'fs'
 import { Writable } from 'stream'
-import tar from 'tar'
+import * as tar from 'tar'
 import zlib from 'zlib'
 
 // ----------------------------------------------------------------------------
