@@ -30,20 +30,12 @@
     "git-log": "git log --pretty='%cd * %h %s' --date=short",
     "lint": "standard lib",
     "prepare": "npm run compile && npm run lint",
-    "pretest": "npm run lint",
-    "pretest-100": "npm run lint",
-    "pretest-100-c8": "npm run lint",
-    "tap": "tap --reporter=spec",
-    "tap-c8": "c8 tap --reporter=spec",
-    "test-tap": "tap --disable-coverage --allow-empty-coverage",
-    "test-tap-coverage": "tap --coverage",
-    "test-tap-coverage-c8": "c8 -- tap",
-    "test-tap-coverage-100": "tap --coverage --100",
-    "test-tap-coverage-100-c8": "c8 --100 -- tap",
-    "test": "npm run test-tap -s",
-    "test-100": "npm run test-tap-coverage-100 -s",
-    "test-100-c8": "npm run test-tap-coverage-100-c8 -s",
-    "test-ci": "npm run test",
+    "pretest-coverage": "npm run lint",
+    "pretest-no-coverage": "npm run lint",
+    "test-coverage": "tap --show-full-coverage",
+    "test-no-coverage": "tap --disable-coverage",
+    "tap": "tap --reporter=tap",
+    "test-ci": "npm run test-no-coverage",
     "prepublishOnly": "npm run lint && npm run test-tap -s",
     "postpublish": "git push origin --follow-tags",
     "dumpconf": "env | sort | uniq",
@@ -106,8 +98,7 @@
   "devDependencies": {
     "del-cli": "^6.0.0",
     "standard": "^17.1.2",
-    "tap": "^18.7.1",
-    "tap-mocha-reporter": "^5.0.4",
+    "tap": "^21.0.1",
     "json": "^11.0.0",
     "liquidjs": "^10.18.0"
   },
@@ -134,17 +125,9 @@
     "tar"
   ],
   "tap": {
-    "reporter": "tap-mocha-reporter",
-    "reporter-arg": [
-      "classic"
-    ],
-    "timeout": 30,
-    "jobs": 1,
     "files": [
-      "tests/tap/*.js",
-      "tests/tap/*.ts"
-    ],
-    "node-arg": []
+      "tests/tap/*.js"
+    ]
   },
   "standard": {
     "ignore": [
