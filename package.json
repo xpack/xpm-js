@@ -17,7 +17,7 @@
   },
   "scripts": {
     "fix": "standard --fix lib tests",
-    "dev-cycle": "npm run fix && npm run compile && npm run test-100-c8",
+    "dev-cycle": "npm run fix && npm run compile && npm run test",
     "npm-install": "npm install",
     "npm-link-deps": "npm link @ilg/cli-start-options",
     "npm-link-helpers": "npm link @xpack/node-modules-helper @xpack/docusaurus-template-liquid",
@@ -36,8 +36,9 @@
     "test-coverage": "tap --show-full-coverage",
     "test-no-coverage": "tap --disable-coverage",
     "tap": "tap --reporter=tap",
+    "test": "npm run test-no-coverage",
     "test-ci": "npm run test-no-coverage",
-    "prepublishOnly": "npm run lint && npm run test-tap -s",
+    "prepublishOnly": "npm run lint && npm run test",
     "postpublish": "git push origin --follow-tags",
     "dumpconf": "env | sort | uniq",
     "show-versions": "echo $(which node) $(node --version) && echo $(which npm) $(npm --version)",
@@ -98,10 +99,10 @@
   },
   "devDependencies": {
     "del-cli": "^6.0.0",
-    "standard": "^17.1.2",
-    "tap": "^21.0.1",
     "json": "^11.0.0",
-    "liquidjs": "^10.18.0"
+    "liquidjs": "^10.18.0",
+    "standard": "^17.1.2",
+    "tap": "^21.0.1"
   },
   "bundleDependencies": [
     "@ilg/cli-start-options",
