@@ -127,7 +127,8 @@
   "tap": {
     "files": [
       "tests/tap/*.js"
-    ]
+    ],
+    "reporter": "base"
   },
   "standard": {
     "ignore": [
