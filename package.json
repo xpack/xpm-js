@@ -69,8 +69,8 @@
   "bugs": {
     "url": "https://github.com/xpack/xpm-js/issues"
   },
-  "homepage": "https://xpack.github.io/xpm-js/",
-  "homepagePreview": "https://xpack.github.io/xpm-preview/",
+  "homepage": "https://xpack.github.io/xpm-preview/",
+  "homepagePreview": "https://xpack.github.io/xpm-js/",
   "dependencies": {
     "@ilg/cli-start-options": "^0.8.2",
     "@npmcli/arborist": "^7.4.0",
