@@ -178,12 +178,13 @@ to:
 - `npm run test`
 - `npm run pack`; check the list of packaged files, possibly
   update `.npmignore`
+- push all changes to GitHub
+
+### Set the new version
 
 <CodeBlock language="sh"> {
 `npm version ${customField('releaseVersion')}
 `} </CodeBlock>
-
-- push all changes to GitHub
 
 ### CI tests
 
