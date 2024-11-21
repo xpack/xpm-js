@@ -3,9 +3,76 @@
 Changes in reverse chronological order.
 Don't forget to close GitHub [issues](https://github.com/xpack/xpm-js/issues/).
 
+## 2024-11-21
+
+* v0.20.1 prepared
+* f85d973 re-generate commons
+* a2b3f0b package.json: fix homepage urls
+* fdd90e4 top package.json: add homepagePreview
+* d1a8663 website: re-generate commons
+* 70df850 #208: fix bundleDependencies
+* cf7547b website re-generate commons
+* c296a4a top package.json cosmetics
+* 968eb3d re-generate workflows
+
+## 2024-11-15
+
+* b965c06 website/user update
+* fc5a286 website: Homepage update
+* 9731b92 website/user update to clang
+
+## 2024-11-12
+
+* c97eefa package.json update
+* 362234b package.json: add npm-link-helpers script
+* 8cb0943 package.json: reporter base
+* 4505e44 package-lock.json update
+* fb003a5 package.json: update tests
+
+## 2024-11-11
+
+* c794b0d website update
+* 6e263d1 website: re-generate commons
+* d11353c dot.*ignore /tmp/
+* 8ce0abd package.json update from commons
+* 51912f9 re-generate dot.*
+* e045982 website: re-generate commons
+* e8f5e0b test-ci.yml: update
+* 6e4e9d1 tests/common.js: import * as tar
+* 29f6c84 xpm/install.js: makeDirectory
+* 3faebf0 test-ci.yml: updates depth: 1
+
+## 2024-11-10
+
+* 83ac71c test-ci.yml: updates
+* 0a22523 website/user: Hello World!
+* 65dfae4 test-ci.yml: try macos-14 (m1)
+* 10a9bfe test-ci.yml: add node 22
+* 66ff09d test-ci.yml: bump deps
+* 589d4f3 add publish-github-pages.yml
+* ae405f9 package.json: revert description
+* 9c85bcc add website main content
+
+## 2024-11-08
+
+* fd30570 workflows/test-ci.yml
+
+## 2024-11-01
+
+* 7297711 move cli below docs
+
+## 2024-10-20
+
+* 4ab4df5 docusaurus.config.ts: update title uppercase
+* 14d2dcb preliminary frontMatters
+* 8786de0 preliminary dual-docs content added
+
 ## 2024-10-19
 
-* v0.19.4 released
+* 8e8204c 0.19.4
+* e3bc65a package.json: standard.ignore website
+* 0442957 .npmignore website
+* f3db998 prepare v0.19.4
 * 29775e7 #207: fix HttpsProxyAgent import
 * 9fc362f test-hello-world.sh: use pwd -P
 * cc7a8eb node-ci.yml: ignore website
