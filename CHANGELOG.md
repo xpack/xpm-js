@@ -5,6 +5,7 @@ Don't forget to close GitHub [issues](https://github.com/xpack/xpm-js/issues/).
 
 ## 2024-11-21
 
+* 0201fca CHANGELOG update
 * ab322a8 #209: accept executables for bin
 * v0.20.1 prepared
 * f85d973 re-generate commons
