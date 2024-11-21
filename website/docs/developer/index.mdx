@@ -16,6 +16,7 @@ date: 2024-10-25 13:10:00 +0300
 
 ---
 
+
 import customField from '@site/src/libs/customField';
 import CodeBlock from '@theme/CodeBlock';
 
@@ -44,7 +45,7 @@ project and provides documentation on how to build and test the package.
 ## Satisfy dependencies
 
 ```sh
-npm --prefix ~/Work/npm-modules/xpm-js.git install
+npm --prefix ~/Work/npm-packages/xpm-js.git install
 ```
 
 ## Add links for development
@@ -53,7 +54,7 @@ To facilitate the use of this module in other packages, add a link
 from the central npm storage to this local development folder:
 
 ```sh
-npm --prefix ~/Work/npm-modules/xpm-js.git link
+npm --prefix ~/Work/npm-packages/xpm-js.git link
 ```
 
 And in the projects referring it:
@@ -68,7 +69,7 @@ The TypeScript compiler can automatically recompile modified files. For
 this, start it in `watch` mode.
 
 ```sh
-npm --prefix ~/Work/npm-modules/xpm-js.git run compile-watch
+npm --prefix ~/Work/npm-packages/xpm-js.git run compile-watch
 ```
 
 
@@ -137,8 +138,8 @@ As for any `npm` package, the standard way to run the project tests is via
 `npm run test`:
 
 ```sh
-npm --prefix ~/Work/npm-modules/xpm-js.git install
-npm --prefix ~/Work/npm-modules/xpm-js.git run test
+npm --prefix ~/Work/npm-packages/xpm-js.git install
+npm --prefix ~/Work/npm-packages/xpm-js.git run test
 ```
 
 <TestResults />
@@ -159,3 +160,5 @@ To trace TypeScript module resolution:
 ```json
     "compile": "tsc --traceResolution  -p ./",
 ```
+
+

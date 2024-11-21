@@ -17,6 +17,8 @@ date: 2024-10-24 23:59:00 +0300
 
 ---
 
+
+
 import CodeBlock from '@theme/CodeBlock';
 
 import customField from '@site/src/libs/customField';
@@ -109,8 +111,8 @@ Execute the npm script `clean` then `start` in the website sub-project,
 or run the following in a terminal:
 
 ```sh
-npm --prefix ~/Work/npm-modules/xpm-js.git/website run clean
-npm --prefix ~/Work/npm-modules/xpm-js.git/website run start
+npm --prefix ~/Work/npm-packages/xpm-js.git/website run clean
+npm --prefix ~/Work/npm-packages/xpm-js.git/website run start
 ```
 
 Navigate to the **Maintainer Info** page,
@@ -118,7 +120,7 @@ the **Fix possible open issues** section.
 
 ### Fix possible open issues
 
-Check GitHub issues and pull requests:
+Check GitHub Issues and Pull Requests:
 
 - https://github.com/xpack/xpm-js/issues
 - https://github.com/xpack/xpm-js/pulls
@@ -196,7 +198,7 @@ to:
 - run the `generate-website-blog-post` npm script; this will add a file in the `website/blog` folder:
 
 ```sh
-npm --prefix ~/Work/npm-modules/xpm-js.git/website run generate-website-blog-post
+npm --prefix ~/Work/npm-packages/xpm-js.git/website run generate-website-blog-post
 ```
 
 - edit the front matter properties
@@ -232,7 +234,7 @@ npm install ----location=global xpm@next
 Validate the web site content in a local build via the npm `build` script:
 
 ```sh
-npm --prefix ~/Work/npm-modules/xpm-js.git/website run build
+npm --prefix ~/Work/npm-packages/xpm-js.git/website run build
 ```
 
 ## Publish the website
@@ -317,3 +319,5 @@ Credit to [Shields IO](https://shields.io) for the badges.
 - https://redfin.engineering/node-modules-at-war-why-commonjs-and-es-modules-cant-get-along-9617135eeca1
 
 <More />
+
+

@@ -16,7 +16,7 @@
     "typecheck": "tsc",
     "npm-outdated": "npm outdated",
     "npm-install": "npm install",
-    "npm-link-deps": "npm link @xpack/docusaurus-template-liquid @xpack/node-modules-helper",
+    "npm-link-helper": "npm link @xpack/docusaurus-template-liquid @xpack/npm-packages-helper",
     "generate-website-commons": "bash node_modules/@xpack/docusaurus-template-liquid/maintenance-scripts/generate-commons.sh",
     "generate-website-blog-post": "bash node_modules/@xpack/docusaurus-template-liquid/maintenance-scripts/generate-blog-post.sh"
   },

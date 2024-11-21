@@ -36,7 +36,12 @@ function getCustomFields() {
 
   logger.info(`package version: ${topPackageJson.version}`);
 
-  const customFields = {}
+  const enginesNodeVersion = topPackageJson.engines.node.replace(/[^0-9]*/, '') || '';
+  const enginesNodeVersionMajor = enginesNodeVersion.replace(/[.].*/, '');
+  const customFields = {
+    enginesNodeVersion,
+    enginesNodeVersionMajor
+  }
 
   return {
     releaseVersion,
@@ -54,7 +59,8 @@ logger.info(customFields);
 // ----------------------------------------------------------------------------
 
 const config: Config = {
-  title: 'xpm - The xPack Project Manager',
+  title: 'xpm - The xPack Project Manager' +
+    ((process.env.DOCUSAURUS_IS_PREVIEW === 'true') ? ' (preview)' : ''),
   tagline: 'A tool to automate builds, tests and manage C/C++ dependencies, inspired by npm',
   favicon: 'img/favicon.ico',
 
@@ -62,7 +68,8 @@ const config: Config = {
   url: 'https://xpack.github.io/',
   // Set the /<baseUrl>/ pathname under which your site is served
   // For GitHub pages deployment, it is often '/<projectName>/'
-  baseUrl: '/xpm-js/',
+  baseUrl: process.env.DOCUSAURUS_BASEURL ??
+    '/xpm-js/',
 
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
