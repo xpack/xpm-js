@@ -1,0 +1,36 @@
+---
+
+title: xPack executables
+description: The definitions of xPack executables
+keywords:
+  - xpack
+  - executables
+
+date: 2024-11-21 21:36:00 +0300
+
+---
+
+# The xPack `executables` definitions
+
+:::info
+
+This definition was added in November 2024, in version 0.19.5.
+
+The previous name was `bin`, which is kept for compatibility reasons.
+
+:::
+
+When installing a package with executables,
+after the archive is unpacked, links to all executables listed
+in the `executables` object are created in the `xpacks/.bin` folder.
+On Windows, where soft links to files are problematic, `.cmd`
+forwarders/shims are created.
+
+:::tip
+
+On Windows, to accommodate for the `.cmd` stubs,
+some development tools (like CMake and meson) must be configured to
+explicity launch the xPack executables via an explicit
+shell like `cmd.exe` or `PowerShell.exe`.
+
+:::

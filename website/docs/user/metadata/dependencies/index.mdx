@@ -1,0 +1,69 @@
+---
+
+title: xPack dependencies
+description: The definitions of xPack dependencies
+keywords:
+  - xpack
+  - dependencies
+
+date: 2024-11-21 21:36:00 +0300
+
+---
+
+# The xPack `dependencies` definitions
+
+The `dependencies` definitions is similar to the **npm** definition,
+but lists the **xpm** source packages required to compile/link-time.
+
+When a source pacakge is installed locally (without `--global`) into the
+local project `xpacks` folder, all packages listed in its `xpack.dependencies`
+are also installed into the same local `xpacks` folder,
+recursively.
+
+In other words, the list of source dependencies is linearised, and all
+dependencies are installed at the same top level, as required by
+compiled languages (like C/C++), to have all source libraries
+compiled and available at link time.
+
+:::info
+
+The main difference compared to **npm** is the linearized list of source
+dependencies.
+
+**npm**, which is a JavaScript/TypeScript tool, uses a
+different strategy that preserves the hierarchical structure of
+dependencies, not suitable for compiled languages.
+
+:::
+
+When installing source packages into an **xpm** project, they are also added
+to the `dependencies` list, in the extended format.
+
+Example:
+
+```json title="Extended format source dependency" {5-7}
+  "xpack": {
+    "minimumXpmRequired": "0.19.4",
+    "dependencies": {
+      "@micro-os-plus/micro-test-plus": {
+        "specifier": "^3.1.2",
+        "local": "link",
+        "platforms": "all"
+      }
+    },
+  }
+```
+
+For historical reasons, when editting `package.json` manually, it is
+also possible to use the short form, similar to the syntax used by **npm**.
+
+Example:
+
+```json title="Traditional short form source dependency" {4}
+  "xpack": {
+    "minimumXpmRequired": "0.19.4",
+    "dependencies": {
+      "@micro-os-plus/micro-test-plus": "^3.1.2"
+    },
+  }
+```

@@ -11,12 +11,13 @@
 
 const cliSidebar = [
   {
-    type: "category",
-    label: "CLI Reference",
+    type: 'category',
+    label: 'CLI Reference',
     link: {
-      type: "doc",
-      id: "cli/xpm/index",
+      type: 'doc',
+      id: 'cli/xpm/index',
     },
+    collapsed: false,
     items: [
       {
         type: 'category',
@@ -25,6 +26,7 @@ const cliSidebar = [
           type: 'doc',
           id: 'cli/xpm/index',
         },
+        collapsed: false,
         items: [
           {
             type: 'doc',

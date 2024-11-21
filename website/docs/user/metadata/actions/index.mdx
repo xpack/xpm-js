@@ -1,0 +1,57 @@
+---
+
+title: xPack actions
+description: The definitions of xPack actions
+keywords:
+  - xpack
+  - actions
+
+date: 2024-11-21 21:36:00 +0300
+
+---
+
+# The xPack `actions` definitions
+
+**xpm** actions are an extended version of **npm** scripts, that
+supports multiple lines and substitutions.
+
+`actions` can be defined at project level, or at build configuration level.
+
+When actions are invoked for a specific a build configuration, the `actions`
+defined in the build configuration take precedence over `actions`
+with the same name defined at the project level.
+
+Example:
+
+```json {9,22}
+{
+  "name": "@xpack-dev-tools/cmake",
+  "version": "3.28.6-1.1",
+  "xpack": {
+    "properties": {
+      "appLcName": "cmake",
+    },
+    "actions": {
+      "install": [
+        "npm install",
+        "xpm install"
+      ]
+    },
+    "buildConfigurations": {
+      "common-docker": {
+        "hidden": true,
+        "properties": {
+          "containerName": "{{properties.appLcName}}-{{package.version}}-{{configuration.name}}",
+          "force32": ""
+        },
+        "actions": {
+          "docker-remove": [
+            "docker stop {{properties.containerName}}",
+            "docker rm {{properties.containerName}}"
+          ]
+        }
+      }
+    }
+  }
+}
+```

@@ -1,0 +1,113 @@
+---
+
+title: xPack buildConfigurations
+description: The definitions of xPack buildConfigurations
+keywords:
+  - xpack
+  - buildConfigurations
+
+date: 2024-11-21 21:36:00 +0300
+
+---
+
+# The xPack `buildConfigurations` definitions
+
+During **development**, it is usual to build **separate debug and release
+binaries**, with different configurations, like different preprocessor
+macros, different compiler options, different optimisation levels, etc.
+
+Extensive **testing** also requires building separate binaries, possible
+targetted to **different architectures**, and using **different toolchains**,
+even **different versions** of the same toolchain.
+
+The build configurations address exactly this need, and allow to define
+**multiple different actions to run different builds and/or tests**.
+
+Build configurations can define their own `properties`, `actions`,
+`definitions` and `devDefinition`
+which take precedence over definitions with the same names defined at
+the project level.
+
+To avoid redundant definitions, build configurations can **inherit**
+`properties`, `actions`, `definitions` and `devDefinition`
+from one or more other build configurations,
+and redefine some of them, as needed.
+
+A build configuration can inherit from multiple other build configurations.
+The `inherit` array defines the list inherited build configurations;
+the common definitions are collected in the listed order, with later
+entries overriding earlier ones.
+
+Example:
+
+```json {8,26,31,46,54}
+{
+  "xpack": {
+    "buildConfigurations": {
+      "common-dependencies": { "...": "..." },
+      "common-actions": { "...": "..." },
+      "common-actions-native": { "...": "..." },
+      "common-docker": { "...": "..." },
+      "darwin-x64": {
+        "inherit": [
+          "common-dependencies",
+          "common-actions",
+          "common-actions-native"
+        ],
+        "devDependencies": {
+          "@xpack-dev-tools/clang": "16.0.6-1.1",
+          "@xpack-dev-tools/realpath": "9.4.0-1.1",
+          "@xpack-dev-tools/sed": "4.9.0-3.1"
+        },
+        "actions": {
+          "build": "caffeinate {{properties.commandBashBuild}}",
+          "build-development": "caffeinate {{properties.commandBashBuild}} --develop",
+          "build-development-debug": "caffeinate {{properties.commandBashBuild}} --develop --debug",
+          "build-development-tests-only": "caffeinate {{properties.commandBashBuild}} --develop --tests-only"
+        }
+      },
+      "darwin-arm64": {
+        "inherit": [
+          "darwin-x64"
+        ]
+      },
+      "linux-x64": {
+        "inherit": [
+          "common-dependencies",
+          "common-actions",
+          "common-actions-native",
+          "common-docker"
+        ],
+        "devDependencies": {
+          "@xpack-dev-tools/gcc": "13.2.0-2.1",
+          "@xpack-dev-tools/patchelf": "0.18.0-1.1"
+        },
+        "properties": {
+          "dockerImage": "ilegeul/ubuntu:amd64-18.04-xbb-v5.2.2"
+        }
+      },
+      "linux-arm64": {
+        "inherit": [
+          "linux-x64"
+        ],
+        "properties": {
+          "dockerImage": "ilegeul/ubuntu:arm64v8-18.04-xbb-v5.2.2"
+        }
+      },
+      "linux-arm": {
+        "inherit": [
+          "linux-x64"
+        ],
+        "properties": {
+          "dockerImage": "ilegeul/ubuntu:arm32v7-18.04-xbb-v5.2.2",
+          "force32": "linux32"
+        }
+      }
+    }
+  }
+}
+```
+
+The `"hidden": true` definition can be used by GUI tools
+(like Visual Studio Code) to filter out
+internal definition when rendering trees of action, for example.

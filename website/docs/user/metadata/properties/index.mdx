@@ -1,0 +1,56 @@
+---
+
+title: xPack properties
+description: The definitions of xPack properties
+keywords:
+  - xpack
+  - properties
+
+date: 2024-11-21 21:36:00 +0300
+
+---
+
+# The xPack `properties` definitions
+
+The `properties` map allows to define string properties that can
+be used as substitution variable in other definitions.
+
+`properties` can be defined on top of other `properties`, and the LiquidJS
+engine will be invoked repeatedly until all substitutions are performed.
+
+When substitutions occur within a build configuration, the `properties`
+defined in the build configuration take precedence over `properties`
+with the same name defined at the project level.
+
+Examples:
+
+```json title="Project properties" {4}
+{
+  "xpack": {
+    "properties": {
+      "buildFolderRelativePath": "{{'build' | path_join: configuration.name | to_filename | downcase}}",
+    }
+  }
+}
+```
+
+```json title="Build configuration properties" {6,12,13}
+{
+  "name": "@xpack-dev-tools/cmake",
+  "version": "3.28.6-1.1",
+  "xpack": {
+    "properties": {
+      "appLcName": "cmake",
+    },
+    "buildConfigurations": {
+      "common-docker": {
+        "hidden": true,
+        "properties": {
+          "containerName": "{{properties.appLcName}}-{{package.version}}-{{configuration.name}}",
+          "force32": ""
+        }
+      }
+    }
+  }
+}
+```

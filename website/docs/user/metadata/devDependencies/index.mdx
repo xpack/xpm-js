@@ -1,0 +1,43 @@
+---
+
+title: xPack devDependencies
+description: The definitions of xPack devDependencies
+keywords:
+  - xpack
+  - devDependencies
+
+date: 2024-11-21 21:36:00 +0300
+
+---
+
+# The xPack `devDependencies` definitions
+
+The `devDependencies` definitions is similar to the **npm** definition,
+but lists the **xpm** definitions required during the development
+of the current package.
+
+When the `xpm install` is invoked in a project folder,
+all packages listed in `xpack.devDependencies` are also installed
+in the local project `xpacks` folder, and symbolic links (or
+forwarders/shims on windows) to all executables are created in
+`xpacks/.bin`.
+
+No recursive search is performed.
+
+When installing binary packages into an **xpm** project, they are also added
+to the `devDependencies` list, in the extended format.
+
+Example:
+
+```json title="Extended format development dependency" {5-7}
+  "xpack": {
+    "minimumXpmRequired": "0.19.4",
+    "devDependencies": {
+      "@xpack-dev-tools/cmake": {
+        "specifier": "3.28.6-1.1",
+        "local": "link",
+        "platforms": "all"
+      }
+    }
+  }
+```

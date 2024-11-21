@@ -20,6 +20,47 @@ export const userSidebarCategory = {
       label: 'How to use'
     },
     {
+      type: 'category',
+      label: 'Metadata',
+      link: {
+        type: 'doc',
+        id: 'user/metadata/index',
+      },
+      collapsed: true,
+      "items": [
+        {
+          type: 'doc',
+          id: 'user/metadata/dependencies/index',
+          label: 'dependencies'
+        },
+        {
+          type: 'doc',
+          id: 'user/metadata/devDependencies/index',
+          label: 'devDependencies'
+        },
+        {
+          type: 'doc',
+          id: 'user/metadata/binaries/index',
+          label: 'binaries'
+        },
+        {
+          type: 'doc',
+          id: 'user/metadata/properties/index',
+          label: 'properties'
+        },
+        {
+          type: 'doc',
+          id: 'user/metadata/actions/index',
+          label: 'actions'
+        },
+        {
+          type: 'doc',
+          id: 'user/metadata/buildConfigurations/index',
+          label: 'buildConfigurations'
+        },
+      ]
+    },
+    {
       type: 'doc',
       id: 'user/folders/index',
       label: 'Folders'
@@ -27,11 +68,11 @@ export const userSidebarCategory = {
     {
       type: 'category',
       label: 'Files',
-      collapsed: true,
       link: {
-        type: "doc",
+        type: 'doc',
         id: 'user/files/index',
       },
+      collapsed: true,
       items: [
         {
           type: 'doc',
