@@ -1,3 +1,6 @@
+# DO NOT EDIT!
+# Automatically generated from npm-packages-helper/templates
+
 # Simple workflow for deploying static content to GitHub Pages
 name: GitHub Pages
 
@@ -40,14 +43,15 @@ jobs:
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
 
     steps:
       - name: Checkout
         # https://github.com/actions/checkout
         uses: actions/checkout@v4
         with:
-          fetch-depth: 3
+          # The full history, required to compute lastUpdatedAt
+          fetch-depth: 0
 
       - name: Use Nodejs
         # https://github.com/actions/setup-node

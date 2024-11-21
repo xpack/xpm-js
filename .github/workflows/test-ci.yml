@@ -1,3 +1,6 @@
+# DO NOT EDIT!
+# Automatically generated from npm-packages-helper/templates
+
 # https://help.github.com/en/actions
 
 # https://github.com/actions
@@ -22,6 +25,8 @@ on:
       - '.npmignore'
       - '.vscode/**'
       - '.github/FUNDING.yml'
+      - '.github/workflows/publish-github-pages*.yml'
+      - '.github/workflows/trigger-publish-github-pages*.yml'
       - 'typedoc.json'
 
 jobs:
