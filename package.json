@@ -17,10 +17,10 @@
   },
   "scripts": {
     "fix": "standard --fix lib tests",
-    "dev-cycle": "npm run fix && npm run compile && npm run test",
+    "dev-cycle": "npm run fix && npm run test",
     "npm-install": "npm install",
     "npm-link-deps": "npm link @ilg/cli-start-options",
-    "npm-link-helpers": "npm link @xpack/node-modules-helper @xpack/docusaurus-template-liquid",
+    "npm-link-helpers": "npm link @xpack/npm-packages-helper @xpack/docusaurus-template-liquid",
     "npm-outdated": "npm outdated",
     "npm-update": "npm update",
     "npm-version-patch": "npm version patch",
@@ -30,7 +30,7 @@
     "postversion": "git push origin --all && git push origin --tags",
     "git-log": "git log --pretty='%cd * %h %s' --date=short",
     "lint": "standard lib",
-    "prepare": "npm run compile && npm run lint",
+    "prepare": "npm run lint",
     "pretest-coverage": "npm run lint",
     "pretest-no-coverage": "npm run lint",
     "test-coverage": "tap --show-full-coverage",
@@ -45,8 +45,7 @@
     "compile": "echo nothing to compile",
     "clean": "del-cli cjs 'tests/**/cjs' 'src/**/*.d.ts' 'src/**/*.d.ts.map' 'src/**/*.js' 'src/**/*.js.map' 'tests/**/*.d.ts' 'tests/**/*.d.ts.map' 'tests/**/*.js' 'tests/**/*.js.map' '**/tsconfig.tsbuildinfo' .nyc_output coverage",
     "deep-clean": "npm run clean && rm -rf node_modules package-lock.json",
-    "generate-top-commons": "bash node_modules/@xpack/node-modules-helper/maintenance-scripts/generate-top-commons.sh",
-    "create-website": "mkdir -p website && cd website && npm link @xpack/docusaurus-template-liquid @xpack/node-modules-helper && bash node_modules/@xpack/docusaurus-template-liquid/maintenance-scripts/generate-commons.sh"
+    "generate-top-commons": "bash node_modules/@xpack/npm-packages-helper/maintenance-scripts/generate-top-commons.sh"
   },
   "repository": {
     "type": "git",
@@ -71,9 +70,6 @@
     "url": "https://github.com/xpack/xpm-js/issues"
   },
   "homepage": "https://xpack.github.io/xpm-js/",
-  "engines": {
-    "node": " >=18.0.0"
-  },
   "dependencies": {
     "@ilg/cli-start-options": "^0.8.2",
     "@npmcli/arborist": "^7.4.0",
@@ -137,11 +133,6 @@
       "/website/"
     ]
   },
-  "buildConfig": {
-    "greeting": "The xPack project manager command line tool",
-    "isJavaScript": "true"
-  },
-  "bundledDependencies": [],
   "eslintConfig": {
     "rules": {
       "max-len": [
@@ -158,5 +149,12 @@
       "**/*.d.ts",
       "**/*.js"
     ]
+  },
+  "buildConfig": {
+    "greeting": "The xPack project manager command line tool",
+    "isJavaScript": "true"
+  },
+  "engines": {
+    "node": " >=18.0.0"
   }
 }
