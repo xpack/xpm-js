@@ -1,7 +1,7 @@
 /*
  * DO NOT EDIT!
  * Automatically generated from docusaurus-template-liquid/templates/docusaurus.
- * 
+ *
  * This file is part of the xPack project (http://xpack.github.io).
  * Copyright (c) 2024 Liviu Ionescu. All rights reserved.
  *
@@ -22,7 +22,7 @@ export const FeatureList: FeatureItem[] = [
     Svg: require('@site/static/img/mosaic.svg').default,
     description: (
       <>
-        The <b>xPack Framework</b> aims to automate building and testing of <b>multiple configuration</b> projects, and installing <b>multiple versions</b> of packages, across multiple platforms (<b>Windows</b>, <b>macOS</b>, <b>GNU/Linux</b>).
+        The <b>xPack Framework</b> is designed to automate building and testing of <b>multiple configuration</b> projects, and installing <b>multiple versions</b> of packages, across multiple platforms (<b>Windows</b>, <b>macOS</b>, <b>GNU/Linux</b>).
       </>
     ),
   },
@@ -47,7 +47,7 @@ export const FeatureList: FeatureItem[] = [
         The <b><Link to="https://xpack.github.io/xpm/">xpm</Link></b> CLI tool
         complements <b><Link to="https://docs.npmjs.com/cli/">npm</Link></b> with
         several extra features specific to <b>C/C++ projects</b>.
-        This allows source libraries and
+        This enables source libraries and
         binary packages to nicely integrate into the Node.js ecosystem,
         while still allowing them to be installed manually.
       </>
