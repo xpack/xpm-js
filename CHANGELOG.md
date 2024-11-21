@@ -5,6 +5,8 @@ Don't forget to close GitHub [issues](https://github.com/xpack/xpm-js/issues/).
 
 ## 2024-11-21
 
+* 960f360 CHANGELOG update
+* 674ec00 .npmignore update
 * 0201fca CHANGELOG update
 * ab322a8 #209: accept executables for bin
 * v0.20.1 prepared
