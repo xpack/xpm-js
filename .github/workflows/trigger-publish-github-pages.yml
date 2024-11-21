@@ -1,0 +1,53 @@
+# DO NOT EDIT!
+# Automatically generated from npm-packages-helper/templates
+
+# Simple workflow to trigger the deployment of GitHub Pages in another project
+name: Trigger Remote GitHub Pages
+
+on:
+  # Runs on pushes, if all conditions are met:
+  push:
+    # ... on the website branch ...
+    branches:
+      - 'website'
+    # ... skip tags only ...
+    tags-ignore:
+      - '**'
+    # ... any of these files changes ...
+    paths:
+      - 'website/**'
+      - 'typedoc.json'
+      - '**/tsconfig*.json'
+      - 'src/**/*.ts'
+      - 'README.md'
+      - '.github/workflows/trigger-publish-github-pages.yml'
+      - 'package.json'
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+# Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Allow one concurrent deployment
+concurrency:
+  group: "pages"
+  cancel-in-progress: true
+
+jobs:
+  # Dispatch the event to the destination project.
+  dispatch:
+    runs-on: ubuntu-24.04
+
+    steps:
+      - name: Trigger
+        run: |
+          curl --verbose --location --fail-early --fail-with-body --include \
+            --header "Authorization: token ${{secrets.DISPATCH_TOKEN}}" \
+            --header "Content-Type: application/json" \
+            --header "Accept: application/vnd.github.v3+json" \
+            --data '{"ref":"master","inputs":{}}' \
+            https://api.github.com/repos/xpack/xpm-preview/actions/workflows/publish-github-pages-from-remote.yml/dispatches

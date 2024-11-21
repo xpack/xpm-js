@@ -9,7 +9,7 @@ on:
   push:
     # ... on the website branch ...
     branches:
-      - 'website'
+      - 'webpreview'
     # ... skip tags only ...
     tags-ignore:
       - '**'
@@ -63,6 +63,8 @@ jobs:
         run: npm --prefix website install
 
       - name: Build the Docusaurus site
+        env:
+          DOCUSAURUS_IS_PREVIEW: 'true'
         run: npm --prefix website run build
 
       - name: Setup Pages

@@ -10,7 +10,7 @@ A tool to automate builds, tests and manage C/C++ dependencies, inspired by npm.
 
 For information on how to install and use this project,
 please refer to the
-[project web site](https://xpack.github.io/xpm-js/).
+[project web site](https://xpack.github.io/xpm-preview/).
 
 ## Project source
 
