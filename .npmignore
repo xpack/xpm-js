@@ -68,4 +68,6 @@ typedoc.json
 /website/
 /tmp/
 
+.tap
+
 #end
