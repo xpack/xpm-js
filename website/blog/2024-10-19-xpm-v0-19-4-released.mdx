@@ -1,14 +1,14 @@
 ---
 
-title: xPack xpm v{{releaseVersion}} released
-seo_tile: Version {{releaseVersion}} released
-description: Version v{{releaseVersion}} is a TODO new/maintenance release
+title: xPack xpm v0.19.4 released
+seo_title: Version 0.19.4 released
+description: Version 0.19.4 is a maintenance release.
 keywords:
   - xpack
   - xpm
   - release
 
-date: {{releaseDate}}
+date: 2024-10-19 16:07:00 +0300
 
 authors: ilg-ul
 
@@ -18,51 +18,64 @@ tags:
 
 # ----- Custom properties -----------------------------------------------------
 
-version: "{{releaseVersion}}"
-
-release_tag_url: "https://github.com/xpack/xpm-js/tree/v{{releaseVersion}}"
+version: 0.19.4
 
 ---
 
 import {PageMetadata} from '@docusaurus/theme-common';
 import Image from '@theme/IdealImage';
 import CodeBlock from '@theme/CodeBlock';
-import Link from '@docusaurus/Link';
 
-import Prerequisites from './_common/_prerequisites.mdx'
-import DownloadAnalytics from './_common/_download-analytics.mdx'
-
-TODO: select one summary
-
-Version **{{releaseVersion}}** is a maintenance release; it fixes ...
-
-Version **{{releaseVersion}}** is a new release; it adds ....
+Version **0.19.4** is a maintenance release, it fixes the bug that incorrectly added npm dependencies.
 
 <!-- truncate -->
 
 <PageMetadata title={frontMatter.seo_title} />
 
-<Prerequisites nodeVersion="18"/>
+**xpm** is a
+[Node.js](https://nodejs.org/en/) CLI
+application to automate builds and to manage
+[xPacks](https://xpack.github.io/intro/#but-what-are-xpacks) dependencies.
 
 ## Install
 
-For installation instructions, please refer to the
-[Install Guide](/docs/install/)
-page.
+**xpm** is a Node.js module that can be installed with `npm`.
 
-## Source code
+For the prerequisites, since it is recommended
+to use a version manager or to customize the **npm** install location,
+please read the
+[Install](/docs/install/) page for more details.
 
-- <Link to={frontMatter.release_tag_url}>GitHub tag v{frontMatter.version} tree</Link>
+To install the **latest stable** version available, use:
 
-## Bug fixes
+```sh
+npm install --location=global xpm@latest
+```
+
+To install this specific version, use:
+
+<CodeBlock language="sh"> {
+`xpm install --location=global xpm@${frontMatter.version}`
+} </CodeBlock>
+
+## Changes
+
+The {frontMatter.version} release
+is generally compatible with previous releases.
+
+### Bug fixes
+
+- [#207] in certain conditions, downloads behind a proxy failed; fixed.
+
+### Enhancements
 
 - none
 
-## Enhancements
+### Other changes
 
 - none
 
-## Known problems
+### Known problems
 
 - [#57] when multiple versions of the same package are referenced
   via different dependencies paths, the program fails; version
@@ -97,7 +110,7 @@ xpm <command> -h|--help  Quick help on command
 xpm --version            Show version
 xpm -i|--interactive     Enter interactive mode
 
-npm xpm@{{releaseVersion}} '/Users/ilg/.nvm/versions/node/v{{packageWebsiteConfig.nodeVersion}}/lib/node_modules/xpm'
+npm xpm@0.19.4 '/Users/ilg/.nvm/versions/node/v18.18.2/lib/node_modules/xpm'
 Home page: <https://xpack.github.io/xpm/>
 Bug reports: <https://github.com/xpack/xpm-js/issues/>
 ```
@@ -114,10 +127,8 @@ For more details, the project documentation is available online from the
 
 ## CI tests
 
-Before publishing, a set of tests were performed .
-The results are available from:
-
-- [GitHub Actions](https://github.com/xpack/xpm-js/actions)
+Continuous integration tests are done via GitHub
+[Actions](https://github.com/xpack/xpm-js/actions/).
 
 ## Download analytics
 
