@@ -41,15 +41,15 @@ scope with local copies results in this hierarchy:
 xpacks
 └── @micro-os-plus
     ├── micro-test-plus
-    │   ├── CHANGELOG.md
-    │   ├── CMakeLists.txt
-    │   ├── LICENSE
-    │   ├── LICENSE-Boost
-    │   ├── README.md
-    │   ├── include
-    │   ├── meson.build
-    │   ├── package.json
-    │   └── src
+    │   ├── CHANGELOG.md
+    │   ├── CMakeLists.txt
+    │   ├── LICENSE
+    │   ├── LICENSE-Boost
+    │   ├── README.md
+    │   ├── include
+    │   ├── meson.build
+    │   ├── package.json
+    │   └── src
     └── utils-lists
         ├── CHANGELOG.md
         ├── CMakeLists.txt
@@ -70,31 +70,31 @@ Installing the binary package `@xpack-dev-tools/cmake` adds a few more folders a
 % tree -a -L3 xpacks
 xpacks
 ├── .bin
-│   ├── ccmake -> ../@xpack-dev-tools/cmake/.content/bin/ccmake
-│   ├── cmake -> ../@xpack-dev-tools/cmake/.content/bin/cmake
-│   ├── cpack -> ../@xpack-dev-tools/cmake/.content/bin/cpack
-│   └── ctest -> ../@xpack-dev-tools/cmake/.content/bin/ctest
+│   ├── ccmake -> ../@xpack-dev-tools/cmake/.content/bin/ccmake
+│   ├── cmake -> ../@xpack-dev-tools/cmake/.content/bin/cmake
+│   ├── cpack -> ../@xpack-dev-tools/cmake/.content/bin/cpack
+│   └── ctest -> ../@xpack-dev-tools/cmake/.content/bin/ctest
 ├── @micro-os-plus
-│   ├── micro-test-plus
-│   │   ├── CHANGELOG.md
-│   │   ├── CMakeLists.txt
-│   │   ├── LICENSE
-│   │   ├── LICENSE-Boost
-│   │   ├── README.md
-│   │   ├── include
-│   │   ├── meson.build
-│   │   ├── package.json
-│   │   └── src
-│   └── utils-lists
-│       ├── CHANGELOG.md
-│       ├── CMakeLists.txt
-│       ├── LICENSE
-│       ├── README.md
-│       ├── include
-│       ├── meson.build
-│       ├── package.json
-│       ├── src
-│       └── xpack.json
+│   ├── micro-test-plus
+│   │   ├── CHANGELOG.md
+│   │   ├── CMakeLists.txt
+│   │   ├── LICENSE
+│   │   ├── LICENSE-Boost
+│   │   ├── README.md
+│   │   ├── include
+│   │   ├── meson.build
+│   │   ├── package.json
+│   │   └── src
+│   └── utils-lists
+│       ├── CHANGELOG.md
+│       ├── CMakeLists.txt
+│       ├── LICENSE
+│       ├── README.md
+│       ├── include
+│       ├── meson.build
+│       ├── package.json
+│       ├── src
+│       └── xpack.json
 └── @xpack-dev-tools
     └── cmake
         ├── .content
@@ -123,13 +123,13 @@ results in this:
 % tree -a -L3 xpacks
 xpacks
 ├── .bin
-│   ├── ccmake -> ../@xpack-dev-tools/cmake/.content/bin/ccmake
-│   ├── cmake -> ../@xpack-dev-tools/cmake/.content/bin/cmake
-│   ├── cpack -> ../@xpack-dev-tools/cmake/.content/bin/cpack
-│   └── ctest -> ../@xpack-dev-tools/cmake/.content/bin/ctest
+│   ├── ccmake -> ../@xpack-dev-tools/cmake/.content/bin/ccmake
+│   ├── cmake -> ../@xpack-dev-tools/cmake/.content/bin/cmake
+│   ├── cpack -> ../@xpack-dev-tools/cmake/.content/bin/cpack
+│   └── ctest -> ../@xpack-dev-tools/cmake/.content/bin/ctest
 ├── @micro-os-plus
-│   ├── micro-test-plus -> /Users/ilg/Library/xPacks/@micro-os-plus/micro-test-plus/3.1.2
-│   └── utils-lists -> /Users/ilg/Library/xPacks/@micro-os-plus/utils-lists/4.0.0
+│   ├── micro-test-plus -> /Users/ilg/Library/xPacks/@micro-os-plus/micro-test-plus/3.1.2
+│   └── utils-lists -> /Users/ilg/Library/xPacks/@micro-os-plus/utils-lists/4.0.0
 └── @xpack-dev-tools
     └── cmake -> /Users/ilg/Library/xPacks/@xpack-dev-tools/cmake/3.28.6-1.1
 
@@ -170,13 +170,13 @@ For the example above, the hierarchy would look like:
 % tree -L3 ~/Library/xpacks
 /Users/ilg/Library/xpacks
 ├── @micro-os-plus
-│   ├── micro-test-plus
-│   │   └── 3.1.2
-│   ├── utils-lists
-│   │   └── 4.0.0
+│   ├── micro-test-plus
+│   │   └── 3.1.2
+│   ├── utils-lists
+│   │   └── 4.0.0
 └── @xpack-dev-tools
-    └── cmake
-        └── 3.28.6-1.1
+    └── cmake
+        └── 3.28.6-1.1
 
 9 directories, 0 files
 ```
@@ -195,15 +195,15 @@ in a hierarchy like:
 % tree -L3 ~/Library/xpacks
 /Users/ilg/Library/xpacks
 ├── @micro-os-plus
-│   ├── micro-test-plus
-│   │   ├── .link -> /Users/ilg/MyProjects/micro-os-plus.github/xPacks/micro-test-plus-xpack.git
-│   │   └── 3.1.2
-│   ├── utils-lists
-│   │   ├── .link -> /Users/ilg/MyProjects/micro-os-plus.github/xPacks/utils-lists-xpack.git
-│   │   └── 4.0.0
+│   ├── micro-test-plus
+│   │   ├── .link -> /Users/ilg/MyProjects/micro-os-plus.github/xPacks/micro-test-plus-xpack.git
+│   │   └── 3.1.2
+│   ├── utils-lists
+│   │   ├── .link -> /Users/ilg/MyProjects/micro-os-plus.github/xPacks/utils-lists-xpack.git
+│   │   └── 4.0.0
 └── @xpack-dev-tools
-    └── cmake
-        └── 3.28.6-1.1
+    └── cmake
+        └── 3.28.6-1.1
 
 9 directories, 0 files
 ```
@@ -221,13 +221,13 @@ This would result in a hierarchy like:
 % tree -a -L2 xpacks
 xpacks
 ├── .bin
-│   ├── ccmake -> ../@xpack-dev-tools/cmake/.content/bin/ccmake
-│   ├── cmake -> ../@xpack-dev-tools/cmake/.content/bin/cmake
-│   ├── cpack -> ../@xpack-dev-tools/cmake/.content/bin/cpack
-│   └── ctest -> ../@xpack-dev-tools/cmake/.content/bin/ctest
+│   ├── ccmake -> ../@xpack-dev-tools/cmake/.content/bin/ccmake
+│   ├── cmake -> ../@xpack-dev-tools/cmake/.content/bin/cmake
+│   ├── cpack -> ../@xpack-dev-tools/cmake/.content/bin/cpack
+│   └── ctest -> ../@xpack-dev-tools/cmake/.content/bin/ctest
 ├── @micro-os-plus
-│   ├── micro-test-plus -> /Users/ilg/Library/xPacks/@micro-os-plus/micro-test-plus/.link
-│   └── utils-lists -> /Users/ilg/Library/xPacks/@micro-os-plus/utils-lists/.link
+│   ├── micro-test-plus -> /Users/ilg/Library/xPacks/@micro-os-plus/micro-test-plus/.link
+│   └── utils-lists -> /Users/ilg/Library/xPacks/@micro-os-plus/utils-lists/.link
 └── @xpack-dev-tools
     └── cmake -> /Users/ilg/Library/xPacks/@xpack-dev-tools/cmake/3.28.6-1.1
 
