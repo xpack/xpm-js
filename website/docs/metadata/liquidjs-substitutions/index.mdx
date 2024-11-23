@@ -1,0 +1,107 @@
+---
+
+title: xPack executables
+description: The definitions of xPack executables
+keywords:
+  - xpack
+  - executables
+
+date: 2024-11-21 21:36:00 +0300
+
+---
+
+# LiquidJS substitutions
+
+An additional feature compared to **npm** is a powerful
+substitution engine that can be used in all **xpm**
+metadata definitions.
+
+It is implemented using the
+[LiquidJS](https://liquidjs.com) engine.
+The full LiquidJS syntax is supported, with all **tags** and **filters**,
+plus some custom filters, presented below.
+
+For more details, please see the documentation for the
+[`xpack/xpm-liquid-ts`](https://xpack.github.io/xpm-liquid-ts) module, where
+the substitutions are implemented.
+
+### Predefined variables
+
+The LiquidJS syntax to include variables
+uses **double curly braces**, like this: `{{variable}}`.
+
+Example:
+
+```json title="Simple variable substitution"
+"install": "xpm install --config {{configuration.name}}"
+```
+
+The main source for variables is the `properties` definition.
+
+When substitutions occur within a build configuration, the `properties`
+defined in the build configuration take precedence over `properties`
+with the same name defined at the project level.
+
+The available variables are:
+
+- `package.*` - the entire `package.json` parsed
+- `properties.*` - user defined string properties
+- `configuration.name` - the name of the current configuration
+- `configuration.*` - the entire configuration parsed
+- `env.*` - the Node.js process environment
+- `os.*` - the Node.js `os` definitions
+  - `os.EOL`
+  - `os.arch` (like 'arm', 'arm64', 'ia32', 'x64')
+  - `os.constants`
+  - `os.cpus`
+  - `os.endianness`
+  - `os.homedir`
+  - `os.hostname`
+  - `os.platform` (like 'darwin', 'linux', 'win32')
+  - `os.release`
+  - `os.tmpdir`
+  - `os.type`
+  - `os.version` (available since Node 12)
+- `path.*` definitions
+  - `path.delimiter` (`;` for Windows, `:` for POSIX)
+  - `path.sep` (`\` on Windows, `/` on POSIX)
+  - `path.win32.delimiter` (`;`)
+  - `path.win32.sep` (`\`)
+  - `path.posix.delimiter` (`:`)
+  - `path.posix.sep` (`/`)
+
+### Custom filters
+
+Filters act like pipes processing strings. The syntax is similar to
+the shell pipe syntax: `{{variable|filter}}`.
+
+Example:
+
+```json title="Multi-filter substitution"
+"buildFolderRelativePath": "{{'build' | path_join: configuration.name | to_filename | downcase}}"
+```
+
+In addition to the standard LiquidJS
+[filters](https://liquidjs.com/filters/overview.html),
+the following are also available:
+
+- `path_basename`
+- `path_dirname`
+- `path_normalize`
+- `path_join`
+- `path_relative`
+- `path_posix_basename`
+- `path_posix_dirname`
+- `path_posix_normalize`
+- `path_posix_join`
+- `path_posix_relative`
+- `path_win32_basename`
+- `path_win32_dirname`
+- `path_win32_normalize`
+- `path_win32_join`
+- `path_win32_relative`
+- `util_format`
+- `to_filename`
+- `to_posix_filename`
+- `to_win32_filename`
+

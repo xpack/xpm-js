@@ -24,38 +24,48 @@ export const userSidebarCategory = {
       label: 'Metadata',
       link: {
         type: 'doc',
-        id: 'user/metadata/index',
+        id: 'metadata/index',
       },
       collapsed: true,
       "items": [
         {
           type: 'doc',
-          id: 'user/metadata/dependencies/index',
+          id: 'metadata/index',
+          label: 'xpack'
+        },
+        {
+          type: 'doc',
+          id: 'metadata/liquidjs-substitutions/index',
+          label: 'LiquidJS Substitutions'
+        },
+        {
+          type: 'doc',
+          id: 'metadata/dependencies/index',
           label: 'dependencies'
         },
         {
           type: 'doc',
-          id: 'user/metadata/devDependencies/index',
+          id: 'metadata/devDependencies/index',
           label: 'devDependencies'
         },
         {
           type: 'doc',
-          id: 'user/metadata/binaries/index',
+          id: 'metadata/binaries/index',
           label: 'binaries'
         },
         {
           type: 'doc',
-          id: 'user/metadata/properties/index',
+          id: 'metadata/properties/index',
           label: 'properties'
         },
         {
           type: 'doc',
-          id: 'user/metadata/actions/index',
+          id: 'metadata/actions/index',
           label: 'actions'
         },
         {
           type: 'doc',
-          id: 'user/metadata/buildConfigurations/index',
+          id: 'metadata/buildConfigurations/index',
           label: 'buildConfigurations'
         },
       ]
