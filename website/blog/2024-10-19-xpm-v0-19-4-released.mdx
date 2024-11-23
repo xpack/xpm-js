@@ -2,13 +2,13 @@
 
 title: xPack xpm v0.19.4 released
 seo_title: Version 0.19.4 released
-description: Version 0.19.4 is a maintenance release.
+description: Version 0.19.4 is a maintenance release of xPack Project Manager.
 keywords:
   - xpack
   - xpm
   - release
 
-date: 2024-10-19 16:07:00 +0300
+date: 2024-10-19 21:10:00 +0300
 
 authors: ilg-ul
 
@@ -26,7 +26,9 @@ import {PageMetadata} from '@docusaurus/theme-common';
 import Image from '@theme/IdealImage';
 import CodeBlock from '@theme/CodeBlock';
 
-Version **0.19.4** is a maintenance release, it fixes the bug that incorrectly added npm dependencies.
+{/* ------------------------------------------------------------------------ */}
+
+Version **0.19.4** is a maintenance release, it fixes the HttpsProxyAgent import.
 
 <!-- truncate -->
 
@@ -44,7 +46,7 @@ application to automate builds and to manage
 For the prerequisites, since it is recommended
 to use a version manager or to customize the **npm** install location,
 please read the
-[Install](/docs/install/) page for more details.
+[Install](https://xpack.github.io/xpm/install/) page for more details.
 
 To install the **latest stable** version available, use:
 
@@ -55,8 +57,8 @@ npm install --location=global xpm@latest
 To install this specific version, use:
 
 <CodeBlock language="sh"> {
-`xpm install --location=global xpm@${frontMatter.version}`
-} </CodeBlock>
+`xpm install --location=global xpm@${frontMatter.version}
+`} </CodeBlock>
 
 ## Changes
 
@@ -65,7 +67,8 @@ is generally compatible with previous releases.
 
 ### Bug fixes
 
-- [#207] in certain conditions, downloads behind a proxy failed; fixed.
+- [#207] the syntax for the `HttpsProxyAgent` import was wrong, and accesses
+via a proxy were not possible; fixed.
 
 ### Enhancements
 
@@ -118,7 +121,7 @@ Bug reports: <https://github.com/xpack/xpm-js/issues/>
 Similar pages are available for each command.
 
 For more details, the project documentation is available online from the
-[web site](/).
+[web site](https://xpack.github.io/xpm/).
 
 ## Supported platforms
 

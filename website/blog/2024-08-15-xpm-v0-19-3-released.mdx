@@ -2,7 +2,7 @@
 
 title: xPack xpm v0.19.3 released
 seo_title: Version 0.19.3 released
-description: Version 0.19.3 is a maintenance release.
+description: Version 0.19.3 is a maintenance release of xPack Project Manager.
 keywords:
   - xpack
   - xpm
@@ -26,7 +26,9 @@ import {PageMetadata} from '@docusaurus/theme-common';
 import Image from '@theme/IdealImage';
 import CodeBlock from '@theme/CodeBlock';
 
-Version **0.19.3** is a maintenance release, it fixes the bug that incorrectly added npm dependencies.
+{/* ------------------------------------------------------------------------ */}
+
+Version **0.19.3** is a maintenance release, it fixes shims on Windows (the ld.gold issue).
 
 <!-- truncate -->
 
@@ -44,7 +46,7 @@ application to automate builds and to manage
 For the prerequisites, since it is recommended
 to use a version manager or to customize the **npm** install location,
 please read the
-[Install](/docs/install/) page for more details.
+[Install](https://xpack.github.io/xpm/install/) page for more details.
 
 To install the **latest stable** version available, use:
 
@@ -55,8 +57,8 @@ npm install --location=global xpm@latest
 To install this specific version, use:
 
 <CodeBlock language="sh"> {
-`xpm install --location=global xpm@${frontMatter.version}`
-} </CodeBlock>
+`xpm install --location=global xpm@${frontMatter.version}
+`} </CodeBlock>
 
 ## Changes
 
@@ -65,7 +67,8 @@ is generally compatible with previous releases.
 
 ### Bug fixes
 
-- [#206] in certain conditions, executables with extensions failed to get Windows shims; fixed.
+- [#206] in certain conditions, the logic behind the Windows shims failed and
+some programs were not accessible (like `ld.gold`); fixed.
 
 ### Enhancements
 
@@ -118,7 +121,7 @@ Bug reports: <https://github.com/xpack/xpm-js/issues/>
 Similar pages are available for each command.
 
 For more details, the project documentation is available online from the
-[web site](/).
+[web site](https://xpack.github.io/xpm/).
 
 ## Supported platforms
 
