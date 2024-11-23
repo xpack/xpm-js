@@ -12,7 +12,7 @@ date: 2024-11-21 21:36:00 +0300
 
 # The xPack Metadata
 
-Metadata is data that provides information about other data.
+Metadata is **data that provides information about other data**.
 
 The xPack metadata provides information about the package content (executables, links to binary archives), and about development related
 details (like dependencies, configurations, actions, etc).
@@ -21,7 +21,7 @@ The metadata used by **xpm** is located in the
 [`package.json`](/docs/user/files/package.json/) file, and is grouped
 below the `xpack` definition.
 
-To increase reusability of definitions, a powerful
+To enhance the reusability of definitions, a powerful
 LiquidJS engine is used to perform
 [substitutions](./liquidjs-substitutions/).
 
@@ -38,9 +38,9 @@ property, even empty, in the `package.json` file.
 }
 ```
 
-Although not mandatory, it is also recommended to add an `xpack` keyword;
-this may help find the xPacks in the public repository by searching for this
-keyword.
+While not mandatory, it is recommended to also add an `xpack` keyword.
+This can help locate the xPacks in the public repository through
+keyword searches.
 
 ```json title="Recommended keyword" {5}
 {
@@ -54,20 +54,21 @@ keyword.
 }
 ```
 
-The extensions are grouped below the `xpack` object, and may
+The **xpm** metadata is grouped below the `xpack` object, and may
 contain the following definitions:
 
-## Scalar metadata
+## Scalars
 
-### The `minimumXpmRequired` definition
+### `minimumXpmRequired`
 
-To allow **xpm** to evolve with future incompatible versions, a mechanism
-is used to identify the required `xpm` version for interpreting the current
-definitions in `package.json`.
+This definition is a mechanism to identify the required
+**xpm** version for correctly interpreting the current definitions
+in `package.json`, ensuring compatibility with future potentially
+incompatible **xpm** versions.
 
-`minimumXpmRequired` has dual usage:
+`minimumXpmRequired` serves two purposes:
 
-- it prevents using an old **xpm** with a newer `package.json`
+- it prevents the use of an outdated **xpm** with a newer `package.json`
 - it allows a newer **xpm** to revert some functionality to match the
 older minimum required **xpm**.
 

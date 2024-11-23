@@ -28,7 +28,11 @@ the substitutions are implemented.
 ### Predefined variables
 
 The LiquidJS syntax to include variables
-uses **double curly braces**, like this: `{{variable}}`.
+uses **double curly braces**:
+
+```
+{{variable}}
+```
 
 Example:
 
@@ -36,18 +40,22 @@ Example:
 "install": "xpm install --config {{configuration.name}}"
 ```
 
-The main source for variables is the `properties` definition.
+The main source for variables are the `properties` maps.
+
+:::tip
 
 When substitutions occur within a build configuration, the `properties`
 defined in the build configuration take precedence over `properties`
 with the same name defined at the project level.
+
+:::
 
 The available variables are:
 
 - `package.*` - the entire `package.json` parsed
 - `properties.*` - user defined string properties
 - `configuration.name` - the name of the current configuration
-- `configuration.*` - the entire configuration parsed
+- `configuration.*` - the entire current configuration parsed
 - `env.*` - the Node.js process environment
 - `os.*` - the Node.js `os` definitions
   - `os.EOL`
@@ -73,7 +81,11 @@ The available variables are:
 ### Custom filters
 
 Filters act like pipes processing strings. The syntax is similar to
-the shell pipe syntax: `{{variable|filter}}`.
+the shell pipe syntax:
+
+```
+{{variable|filter}}
+```
 
 Example:
 
@@ -83,7 +95,7 @@ Example:
 
 In addition to the standard LiquidJS
 [filters](https://liquidjs.com/filters/overview.html),
-the following are also available:
+the following **xpm** specific filters are also available:
 
 - `path_basename`
 - `path_dirname`
