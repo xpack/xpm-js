@@ -1,6 +1,7 @@
 ---
 
 title: package.json
+#description: ...
 
 date: 2019-07-02 00:36:00 +0300
 
@@ -15,178 +16,15 @@ basically the same as the **npm**
 [`package.json`](https://docs.npmjs.com/files/package.json),
 with some extensions.
 
-The extensions are grouped below the `xpack` object, and may
-contain the following definitions:
-
-  - `minimumXpmRequired`
-  - `dependencies`
-  - `devDependencies`
-  - `binaries`
-  - `properties`
-  - `actions`
-  - `buildConfigurations`
-
-
-## LiquidJS substitutions summary
-
-In addition to the new `xpacks` definitions, another key extension
-that comes with **xpm** is the use of substitutions through the
-[LiquidJS](https://liquidjs.com) engine. The full Liquid syntax, with
-**tags** and **filters**, is supported.
-
-Below is a summary of variables and filters available for substitutions.
-
-For more details, please see the documentation for the
-[`xpack/xpm-liquid-ts`](https://xpack.github.io/xpm-liquid-ts) module, where
-the substitutions are implemented.
-
-### Variables
-
-The LiquidJS syntax to include variables
-uses double curly braces, like this: `{{variable}}`.
-
-When substitutions occur within a build configuration, the `properties`
-defined in the build configuration take precedence over `properties`
-with the same name defined at the project level.
-
-- `package.*` - the entire `package.json` parsed
-- `properties.*` - user defined string properties
-- `configuration.name` - the name of the current configuration
-- `configuration.*` - the entire configuration parsed
-- `env.*` - the Node.js process environment
-- `os.*` - the Node.js `os` definitions
-  - `os.EOL`
-  - `os.arch` (like 'arm', 'arm64', 'ia32', 'x64')
-  - `os.constants`
-  - `os.cpus`
-  - `os.endianness`
-  - `os.homedir`
-  - `os.hostname`
-  - `os.platform` (like 'darwin', 'linux', 'win32')
-  - `os.release`
-  - `os.tmpdir`
-  - `os.type`
-  - `os.version` (available since Node 12)
-- `path.*` definitions
-  - `path.delimiter` (`;` for Windows, `:` for POSIX)
-  - `path.sep` (`\` on Windows, `/` on POSIX)
-  - `path.win32.delimiter` (`;`)
-  - `path.win32.sep` (`\`)
-  - `path.posix.delimiter` (`:`)
-  - `path.posix.sep` (`/`)
-
-
-Example:
-
-```json title="Simple variable substitution"
-"install": "xpm install --config {{configuration.name}}"
-```
-
-### Custom filters
-
-Filters act like pipes processing strings. The syntax is similar to
-the shell pipe syntax: `{{variable|filter}}`.
-
-- `path_basename`
-- `path_dirname`
-- `path_normalize`
-- `path_join`
-- `path_relative`
-- `path_posix_basename`
-- `path_posix_dirname`
-- `path_posix_normalize`
-- `path_posix_join`
-- `path_posix_relative`
-- `path_win32_basename`
-- `path_win32_dirname`
-- `path_win32_normalize`
-- `path_win32_join`
-- `path_win32_relative`
-- `util_format`
-- `to_filename`
-- `to_posix_filename`
-- `to_win32_filename`
-
-Example:
-
-```json title="Multi-filter substitution"
-"buildFolderRelativePath": "{{'build' | path_join: configuration.name | to_filename | downcase}}"
-```
-
 ## The mandatory `xpack` definitions
 
-To identify a project as an **xpm** package (xPack), it must have an `xpack`
-property, even empty, in the `package.json` file.
+The mandatory `xpack` definitions is used to store all
+**xpm** specific metadata; for details, please see the
+[separate page](/docs/metadata/).
 
-```json title="Minimal empty xpack" {4}
-{
-  "name": "my-awesome-project",
-  "version": "1.0.0",
-  "xpack": {}
-}
-```
+## LiquidJS substitutions
 
-Although not mandatory, it is also recommended to add an `xpack` keyword;
-this may help find the xPacks in the public repository by searching for this
-keyword.
-
-```json title="Recommended keyword" {5}
-{
-  "name": "my-awesome-project",
-  "version": "1.0.0",
-  "keywords": [
-    "xpack",
-    "..."
-  ],
-  "xpack": {}
-}
-```
-
-### The `minimumXpmRequired` definition
-
-To allow **xpm** to evolve with future incompatible versions, a mechanism
-is used to identify the required `xpm` version for interpreting the current
-definitions in `package.json`.
-
-`minimumXpmRequired` has dual usage:
-
-- it prevents using an old **xpm** with a newer `package.json`
-- it allows a newer **xpm** to revert some functionality to match the
-older minimum required **xpm**.
-
-The mechanism is similar to that used by CMake; the policies are
-documented in the separate [Policies](/docs/user/policies/) page.
-
-### The `dependencies` definitions
-
-
-### The `devDependencies` definitions
-
-
-### The `binaries` definitions
-
-
-### The `bin` definitions
-
-When installing a package with executables,
-after the archive is unpacked, links to all executables defined
-in the `bin` object are created in the `xpacks/.bin` folder.
-On Windows, where soft links to files are problematic, `.cmd`
-forwarders/shims are created.
-
-:::tip
-
-To accommodate for the `.cmd` stubs,
-programs launching the executables should do this via an explicit
-shell like `cmd.exe` or `PowerShell.exe`.
-
-:::
-
-### The `properties` definitions
-
-
-### The `actions` definitions
-
-
-### The `buildConfigurations` definitions
-
+In addition to the `xpacks` definitions, another key extension
+that comes with **xpm** is the use of
+**LiquidJS substitutions**, described in a
+[separate page](/docs/metadata/liquidjs-substitutions/).

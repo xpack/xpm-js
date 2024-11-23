@@ -16,12 +16,13 @@ import TabItem from '@theme/TabItem';
 This section is intended for those who plan to integrate **xpm**
 into their workflows.
 
-## Using existing projects
+## Use existing xpm enabled projects
 
-At its most basic level, the **xpm** workflow involves two key tasks:
+For projects that already include the **xpm** metadata, at its most
+basic level, the **xpm** workflow involves two key tasks:
 
-1. Installing dependencies
-2. Running various actions related to significant development steps
+1. Installing **dependencies**
+2. Running various **actions** related to significant development steps
 
 
 The easiest way to experiment with this is to use an existing project.
@@ -34,8 +35,10 @@ The first step is to clone the project into a temporary folder of your choice:
 git clone https://github.com/xpack/xpm-demo-hello1.git
 ```
 
+### Install dependencies
+
 The next major step in the workflow is to satisfy the project dependencies.
-In this case, **xpm** will install clang.
+In this example, **xpm** will install clang, since it is more portable than gcc.
 
 ```sh
 cd xpm-demo-hello1
@@ -44,12 +47,14 @@ xpm install
 
 :::info
 
-It should be noted that this will not install just any version of clang,
-but a specific version (18.1.8 in this case), which is hard-coded into
-the project configuration. This ensures that whenever the project is
-used, on any platform, the same specific version will be utilized.
+It should be noted that this command will not install just any version of clang,
+but a specific version (18.1.8 in this case), which is hard-coded into the
+project metadata. This ensures that the same version is used across all
+platforms, enhancing reproducibility.
 
 :::
+
+### Run actions
 
 The next steps involve running several actions, beginning with
 one that prepares the build folder:
@@ -84,12 +89,12 @@ major platforms (Windows, macOS, and GNU/Linux).
 :::
 
 
-## Create a new project
+## Create new projects
 
 As it can be seen, the workflow for existing projects is trivial.
 
 However, for a better understanding, it is useful to also know
-how to create a project from scratch.
+how to create an **xpm** enabled project from scratch.
 
 ### Initialise project
 
@@ -120,9 +125,11 @@ main (int argc, char* argv[])
 }
 ```
 
-### Install toolchain
+### Install a toolchain
 
-To compile this C program, we'll use **clang 18**, which must be installed:
+To compile this C program, we'll use **clang 18**.
+
+To install it, use the following command:
 
 ```sh
 xpm install @xpack-dev-tools/clang@18.1.8-2.1
@@ -131,7 +138,8 @@ xpm install @xpack-dev-tools/clang@18.1.8-2.1
 :::tip
 
 **LLVM/clang** is prefered over **GCC** since it proved to be more portable.
-For the moment GCC on macOS is not very stable over multiple SDK releases.
+For the moment GCC on macOS is not very stable over multiple SDK releases,
+and therefore not recommended.
 
 :::
 
@@ -251,12 +259,12 @@ are used. For example:
 
 :::
 
-To test if `clang` starts properly, invoke it via the link/shim in the
-`.bin` folder:
-
 <Tabs groupId="operating-systems">
 
 <TabItem value="windows" label="Windows" default>
+
+To test if `clang` starts properly, invoke it via the shim in the
+`.bin` folder:
 
 ```console
 PS C:\Users\ilg\xpm-demo-hello> .\xpacks\.bin\clang --version
@@ -267,6 +275,9 @@ xPack x86_64 clang version 18.1.8
 
 <TabItem value="macos" label="macOS">
 
+To test if `clang` starts properly, invoke it via the link in the
+`.bin` folder:
+
 ```console
 % ./xpacks/.bin/clang --version
 xPack x86_64 clang version 18.1.8
@@ -275,6 +286,9 @@ xPack x86_64 clang version 18.1.8
 </TabItem>
 
 <TabItem value="linux" label="GNU/Linux">
+
+To test if `clang` starts properly, invoke it via the link in the
+`.bin` folder:
 
 ```console
 $ ./xpacks/.bin/clang --version
@@ -288,12 +302,12 @@ xPack x86_64 clang version 18.1.8
 
 ### Add actions
 
-For traditional development environments, adding `xpacks/.bin` to the
-`PATH` is sufficient to enable build tools, such as make or cmake, to
-access the installed GCC.
+In traditional development environments, adding `xpacks/.bin` to the
+`PATH` is sufficient to allow any build tools to access the installed
+executables.
 
 However, the workflow can be further automated, by starting the build tools
-via `xpm run`, which adjusts the `PATH` itself.
+via `xpm run`, which automatically manages the `PATH`.
 
 For this, edit `package.json` and add the `clang --version` command in the
 `xpack.actions` section, with a name (for example `cc-version`):
@@ -308,7 +322,7 @@ For this, edit `package.json` and add the `clang --version` command in the
 }
 ```
 
-With this definition, the compiler version can be obtained without manually
+With this definition, the compiler version can be displayed without manually
 entering the path:
 
 <Tabs groupId="operating-systems">
@@ -345,9 +359,9 @@ xPack x86_64 clang version 18.1.8
 
 </Tabs>
 
-With the compiler functional, we can add `xpack.actions` to do the actual work,
-i.e. to prepare the build environment, to perform the build and to
-execute the resulting program:
+With the compiler functional, more `xpack.actions` can be added to
+handle the actual tasks: preparing the build environment,
+performing the build, and executing the resulting program:
 
 ```json {5-7}
 {
@@ -367,8 +381,8 @@ execute the resulting program:
 The `{{path.sep}}` syntax is a LiquidJS substitution used to
 accommodate platform-specific path separators. It is necessary
 in the `execute` command because it is parsed by the system shell.
-However, it is not required in the compile command since GCC also
-understands POSIX paths.
+However, it is not required in the compile command since the toolchain
+also understands POSIX paths.
 
 :::
 
@@ -376,8 +390,8 @@ understands POSIX paths.
 
 In this simple demo case, the `prepare` action is straightforward and can
 be directly executed in the terminal. However, for real-life projects,
-preparing the build often involves using tools like CMake or Meson.
-Therefore, as a best practice, it is recommended to always define a
+preparing the build often involves using tools like CMake or meson.
+Therefore, it is recommended as a best practice to always define a
 `prepare` action.
 
 :::
@@ -436,7 +450,7 @@ Hello World!
 
 </Tabs>
 
-### Visual Studio Code
+## Visual Studio Code
 
 For convenience, when using
 [Visual Studio Code](https://code.visualstudio.com) with the
@@ -448,20 +462,20 @@ with a single mouse click.
 
 ## Instantiate a template
 
-The above resulting projects, although functional, are still quite
-simple.
+While the resulting projects above are functional, they remain quite simple.
 
-A real world project will probably have multiple configurations, at least
-to build separate debug/release executables, if not even to run tests
-in multiple environments.
+A real-world project will likely have multiple configurations, at least
+to build separate debug and release executables, and possibly to run
+tests in various environments.
 
-Also, more elaborate projects will probably use CMake or meson.
+Additionally, more complex projects will probably use tools like
+CMake or Meson.
 
-These kind of projects can be created manually, but the process can be
-further automated by using project templates.
+These types of projects can be created manually, but the process can
+be further automated by using project templates.
 
-To generate the traditional Hello World! project, there is an
-[xpack/hello-world-template-xpack](https://github.com/xpack/hello-world-template-xpack),
+To generate the traditional _Hello World!_ project, there is an
+[xpack/hello-world-template-xpack](https://github.com/xpack/hello-world-template-xpack)
 project, also available from npmjs.com as
 [@xpack/hello-world-template](https://www.npmjs.com/package/@xpack/hello-world-template).
 
@@ -496,7 +510,14 @@ File 'LICENSE' generated.
 File 'package.json' generated.
 ```
 
-The next step is to satisfy dependencies:
+:::tip
+
+For portability reasons it is recommended to use clang, gcc might
+not run properly on newer macOS releases.
+
+:::
+
+The next step is to satisfy the project dependencies:
 
 ```console
 % xpm install
@@ -710,21 +731,23 @@ dependencies in other projects.
 run natively or on embedded platforms.
 
 Once the mechanism for defining `xpack.actions` is understood,
-it becomes possible to implement highly complex configurations.
+it becomes possible to implement highly complex workflows.
 For example, you can create intricate build configurations for
 very elaborate multi-platform tests.
 
 For final projects that are not intended to be used as dependencies in
-other projects, having a complex top-level package.json is not a
-significant issue.
+other projects, having a complex logic in the top-level `package.json`
+is not a significant issue.
 
-However, for projects intended to produce packages for use as dependencies
-in other projects, it is recommended to keep only the necessary definitions
-in the top-level `package.json`.
+However, for projects intended to be used as dependencies
+in other projects, it is recommended to
+keep only the user-related metadata
+in the top-level `package.json` and move all development
+metadata to separate folders.
 
 ### Separate `tests/package.json`
 
-To reduce clutter, it is recommended to move all test-related definitions
+To reduce the clutter, it is recommended to move all test-related metadata
 to a separate `tests` folder, with its own `package.json`.
 
 ### Separate `build_assets/package.json`
@@ -732,4 +755,3 @@ to a separate `tests` folder, with its own `package.json`.
 Similarly, if the project produces executables to be used as dependencies,
 it is recommended to move all build related files into a separate folder,
 for example `build-assets`, with its own `package.json`.
-
