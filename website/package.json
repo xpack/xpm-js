@@ -18,6 +18,7 @@
     "npm-install": "npm install",
     "npm-link-helper": "npm link @xpack/docusaurus-template-liquid @xpack/npm-packages-helper",
     "generate-website-commons": "bash node_modules/@xpack/docusaurus-template-liquid/maintenance-scripts/generate-commons.sh",
+    "import-website-releases": "bash node_modules/@xpack/docusaurus-template-liquid/maintenance-scripts/website-import-releases.sh",
     "generate-website-blog-post": "bash node_modules/@xpack/docusaurus-template-liquid/maintenance-scripts/generate-blog-post.sh"
   },
   "dependencies": {
@@ -58,7 +59,6 @@
   },
   "websiteConfig": {
     "shortName": "xpm",
-    "name": "Project Manager",
     "longName": "xPack Project Manager",
     "title": "xpm - The xPack Project Manager",
     "tagline": "A tool to automate builds, tests and manage C/C++ dependencies, inspired by npm",
