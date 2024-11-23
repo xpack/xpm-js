@@ -151,10 +151,6 @@
       "**/*.js"
     ]
   },
-  "buildConfig": {
-    "greeting": "The xPack project manager command line tool",
-    "isJavaScript": "true"
-  },
   "engines": {
     "node": " >=18.0.0"
   }
