@@ -3,7 +3,7 @@
 
 import type {SidebarsConfig} from '@docusaurus/plugin-content-docs';
 import cliSidebar from "./sidebar-cli";
-import {userSidebarCategory} from "./sidebar-user";
+import {customDocsSidebar} from "./sidebar-docs-custom";
 
 /**
  * Creating a sidebar enables you to:
@@ -18,70 +18,8 @@ import {userSidebarCategory} from "./sidebar-user";
 const sidebars: SidebarsConfig = {
 
   
-  docsSidebar: [
-    {
-      type: 'doc',
-      id: 'getting-started/index',
-      label: 'Getting Started'
-    },
-    {
-      type: 'doc',
-      id: 'install/index',
-      label: 'Install Guide'
-    },
-    userSidebarCategory,
-    {
-      type: 'doc',
-      id: 'faq/index',
-      label: 'FAQ'
-    },
-    {
-      type: 'doc',
-      id: 'support/index',
-      label: 'Help Centre'
-    },
-    {
-      type: 'doc',
-      id: 'releases/index',
-      label: 'Releases'
-    },
-    {
-      type: 'category',
-      label: 'Project',
-      link: {
-        type: 'doc',
-        id: 'project/about/index',
-      },
-      collapsed: false,
-      items: [
-        {
-          type: 'doc',
-          id: 'project/about/index',
-          label: 'About'
-        },
-        {
-          type: 'doc',
-          id: 'project/history/index',
-          label: 'History'
-        },
-        {
-          type: 'link',
-          label: 'License',
-          href: 'https://opensource.org/license/MIT',
-        },
-      ]
-    },
-    {
-      type: 'doc',
-      id: 'developer/index',
-      label: 'Developer Information'
-    },
-    {
-      type: 'doc',
-      id: 'maintainer/index',
-      label: 'Maintainer Information'
-    },
-  ],
+  docsSidebar: customDocsSidebar,
+  
   cliSidebar
   
 };

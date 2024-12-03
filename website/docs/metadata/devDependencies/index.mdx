@@ -12,9 +12,28 @@ date: 2024-11-21 21:36:00 +0300
 
 # The xPack `devDependencies` definitions
 
-The `devDependencies` definitions is similar to the **npm** definition,
+## Purpose
+
+Define the **xpm** packages required during development.
+
+## Syntax
+
+```json
+{
+  "xpack": {
+    "devDependencies": {
+      ...
+    }
+  }
+}
+```
+
+## Description
+
+The `devDependencies` definitions is similar to the **npm**
+[definition](https://docs.npmjs.com/cli/v10/configuring-npm/package-json#devdependencies),
 but lists the **xpm** definitions required during the development
-of the current package.
+of the current package, usually executables and other tools.
 
 When the `xpm install` is invoked in a project folder,
 all packages listed in `xpack.devDependencies` are also installed
@@ -24,12 +43,21 @@ forwarders/shims on windows) to all executables are created in
 
 No recursive search is performed.
 
+There are two formats for defining the dependencies, the **extended**
+format specific to **xpm**, and the **short** format, used for compatibility
+with **npm**.
+
+The formats are identical to those used by [`dependencies`](../dependencies/).
+
 When installing binary packages into an **xpm** project, they are also added
 to the `devDependencies` list, in the extended format.
 
-Example:
+## Example
 
-```json title="Extended format development dependency" {5-7}
+Extended format development dependency:
+
+```json {6-8}
+{
   "xpack": {
     "minimumXpmRequired": "0.19.4",
     "devDependencies": {
@@ -40,4 +68,5 @@ Example:
       }
     }
   }
+}
 ```

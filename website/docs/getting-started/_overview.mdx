@@ -57,9 +57,19 @@ not affect existing projects.
 
 ## Features
 
+By design, the xPack framework aims to automate:
+
+- managing **dependencies**
+- managing **build configurations**
+- the **component configurations** process
+- the **build** process
+
+While the configuration & build processes are covered by **xcdl**, the management of dependencies & build configurations is handled by **xpm**.
+
 **xpm** complements **npm** by streamlining cross-platform builds and
 tests with its distinctive features:
 
+- **Cross-Platform Support**: Runs on **Windows**, **macOS**, and **GNU/Linux**.
 - **Package Installation**: Installs the same format of packages as **npm**,
 including those from Git repositories and the **npm** public repository
 ([npmjs.com](https://www.npmjs.com)).
@@ -73,7 +83,7 @@ packages as build configuration dependencies.
 project or build configuration level.
 - **Property Management**: Manages properties with complex
 substitutions, using the [LiquidJS](https://liquidjs.com) engine.
-- **Cross-Platform Support**: Runs on **Windows**, **macOS**, and **GNU/Linux**.
+
 
 ## Benefits
 
@@ -86,7 +96,7 @@ environments.
 **testing across different architectures**, such as native, Arm, and RISC-V.
 - Installing multiple versions of the same package simultaneously
 enables testing with **various versions of the same toolchain**.
-- Multi-line commands with parameters and substitutions offer a
+- Running multi-line commands with parameters and substitutions offer a
 **robust and portable scripting mechanism**.
 - Installing packages directly from Git/GitHub **simplifies the
 maintenance** of some packages during development.

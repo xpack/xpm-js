@@ -25,9 +25,9 @@ To enhance the reusability of definitions, a powerful
 LiquidJS engine is used to perform
 [substitutions](./liquidjs-substitutions/).
 
-## The mandatory `xpack` definitions
+## The mandatory `xpack` definition
 
-To identify a project as an **xpm** package (xPack), it must have an `xpack`
+To identify a project as an **xpm** package (_xPack_), it must have an `xpack`
 property, even empty, in the `package.json` file.
 
 ```json title="Minimal empty xpack" {4}
@@ -61,10 +61,26 @@ contain the following definitions:
 
 ### `minimumXpmRequired`
 
-This definition is a mechanism to identify the required
+#### Purpose
+
+Identify the minimum required **xpm** version.
+
+#### Syntax
+
+```json
+{
+  "xpack": {
+    "minimumXpmRequired": "..."
+  }
+}
+```
+
+#### Descriptions
+
+This definition is a mechanism to identify the minimum required
 **xpm** version for correctly interpreting the current definitions
-in `package.json`, ensuring compatibility with future potentially
-incompatible **xpm** versions.
+in `package.json`, ensuring compatibility with future (potentially
+incompatible) **xpm** versions.
 
 `minimumXpmRequired` serves two purposes:
 
@@ -75,12 +91,23 @@ older minimum required **xpm**.
 The mechanism is similar to that used by CMake; the policies are
 documented in the separate [Policies](/docs/user/policies/) page.
 
+#### Example
+
+```json
+{
+  "xpack": {
+    "minimumXpmRequired": "0.19.4"
+  }
+}
+```
+
 ## Objects and arrays
 
-- `dependencies`
-- `devDependencies`
-- `binaries`
-- `properties`
-- `actions`
-- `buildConfigurations`
+- [`dependencies`](./dependencies/)
+- [`devDependencies`](./devDependencies/)
+- [`binaries`](./binaries/)
+- [`executables`](./executables/)
+- [`properties`](./properties/)
+- [`actions`](./actions/)
+- [`buildConfigurations`](./buildConfigurations/)
 

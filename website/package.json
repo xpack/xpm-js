@@ -68,8 +68,10 @@
     "isInstallGlobally": "true",
     "shareOnTwitter": "true",
     "hasTopHomepageFeatures": "true",
-    "hasCustomUserSidebar": "true",
+    "hasCustomSidebar": "true",
     "hasCustomUserInformation": "true",
+    "hasCustomDocsNavbarItem": "true",
+    "hasWebpreview": "true",
     "nodeVersion": "18.20.4"
   }
 }

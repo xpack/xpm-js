@@ -32,9 +32,10 @@ import TestResults from './_test-results.mdx';
 [![GitHub pulls](https://img.shields.io/github/issues-pr/xpack/xpm-js.svg)](https://github.com/xpack/xpm-js/pulls/)
 [![TS-Standard - TypeScript Standard Style Guide](https://badgen.net/badge/code%20style/ts-standard/blue?icon=typescript)](https://github.com/standard/ts-standard/)
 
-# How to build xpm
+# How to contribute to xpm
 
-This page is designed for developers of the
+This page is designed for developers who plan to contribute new features
+or fix bugs in the
 **xPack Project Manager**
 project and provides documentation on how to build and test the package.
 
@@ -42,10 +43,19 @@ project and provides documentation on how to build and test the package.
 
 <GetProjectSources />
 
+:::tip
+
+To contribute Pull Requests, fork the project and be sure the **Copy the master branch only** is **disabled**.
+
+Use the `xpack-development` branch and be sure you contribute the
+Pull Requests back to the `xpack-development` branch.
+
+:::
+
 ## Satisfy dependencies
 
 ```sh
-npm --prefix ~/Work/npm-packages/xpm-js.git install
+npm install
 ```
 
 ## Add links for development
@@ -54,7 +64,7 @@ To facilitate the use of this module in other packages, add a link
 from the central npm storage to this local development folder:
 
 ```sh
-npm --prefix ~/Work/npm-packages/xpm-js.git link
+npm link
 ```
 
 And in the projects referring it:
@@ -69,7 +79,7 @@ The TypeScript compiler can automatically recompile modified files. For
 this, start it in `watch` mode.
 
 ```sh
-npm --prefix ~/Work/npm-packages/xpm-js.git run compile-watch
+npm run compile-watch
 ```
 
 
@@ -138,8 +148,8 @@ As for any `npm` package, the standard way to run the project tests is via
 `npm run test`:
 
 ```sh
-npm --prefix ~/Work/npm-packages/xpm-js.git install
-npm --prefix ~/Work/npm-packages/xpm-js.git run test
+npm install
+npm run test
 ```
 
 <TestResults />

@@ -8,6 +8,8 @@ import logger from '@docusaurus/logger';
 
 import cliNavbar from './docusaurus-config-navbar-cli'
 
+import {customDocsNavbarItem} from './navbar-docs-items'
+
 
 import {redirects} from './docusaurus-config-redirects'
 
@@ -231,38 +233,8 @@ const config: Config = {
           className: 'header-home-link',
           position: 'left'
         },
-        {
-          type: 'dropdown',
-          label: 'Documentation',
-          to: 'docs/getting-started',
-          position: 'left',
-          items: [
-            {
-              label: 'Getting Started',
-              to: '/docs/getting-started'
-            },
-            {
-              label: 'Install Guide',
-              to: '/docs/install'
-            },
-            {
-              label: 'User Information',
-              to: '/docs/user'
-            },
-            {
-              label: 'Help Centre',
-              to: '/docs/support'
-            },
-            {
-              label: 'Releases',
-              to: '/docs/releases'
-            },
-            {
-              label: 'About',
-              to: '/docs/project/about'
-            }
-          ],
-        },
+        customDocsNavbarItem,
+        
         cliNavbar,
         {
           type: 'dropdown',

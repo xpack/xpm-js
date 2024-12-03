@@ -1,0 +1,29 @@
+---
+
+title: Glossary
+# description: ...
+keywords:
+  - xpack
+  - xpm
+  - glossary
+
+date: 2024-11-24 18:58:00 +0300
+
+---
+
+# Terms used across the **xpm** project
+
+The definitions used in the xCDL project are listed below.
+
+More elaborate definitions are available in the
+[Concepts](/docs/guide/concepts/) page.
+
+## xpm
+
+**xpm** is the xPack Project manager. It uses several concepts:
+
+- **actions**: sequences of shell commands executed in the environment of the current project dependencies
+- **properties**: named strings with configuration definitions
+- **build configurations**: sets of dependencies, properties and actions used for different builds
+- **build configurations inheritance**: to avoid redundancy, it is possible for a build configuration to inherit definitions from another build configurations and then redefine some of them
+- **LiquidJS substitutions**: a mechanism for textual substitutions with variables, tags, filters used to define _smart_ properties

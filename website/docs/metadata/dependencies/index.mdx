@@ -12,38 +12,96 @@ date: 2024-11-21 21:36:00 +0300
 
 # The xPack `dependencies` definitions
 
-The `dependencies` definitions is similar to the **npm** definition,
-but lists the **xpm** source packages required to compile/link-time.
+## Purpose
 
-When a source package is installed locally (without `--global`) into the
-local project `xpacks` folder, all packages listed in its `xpack.dependencies`
-are also installed into the same local `xpacks` folder,
-recursively.
+Define the **xpm** source packages required at compile/link time.
 
-In other words, the list of source dependencies is linearised, and all
-dependencies are installed at the same top level, as required by
-compiled languages (like C/C++), to have all source libraries
-compiled and available at link time.
+## Syntax
+
+```json
+{
+  "xpack": {
+    "dependencies": {
+      ...
+    }
+  }
+}
+```
+
+## Description
+
+The `dependencies` definition is similar to the **npm**
+[definition](https://docs.npmjs.com/cli/v10/configuring-npm/package-json#dependencies),
+but lists the **xpm** source packages required at compile/link time.
+
+When a source package is installed locally into the
+local project `xpacks` folder (without `--global`), all packages listed in its `xpack.dependencies`
+are also recursively installed into the same local `xpacks` folder.
+
+In other words, the list of source dependencies is linearised,
+and all dependencies are installed at the same top level.
+This approach is necessary for compiled languages (like C/C++)
+to ensure all source libraries are compiled and available at link time.
 
 :::info
 
-The main difference compared to **npm** is the linearized list of source
-dependencies.
+This linearised list of source
+dependencies is the main difference compared to **npm**.
 
-**npm**, which is a JavaScript/TypeScript tool, uses a
-different strategy that preserves the hierarchical structure of
-dependencies, not suitable for compiled languages.
+**npm**, designed for JavaScript/TypeScript,
+maintains the hierarchical structure of dependencies, which is
+not suitable for compiled languages
 
 :::
+
+There are two formats for defining the dependencies, the **extended**
+format specific to **xpm**, and the **short** format, used for compatibility
+with **npm**.
 
 When installing source packages into an **xpm** project, they are also added
 to the `dependencies` list, in the extended format.
 
+## Properties
 
+In the **short** format, the dependency value is a **string**, with the same content as for **npm** dependencies.
 
-Example:
+In the **extended** format, the value is an **object** with the following properties:
 
-```json title="Extended format source dependency" {5-7}
+### `specifier`
+
+A string that identifies the package.
+
+- a [SemVer](https://semver.org) expression: a package with a version that matches the expression
+will be downloaded from the npmjs.com repository
+- a full URI/URL: the package will be installed from the address
+- `user/project`: a simplified syntax for GitHub projects,
+
+### `local`
+
+A string that defines the install strategy:
+
+- `link`: create a link in the local project pointing to a read-only instance of the package
+- `copy`: create a full writable copy in the local project
+
+### `platforms`
+
+A string that indicates the platforms where the dependency can be installed.
+
+- `all`: install on all platforms
+- `...`: comma separated list of platforms (linux-x64, linux-arm64, darwin-x64, darwin-arm64, win32-x64)
+
+:::note
+
+Currently the value is ignored by **npm install**.
+
+:::
+
+## Examples
+
+Extended format source dependency:
+
+```json {6-8}
+{
   "xpack": {
     "minimumXpmRequired": "0.19.4",
     "dependencies": {
@@ -52,20 +110,19 @@ Example:
         "local": "link",
         "platforms": "all"
       }
-    },
+    }
   }
+}
 ```
 
-For historical reasons, when editting `package.json` manually, it is
-also possible to use the short form, similar to the syntax used by **npm**.
+Traditional short form source dependency:
 
-Example:
-
-```json title="Traditional short form source dependency" {4}
+```json {4}
+{
   "xpack": {
-    "minimumXpmRequired": "0.19.4",
     "dependencies": {
       "@micro-os-plus/micro-test-plus": "^3.1.2"
-    },
+    }
   }
+}
 ```
