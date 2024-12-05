@@ -15,7 +15,7 @@ please refer to the
 ## Project source
 
 The source code of the current release is available
-on [GitHub tag v0.20.1 tree](https://github.com/xpack/xpm-js/tree/v0.20.1).
+on [GitHub tag v0.20.2 tree](https://github.com/xpack/xpm-js/tree/v0.20.2).
 
 ## License
 

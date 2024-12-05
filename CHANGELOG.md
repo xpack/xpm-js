@@ -3,13 +3,45 @@
 Changes in reverse chronological order.
 Don't forget to close GitHub [issues](https://github.com/xpack/xpm-js/issues/).
 
+## 2024-12-05
+
+* v0.20.2 released
+* 2de728d #212: fix missing package-liquid.json in xpm init
+* 30a11db website update
+
+## 2024-12-03
+
+* da4867c website cosmetics
+* 6bc7c4d website re-generate common
+
+## 2024-11-23
+
+* 855fccd website content updates
+* 39ef230 package.json cleanups
+* 70a7999 website/package.json: import-website-releases
+* da801be website/blog re-generate posts
+* 43cfe4e website: updates
+* 64d3dc1 website: move metadata up
+* 84d1825 website: :::info
+
+## 2024-11-22
+
+* 6591528 website: overview rephrase title
+* 7f4f714 website: compatibility v0.20.0
+* 63a29a9 website: cosmetics
+* 0d9289c 0.20.1
+
 ## 2024-11-21
 
+* 7d1db0c website: re-generate commons
+* 2bcf8d9 website: more content updates
+* 3fb414a website: blog post release 0.20.1 published
+* 586998a website: blog update past posts
+* 088c8e3 CHANGELOG update
 * 960f360 CHANGELOG update
 * 674ec00 .npmignore update
 * 0201fca CHANGELOG update
 * ab322a8 #209: accept executables for bin
-* v0.20.1 prepared
 * f85d973 re-generate commons
 * a2b3f0b package.json: fix homepage urls
 * fdd90e4 top package.json: add homepagePreview
