@@ -63,7 +63,7 @@ tsconfig.tsbuildinfo
 
 typedoc.json
 /docs/
-/assets/
+# /assets/ # keep it, xpm needs it.
 /scripts/
 /website/
 /tmp/
