@@ -1,14 +1,14 @@
 ---
 
-title: xPack xpm v{{releaseVersion}} released
-seo_tile: Version {{releaseVersion}} released
-description: Version v{{releaseVersion}} is a TODO new/maintenance release.
+title: xPack xpm v0.20.2 released
+seo_tile: Version 0.20.2 released
+description: Version v0.20.2 is a maintenance release.
 keywords:
   - xpack
   - xpm
   - release
 
-date: {{releaseDate}}
+date: 2024-12-05 22:33:44 +0200
 
 authors: ilg-ul
 
@@ -18,9 +18,9 @@ tags:
 
 # ----- Custom properties -----------------------------------------------------
 
-version: "{{releaseVersion}}"
+version: "0.20.2"
 
-release_tag_url: "https://github.com/xpack/xpm-js/tree/v{{releaseVersion}}"
+release_tag_url: "https://github.com/xpack/xpm-js/tree/v0.20.2"
 
 ---
 
@@ -32,11 +32,7 @@ import Link from '@docusaurus/Link';
 import Prerequisites from './_common/_prerequisites.mdx'
 import DownloadAnalytics from './_common/_download-analytics.mdx'
 
-TODO: select one summary
-
-Version **{{releaseVersion}}** is a maintenance release; it fixes ...
-
-Version **{{releaseVersion}}** is a new release; it adds ....
+Version **0.20.2** is a maintenance release; it fixes the `xpm init` bug.
 
 <!-- truncate -->
 
@@ -61,7 +57,8 @@ page.
 
 ## Bug fixes
 
-- none
+- [#212] in the previous release a bug was introduced, affecting `xpm init`
+due to a missing file; fixed.
 
 ## Enhancements
 
@@ -102,7 +99,7 @@ xpm <command> -h|--help  Quick help on command
 xpm --version            Show version
 xpm -i|--interactive     Enter interactive mode
 
-npm xpm@{{releaseVersion}} '/Users/ilg/.nvm/versions/node/v{{packageWebsiteConfig.nodeVersion}}/lib/node_modules/xpm'
+npm xpm@0.20.2 '/Users/ilg/.nvm/versions/node/v18.20.4/lib/node_modules/xpm'
 Home page: <https://xpack.github.io/xpm/>
 Bug reports: <https://github.com/xpack/xpm-js/issues/>
 ```
