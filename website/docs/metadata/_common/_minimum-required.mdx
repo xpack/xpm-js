@@ -1,0 +1,16 @@
+{/* DO NOT EDIT! */}
+{/* Automatically generated from xbb-helper/templates/docusaurus/common. */}
+
+{/* ------------------------------------------------------------------------ */}
+
+This definition is a mechanism to identify the minimum required
+**{props.name}** version necessary for correctly interpreting the current definitions in  <code>{props.fileName}.json</code>, thereby ensuring compatibility with future (potentially incompatible) **{props.name}** versions.
+
+The <code>minimum{String(props.name).charAt(0).toUpperCase() + String(props.name).slice(1)}Required</code> property has two primary purposes:
+
+- it prevents the use of an outdated **{props.name}** with a newer <code>{props.fileName}.json</code>
+- it allows a newer **{props.name}** to revert some functionality to match the
+older minimum required **{props.name}**.
+
+The mechanism is similar to that used by CMake; the policies are
+documented on the separate [Policies](/docs/user/policies/) page.
