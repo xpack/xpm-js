@@ -21,7 +21,7 @@ Aliases:
 
 ## Description
 
-Initialise the current folder as an xPack, by creating a skeleton
+Initialise the current folder as an xpm package, by creating a skeleton
 `package.json` file. This file needs further editing to update most
 of the objects.
 
@@ -75,7 +75,7 @@ $
 
 ### Template (`-t|--template <xpack>`)
 
-Create the xPack using a template. The template itself is an xPack
+Create the xpm package using a template. The template itself is an xpm package
 with a specific code that implements a template API.
 
 Example: Create a project in an interactive session by answering
@@ -123,7 +123,7 @@ $
 
 ### Name (`--name <string>`)
 
-Define a name for the new xPack. If missing, the xPack name is
+Define a name for the new xpm package. If missing, the package name is
 derived from the current folder name.
 
 ### Properties (`-p|--property <string>`)
@@ -135,7 +135,7 @@ The names, values and behaviours are all specific to each template engine.
 
 Example: the same template as before, if it receives a mandatory
 `boardName` property,
-can create the new xPack without further questions, by using defaults:
+can create the new xpm package without further questions, by using defaults:
 
 ```console
 $ xpm init --template @sifive/templates --property boardName=hifive1

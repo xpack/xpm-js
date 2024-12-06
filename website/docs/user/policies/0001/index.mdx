@@ -28,7 +28,7 @@ which made things more complicated than they should have been.
 
 ## Changes
 
-To simplify things, given that the xPack dependencies have a different
+To simplify things, given that the xpm dependencies have a different
 nature than node modules and require a different logic, it was considered
 that it would be better to completely separate the definitions in
 `package.json`, and move them below the `xpack` object.
@@ -48,8 +48,8 @@ but it is recommended to update the packages.
 To do this, it is required to:
 
 - update **xpm** to at least v0.14.0
-- move xPack references from `dependencies` to `xpack.dependencies`
-- move xPack references from `devDependencies` to `xpack.devDependencies`
+- move xpm references from `dependencies` to `xpack.dependencies`
+- move xpm references from `devDependencies` to `xpack.devDependencies`
 - if any, keep the npm references in `dependencies` and `devDependencies`
 - update `xpack.minimumXpmRequired` to at least 0.14.0
 - add `npm install` to CI configurations (if needed)

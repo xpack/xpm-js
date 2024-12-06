@@ -24,12 +24,20 @@ export const customDocsNavbarItem = {
             to: '/docs/install'
           },
           {
-            label: 'User Information',
+            label: 'User\'s Guide',
             to: '/docs/user'
           },
           {
             label: 'Package Author\'s Guide',
             to: '/docs/guide'
+          },
+          {
+            label: 'Contributor\'s Guide',
+            to: '/docs/developer'
+          },
+          {
+            label: 'Maintainer\'s Guide',
+            to: '/docs/maintainer'
           },
           {
             label: 'Help Centre',

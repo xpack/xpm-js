@@ -10,15 +10,20 @@ date: 2024-11-21 21:36:00 +0300
 
 ---
 
+import MinimumRequired from './_common/_minimum-required.mdx';
+
+{/* ------------------------------------------------------------------------ */}
+
 # The xPack Metadata
 
 Metadata is **data that provides information about other data**.
 
-The xPack metadata provides information about the package content (executables, links to binary archives), and about development related
+The xPack metadata provides information about the package content
+(executables, links to binary archives), and about development related
 details (like dependencies, configurations, actions, etc).
 
 The metadata used by **xpm** is located in the
-[`package.json`](/docs/user/files/package.json/) file, and is grouped
+[`package.json`](/docs/guide/files/package.json/) file, and is grouped
 below the `xpack` definition.
 
 To enhance the reusability of definitions, a powerful
@@ -27,7 +32,7 @@ LiquidJS engine is used to perform
 
 ## The mandatory `xpack` definition
 
-To identify a project as an **xpm** package (_xPack_), it must have an `xpack`
+To identify a project as an **xpm** package, it must have an `xpack`
 property, even empty, in the `package.json` file.
 
 ```json title="Minimal empty xpack" {4}
@@ -39,7 +44,7 @@ property, even empty, in the `package.json` file.
 ```
 
 While not mandatory, it is recommended to also add an `xpack` keyword.
-This can help locate the xPacks in the public repository through
+This can help locate the xpm packages in the public repository through
 keyword searches.
 
 ```json title="Recommended keyword" {5}
@@ -57,49 +62,9 @@ keyword searches.
 The **xpm** metadata is grouped below the `xpack` object, and may
 contain the following definitions:
 
-## Scalars
+## Global properties
 
-### `minimumXpmRequired`
-
-#### Purpose
-
-Identify the minimum required **xpm** version.
-
-#### Syntax
-
-```json
-{
-  "xpack": {
-    "minimumXpmRequired": "..."
-  }
-}
-```
-
-#### Descriptions
-
-This definition is a mechanism to identify the minimum required
-**xpm** version for correctly interpreting the current definitions
-in `package.json`, ensuring compatibility with future (potentially
-incompatible) **xpm** versions.
-
-`minimumXpmRequired` serves two purposes:
-
-- it prevents the use of an outdated **xpm** with a newer `package.json`
-- it allows a newer **xpm** to revert some functionality to match the
-older minimum required **xpm**.
-
-The mechanism is similar to that used by CMake; the policies are
-documented in the separate [Policies](/docs/user/policies/) page.
-
-#### Example
-
-```json
-{
-  "xpack": {
-    "minimumXpmRequired": "0.19.4"
-  }
-}
-```
+- [`minimumXpmRequired`](./minimumXpmRequired/)
 
 ## Objects and arrays
 

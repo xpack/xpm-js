@@ -33,7 +33,7 @@ export const customDocsSidebar = [
   },
   {
     type: 'category',
-    label: 'User Information',
+    label: 'User\'s Guide',
     link: {
       type: 'doc',
       id: 'user/index',
@@ -49,22 +49,6 @@ export const customDocsSidebar = [
         type: 'doc',
         id: 'user/folders/index',
         label: 'Folders'
-      },
-      {
-        type: 'category',
-        label: 'Files',
-        link: {
-          type: 'doc',
-          id: 'user/files/index',
-        },
-        collapsed: true,
-        items: [
-          {
-            type: 'doc',
-            id: 'user/files/package.json/index',
-            label: 'package.json'
-          },
-        ]
       },
       {
         type: 'doc',
@@ -98,13 +82,18 @@ export const customDocsSidebar = [
         "items": [
           {
             type: 'doc',
+            id: 'metadata/liquidjs-substitutions/index',
+            label: 'LiquidJS Substitutions'
+          },
+          {
+            type: 'doc',
             id: 'metadata/index',
             label: 'xpack'
           },
           {
             type: 'doc',
-            id: 'metadata/liquidjs-substitutions/index',
-            label: 'LiquidJS Substitutions'
+            id: 'metadata/minimumXpmRequired/index',
+            label: 'minimumXpmRequired'
           },
           {
             type: 'doc',
@@ -143,7 +132,33 @@ export const customDocsSidebar = [
           },
         ]
       },
+      {
+        type: 'category',
+        label: 'Files',
+        link: {
+          type: 'doc',
+          id: 'guide/files/index',
+        },
+        collapsed: true,
+        items: [
+          {
+            type: 'doc',
+            id: 'guide/files/package.json/index',
+            label: 'package.json'
+          },
+        ]
+      },
     ]
+  },
+  {
+    type: 'doc',
+    id: 'developer/index',
+    label: 'Contributor\'s Guide'
+  },
+  {
+    type: 'doc',
+    id: 'maintainer/index',
+    label: 'Maintainer\'s Guide'
   },
   {
     type: 'doc',
@@ -167,7 +182,7 @@ export const customDocsSidebar = [
       type: 'doc',
       id: 'project/about/index',
     },
-    collapsed: true,
+    collapsed: false,
     items: [
       {
         type: 'doc',
@@ -185,15 +200,5 @@ export const customDocsSidebar = [
         href: 'https://opensource.org/license/MIT',
       },
     ]
-  },
-  {
-    type: 'doc',
-    id: 'developer/index',
-    label: 'Developer Information'
-  },
-  {
-    type: 'doc',
-    id: 'maintainer/index',
-    label: 'Maintainer Information'
   },
 ]

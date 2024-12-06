@@ -1,0 +1,55 @@
+---
+
+title: minimumXpmRequired
+description: The definition of the xpm minimumXpmRequired property.
+keywords:
+  - xpack
+  - xpm
+  - property
+  - minimumXpmlRequired
+
+date: 2024-12-06 21:47:00 +0200
+
+---
+
+import MinimumRequired from '../_common/_minimum-required.mdx';
+
+{/* ------------------------------------------------------------------------ */}
+
+# The `minimumXpmRequired` property
+
+## Purpose
+
+Identify the minimum required **xpm** version.
+
+## Syntax
+
+```json
+{
+  ...
+  "xpack": {
+    "minimumXpmRequired": "<semver>"
+  }
+}
+```
+
+The value of the `minimumXpmRequired` property is a string with a version in [SemVer](https://semver.org) format.
+
+## Default value
+
+If missing, no checks are performed on the **xpm** version.
+
+## Descriptions
+
+<MinimumRequired name="xpm" fileName="package" />
+
+## Example
+
+```json {4}
+{
+  ...
+  "xpack": {
+    "minimumXpmRequired": "0.19.4"
+  }
+}
+```

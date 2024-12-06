@@ -10,9 +10,9 @@ date: 2024-11-21 21:36:00 +0300
 
 ---
 
-# The xPack `binaries` definitions
+# The `binaries` definitions
 
-To keep packages small, binary xPacks do not include the platform specific
+To keep packages small, binary xpm packages do not include the platform specific
 binaries; instead they include only links
 to the binary archives, and checksums to validate the downloads.
 
@@ -22,7 +22,7 @@ Example:
 {
   "name": "@xpack-dev-tools/cmake",
   "version": "3.28.6-1.1",
-  "description": "A binary xPack with the CMake executables",
+  "description": "A binary xpm package with the CMake executables",
   "...": "...",
   "xpack": {
     "minimumXpmRequired": "0.16.3",
