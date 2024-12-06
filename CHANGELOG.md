@@ -3,9 +3,18 @@
 Changes in reverse chronological order.
 Don't forget to close GitHub [issues](https://github.com/xpack/xpm-js/issues/).
 
+## 2024-12-07
+
+* v0.20.3 prepared
+* 815c0f2 website: replace xPack with xpm packages
+* b714ccc #213: replace xPack with xpm packages
+
 ## 2024-12-05
 
-* v0.20.2 released
+* d901ee2 website: update maintainer
+* 79978ef website: blog post release 0.20.2 published
+* 438b170 0.20.2
+* f90776a prepare v0.20.2
 * 2de728d #212: fix missing package-liquid.json in xpm init
 * 30a11db website update
 
