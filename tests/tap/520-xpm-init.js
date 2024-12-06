@@ -60,7 +60,7 @@ test('xpm help -h',
       t.ok(outLines.length > 9, 'has enough output')
       if (outLines.length > 9) {
         // console.log(outLines)
-        t.match(outLines[1], 'create an xPack', 'has title')
+        t.match(outLines[1], 'create an xpm package', 'has title')
         t.match(outLines[2], 'Usage: xpm init [options...] ' +
           '[--template <xpack>] [--name <string>]', 'has Usage')
         t.match(outLines[5], 'Init options:', 'has init options')
@@ -92,7 +92,7 @@ test('xpm ini -h',
       t.ok(outLines.length > 9, 'has enough output')
       if (outLines.length > 9) {
         // console.log(outLines)
-        t.match(outLines[1], 'create an xPack', 'has title')
+        t.match(outLines[1], 'create an xpm package', 'has title')
         t.match(outLines[2], 'Usage: xpm init [options...] ' +
           '[--template <xpack>] [--name <string>]', 'has Usage')
       }
