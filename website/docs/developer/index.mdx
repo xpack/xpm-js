@@ -39,6 +39,11 @@ or fix bugs in the
 **xPack Project Manager**
 project and provides documentation on how to build and test the package.
 
+
+This project is currently written in JavaScript, but a rewrite in
+TypeScript is planned.
+
+
 <Prerequisites nodeVersion="18.0.0" nodeVersionMajor="18"/>
 
 <GetProjectSources />
@@ -81,22 +86,29 @@ this, start it in `watch` mode.
 ```sh
 npm run compile-watch
 ```
+## Language standard compliance
 
+
+The module uses ECMAScript 6 class definitions and modules.
 
 
 ## Standard style
 
-As style, the project uses `ts-standard`, the TypeScript variant of
-[Standard Style](https://standardjs.com/#typescript),
+
+As style, the project uses the
+[JavaScript Standard Style](https://standardjs.com/),
 automatically checked at each commit via CI.
 
+For spacial cases, it is possible to configure/disable some rules.
+
 ```js
-// eslint-disable-next-line @typescript-eslint/no-xxx-yyy
+/* eslint-disable-next-line no-xxx-yyy */
 ```
 
 The known rules are documented in the
-[typescript-eslint](https://github.com/typescript-eslint/typescript-eslint/tree/main/packages/eslint-plugin/docs/rules)
+[eslint](https://eslint.org/docs/latest/rules/)
 project.
+
 
 Generally, to fit two editor windows side by side in a screen,
 all files should limit the line length to 80.
@@ -115,34 +127,34 @@ To manually fix compliance with the style guide (where possible):
 `% npm run fix
 
 > xpm@${customField('version')} fix
-> ts-standard --fix src && standard --fix test
+> standard --fix test
 ...
 `} </CodeBlock>
 
 ## Documentation metadata
 
-The documentation metadata uses the
-[TypeDoc](https://typedoc.org/guides/doccomments/) tags, without
-explicit types, since they are provided by TypeScript.
 
-:::note
+The documentation metadata follows the [JSdoc](http://usejsdoc.org) tags.
 
-Microsoft is currently developing a new project ([TSDoc](https://tsdoc.org))
-which tries to standardise TypeScript documentation metadata.
+To enforce checking at file level, add the following comments right after
+the `use strict`:
 
-This standard is generaly compatible with TypeDoc; at the time of
-this writing, among the visible differences is the lack
-of the `@category` or `@group` tags.
+```js
+'use strict'
+/* eslint valid-jsdoc: "error" */
+/* eslint max-len: [ "error", 80, { "ignoreUrls": true } ] */
+```
 
-:::
+Note: be sure C style comments are used, C++ styles are not parsed by
+[ESLint](http://eslint.org).
+
 
 ## Tests
 
 The tests use the [`node-tap`](http://www.node-tap.org) framework
 (_A Test-Anything-Protocol library for Node.js_, written by Isaac Schlueter).
 
-Tests can be written in TypeScript, assuming `ts-node` is also installed
-(https://node-tap.org/docs/using-with/#using-tap-with-typescript)
+Tests can be written in TypeScript, assuming `ts-node` is also installed.
 
 As for any `npm` package, the standard way to run the project tests is via
 `npm run test`:
@@ -161,14 +173,8 @@ npm run test
 The module is 
 CI tested on every push via
 [GitHub Actions](https://github.com/xpack/xpm-js/actions), on Ubuntu,
-Windows and macOS, using node 18 and 20.
+Windows and macOS, using node 18, 20 and 22.
 
-## Tricks & tips
 
-To trace TypeScript module resolution:
-
-```json
-    "compile": "tsc --traceResolution  -p ./",
-```
 
 

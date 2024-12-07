@@ -60,6 +60,7 @@
   "websiteConfig": {
     "shortName": "xpm",
     "longName": "xPack Project Manager",
+    "programName": "xpm",
     "title": "xpm - The xPack Project Manager",
     "tagline": "A tool to automate builds, tests and manage C/C++ dependencies, inspired by npm",
     "metadataDescription": "The xPack Project Manager command line tool",

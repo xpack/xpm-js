@@ -12,16 +12,66 @@ date: 2024-11-21 21:36:00 +0300
 
 # The `actions` definitions
 
+## Purpose
+
+Define a map of sequences of shell commands to be invoked by name.
+
+## Syntax
+
+```json
+{
+    ...
+    "actions": {
+        ...
+        "<action name>": "<command>" | [ "<command>",... ],
+        ...
+    }
+    ...
+}
+```
+
+The value of an `actions` entry can be either a string or an array
+of strings containing shell commands.
+
+## Description
+
 **xpm** actions are an extended version of **npm** scripts, that
-supports multiple lines and substitutions.
+support multiple lines and substitutions.
 
 `actions` can be defined at project level, or at build configuration level.
 
-When actions are invoked for a specific a build configuration, the `actions`
+When actions are invoked for a specific build configuration, the `actions`
 defined in the build configuration take precedence over `actions`
 with the same name defined at the project level.
 
-Example:
+:::caution Portability warning
+
+Special attention should be given to running shell commands on Windows.
+While invoking simple applications is generally portable, many Unix
+shell commands do not have direct equivalents on Windows.
+
+The solution is to use portable applications, for example instead of `rm`
+use [`del-cli`](https://www.npmjs.com/package/del-cli), and so on.
+
+If full portability is not required, a workaround is to execute the
+`xpm run` commands in a Git Bash terminal.
+
+:::
+
+## Multi-line actions
+
+In order to accommodate more complex actions, it is possible to define
+sequences of commands as arrays of strings, with each line executed as
+a separate command.
+
+If multiple commands are generated via loops, line terminators can be inserted
+with `{{ os.EOL }}`), for example:
+
+```liquid
+{% for command in package.xpack.my_commands %}{{ command }}{{ os.EOL }}{% endfor %}
+```
+
+## Example
 
 ```json {9,22}
 {

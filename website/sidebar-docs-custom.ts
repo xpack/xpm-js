@@ -97,6 +97,21 @@ export const customDocsSidebar = [
           },
           {
             type: 'doc',
+            id: 'metadata/actions/index',
+            label: 'actions'
+          },
+          {
+            type: 'doc',
+            id: 'metadata/binaries/index',
+            label: 'binaries'
+          },
+          {
+            type: 'doc',
+            id: 'metadata/buildConfigurations/index',
+            label: 'buildConfigurations'
+          },
+          {
+            type: 'doc',
             id: 'metadata/dependencies/index',
             label: 'dependencies'
           },
@@ -107,11 +122,6 @@ export const customDocsSidebar = [
           },
           {
             type: 'doc',
-            id: 'metadata/binaries/index',
-            label: 'binaries'
-          },
-          {
-            type: 'doc',
             id: 'metadata/executables/index',
             label: 'executables'
           },
@@ -119,16 +129,6 @@ export const customDocsSidebar = [
             type: 'doc',
             id: 'metadata/properties/index',
             label: 'properties'
-          },
-          {
-            type: 'doc',
-            id: 'metadata/actions/index',
-            label: 'actions'
-          },
-          {
-            type: 'doc',
-            id: 'metadata/buildConfigurations/index',
-            label: 'buildConfigurations'
           },
         ]
       },
@@ -148,12 +148,28 @@ export const customDocsSidebar = [
           },
         ]
       },
+      {
+        type: 'doc',
+        id: 'guide/project-templates/index',
+        label: 'Project templates'
+      },
     ]
   },
   {
-    type: 'doc',
-    id: 'developer/index',
-    label: 'Contributor\'s Guide'
+    type: 'category',
+    label: 'Contributor\'s Guide',
+    link: {
+      type: 'doc',
+      id: 'developer/index',
+    },
+    collapsed: true,
+    items: [
+      {
+        type: 'doc',
+        id: 'developer/windows-symbolic-links/index',
+        label: 'Windows symbolic links'
+      },
+    ]
   },
   {
     type: 'doc',

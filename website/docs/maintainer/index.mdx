@@ -26,6 +26,8 @@ import customField from '@site/src/libs/customField';
 import Prerequisites from '../developer/_common/_prerequisites.mdx';
 import GetProjectSources from '../developer/_common/_get-project-sources.mdx';
 
+import DependenciesDetails from './_dependencies-details.mdx'
+
 import More from './_more.mdx';
 
 {/* ------------------------------------------------------------------------ */}
@@ -88,10 +90,9 @@ kept as a legacy CommonJS dependency.
   up to date
 - commit the changes
 
-Keep:
 
-- [`@types/node`](https://www.npmjs.com/package/@types/node?activeTab=versions)
-  locked to latest that still matches the oldest supported node (18).
+
+<DependenciesDetails />
 
 ### Increase the version and update it in the top `package.json`
 

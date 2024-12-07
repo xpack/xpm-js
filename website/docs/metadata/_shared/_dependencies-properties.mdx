@@ -1,0 +1,44 @@
+
+{/* ------------------------------------------------------------------------ */}
+
+There are two formats for defining the dependencies, the **extended**
+format specific to **xpm**, and the **short** format, used for compatibility
+with **npm**.
+
+When installing source packages into an **xpm** project, they are also added
+to the `dependencies` list, in the extended format.
+
+## Properties
+
+In the **short** format, the dependency value is a **string**, with the same content as for **npm** dependencies.
+
+In the **extended** format, the value is an **object** with the following properties:
+
+### `specifier`
+
+A string that identifies the package.
+
+- a [SemVer](https://semver.org) expression: a package with a version that matches the expression
+will be downloaded from the npmjs.com repository
+- a full URI/URL: the package will be installed from the address
+- `user/project`: a simplified syntax for GitHub projects,
+
+### `local`
+
+A string that defines the install strategy:
+
+- `link`: create a link in the local project pointing to a read-only instance of the package
+- `copy`: create a full writable copy in the local project
+
+### `platforms`
+
+A string that indicates the platforms where the dependency can be installed.
+
+- `all`: install on all platforms
+- `...`: comma separated list of platforms (linux-x64, linux-arm64, darwin-x64, darwin-arm64, win32-x64)
+
+:::note
+
+Currently the value is ignored by **npm install**.
+
+:::

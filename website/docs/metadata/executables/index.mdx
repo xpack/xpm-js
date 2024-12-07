@@ -12,16 +12,35 @@ date: 2024-11-21 21:36:00 +0300
 
 # The `executables` definitions
 
-:::info
+## Purpose
 
-This definition was added in November 2024, in version 0.19.5.
+List the executables available in the binary archive.
 
-The previous name was `bin`, which is kept for compatibility reasons.
+## Syntax
 
-:::
+```json
+{
+    ...
+    "executables": {
+        ....
+        "<executable name>": "<relative path>",
+        ....
+    }
+}
+```
 
-When installing a package with executables,
-after the archive is unpacked, links to all executables listed
+## History
+
+### 0.19.5 / November 2024
+
+Added.
+
+At the same moment the previous name `bin` was deprecated, but still preserved.
+
+## Description
+
+When installing a binary package with executables,
+after the archive is extracted, links to all executables listed
 in the `executables` object are created in the `xpacks/.bin` folder.
 On Windows, where soft links to files are problematic, `.cmd`
 forwarders/shims are created.
@@ -34,3 +53,22 @@ explicity launch the xPack executables via an explicit
 shell like `cmd.exe` or `PowerShell.exe`.
 
 :::
+
+## Example
+
+```json {8-11}
+{
+    ...
+    "xpack": {
+        ...
+        "destination": "./.content",
+        ...
+        "executables": {
+            "ccmake": "./.content/bin/ccmake",
+            "cmake": "./.content/bin/cmake",
+            "cpack": "./.content/bin/cpack",
+            "ctest": "./.content/bin/ctest"
+        }
+    }
+}
+```

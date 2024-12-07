@@ -1,0 +1,53 @@
+---
+
+title: Project templates
+description: How to create projects that can be used as xpm project templates.
+keywords:
+  - xpack
+  - xpm
+  - project
+  - template
+
+date: 2021-07-01 16:23:00 +0300
+
+---
+
+## Project templates
+
+**xpm** is able to create new projects based on templates.
+
+To be accepted as a template, a project must:
+
+- be an xpm package (have a `package.json` which includes an `xpack` property
+- have a property called `main` in `package.json`, pointing to a JavaScript
+  file that can be consumed by `await import()` (formerly `require()`)
+- the main file must export a class called `XpmInitTemplate`
+- an instances of this class must have a `run()` method.
+- have all dependencies bundled in (via `bundleDependencies`)
+
+The steps invoked by **xpm** to initialise a project from a template are:
+
+- call pacote to install the xPack in the global home folder
+- identify the `main` property in `package.json`
+- import the `XpmInitTemplate` class from the main JavaScript file by
+  invoking _require()_
+- instantiate the `XpmInitTemplate` class
+- execute the `run()` method.
+
+The full code is in `init.js`, but a simplified version looks like this:
+
+```js
+    await pacote.extract(config.template, globalPackagePath,
+      { cache: cacheFolderPath })
+
+    const mainTemplatePath = path.join(globalPackagePath, globalJson.main)
+
+    context.CliError = CliError
+    context.CliExitCodes = CliExitCodes
+
+    const { XpmInitTemplate } = await import(mainTemplatePath)
+    const xpmInitTemplate = new XpmInitTemplate(context)
+    const code = await xpmInitTemplate.run()
+```
+
+TODO: add more

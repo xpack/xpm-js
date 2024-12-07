@@ -12,15 +12,51 @@ date: 2024-11-21 21:36:00 +0300
 
 # The `buildConfigurations` definitions
 
-During **development**, it is usual to build **separate debug and release
-binaries**, with different configurations, like different preprocessor
-macros, different compiler options, different optimisation levels, etc.
+## Purpose
 
-Extensive **testing** also requires building separate binaries, possible
-targetted to **different architectures**, and using **different toolchains**,
+Define a map of build configurations.
+
+## Syntax
+
+```json
+{
+    ...
+    "buildConfigurations": {
+        ...
+        "<build configuration name>": {
+            ...
+            "hidden": true,
+            "inherit": [ "<build configuration name>",... ],
+            "dependencies": { ... },
+            "devDependencies": { ... },
+            "properties": {
+                ...
+                "<property name>": "<property value",
+                ...
+            },
+            "actions": {
+                ...
+                "<action name>": "<command>" | [ "<command>",... ],
+                ...
+            }
+            ...
+        }
+    }
+}
+```
+
+## Description
+
+During **development**, it is usual to build **separate debug and release
+binaries**, with different configurations, such as preprocessor
+macros, compiler options, and optimisation levels.
+
+Extensive **testing** also requires building separate binaries,
+potentially targeting **different architectures**, and using
+**different toolchains**, or
 even **different versions** of the same toolchain.
 
-The build configurations address exactly this need, and allow to define
+Build configurations address this need by allowing the definition
 **multiple different actions to run different builds and/or tests**.
 
 Build configurations can define their own `properties`, `actions`,
@@ -33,12 +69,37 @@ To avoid redundant definitions, build configurations can **inherit**
 from one or more other build configurations,
 and redefine some of them, as needed.
 
-A build configuration can inherit from multiple other build configurations.
-The `inherit` array defines the list inherited build configurations;
-the common definitions are collected in the listed order, with later
-entries overriding earlier ones.
+## Properties
 
-Example:
+### `hidden`
+
+This boolean property is to be used by IDEs and has no functional
+consequences.
+
+The mechanism that allows one build con
+
+### `inherit`
+
+The value of the `inherit` property is an array of strings with
+build configuration names.
+
+The current build configuration inherits definitions from all
+the build configurations listed by this property.
+
+The inheritance strategy uses overrides, so last definition override
+previous ones.
+
+The definition collection is done in the given order, followed by local
+definitions.
+
+## Other properties
+
+- [`dependencies`](../dependencies)
+- [`devDependencies`](../devDependencies)
+- [`properties`](../properties)
+- [`actions`](../actions)
+
+## Example
 
 ```json {8,26,31,46,54}
 {

@@ -1,0 +1,89 @@
+---
+
+title: Windows symbolic links
+description: Why symbolic links to files cannot be used on Windows
+keywords:
+  - xpack
+  - xpm
+  - windows
+  - symbolic
+  - links
+
+date: 2022-04-19 16:23:00 +0300
+
+---
+
+# Windows symbolic links
+
+## Brief
+
+The short version is **Windows does not support symbolic links to files**.
+
+## Problem
+
+By design, **npm** required a method to differentiate between multiple
+applications installed in distinct folders. The traditional method is
+to add multiple paths to `PATH`. However, **npm** preferred a different
+method: creating symbolic links to individual applications in a `.bin`
+folder and adding this folder to the top of the PATH.
+
+This works very well on Unix systems, but is not applicable on Windows,
+as there are no symbolic links to files.
+
+NTFS supports only _junctions for directories_ (whatever this can be).
+
+According to tests on a Windows system (2004, build 19041):
+
+- `mklink /J new old` - creates a directory junction, no admin rights; works on different partitions or volumes, but only locally on the same computer
+- `mklink /D new old` - creates a symbolic link, but requires admin rights or developer mode; can point to any file or folder either on the local computer or using a SMB path to targets over a network
+
+Reference:
+
+- https://www.2brightsparks.com/resources/articles/NTFS-Hard-Links-Junctions-and-Symbolic-Links.pdf
+
+Rumours say that since Windows 10 Insiders build 14972, symlinks can be created without admin rights (https://blogs.windows.com/windowsdeveloper/2016/12/02/symlinks-windows-10/), but tests on build 19041 did not confirm this; therefore this method was considered unreliable.
+
+## Solution
+
+The solution is to use wrappers/shims, to call executables from a different folder.
+
+- shell wrappers for mingw cases
+- `.cmd` wrappers for old DOS
+- `.ps1` wrappers for new Power Shell
+
+For now the binaries are invoked directly from the actual install location,
+not from the junction created in the local project.
+
+## Examples
+
+
+```txt title="clang.cmd"
+@ECHO off
+GOTO start
+:find_dp0
+SET dp0=%~dp0
+EXIT /b
+:start
+SETLOCAL
+CALL :find_dp0
+"C:\Users\ilg\AppData\Roaming\xPacks\@xpack-dev-tools\clang\17.0.6-2.1\.content\bin\clang.exe"   %*
+```
+
+```txt title="clang.ps1"
+#!/usr/bin/env pwsh
+$basedir=Split-Path $MyInvocation.MyCommand.Definition -Parent
+
+$exe=""
+if ($PSVersionTable.PSVersion -lt "6.0" -or $IsWindows) {
+  # Fix case when both the Windows and Linux builds of Node
+  # are installed in the same directory
+  $exe=".exe"
+}
+# Support pipeline input
+if ($MyInvocation.ExpectingInput) {
+  $input | & "C:/Users/ilg/AppData/Roaming/xPacks/@xpack-dev-tools/clang/17.0.6-2.1/.content/bin/clang.exe"   $args
+} else {
+  & "C:/Users/ilg/AppData/Roaming/xPacks/@xpack-dev-tools/clang/17.0.6-2.1/.content/bin/clang.exe"   $args
+}
+exit $LASTEXITCODE
+```

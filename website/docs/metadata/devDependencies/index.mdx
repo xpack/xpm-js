@@ -10,6 +10,10 @@ date: 2024-11-21 21:36:00 +0300
 
 ---
 
+import DependenciesProperties from '../_shared/_dependencies-properties.mdx';
+
+{/* ------------------------------------------------------------------------ */}
+
 # The `devDependencies` definitions
 
 ## Purpose
@@ -20,18 +24,23 @@ Define the **xpm** packages required during development.
 
 ```json
 {
-  "xpack": {
+    ...
     "devDependencies": {
-      ...
+        "<package>": "semver" | {
+            "specifier": "<package specifier>",
+            "local": "link" | "copy",
+            "platforms": "<name>,..."
+        },
+        ...
     }
-  }
+    ...
 }
 ```
 
 ## Description
 
 The `devDependencies` definitions is similar to the **npm**
-[definition](https://docs.npmjs.com/cli/v10/configuring-npm/package-json#devdependencies),
+[definition](https://docs.npmjs.com/cli/v10/configuring-npm/package-json#devdependencies)
 but lists the **xpm** definitions required during the development
 of the current package, usually executables and other tools.
 
@@ -51,6 +60,8 @@ The formats are identical to those used by [`dependencies`](../dependencies/).
 
 When installing binary packages into an **xpm** project, they are also added
 to the `devDependencies` list, in the extended format.
+
+<DependenciesProperties />
 
 ## Example
 

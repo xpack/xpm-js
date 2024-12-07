@@ -10,6 +10,10 @@ date: 2024-11-21 21:36:00 +0300
 
 ---
 
+import DependenciesProperties from '../_shared/_dependencies-properties.mdx';
+
+{/* ------------------------------------------------------------------------ */}
+
 # The `dependencies` definitions
 
 ## Purpose
@@ -20,22 +24,28 @@ Define the **xpm** source packages required at compile/link time.
 
 ```json
 {
-  "xpack": {
+    ...
     "dependencies": {
-      ...
+        "<package>": "semver" | {
+            "specifier": "<package specifier>",
+            "local": "link" | "copy",
+            "platforms": "<name>,..."
+        },
+        ...
     }
-  }
+    ...
 }
 ```
 
 ## Description
 
 The `dependencies` definition is similar to the **npm**
-[definition](https://docs.npmjs.com/cli/v10/configuring-npm/package-json#dependencies),
+[definition](https://docs.npmjs.com/cli/v10/configuring-npm/package-json#dependencies)
 but lists the **xpm** source packages required at compile/link time.
 
 When a source package is installed locally into the
-local project `xpacks` folder (without `--global`), all packages listed in its `xpack.dependencies`
+local project's `xpacks` folder (without `--global`), all packages listed
+in its `xpack.dependencies`
 are also recursively installed into the same local `xpacks` folder.
 
 In other words, the list of source dependencies is linearised,
@@ -50,51 +60,11 @@ dependencies is the main difference compared to **npm**.
 
 **npm**, designed for JavaScript/TypeScript,
 maintains the hierarchical structure of dependencies, which is
-not suitable for compiled languages
+not suitable for compiled languages.
 
 :::
 
-There are two formats for defining the dependencies, the **extended**
-format specific to **xpm**, and the **short** format, used for compatibility
-with **npm**.
-
-When installing source packages into an **xpm** project, they are also added
-to the `dependencies` list, in the extended format.
-
-## Properties
-
-In the **short** format, the dependency value is a **string**, with the same content as for **npm** dependencies.
-
-In the **extended** format, the value is an **object** with the following properties:
-
-### `specifier`
-
-A string that identifies the package.
-
-- a [SemVer](https://semver.org) expression: a package with a version that matches the expression
-will be downloaded from the npmjs.com repository
-- a full URI/URL: the package will be installed from the address
-- `user/project`: a simplified syntax for GitHub projects,
-
-### `local`
-
-A string that defines the install strategy:
-
-- `link`: create a link in the local project pointing to a read-only instance of the package
-- `copy`: create a full writable copy in the local project
-
-### `platforms`
-
-A string that indicates the platforms where the dependency can be installed.
-
-- `all`: install on all platforms
-- `...`: comma separated list of platforms (linux-x64, linux-arm64, darwin-x64, darwin-arm64, win32-x64)
-
-:::note
-
-Currently the value is ignored by **npm install**.
-
-:::
+<DependenciesProperties />
 
 ## Examples
 

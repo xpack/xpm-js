@@ -12,14 +12,18 @@ date: 2024-11-21 21:36:00 +0300
 
 # LiquidJS substitutions
 
-An additional feature compared to **npm** is a powerful
-substitution engine that can be used in all **xpm**
-metadata definitions.
+To increase reusability, it is possible to use **substitutions**
+in in all **xpm**
+metadata definitions. The syntax is more elaborate than the simple
+variable substitution, and is using the
+[LiquidJS](https://liquidjs.com/) template engine syntax,
+which accepts the full LiquidJS syntax.
 
-It is implemented using the
-[LiquidJS](https://liquidjs.com) engine.
-The full LiquidJS syntax is supported, with all **tags** and **filters**,
-plus some custom filters, presented below.
+The LiquidJS definitions are:
+
+- **variables**, like `{{ configuration.name }}`
+- **filters**, like `{{ configuration.name | downcase }}`
+- **tags**, like `{% if os.platform != 'win32' %}xpm run execute --config synthetic-posix-cmake-debug{% endif %}`
 
 For more details, please see the documentation for the
 [`xpack/xpm-liquid-ts`](https://xpack.github.io/xpm-liquid-ts) module, where
@@ -117,3 +121,11 @@ the following **xpm** specific filters are also available:
 - `to_posix_filename`
 - `to_win32_filename`
 
+### Multi-line definitions
+
+If multiple lines are generated via loops, line terminators can be inserted
+with `{{ os.EOL }}`), for example:
+
+```liquid
+{% for command in package.xpack.my_commands %}{{ command }}{{ os.EOL }}{% endfor %}
+```
