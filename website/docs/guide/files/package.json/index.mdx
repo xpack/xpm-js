@@ -1,11 +1,21 @@
 ---
 
 title: package.json
-#description: ...
+description: The definition of the `package.json` file used by xpm.
+keywords:
+  - xpack
+  - xpm
+  - files
+  - package.json
 
 date: 2019-07-02 00:36:00 +0300
 
 ---
+
+import Objects from '@site/docs/metadata/_shared/_objects.mdx';
+import GlobalProperties from '@site/docs/metadata/_shared/_global-properties.mdx';
+
+{/* ------------------------------------------------------------------------ */}
 
 # package.json
 
@@ -15,6 +25,10 @@ The **xpm** `package.json` file is
 basically the same as the **npm**
 [`package.json`](https://docs.npmjs.com/files/package.json),
 with some extensions.
+
+The mandatory properties are `name` and `version`.
+
+In addition, **xpm** groups several specific definitions below `xpack`.
 
 ## The mandatory `xpack` definitions
 
@@ -28,3 +42,11 @@ In addition to the `xpacks` definitions, another key extension
 that comes with **xpm** is the use of
 **LiquidJS substitutions**, described in a
 [separate page](/docs/metadata/liquidjs-substitutions/).
+
+## Global properties
+
+<GlobalProperties />
+
+## Objects and arrays
+
+<Objects />

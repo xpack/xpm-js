@@ -12,9 +12,14 @@ date: 2021-07-01 16:23:00 +0300
 
 ---
 
-## Project templates
+# Project templates
 
+As presented in the [User's Guide](/docs/user/#instantiate-a-template)
 **xpm** is able to create new projects based on templates.
+
+For this, pass the `--template <package>` option to `xpm init`.
+
+## Template project structure
 
 To be accepted as a template, a project must:
 
@@ -24,6 +29,8 @@ To be accepted as a template, a project must:
 - the main file must export a class called `XpmInitTemplate`
 - an instances of this class must have a `run()` method.
 - have all dependencies bundled in (via `bundleDependencies`)
+
+## xpm project creation logic
 
 The steps invoked by **xpm** to initialise a project from a template are:
 

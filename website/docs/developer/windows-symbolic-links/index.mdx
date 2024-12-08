@@ -1,7 +1,7 @@
 ---
 
 title: Windows symbolic links
-description: Why symbolic links to files cannot be used on Windows
+description: Why symbolic links to files cannot be used on Windows.
 keywords:
   - xpack
   - xpm
@@ -15,9 +15,13 @@ date: 2022-04-19 16:23:00 +0300
 
 # Windows symbolic links
 
+This page explains why, on Windows, in the `xpack/.bin` folder contains
+`.cmd` and `.ps1` scripts.
+
 ## Brief
 
-The short version is **Windows does not support symbolic links to files**.
+The short version is because **Windows does not support symbolic
+links to files**.
 
 ## Problem
 
@@ -55,7 +59,6 @@ For now the binaries are invoked directly from the actual install location,
 not from the junction created in the local project.
 
 ## Examples
-
 
 ```txt title="clang.cmd"
 @ECHO off

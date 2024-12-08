@@ -1,10 +1,123 @@
 ---
 
-title: Concepts
+title: The xpm concepts
+description: Some of the key concepts used by the xpm project.
+keywords:
+  - xpack
+  - xpm
+  - concepts
 
 date: 2024-12-03 21:32:00 +0200
 
 ---
 
-TODO
+# The xpm concepts
+
+## Terminology
+
+The design of xpm draws inspiration from npm, utilising the same
+fundamental concepts while also incorporating several new features.
+
+### npm dependencies
+
+**npm** dependencies are Node.js packages, typically containing
+JavaScript or TypeScript code, essential for the operation of
+the current package. These dependencies are automatically
+installed when the current package is added as a dependency
+in another package.
+
+### npm development dependencies
+
+**npm** development dependencies (`devDependencies`) are Node.js packages
+that include tools utilised during the development of the current package.
+
+These dependencies are automatically installed when the `npm install`
+command is executed without any arguments in the current package.
+
+### xpm dependencies
+
+**xpm** dependencies are akin to npm dependencies but specify the
+source packages, typically C/C++ code, needed during the compile/link phase.
+
+### xpm development dependencies
+
+**xpm** development dependencies (`devDependencies`) are similar to
+**npm** development dependencies but specify binary tools, such as
+compilers and builders, that are used during the development of the
+current package.
+
+These dependencies are automatically installed when the `xpm install`
+command is executed without any arguments in the current package.
+
+### `package.json`
+
+This file is used to store xpm metadata. It is the same file
+as used by **npm**.
+
+To prevent conflicts, all **xpm** definitions are stored under a
+JSON member named `xpack`.
+
+### Variable substitutions
+
+Variable substitutions enable the dynamic insertion of values into
+a generic template definition, thereby enhancing flexibility and
+customisation.
+
+### LiquidJS substitutions
+
+LiquidJS substitutions use the [LiquidJS](https://liquidjs.com/) template
+engine for variable substitutions.
+
+Beyond basic variable substitutions, the LiquidJS engine also offers
+filters for various forms of string processing, and tags that introduce
+programmatic logic, such as `if` and `for` statements.
+
+### xPack Properties
+
+The values used for variable substitutions originate from multiple sources.
+
+Some values are predefined and depend on the platform, such as `os.arch`
+and `path.sep`.
+
+The package author can also contribute values through the xPack
+`properties` definitions in `package.json`.
+
+These properties can be defined for the entire project or for each
+specific build configuration.
+
+### Build Configurations
+
+Build configurations are sets of definitions used to create different
+artefacts within the same project. These artefacts can be variants of
+the same application, such as debug/release versions, or
+platform/architecture-specific variants, like Cortex-M or RISC-V,
+when the same application needs to run on multiple boards.
+
+### xPack Build Configurations
+
+xPack Build Configurations are sets of xpm metadata definitions, like
+`dependencies`, `properties` and `actions`,
+used for different builds.
+
+### xPack Build configurations inheritance
+
+To avoid redundancy, a build configuration can inherit definitions
+from one or more other build configurations and then redefine some
+of them as needed.
+
+### npm scripts
+
+**npm** allows to run shell commands by short `npm run ...` commands.
+
+The commands are executed in an environment where all installed development
+dependencies are preferred to all system tools with the same names.
+
+### xPack Actions
+
+**xpm** extends **npm** scripts and can define multi-line commands with
+substitutions.
+
+The commands are executed in an environment where all installed development
+dependencies are preferred to all system tools with the same names.
+
 

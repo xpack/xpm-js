@@ -244,20 +244,25 @@ Validate the web site content in a local build via the npm `build` script:
 npm run build
 ```
 
-## Publish the website
+## Prepare the website
 
 The documentation site is built with [Docusaurus](https://docusaurus.io) and
 published in the project
 [GitHub Pages](https://xpack.github.io/xpm-js).
 
-The Web site deployment is performed automatically when pushing to the
-master branch, by a dedicated workflow in
-[GitHub Actions](https://github.com/xpack/xpm-js/actions/workflows/publish-github-pages.yml).
-
 - switch to the `development` branch
 - run the `website-generate-commons` script in the top `package.json`
 - commit all changes
 - run the `build` script in `website/package.json`
+- fix any broken links, if any
+
+## Publish the website
+
+The Web site deployment is performed automatically when pushing to the
+`website` branch, by a dedicated workflow in
+[GitHub Actions](https://github.com/xpack/xpm-js/actions/workflows/publish-github-pages.yml).
+
+- switch to the `website` branch
 - merge the `development` branch into the `website` branch
 - push the `website` branch to GitHub
 
@@ -270,6 +275,8 @@ and the X/Twitter announcement
 
 The `website` branch may be subsequently updated, as long as the
 version in `package.json` is not changed.
+
+Check the result at https://xpack.github.io/xpm-preview/.
 
 ## Final updates
 
