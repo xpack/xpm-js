@@ -4,7 +4,8 @@
 import {themes as prismThemes} from 'prism-react-renderer';
 import type {Config} from '@docusaurus/types';
 import type * as Preset from '@docusaurus/preset-classic';
-import logger from '@docusaurus/logger';
+// import logger from '@docusaurus/logger';
+import util from 'node:util';
 
 import cliNavbar from './docusaurus-config-navbar-cli'
 
@@ -26,17 +27,17 @@ import fs from 'node:fs';
 
 function getCustomFields() {
   const pwd = fileURLToPath(import.meta.url);
-  // logger.info(pwd);
+  // console.log(pwd);
 
   // First get the version from the top package.json.
   const topFilePath = path.join(path.dirname(path.dirname(pwd)), 'package.json');
-  // logger.info(filePath);
+  // console.log(filePath);
   const topFileContent = fs.readFileSync(topFilePath);
 
   const topPackageJson = JSON.parse(topFileContent.toString());
   const releaseVersion = topPackageJson.version.replace(/[.-]pre/, '');
 
-  logger.info(`package version: ${topPackageJson.version}`);
+  console.log(`package version: ${topPackageJson.version}`);
 
   const enginesNodeVersion = topPackageJson.engines.node.replace(/[^0-9]*/, '') || '';
   const enginesNodeVersionMajor = enginesNodeVersion.replace(/[.].*/, '');
@@ -56,7 +57,7 @@ function getCustomFields() {
 // ----------------------------------------------------------------------------
 
 const customFields = getCustomFields();
-logger.info(customFields);
+console.log('customFields: ' + util.inspect(customFields));
 
 // ----------------------------------------------------------------------------
 
