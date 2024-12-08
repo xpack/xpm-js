@@ -60,12 +60,12 @@ jobs:
           node-version: 20
 
       - name: Install dependencies
-        run: npm --prefix website install
+        run: cd website && npm install
 
       - name: Build the Docusaurus site
         env:
           DOCUSAURUS_IS_PREVIEW: 'true'
-        run: npm --prefix website run build
+        run: cd website && npm run build
 
       - name: Setup Pages
         # https://github.com/actions/configure-pages
