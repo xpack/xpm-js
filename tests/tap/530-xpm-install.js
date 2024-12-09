@@ -59,15 +59,14 @@ test('xpm install -h',
         // console.log(outLines)
         t.match(outLines[1], 'install package(s)', 'has title')
         t.match(outLines[2], 'Usage: xpm install [options...] ' +
-          '[--global] [--system] [--force]', 'has Usage')
+          '[--global] [--force]', 'has Usage')
         t.match(outLines[8], 'Install options:', 'has install options')
         t.match(outLines[9], '  -g|--global  ', 'has --global')
-        t.match(outLines[10], '  -sy|--system  ', 'has --system')
-        t.match(outLines[11], '  -f|--force  ', 'has --force')
-        t.match(outLines[12], '  -32|--force-32bit ', 'has --force-32bit')
-        t.match(outLines[13], '  -c|--config <config_name>  ', 'has --config')
-        t.match(outLines[14], '  -a|--all-configs  ')
-        t.match(outLines[15], '  -n|--dry-run  ', 'has --dry-run')
+        t.match(outLines[10], '  -f|--force  ', 'has --force')
+        t.match(outLines[11], '  -32|--force-32bit ', 'has --force-32bit')
+        t.match(outLines[12], '  -c|--config <config_name>  ', 'has --config')
+        t.match(outLines[13], '  -a|--all-configs  ')
+        t.match(outLines[14], '  -n|--dry-run  ', 'has --dry-run')
       }
       // There should be no error messages.
       t.equal(stderr, '', 'stderr is empty')
@@ -95,7 +94,7 @@ test('xpm instal -h',
         // console.log(outLines)
         t.match(outLines[1], 'install package(s)', 'has title')
         t.match(outLines[2], 'Usage: xpm install [options...] ' +
-          '[--global] [--system] [--force]', 'has Usage')
+          '[--global] [--force]', 'has Usage')
       }
       // There should be no error messages.
       t.equal(stderr, '', 'stderr is empty')
