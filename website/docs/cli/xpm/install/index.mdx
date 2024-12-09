@@ -47,86 +47,123 @@ As for npm, a package is any of the following:
 6. A `<name>` that has a `latest` tag satisfying (5).
 7. A `git` url that, when cloned, results in (1).
 
-Even if you never publish your package, you can still get a lot of
-benefits of using xpm to conveniently install dependencies,
-and perhaps
-to automate path management for dependent tools.
+Even if you never publish your package, you can still gain numerous
+benefits from using xpm to conveniently install dependencies and
+potentially automate path management for dependent tools.
 
 ### Install dependencies
 
 When invoked without arguments in a package folder, `xpm install` installs
 the dependencies listed in the `dependencies` and `devDependencies`
-field in `package.json`.
+fields in `package.json`.
 
-If the dependencies are xPacks, they are installed in the local `xpacks`
-folder. For binary xPacks, soft links to the executables are created
+The dependencies are installed in the local `xpacks`
+folder. For binary xpm packages, soft links to the executables are created
 in the `xpacks/.bin` folder (on Windows `.cmd` stubs are created).
 
-To maintain compatibility with npm, dependencies
-must not necessarily be xPacks, they can also be npm modules,
-and are installed as usual in `node_modules`.
-
-Example:
+#### Example
 
 ```console
-$ cd /tmp/hifive1-blinky-cpp
-$ xpm install --verbose
-xPack manager - install package(s)
+% cd my-project
+% xpm install --verbose
+xPack project manager - install package(s)
 
-Installing dependencies for 'hifive1-blinky-cpp'...
-Folder 'micro-os-plus-diag-trace' linked to '@micro-os-plus/diag-trace/1.0.6'.
-Folder 'sifive-hifive1-board' linked to '@sifive/hifive1-board/1.0.3'.
-Folder 'sifive-devices' linked to '@sifive/devices/1.0.2'.
-Folder 'micro-os-plus-riscv-arch' linked to '@micro-os-plus/riscv-arch/1.0.2'.
-Folder 'micro-os-plus-startup' linked to '@micro-os-plus/startup/1.0.7'.
-Folder 'micro-os-plus-c-libs' linked to '@micro-os-plus/c-libs/1.0.6'.
-Folder 'micro-os-plus-cpp-libs' linked to '@micro-os-plus/cpp-libs/1.0.4'.
-Folder 'xmake' linked to 'xmake/0.3.8'.
-File 'xmake' linked to 'xmake/bin/xmake.js'
-Folder 'gnu-mcu-eclipse-riscv-none-gcc' linked to '@gnu-mcu-eclipse/riscv-none-gcc/7.2.0-2.1'.
-File 'riscv-none-embed-addr2line' linked to 'gnu-mcu-eclipse-riscv-none-gcc/.content/bin/riscv-none-embed-addr2line'
-File 'riscv-none-embed-ar' linked to 'gnu-mcu-eclipse-riscv-none-gcc/.content/bin/riscv-none-embed-ar'
-File 'riscv-none-embed-as' linked to 'gnu-mcu-eclipse-riscv-none-gcc/.content/bin/riscv-none-embed-as'
-File 'riscv-none-embed-c++' linked to 'gnu-mcu-eclipse-riscv-none-gcc/.content/bin/riscv-none-embed-c++'
-File 'riscv-none-embed-c++filt' linked to 'gnu-mcu-eclipse-riscv-none-gcc/.content/bin/riscv-none-embed-c++filt'
-File 'riscv-none-embed-cpp' linked to 'gnu-mcu-eclipse-riscv-none-gcc/.content/bin/riscv-none-embed-cpp'
-File 'riscv-none-embed-elfedit' linked to 'gnu-mcu-eclipse-riscv-none-gcc/.content/bin/riscv-none-embed-elfedit'
-File 'riscv-none-embed-g++' linked to 'gnu-mcu-eclipse-riscv-none-gcc/.content/bin/riscv-none-embed-g++'
-File 'riscv-none-embed-gcc' linked to 'gnu-mcu-eclipse-riscv-none-gcc/.content/bin/riscv-none-embed-gcc'
-File 'riscv-none-embed-gcc-7.2.0' linked to 'gnu-mcu-eclipse-riscv-none-gcc/.content/bin/riscv-none-embed-gcc-7.2.0'
-File 'riscv-none-embed-gcc-ar' linked to 'gnu-mcu-eclipse-riscv-none-gcc/.content/bin/riscv-none-embed-gcc-ar'
-File 'riscv-none-embed-gcc-nm' linked to 'gnu-mcu-eclipse-riscv-none-gcc/.content/bin/riscv-none-embed-gcc-nm'
-File 'riscv-none-embed-gcc-ranlib' linked to 'gnu-mcu-eclipse-riscv-none-gcc/.content/bin/riscv-none-embed-gcc-ranlib'
-File 'riscv-none-embed-gcov' linked to 'gnu-mcu-eclipse-riscv-none-gcc/.content/bin/riscv-none-embed-gcov'
-File 'riscv-none-embed-gcov-dump' linked to 'gnu-mcu-eclipse-riscv-none-gcc/.content/bin/riscv-none-embed-gcov-dump'
-File 'riscv-none-embed-gcov-tool' linked to 'gnu-mcu-eclipse-riscv-none-gcc/.content/bin/riscv-none-embed-gcov-tool'
-File 'riscv-none-embed-gdb' linked to 'gnu-mcu-eclipse-riscv-none-gcc/.content/bin/riscv-none-embed-gdb'
-File 'riscv-none-embed-gprof' linked to 'gnu-mcu-eclipse-riscv-none-gcc/.content/bin/riscv-none-embed-gprof'
-File 'riscv-none-embed-ld' linked to 'gnu-mcu-eclipse-riscv-none-gcc/.content/bin/riscv-none-embed-ld'
-File 'riscv-none-embed-ld.bfd' linked to 'gnu-mcu-eclipse-riscv-none-gcc/.content/bin/riscv-none-embed-ld.bfd'
-File 'riscv-none-embed-nm' linked to 'gnu-mcu-eclipse-riscv-none-gcc/.content/bin/riscv-none-embed-nm'
-File 'riscv-none-embed-objcopy' linked to 'gnu-mcu-eclipse-riscv-none-gcc/.content/bin/riscv-none-embed-objcopy'
-File 'riscv-none-embed-objdump' linked to 'gnu-mcu-eclipse-riscv-none-gcc/.content/bin/riscv-none-embed-objdump'
-File 'riscv-none-embed-ranlib' linked to 'gnu-mcu-eclipse-riscv-none-gcc/.content/bin/riscv-none-embed-ranlib'
-File 'riscv-none-embed-readelf' linked to 'gnu-mcu-eclipse-riscv-none-gcc/.content/bin/riscv-none-embed-readelf'
-File 'riscv-none-embed-run' linked to 'gnu-mcu-eclipse-riscv-none-gcc/.content/bin/riscv-none-embed-run'
-File 'riscv-none-embed-size' linked to 'gnu-mcu-eclipse-riscv-none-gcc/.content/bin/riscv-none-embed-size'
-File 'riscv-none-embed-strings' linked to 'gnu-mcu-eclipse-riscv-none-gcc/.content/bin/riscv-none-embed-strings'
-File 'riscv-none-embed-strip' linked to 'gnu-mcu-eclipse-riscv-none-gcc/.content/bin/riscv-none-embed-strip'
-Folder 'gnu-mcu-eclipse-openocd' linked to '@gnu-mcu-eclipse/openocd/0.10.0-7.1'.
-File 'openocd' linked to 'gnu-mcu-eclipse-openocd/.content/bin/openocd'
-Folder 'gnu-mcu-eclipse-windows-build-tools' linked to '@gnu-mcu-eclipse/windows-build-tools/2.10.1'.
+Collecting dependencies for package @my-scope/my-project...
+Identified @xpack-dev-tools/clang@18.1.8-2.1 as a dev dependency
+Identified @xpack-dev-tools/cmake@3.28.6-1.1 as a dev dependency
+Identified @xpack-dev-tools/ninja-build@1.11.1-3.1 as a dev dependency
 
-'xpm install' completed in 6.086 sec.
-$
+Installing 3 dependencies...
+Folder 'xpacks/@xpack-dev-tools/cmake' linked to global '@xpack-dev-tools/cmake/3.28.6-1.1'
+Folder 'xpacks/@xpack-dev-tools/ninja-build' linked to global '@xpack-dev-tools/ninja-build/1.11.1-3.1'
+Folder 'xpacks/@xpack-dev-tools/clang' linked to global '@xpack-dev-tools/clang/18.1.8-2.1'
+File 'xpacks/.bin/ccmake' linked to '../@xpack-dev-tools/cmake/.content/bin/ccmake'
+File 'xpacks/.bin/ninja' linked to '../@xpack-dev-tools/ninja-build/.content/bin/ninja'
+File 'xpacks/.bin/analyze-build' linked to '../@xpack-dev-tools/clang/.content/bin/analyze-build'
+File 'xpacks/.bin/cmake' linked to '../@xpack-dev-tools/cmake/.content/bin/cmake'
+File 'xpacks/.bin/clang' linked to '../@xpack-dev-tools/clang/.content/bin/clang'
+File 'xpacks/.bin/cpack' linked to '../@xpack-dev-tools/cmake/.content/bin/cpack'
+File 'xpacks/.bin/clang++' linked to '../@xpack-dev-tools/clang/.content/bin/clang++'
+File 'xpacks/.bin/ctest' linked to '../@xpack-dev-tools/cmake/.content/bin/ctest'
+File 'xpacks/.bin/clang-check' linked to '../@xpack-dev-tools/clang/.content/bin/clang-check'
+File 'xpacks/.bin/clang-cl' linked to '../@xpack-dev-tools/clang/.content/bin/clang-cl'
+File 'xpacks/.bin/clang-cpp' linked to '../@xpack-dev-tools/clang/.content/bin/clang-cpp'
+File 'xpacks/.bin/clang-doc' linked to '../@xpack-dev-tools/clang/.content/bin/clang-doc'
+File 'xpacks/.bin/clang-format' linked to '../@xpack-dev-tools/clang/.content/bin/clang-format'
+File 'xpacks/.bin/clang-include-cleaner' linked to '../@xpack-dev-tools/clang/.content/bin/clang-include-cleaner'
+File 'xpacks/.bin/clang-linker-wrapper' linked to '../@xpack-dev-tools/clang/.content/bin/clang-linker-wrapper'
+File 'xpacks/.bin/clang-refactor' linked to '../@xpack-dev-tools/clang/.content/bin/clang-refactor'
+File 'xpacks/.bin/clang-rename' linked to '../@xpack-dev-tools/clang/.content/bin/clang-rename'
+File 'xpacks/.bin/clang-repl' linked to '../@xpack-dev-tools/clang/.content/bin/clang-repl'
+File 'xpacks/.bin/clang-scan-deps' linked to '../@xpack-dev-tools/clang/.content/bin/clang-scan-deps'
+File 'xpacks/.bin/clang-tblgen' linked to '../@xpack-dev-tools/clang/.content/bin/clang-tblgen'
+File 'xpacks/.bin/clang-tidy' linked to '../@xpack-dev-tools/clang/.content/bin/clang-tidy'
+File 'xpacks/.bin/clangd' linked to '../@xpack-dev-tools/clang/.content/bin/clangd'
+File 'xpacks/.bin/darwin-debug' linked to '../@xpack-dev-tools/clang/.content/bin/darwin-debug'
+File 'xpacks/.bin/diagtool' linked to '../@xpack-dev-tools/clang/.content/bin/diagtool'
+File 'xpacks/.bin/git-clang-format' linked to '../@xpack-dev-tools/clang/.content/bin/git-clang-format'
+File 'xpacks/.bin/hmaptool' linked to '../@xpack-dev-tools/clang/.content/bin/hmaptool'
+File 'xpacks/.bin/ld.lld' linked to '../@xpack-dev-tools/clang/.content/bin/ld.lld'
+File 'xpacks/.bin/ld64.lld' linked to '../@xpack-dev-tools/clang/.content/bin/ld64.lld'
+File 'xpacks/.bin/llc' linked to '../@xpack-dev-tools/clang/.content/bin/llc'
+File 'xpacks/.bin/lld' linked to '../@xpack-dev-tools/clang/.content/bin/lld'
+File 'xpacks/.bin/lld-link' linked to '../@xpack-dev-tools/clang/.content/bin/lld-link'
+File 'xpacks/.bin/lldb' linked to '../@xpack-dev-tools/clang/.content/bin/lldb'
+File 'xpacks/.bin/lldb-argdumper' linked to '../@xpack-dev-tools/clang/.content/bin/lldb-argdumper'
+File 'xpacks/.bin/lldb-instr' linked to '../@xpack-dev-tools/clang/.content/bin/lldb-instr'
+File 'xpacks/.bin/lldb-server' linked to '../@xpack-dev-tools/clang/.content/bin/lldb-server'
+File 'xpacks/.bin/lli' linked to '../@xpack-dev-tools/clang/.content/bin/lli'
+File 'xpacks/.bin/llvm-addr2line' linked to '../@xpack-dev-tools/clang/.content/bin/llvm-addr2line'
+File 'xpacks/.bin/llvm-ar' linked to '../@xpack-dev-tools/clang/.content/bin/llvm-ar'
+File 'xpacks/.bin/llvm-as' linked to '../@xpack-dev-tools/clang/.content/bin/llvm-as'
+File 'xpacks/.bin/llvm-bitcode-strip' linked to '../@xpack-dev-tools/clang/.content/bin/llvm-bitcode-strip'
+File 'xpacks/.bin/llvm-config' linked to '../@xpack-dev-tools/clang/.content/bin/llvm-config'
+File 'xpacks/.bin/llvm-cov' linked to '../@xpack-dev-tools/clang/.content/bin/llvm-cov'
+File 'xpacks/.bin/llvm-cxxdump' linked to '../@xpack-dev-tools/clang/.content/bin/llvm-cxxdump'
+File 'xpacks/.bin/llvm-cxxfilt' linked to '../@xpack-dev-tools/clang/.content/bin/llvm-cxxfilt'
+File 'xpacks/.bin/llvm-cxxmap' linked to '../@xpack-dev-tools/clang/.content/bin/llvm-cxxmap'
+File 'xpacks/.bin/llvm-debuginfo-analyzer' linked to '../@xpack-dev-tools/clang/.content/bin/llvm-debuginfo-analyzer'
+File 'xpacks/.bin/llvm-debuginfod' linked to '../@xpack-dev-tools/clang/.content/bin/llvm-debuginfod'
+File 'xpacks/.bin/llvm-debuginfod-find' linked to '../@xpack-dev-tools/clang/.content/bin/llvm-debuginfod-find'
+File 'xpacks/.bin/llvm-diff' linked to '../@xpack-dev-tools/clang/.content/bin/llvm-diff'
+File 'xpacks/.bin/llvm-dis' linked to '../@xpack-dev-tools/clang/.content/bin/llvm-dis'
+File 'xpacks/.bin/llvm-dlltool' linked to '../@xpack-dev-tools/clang/.content/bin/llvm-dlltool'
+File 'xpacks/.bin/llvm-dwarfutil' linked to '../@xpack-dev-tools/clang/.content/bin/llvm-dwarfutil'
+File 'xpacks/.bin/llvm-lib' linked to '../@xpack-dev-tools/clang/.content/bin/llvm-lib'
+File 'xpacks/.bin/llvm-libtool-darwin' linked to '../@xpack-dev-tools/clang/.content/bin/llvm-libtool-darwin'
+File 'xpacks/.bin/llvm-nm' linked to '../@xpack-dev-tools/clang/.content/bin/llvm-nm'
+File 'xpacks/.bin/llvm-objcopy' linked to '../@xpack-dev-tools/clang/.content/bin/llvm-objcopy'
+File 'xpacks/.bin/llvm-objdump' linked to '../@xpack-dev-tools/clang/.content/bin/llvm-objdump'
+File 'xpacks/.bin/llvm-otool' linked to '../@xpack-dev-tools/clang/.content/bin/llvm-otool'
+File 'xpacks/.bin/llvm-profdata' linked to '../@xpack-dev-tools/clang/.content/bin/llvm-profdata'
+File 'xpacks/.bin/llvm-ranlib' linked to '../@xpack-dev-tools/clang/.content/bin/llvm-ranlib'
+File 'xpacks/.bin/llvm-rc' linked to '../@xpack-dev-tools/clang/.content/bin/llvm-rc'
+File 'xpacks/.bin/llvm-readelf' linked to '../@xpack-dev-tools/clang/.content/bin/llvm-readelf'
+File 'xpacks/.bin/llvm-readobj' linked to '../@xpack-dev-tools/clang/.content/bin/llvm-readobj'
+File 'xpacks/.bin/llvm-remarkutil' linked to '../@xpack-dev-tools/clang/.content/bin/llvm-remarkutil'
+File 'xpacks/.bin/llvm-sim' linked to '../@xpack-dev-tools/clang/.content/bin/llvm-sim'
+File 'xpacks/.bin/llvm-size' linked to '../@xpack-dev-tools/clang/.content/bin/llvm-size'
+File 'xpacks/.bin/llvm-strings' linked to '../@xpack-dev-tools/clang/.content/bin/llvm-strings'
+File 'xpacks/.bin/llvm-strip' linked to '../@xpack-dev-tools/clang/.content/bin/llvm-strip'
+File 'xpacks/.bin/llvm-symbolizer' linked to '../@xpack-dev-tools/clang/.content/bin/llvm-symbolizer'
+File 'xpacks/.bin/llvm-tblgen' linked to '../@xpack-dev-tools/clang/.content/bin/llvm-tblgen'
+File 'xpacks/.bin/llvm-tli-checker' linked to '../@xpack-dev-tools/clang/.content/bin/llvm-tli-checker'
+File 'xpacks/.bin/llvm-windres' linked to '../@xpack-dev-tools/clang/.content/bin/llvm-windres'
+File 'xpacks/.bin/run-clang-tidy' linked to '../@xpack-dev-tools/clang/.content/bin/run-clang-tidy'
+File 'xpacks/.bin/scan-build-py' linked to '../@xpack-dev-tools/clang/.content/bin/scan-build-py'
+File 'xpacks/.bin/set-xcode-analyzer' linked to '../@xpack-dev-tools/clang/.content/bin/set-xcode-analyzer'
+File 'xpacks/.bin/split-file' linked to '../@xpack-dev-tools/clang/.content/bin/split-file'
+File 'xpacks/.bin/wasm-ld' linked to '../@xpack-dev-tools/clang/.content/bin/wasm-ld'
+
+'xpm install' completed in 1.931 sec.
 ```
 
 ### Install packages
 
 When invoked with arguments, they must refer to packages. The common
-use case is to use names of packages stored on the public npm repository,
-but since xpm uses the same library to manage downloads as npm,
-all formats are accepted:
+use case is to use names of packages stored on the public npm repository.
+However, since xpm uses the same library to manage downloads as npm, all
+formats are accepted:
 
 ```sh
 xpm install [<@scope>/]<name>
@@ -150,7 +187,7 @@ For detail please see [`npm install`](https://docs.npmjs.com/cli/install).
 Examples:
 
 ```console
-$ xpm install --global @gnu-mcu-eclipse/arm-none-eabi-gcc --verbose
+$ xpm install --global @xpack-dev-tools/arm-none-eabi-gcc --verbose
 xPack manager - install package(s)
 
 Processing @gnu-mcu-eclipse/arm-none-eabi-gcc@8.2.1-1.7.1...
@@ -213,9 +250,11 @@ Bug reports: <https://github.com/xpack/xpm-js/issues/>
 
 Install package(s) in the global xPacks store (in the user home folder).
 
+{/*
 ### System install (`-sy|--system`)
 
 Install package(s) in the system repository.
+*/}
 
 ### Force install (`-f|--force`)
 

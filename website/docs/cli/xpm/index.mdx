@@ -11,6 +11,12 @@ date: 2017-10-09 12:50:00 +0300
 
 ---
 
+import CodeBlock from '@theme/CodeBlock';
+
+import customField from '@site/src/libs/customField';
+
+{/* ------------------------------------------------------------------------ */}
+
 # xpm
 
 ## Synopsis
@@ -21,8 +27,9 @@ xpm <command> [<subcommand>...] [<options> ...] [<args>...]
 
 ## Description
 
-`xpm` is the xPacks project manager. It manages dependencies
-and puts packages in known places so that builds can find them.
+`xpm` is the xPacks project manager. It handles dependencies and
+places packages in designated locations, ensuring that builds can
+locate them efficiently.
 
 :::info
 
@@ -32,23 +39,24 @@ uses the same public registry at https://registry.npmjs.org."
 
 :::
 
-The program accepts a command name, possibly one or more subcommand
-names, options (that start with a dash) and possibly one or more
-arguments, like names, files, etc.
+The programme accepts a command name, potentially accompanied by one
+or more subcommand names, options (which begin with a dash), and
+possibly one or more arguments, such as names or files.
 
 The list of accepted options and arguments is specific to a given
-command, or set of command and subcommands.
+command or set of commands and subcommands.
 
 ## Common options
 
 ### Help (`-h|--help`)
 
-To get an initial glimpse on the program, ask for help:
+To gain an initial understanding of the programme, request help:
 
-```console
-$ xpm --help
 
-The xPack package manager command line tool
+<CodeBlock language="console"> {
+`% xpm --help
+
+The xPack project manager command line tool
 Usage: xpm <command> [<subcommand>...] [<options> ...] [<args>...]
 
 where <command> is one of:
@@ -70,20 +78,20 @@ xpm <command> -h|--help  Quick help on command
 xpm --version            Show version
 xpm -i|--interactive     Enter interactive mode
 
-npm xpm@0.9.0 '/Users/ilg/.nvm/versions/node/v14.16.0/lib/node_modules/xpm'
-Home page: <https://xpack.github.io/xpm/>
-Bug reports: <https://github.com/xpack/xpm-js/issues/>
-```
+npm xpm@${customField('releaseVersion')} '/Users/ilg/.nvm/versions/node/v20.18.0/lib/node_modules/xpm'
+Home page: <https://xpack.github.io/xpm-preview/>
+Bug reports: <https://github.com/xpack/xpm-js/issues>
+`} </CodeBlock>
 
-This works both at top level and with commands/subcommands.
+This functions both at top level and with commands/subcommands.
 
 ### Log level (`--loglevel`)
 
 The default behaviour of the program is to display only a minimum
 amount of messages.
 
-This can be changed, from not displaying any messages at all (`--silent`)
-to displaying lots of debugging trace messages (`--trace`).
+This can be adjusted, ranging from not displaying any messages at all
+(`--silent`) to displaying numerous debugging trace messages (`--trace`).
 
 ```console
   --loglevel <level>     Set log level (silent|warn|info|verbose|debug|trace)
@@ -97,27 +105,26 @@ to displaying lots of debugging trace messages (`--trace`).
 
 ### Current folder (`-C`)
 
-By default the program is executed in the context of the current shell
-folder, but it can be changed to any folder using `-C <folder>`.
+By default, the program is executed within the context of the current shell
+folder> However, this can be changed to any folder using `-C <folder>`.
 
 ### Program version (`--version`)
 
-As for most command line tools, it is possible to ask for the current
-version, with `--version`:
+As with most command line tools, it is possible to request the current version, with `--version`:
 
-```console
-$ xpm --version
-0.9.0
-```
+<CodeBlock language="console"> {
+`% xpm --version
+${customField('releaseVersion')}
+`} </CodeBlock>
 
-The result is written to the standard output stream, and consists of the
-semver string, without any `v` prefix, so it can be directly used in
-automated scripts, without any post processing.
+The result is written to the standard output stream and consists of the
+semver string, without any `v` prefix. This allows it to be directly
+used in automated scripts without any post-processing.
 
 ### Skip checks (`--no-update-notifier`)
 
-By default, before exiting, `xpm` checks, once a day, if there is a
-new version of the program available.
+By default, before exiting, `xpm` checks once a day if a new version
+of the programme is available.
 
 For environments where this check is not necessary, it can be disabled.
 
@@ -128,13 +135,13 @@ The common use case is to start the program for each single command.
 It is also possible to start the program with a prompt, and issue as many
 commands as needed.
 
-```console
-$ xpm -i
+<CodeBlock language="console"> {
+`% xpm -i
 xpm> version
-0.9.0
+${customField('releaseVersion')}
 xpm>
 ...
-```
+`} </CodeBlock>
 
 ## Commands
 

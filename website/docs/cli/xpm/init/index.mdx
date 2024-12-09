@@ -7,10 +7,16 @@ keywords:
   - xpm
   - cli
   - init
-  
+
 date: 2017-10-09 12:55:00 +0300
 
 ---
+
+import CodeBlock from '@theme/CodeBlock';
+
+import customField from '@site/src/libs/customField';
+
+{/* ------------------------------------------------------------------------ */}
 
 # xpm init
 
@@ -27,17 +33,17 @@ Aliases:
 
 ## Description
 
-Initialise the current folder as an xpm package, by creating a skeleton
-`package.json` file. This file needs further editing to update most
+Initialise the current folder as an xpm package by creating a skeleton
+`package.json` file. This file requires further editing to update most
 of the objects.
 
-If called with a template, use the template and create a custom
-project with as many files and folders as necessary.
+If invoked with a template, use the template to create a custom project
+with as many files and folders as necessary.
 
 :::info
 
 The current behaviour may change,
-the template API is not yet final.
+as the template API is not yet final.
 
 :::
 
@@ -46,17 +52,18 @@ the template API is not yet final.
 
 ### Help (`--help`)
 
-```console
-$ xpm init --help
+<CodeBlock language="console"> {
+`% xpm init --help
 
-xPack manager - create an xPack, empty or from a template
+xPack project manager - create an xpm package, empty or from a template
 Usage: xpm init [options...] [--template <xpack>] [--name <string>]
-                [--property <string>]*
+                [--property <string>]* [--ignore-errors]
 
 Init options:
-  -t|--template <xpack>   The xPack implementing the template (optional)
+  -t|--template <xpack>   The xpm package implementing the template (optional)
   -n|--name <string>      Project name (optional)
   -p|--property <string>  Substitution variables (optional, multiple)
+  --ignore-errors         Ignore script errors (optional)
 
 Common options:
   --loglevel <level>      Set log level (silent|warn|info|verbose|debug|trace)
@@ -69,67 +76,54 @@ Common options:
   --no-update-notifier    Skip check for a more recent version
   -C <folder>             Set current folder
 
-xpm -h|--help             Quick help
-xpm --version             Show version
-xpm -i|--interactive      Enter interactive mode
+xpm -h|--help           Quick help
+xpm --version           Show version
+xpm -i|--interactive    Enter interactive mode
 
-npm xpm@0.9.0 '/Users/ilg/.nvm/versions/node/v14.16.0/lib/node_modules/xpm'
-Home page: <https://xpack.github.io/xpm/>
-Bug reports: <https://github.com/xpack/xpm-js/issues/>
-$
-```
+npm xpm@${customField('releaseVersion')} '/Users/ilg/.nvm/versions/node/v20.18.0/lib/node_modules/xpm'
+Home page: <https://xpack.github.io/xpm-preview/>
+Bug reports: <https://github.com/xpack/xpm-js/issues>
+`} </CodeBlock>
 
 ### Template (`-t|--template <xpack>`)
 
 Create the xpm package using a template. The template itself is an xpm package
-with a specific code that implements a template API.
+containing a specific code that implements the template API.
 
-Example: Create a project in an interactive session by answering
-lots of questions:
+#### Example
+
+Create a project in an interactive session by answering
+several questions:
 
 ```console
-$ xpm init --template @sifive/templates --verbose
-xPack manager - create an xPack, empty or from a template
+% mkdir my-project && cd my-project
+% xpm init --template @xpack/hello-world-template@latest
 
-Processing @sifive/templates@1.0.4...
+Checking package @xpack/hello-world-template@latest metadata...
+Processing @xpack/hello-world-template@0.6.1...
 
-Programming language? (c, cpp, ?) [cpp]:
-Board? (hifive1, e31arty, e51arty, ?) [hifive1]:
-Content? (empty, blinky, ?) [blinky]:
-Use system calls? (none, retarget, semihosting, ?) [retarget]:
-Trace output? (none, uart0ftdi, stdout, debug, ?) [uart0ftdi]:
-Check some warnings? (true, false, ?) [true]:
-Check most warnings? (true, false, ?) [false]:
-Enable -Werror? (true, false, ?) [false]:
-Use -Og on debug? (true, false, ?) [false]:
-Use newlib nano? (true, false, ?) [true]:
-
-Creating the C++ project 'hifive1-blinky-cpp'...
-File 'LICENSE' generated.
-File 'oocd.launch' generated.
-File 'jlink.launch' generated.
-File 'package.json' generated.
+Programming language? (c, cpp, ?) [cpp]: c
+Build System? (cmake, meson, autotools, ?) [cmake]:
+Toolchain? (gcc, clang, system, ?) [gcc]: clang
+Creating the C project 'my-project'...
+File 'include/hello-world.h' copied.
+File 'src/hello-world.c' copied.
+File 'libs/adder/include/add/add.h' copied.
+File 'libs/adder/src/add.c' copied.
+Folder 'cmake' copied.
+File 'CMakeLists.txt' generated.
+File '.vscode/tasks.json' copied.
+File '.vscode/settings.json' copied.
+File '.gitignore' copied.
+File '.npmignore' copied.
 File 'README.md' generated.
-File 'xmake.json' generated.
-File 'include/led.h' generated.
-File 'include/sysclock.h' copied.
-File 'ldscripts/libs.ld' copied.
-File 'ldscripts/mem.ld' copied.
-File 'ldscripts/sections.ld' copied.
-File 'src/initialize-hardware.cpp' generated.
-File 'src/interrupts-handlers.cpp' generated.
-File 'src/led.cpp' copied.
-File 'src/main.cpp' generated.
-File 'src/newlib-syscalls.c' copied.
-File 'src/sysclock.cpp' copied.
-
-'xpm init' completed in 77 ms.
-$
+File 'LICENSE' generated.
+File 'package.json' generated.
 ```
 
 ### Name (`--name <string>`)
 
-Define a name for the new xpm package. If missing, the package name is
+Define a name for the new xpm package. If omitted, the package name is
 derived from the current folder name.
 
 ### Properties (`-p|--property <string>`)
@@ -139,45 +133,34 @@ properties can be defined.
 
 The names, values and behaviours are all specific to each template engine.
 
-Example: the same template as before, if it receives a mandatory
-`boardName` property,
-can create the new xpm package without further questions, by using defaults:
+#### Example
+
+The same template as before, if it receives a mandatory
+`language` property,
+can create the new xpm package without further questions by using defaults:
 
 ```console
-$ xpm init --template @sifive/templates --property boardName=hifive1
-xPack manager - create an xPack, empty or from a template
+% mkdir -p my-project && cd my-project
+% xpm init --template @xpack/hello-world-template@latest --property language=c --property toolchain=clang
 
-Processing @sifive/templates@1.0.4...
+Installing @xpack/hello-world-template@0.6.1...
+Processing @xpack/hello-world-template@0.6.1...
 
-Creating the C++ project 'hifive1-blinky-cpp'...
-- boardName=hifive1
-- content=blinky
-- syscalls=retarget
-- trace=uart0ftdi
-- useSomeWarnings=true
-- useMostWarnings=false
-- useWerror=false
-- useOg=false
-- useNano=true
+Creating the C project 'my-project'...
+- buildGenerator=cmake
+- toolchain=clang
 
-File 'LICENSE' generated.
-File 'oocd.launch' generated.
-File 'jlink.launch' generated.
-File 'package.json' generated.
+File 'include/hello-world.h' copied.
+File 'src/hello-world.c' copied.
+File 'libs/adder/include/add/add.h' copied.
+File 'libs/adder/src/add.c' copied.
+Folder 'cmake' copied.
+File 'CMakeLists.txt' generated.
+File '.vscode/tasks.json' copied.
+File '.vscode/settings.json' copied.
+File '.gitignore' copied.
+File '.npmignore' copied.
 File 'README.md' generated.
-File 'xmake.json' generated.
-File 'include/led.h' generated.
-File 'include/sysclock.h' copied.
-File 'ldscripts/libs.ld' copied.
-File 'ldscripts/mem.ld' copied.
-File 'ldscripts/sections.ld' copied.
-File 'src/initialize-hardware.cpp' generated.
-File 'src/interrupts-handlers.cpp' generated.
-File 'src/led.cpp' copied.
-File 'src/main.cpp' generated.
-File 'src/newlib-syscalls.c' copied.
-File 'src/sysclock.cpp' copied.
-
-'xpm init' completed in 1.144 sec.
-$
+File 'LICENSE' generated.
+File 'package.json' generated.
 ```
