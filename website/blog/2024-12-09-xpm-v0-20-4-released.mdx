@@ -1,0 +1,136 @@
+---
+
+title: xPack xpm v0.20.4 released
+seo_title: Version 0.20.4 released
+description: Version v0.20.4 is a maintenance release.
+keywords:
+  - xpack
+  - xpm
+  - release
+
+date: 2024-12-09 11:15:21 +0200
+
+authors: ilg-ul
+
+# To be listed in the Releases page.
+tags:
+  - releases
+
+# ----- Custom properties -----------------------------------------------------
+
+version: "0.20.4"
+
+release_tag_url: "https://github.com/xpack/xpm-js/tree/v0.20.4"
+
+---
+
+import {PageMetadata} from '@docusaurus/theme-common';
+import Image from '@theme/IdealImage';
+import CodeBlock from '@theme/CodeBlock';
+import Link from '@docusaurus/Link';
+
+import Prerequisites from './_common/_prerequisites.mdx'
+import DownloadAnalytics from './_common/_download-analytics.mdx'
+
+Version **0.20.4** is a maintenance release; it the make-dir errors.
+
+<!-- truncate -->
+
+<PageMetadata title={frontMatter.seo_title} />
+
+**xpm** is a
+[Node.js](https://nodejs.org/en/) CLI
+application to automate builds and to manage
+[xPacks](https://xpack.github.io/intro/#but-what-are-xpacks) dependencies.
+
+<Prerequisites nodeVersion="18"/>
+
+## Install
+
+For installation instructions, please refer to the
+[Install Guide](/docs/install/)
+page.
+
+## Source code
+
+- <Link to={frontMatter.release_tag_url}>GitHub tag v{frontMatter.version} tree</Link>
+
+## Bug fixes
+
+- [#214] after upgrading make-dir, some references were not updated and the code failed; fixed
+- [#215] temporarily remove `--system`, it is not yet implemented.
+
+## Enhancements
+
+- none
+
+## Known problems
+
+- [#57] when multiple versions of the same package are referenced
+  via different dependencies paths, the program fails; version
+  mitigation will be implemented in a future release.
+
+## Documentation
+
+The program interprets `--help` and displays a top help page:
+
+```console
+% xpm --help
+
+The xPack project manager command line tool
+Usage: xpm <command> [<subcommand>...] [<options> ...] [<args>...]
+
+where <command> is one of:
+  init, install, link, list, run, uninstall
+
+Common options:
+  --loglevel <level>     Set log level (silent|warn|info|verbose|debug|trace)
+  -s|--silent            Disable all messages (--loglevel silent)
+  -q|--quiet             Mostly quiet, warnings and errors (--loglevel warn)
+  --informative          Informative (--loglevel info)
+  -v|--verbose           Verbose (--loglevel verbose)
+  -d|--debug             Debug messages (--loglevel debug)
+  -dd|--trace            Trace messages (--loglevel trace, -d -d)
+  --no-update-notifier   Skip check for a more recent version
+  -C <folder>            Set current folder
+
+xpm -h|--help            Quick help
+xpm <command> -h|--help  Quick help on command
+xpm --version            Show version
+xpm -i|--interactive     Enter interactive mode
+
+npm xpm@0.20.4 '/Users/ilg/.nvm/versions/node/v18.20.4/lib/node_modules/xpm'
+Home page: <https://xpack.github.io/xpm/>
+Bug reports: <https://github.com/xpack/xpm-js/issues/>
+```
+
+Similar pages are available for each command.
+
+For more details, the project documentation is available online from the
+[web site](/).
+
+## Supported platforms
+
+**npm** is a portable application that can run on
+**Windows**, **macOS** and **GNU/Linux**, both Intel and Arm.
+
+## CI tests
+
+Before publishing, a set of tests were performed .
+The results are available from:
+
+- [GitHub Actions](https://github.com/xpack/xpm-js/actions)
+
+## Download analytics
+
+- npmjs.com [xpm](https://www.npmjs.com/package/xpm)
+  - last week [![npm](https://img.shields.io/npm/dw/xpm.svg)](https://www.npmjs.com/package/xpm/)
+  - all time [![npm](https://img.shields.io/npm/dt/xpm.svg)](https://www.npmjs.com/package/xpm/)
+
+Credit to [Shields IO](https://shields.io) for the badges.
+
+:::caution
+
+The **xpm** tool is currently _work in progress_ and should be used with caution.
+
+:::
