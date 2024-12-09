@@ -3,9 +3,32 @@
 Changes in reverse chronological order.
 Don't forget to close GitHub [issues](https://github.com/xpack/xpm-js/issues/).
 
+## 2024-12-09
+
+* v0.20.4 prepared
+* c072af8 #214: fix make-dir references
+* 68036c7 website update
+
+## 2024-12-08
+
+* 08126f9 website/package-lock.json update
+* 4eae4b9 website: console.log
+* d27f878 website/package.json bump deps
+* eac2ed9 re-generate commons
+* 9df332a website update
+* ea607c2 website: add _xpack.github.io with the jekyll content
+
 ## 2024-12-07
 
-* v0.20.3 prepared
+* c328614 website updates
+* 64237a3 website: fix typo
+* 1f4f9ae website update
+* b86fb66 website update
+* 269a1fa README update
+* 8e9ab10 website: blog post release 0.20.3 published
+* 704241b 0.20.3
+* b67d6a9 fix standard
+* 9807457 prepare v0.20.3
 * 815c0f2 website: replace xPack with xpm packages
 * b714ccc #213: replace xPack with xpm packages
 
