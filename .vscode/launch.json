@@ -910,6 +910,35 @@
     {
       "type": "node",
       "request": "launch",
+      "name": "xpm link @scope/name",
+      "program": "${workspaceRoot}/bin/xpm.js",
+      "stopOnEntry": true,
+      "args": [
+        "link",
+        "@xpack-dev-tools/xbb-helper",
+        "-dd",
+        "-C",
+        "/Users/ilg/tmp/tolink"
+      ],
+      "cwd": "${workspaceRoot}",
+      "preLaunchTask": null,
+      "runtimeExecutable": null,
+      "runtimeArgs": [
+        "--nolazy"
+      ],
+      "skipFiles": [
+        "async_hooks.js",
+        "inspector_async_hook.js"
+      ],
+      "env": {
+        "NODE_ENV": "development"
+      },
+      "console": "internalConsole",
+      "sourceMaps": false
+    },
+    {
+      "type": "node",
+      "request": "launch",
       "name": "xpm uninstall @lix/stm32f7-qspi",
       "program": "${workspaceRoot}/bin/xpm.js",
       "stopOnEntry": true,
