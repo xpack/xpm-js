@@ -294,13 +294,20 @@ In https://github.com/xpack/xpm-js/milestones:
 
 - close the current milestone.
 
+### Check npm package tags
+
+```sh
+npm dist-tag ls xpm
+```
+
 ### Tag the npm package as `latest`
 
 When the release is considered stable, promote it as `latest`:
 
-- `npm dist-tag ls xpm`
-- <code>npm dist-tag add xpm@{customField('releaseVersion')} latest</code>
-- `npm dist-tag ls xpm`
+<CodeBlock language="sh"> {
+`npm dist-tag add xpm@${customField('releaseVersion')} latest
+npm dist-tag ls xpm
+`} </CodeBlock>
 
 
 ## Share on X/Twitter
