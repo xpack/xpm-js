@@ -12,7 +12,17 @@ date: 2017-10-09 12:56:00 +0300
 
 ---
 
+import CodeBlock from '@theme/CodeBlock';
+
+import customField from '@site/src/libs/customField';
+
+{/* ------------------------------------------------------------------------ */}
+
 # xpm install
+
+## Purpose
+
+Install dependencies.
 
 ## Synopsis
 
@@ -61,7 +71,265 @@ The dependencies are installed in the local `xpacks`
 folder. For binary xpm packages, soft links to the executables are created
 in the `xpacks/.bin` folder (on Windows `.cmd` stubs are created).
 
-#### Example
+### Install packages
+
+When invoked with arguments, they must refer to packages. The common
+use case is to use names of packages stored on the public npm repository.
+However, since xpm uses the same library to manage downloads as npm, all
+formats are accepted:
+
+```sh
+xpm install [<@scope>/]<name>
+xpm install [<@scope>/]<name>@<tag>
+xpm install [<@scope>/]<name>@<version>
+xpm install [<@scope>/]<name>@<version range>
+xpm install <github>:<organization>/<repo-name>[#commit-id]
+xpm install <github>:<organization>/<repo-name>[#semver:X.Y.Z]
+xpm install <gitlab>:<organization>/<repo-name>[#commit-id]
+xpm install <gitlab>:<organization>/<repo-name>[#semver:X.Y.Z]
+xpm install <git repo url>
+xpm install <tarball file>
+xpm install <tarball url>
+xpm install <folder>
+```
+
+When referring to GitHub by semver, a tag named `vX.Y.Z` must be present.
+
+For detail please see [`npm install`](https://docs.npmjs.com/cli/install).
+
+## Options
+
+### Help (`--help`)
+
+<CodeBlock language="console"> {
+`% xpm install --help
+
+xPack project manager - install package(s)
+Usage: xpm install [options...] [--global] [--force] [--force-32bit]
+                   [--config <config_name>] [--all-configs] [--dry-run]
+                   [--save-prod] [--no-save] [--save-dev] [--save-optional]
+                   [--save-bundle] [--save-exact] [--copy]
+                   [[@<scope>/]<name>[@<version]|<github_name>/<repo>]...
+
+Install options:
+  -g|--global                Install the package globally in the home folder (optional)
+  -f|--force                 Force install over existing package (optional)
+  -32|--force-32bit          Force install 32-bit binaries (optional)
+  -c|--config <config_name>  Install configuration specific dependencies (optional)
+  -a|--all-configs           Install dependencies for all configurations (optional)
+  -n|--dry-run               Pretend to install the package(s) (optional)
+  -P|--save-prod             Save to dependencies; default unless -D or -O (optional)
+  --no-save                  Prevent saving to dependencies (optional)
+  -D|--save-dev              Save to devDependencies (optional)
+  -O|--save-optional         Save to optionalDependencies (optional)
+  -B|--save-bundle           Save to bundleDependencies (optional)
+  -E|--save-exact            Save deps with exact version (optional)
+  --copy                     Copy locally, do not link to central store (optional)
+
+Common options:
+  --loglevel <level>         Set log level (silent|warn|info|verbose|debug|trace)
+  -s|--silent                Disable all messages (--loglevel silent)
+  -q|--quiet                 Mostly quiet, warnings and errors (--loglevel warn)
+  --informative              Informative (--loglevel info)
+  -v|--verbose               Verbose (--loglevel verbose)
+  -d|--debug                 Debug messages (--loglevel debug)
+  -dd|--trace                Trace messages (--loglevel trace, -d -d)
+  --no-update-notifier       Skip check for a more recent version
+  -C <folder>                Set current folder
+
+xpm -h|--help                Quick help
+xpm --version                Show version
+xpm -i|--interactive         Enter interactive mode
+
+npm xpm@${customField('releaseVersion')} '/Users/ilg/.nvm/versions/node/v20.18.0/lib/node_modules/xpm'
+Home page: <https://xpack.github.io/xpm-preview/>
+Bug reports: <https://github.com/xpack/xpm-js/issues>
+`} </CodeBlock>
+
+### Global install (`-g|--global`)
+
+Install package(s) in the user global xPacks store (located in the
+user home folder).
+
+{/*
+### System install (`-sy|--system`)
+
+Install package(s) in the system repository.
+*/}
+
+### Force install (`-f|--force`)
+
+Normally, if a package is already installed, xpm exits with an error message.
+
+Use this option to force xpm to reinstall a package.
+
+### Configuration (`-c|--config`)
+
+Install dependencies into an existing configuration build
+folder instead of the top project folder.
+
+```sh
+xpm install --config debug-clang-17 @xpack-dev-tools/clang@17.0.6-3.1
+xpm install --config debug-clang-16 @xpack-dev-tools/clang@16.0.6-1.1
+```
+
+The `xpacks` folders are not stored in the project folder, but in the
+configuration build folder, configured via the `buildFolderRelativePath`
+property.
+
+Similarly, the dependencies are stored in the configuration, for
+example:
+
+```json
+{
+    ...
+    "xpack": {
+        "buildConfigurations": {
+            "debug": {...},
+            "release": {...},
+            "debug-clang-17": {
+                "devDependencies": {
+                    "@xpack-dev-tools/clang": {
+                        "specifier": "17.0.6-3.1",
+                        "local": "link",
+                        "platforms": "all"
+                    }
+                }
+            },
+            "debug-clang-16": {
+                "devDependencies": {
+                    "@xpack-dev-tools/clang": {
+                        "specifier": "16.0.6-1.1",
+                        "local": "link",
+                        "platforms": "all"
+                    }
+                }
+            }
+        }
+    }
+}
+```
+
+### Dry-run (`-n|--dry-run`)
+
+Do everything except to actually installing the packages(s).
+
+### Save to dependencies (`-P|--save-prod`)
+
+Add the installed packages to the `dependencies` array and
+update the `package.json`;
+
+Unless an explicit `-D` or `-O`, source xpm packages are stored in
+`dependencies` by default.
+
+### Prevent saving to dependencies (`--no-save`)
+
+Prevent saving to dependencies and updating the `package.json` file.
+
+### Save to devDependencies (`-D|--save-dev`)
+
+Add the installed packages to the `devDependencies` array and
+update the `package.json`.
+
+Unless an explicit `-P` is specified, binary xpm packages are stored in
+`devDependencies` by default.
+
+{/*
+### Save to optionalDependencies (`-O|--save-optional`)
+
+Add the installed packages to the `optionalDependencies` array and
+update the `package.json`.
+
+:::info
+
+Currently xpm does not use the
+optional dependencies.
+
+:::
+
+### Save to bundleDependencies (`-B|--save-bundle`)
+
+Add the installed packages to the `bundleDependencies` array and
+update the `package.json`.
+
+:::info
+
+Currently xpm does not use the
+bundle dependencies.
+
+:::
+*/}
+
+### Save with exact version (`-E|--save-exact`)
+
+By default, the stored reference to the installed package
+uses the `^` syntax,
+which is the npm/semver convention that means _compatible_.
+This means it will use the highest available version that
+does not change the major version number
+
+Example without `-E`:
+
+```json
+{
+    "xpack": {
+        ...
+        "dependencies": {
+            "@micro-os-plus/micro-test-plus": {
+                "specifier": "^3.1.2",
+                "local": "link",
+                "platforms": "all"
+            }
+        },
+        ...
+    }
+}
+```
+
+This option alters the behaviour by storing the version without the `^` symbol,
+meaning the exact version is required.
+
+Example with `-E`:
+
+```json
+{
+    "xpack": {
+        ...
+        "dependencies": {
+            "@micro-os-plus/micro-test-plus": {
+                "specifier": "3.1.2",
+                "local": "link",
+                "platforms": "all"
+            }
+        },
+        ...
+    }
+}
+```
+
+Unless an explicit `-D` is used, binary xpm packages with longer version strings
+(that do not comply with semver) are stored without the `^` symbol by default.
+For example:
+
+```json
+{
+    "xpack": {
+        ...
+        "devDependencies": {
+            "@xpack-dev-tools/clang": {
+                "specifier": "17.0.6-3.1",
+                "local": "link",
+                "platforms": "all"
+            }
+        },
+        ...
+    }
+}
+```
+
+## Example
+
+### Install dependencies
 
 ```console
 % cd my-project
@@ -89,297 +357,26 @@ File 'xpacks/.bin/clang-check' linked to '../@xpack-dev-tools/clang/.content/bin
 File 'xpacks/.bin/clang-cl' linked to '../@xpack-dev-tools/clang/.content/bin/clang-cl'
 File 'xpacks/.bin/clang-cpp' linked to '../@xpack-dev-tools/clang/.content/bin/clang-cpp'
 File 'xpacks/.bin/clang-doc' linked to '../@xpack-dev-tools/clang/.content/bin/clang-doc'
-File 'xpacks/.bin/clang-format' linked to '../@xpack-dev-tools/clang/.content/bin/clang-format'
-File 'xpacks/.bin/clang-include-cleaner' linked to '../@xpack-dev-tools/clang/.content/bin/clang-include-cleaner'
-File 'xpacks/.bin/clang-linker-wrapper' linked to '../@xpack-dev-tools/clang/.content/bin/clang-linker-wrapper'
-File 'xpacks/.bin/clang-refactor' linked to '../@xpack-dev-tools/clang/.content/bin/clang-refactor'
-File 'xpacks/.bin/clang-rename' linked to '../@xpack-dev-tools/clang/.content/bin/clang-rename'
-File 'xpacks/.bin/clang-repl' linked to '../@xpack-dev-tools/clang/.content/bin/clang-repl'
-File 'xpacks/.bin/clang-scan-deps' linked to '../@xpack-dev-tools/clang/.content/bin/clang-scan-deps'
-File 'xpacks/.bin/clang-tblgen' linked to '../@xpack-dev-tools/clang/.content/bin/clang-tblgen'
-File 'xpacks/.bin/clang-tidy' linked to '../@xpack-dev-tools/clang/.content/bin/clang-tidy'
-File 'xpacks/.bin/clangd' linked to '../@xpack-dev-tools/clang/.content/bin/clangd'
-File 'xpacks/.bin/darwin-debug' linked to '../@xpack-dev-tools/clang/.content/bin/darwin-debug'
-File 'xpacks/.bin/diagtool' linked to '../@xpack-dev-tools/clang/.content/bin/diagtool'
-File 'xpacks/.bin/git-clang-format' linked to '../@xpack-dev-tools/clang/.content/bin/git-clang-format'
-File 'xpacks/.bin/hmaptool' linked to '../@xpack-dev-tools/clang/.content/bin/hmaptool'
-File 'xpacks/.bin/ld.lld' linked to '../@xpack-dev-tools/clang/.content/bin/ld.lld'
-File 'xpacks/.bin/ld64.lld' linked to '../@xpack-dev-tools/clang/.content/bin/ld64.lld'
-File 'xpacks/.bin/llc' linked to '../@xpack-dev-tools/clang/.content/bin/llc'
-File 'xpacks/.bin/lld' linked to '../@xpack-dev-tools/clang/.content/bin/lld'
-File 'xpacks/.bin/lld-link' linked to '../@xpack-dev-tools/clang/.content/bin/lld-link'
-File 'xpacks/.bin/lldb' linked to '../@xpack-dev-tools/clang/.content/bin/lldb'
-File 'xpacks/.bin/lldb-argdumper' linked to '../@xpack-dev-tools/clang/.content/bin/lldb-argdumper'
-File 'xpacks/.bin/lldb-instr' linked to '../@xpack-dev-tools/clang/.content/bin/lldb-instr'
-File 'xpacks/.bin/lldb-server' linked to '../@xpack-dev-tools/clang/.content/bin/lldb-server'
-File 'xpacks/.bin/lli' linked to '../@xpack-dev-tools/clang/.content/bin/lli'
-File 'xpacks/.bin/llvm-addr2line' linked to '../@xpack-dev-tools/clang/.content/bin/llvm-addr2line'
-File 'xpacks/.bin/llvm-ar' linked to '../@xpack-dev-tools/clang/.content/bin/llvm-ar'
-File 'xpacks/.bin/llvm-as' linked to '../@xpack-dev-tools/clang/.content/bin/llvm-as'
-File 'xpacks/.bin/llvm-bitcode-strip' linked to '../@xpack-dev-tools/clang/.content/bin/llvm-bitcode-strip'
-File 'xpacks/.bin/llvm-config' linked to '../@xpack-dev-tools/clang/.content/bin/llvm-config'
-File 'xpacks/.bin/llvm-cov' linked to '../@xpack-dev-tools/clang/.content/bin/llvm-cov'
-File 'xpacks/.bin/llvm-cxxdump' linked to '../@xpack-dev-tools/clang/.content/bin/llvm-cxxdump'
-File 'xpacks/.bin/llvm-cxxfilt' linked to '../@xpack-dev-tools/clang/.content/bin/llvm-cxxfilt'
-File 'xpacks/.bin/llvm-cxxmap' linked to '../@xpack-dev-tools/clang/.content/bin/llvm-cxxmap'
-File 'xpacks/.bin/llvm-debuginfo-analyzer' linked to '../@xpack-dev-tools/clang/.content/bin/llvm-debuginfo-analyzer'
-File 'xpacks/.bin/llvm-debuginfod' linked to '../@xpack-dev-tools/clang/.content/bin/llvm-debuginfod'
-File 'xpacks/.bin/llvm-debuginfod-find' linked to '../@xpack-dev-tools/clang/.content/bin/llvm-debuginfod-find'
-File 'xpacks/.bin/llvm-diff' linked to '../@xpack-dev-tools/clang/.content/bin/llvm-diff'
-File 'xpacks/.bin/llvm-dis' linked to '../@xpack-dev-tools/clang/.content/bin/llvm-dis'
-File 'xpacks/.bin/llvm-dlltool' linked to '../@xpack-dev-tools/clang/.content/bin/llvm-dlltool'
-File 'xpacks/.bin/llvm-dwarfutil' linked to '../@xpack-dev-tools/clang/.content/bin/llvm-dwarfutil'
-File 'xpacks/.bin/llvm-lib' linked to '../@xpack-dev-tools/clang/.content/bin/llvm-lib'
-File 'xpacks/.bin/llvm-libtool-darwin' linked to '../@xpack-dev-tools/clang/.content/bin/llvm-libtool-darwin'
-File 'xpacks/.bin/llvm-nm' linked to '../@xpack-dev-tools/clang/.content/bin/llvm-nm'
-File 'xpacks/.bin/llvm-objcopy' linked to '../@xpack-dev-tools/clang/.content/bin/llvm-objcopy'
-File 'xpacks/.bin/llvm-objdump' linked to '../@xpack-dev-tools/clang/.content/bin/llvm-objdump'
-File 'xpacks/.bin/llvm-otool' linked to '../@xpack-dev-tools/clang/.content/bin/llvm-otool'
-File 'xpacks/.bin/llvm-profdata' linked to '../@xpack-dev-tools/clang/.content/bin/llvm-profdata'
-File 'xpacks/.bin/llvm-ranlib' linked to '../@xpack-dev-tools/clang/.content/bin/llvm-ranlib'
-File 'xpacks/.bin/llvm-rc' linked to '../@xpack-dev-tools/clang/.content/bin/llvm-rc'
-File 'xpacks/.bin/llvm-readelf' linked to '../@xpack-dev-tools/clang/.content/bin/llvm-readelf'
-File 'xpacks/.bin/llvm-readobj' linked to '../@xpack-dev-tools/clang/.content/bin/llvm-readobj'
-File 'xpacks/.bin/llvm-remarkutil' linked to '../@xpack-dev-tools/clang/.content/bin/llvm-remarkutil'
-File 'xpacks/.bin/llvm-sim' linked to '../@xpack-dev-tools/clang/.content/bin/llvm-sim'
-File 'xpacks/.bin/llvm-size' linked to '../@xpack-dev-tools/clang/.content/bin/llvm-size'
-File 'xpacks/.bin/llvm-strings' linked to '../@xpack-dev-tools/clang/.content/bin/llvm-strings'
-File 'xpacks/.bin/llvm-strip' linked to '../@xpack-dev-tools/clang/.content/bin/llvm-strip'
-File 'xpacks/.bin/llvm-symbolizer' linked to '../@xpack-dev-tools/clang/.content/bin/llvm-symbolizer'
-File 'xpacks/.bin/llvm-tblgen' linked to '../@xpack-dev-tools/clang/.content/bin/llvm-tblgen'
-File 'xpacks/.bin/llvm-tli-checker' linked to '../@xpack-dev-tools/clang/.content/bin/llvm-tli-checker'
-File 'xpacks/.bin/llvm-windres' linked to '../@xpack-dev-tools/clang/.content/bin/llvm-windres'
-File 'xpacks/.bin/run-clang-tidy' linked to '../@xpack-dev-tools/clang/.content/bin/run-clang-tidy'
-File 'xpacks/.bin/scan-build-py' linked to '../@xpack-dev-tools/clang/.content/bin/scan-build-py'
-File 'xpacks/.bin/set-xcode-analyzer' linked to '../@xpack-dev-tools/clang/.content/bin/set-xcode-analyzer'
-File 'xpacks/.bin/split-file' linked to '../@xpack-dev-tools/clang/.content/bin/split-file'
+...
 File 'xpacks/.bin/wasm-ld' linked to '../@xpack-dev-tools/clang/.content/bin/wasm-ld'
 
 'xpm install' completed in 1.931 sec.
 ```
 
-### Install packages
-
-When invoked with arguments, they must refer to packages. The common
-use case is to use names of packages stored on the public npm repository.
-However, since xpm uses the same library to manage downloads as npm, all
-formats are accepted:
-
-```sh
-xpm install [<@scope>/]<name>
-xpm install [<@scope>/]<name>@<tag>
-xpm install [<@scope>/]<name>@<version>
-xpm install [<@scope>/]<name>@<version range>
-xpm install <github>:<organization>/<repo-name>[#commit-id]
-xpm install <github>:<organization>/<repo-name>[#semver:X.Y.Z]
-xpm install <gitlab>:<organization>/<repo-name>[#commit-id]
-xpm install <gitlab>:<organization>/<repo-name>[#semver:X.Y.Z]
-xpm install <git repo url>
-xpm install <tarball file>
-xpm install <tarball url>
-xpm install <folder>
-```
-
-When referring to GitHub by semver, a tag named `vX.Y.Z` must be present.
-
-For detail please see [`npm install`](https://docs.npmjs.com/cli/install).
-
-Examples:
+### Install package
 
 ```console
-$ xpm install --global @xpack-dev-tools/arm-none-eabi-gcc --verbose
-xPack manager - install package(s)
+% xpm install @xpack-dev-tools/clang@latest --verbose
+xPack project manager - install package(s)
 
-Processing @gnu-mcu-eclipse/arm-none-eabi-gcc@8.2.1-1.7.1...
-Installing globally in '/Users/ilg/Library/xPacks/@gnu-mcu-eclipse/arm-none-eabi-gcc/8.2.1-1.7.1'...
-Extracting 'gnu-mcu-eclipse-arm-none-eabi-gcc-8.2.1-1.7-20190524-0603-macos.tgz'...
-3248 files extracted.
+Processing @xpack-dev-tools/clang@18.1.8-2.1...
+Folder 'xpacks/@xpack-dev-tools/clang' linked to global '@xpack-dev-tools/clang/18.1.8-2.1'
+File 'xpacks/.bin/analyze-build' linked to '../@xpack-dev-tools/clang/.content/bin/analyze-build'
+File 'xpacks/.bin/clang' linked to '../@xpack-dev-tools/clang/.content/bin/clang'
+File 'xpacks/.bin/clang++' linked to '../@xpack-dev-tools/clang/.content/bin/clang++'
+...
+File 'xpacks/.bin/wasm-ld' linked to '../@xpack-dev-tools/clang/.content/bin/wasm-ld'
+Adding '@xpack-dev-tools/clang' to 'devDependencies'...
 
-'xpm install' completed in 9.958 sec.
-$
-```
-
-## Options
-
-### Help (`--help`)
-
-```console
-$ xpm install --help
-
-xPack manager - install package(s)
-Usage: xpm install [options...] [--global] [--system] [--force]
-                   [--config <config_name>] [--dry-run] [--save-prod]
-                   [--no-save] [--save-dev] [--save-optional] [--save-bundle]
-                   [--save-exact]
-                   [[@<scope>/]<name>[@<version]|<github_name>/<repo>]...
-
-Install options:
-  -g|--global                Install the package globally in the home folder (optional)
-  -sy|--system               Install the package in a system folder (optional)
-  -f|--force                 Force install over existing package (optional)
-  -c|--config <config_name>  Install configuration specific dependencies (optional)
-  -n|--dry-run               Pretend to install the package(s) (optional)
-  -P|--save-prod             Save to dependencies; default unless -D or -O (optional)
-  --no-save                  Prevent saving to dependencies (optional)
-  -D|--save-dev              Save to devDependencies (optional)
-  -O|--save-optional         Save to optionalDependencies (optional)
-  -B|--save-bundle           Save to bundleDependencies (optional)
-  -E|--save-exact            Save deps with exact version (optional)
-
-Common options:
-  --loglevel <level>         Set log level (silent|warn|info|verbose|debug|trace)
-  -s|--silent                Disable all messages (--loglevel silent)
-  -q|--quiet                 Mostly quiet, warnings and errors (--loglevel warn)
-  --informative              Informative (--loglevel info)
-  -v|--verbose               Verbose (--loglevel verbose)
-  -d|--debug                 Debug messages (--loglevel debug)
-  -dd|--trace                Trace messages (--loglevel trace, -d -d)
-  --no-update-notifier       Skip check for a more recent version
-  -C <folder>                Set current folder
-
-xpm -h|--help                Quick help
-xpm --version                Show version
-xpm -i|--interactive         Enter interactive mode
-
-npm xpm@0.9.0 '/Users/ilg/.nvm/versions/node/v14.16.0/lib/node_modules/xpm'
-Home page: <https://xpack.github.io/xpm/>
-Bug reports: <https://github.com/xpack/xpm-js/issues/>
-```
-
-### Global install (`-g|--global`)
-
-Install package(s) in the global xPacks store (in the user home folder).
-
-{/*
-### System install (`-sy|--system`)
-
-Install package(s) in the system repository.
-*/}
-
-### Force install (`-f|--force`)
-
-Normally if a package is already installed, xpm exits with a message.
-
-Use this option to force xpm to reinstall a package.
-
-### Configuration (`-c|--config`)
-
-Install dependencies into an existing configuration build
-folder instead of the top project folder.
-
-```sh
-xpm install --config stm32f4discovery-cmake-gcc10-debug @xpack-dev-tools/arm-none-eabi-gcc@10.2.1-1.1.2
-xpm install --config stm32f4discovery-cmake-gcc9-debug @xpack-dev-tools/arm-none-eabi-gcc@9.3.1-1.4.1
-```
-
-The `xpacks` folders are not stored in the project folder, but in the
-configuration build folder, configured via the `buildFolderRelativePath`
-property.
-
-Similarly, the dependencies are stored in the configuration, for
-example:
-
-```json
-{
-  "...": "...",
-  "xpack": {
-    "configurations": {
-      "stm32f4discovery-cmake-gcc10-debug": {
-        "devDependencies": {
-          "@xpack-dev-tools/arm-none-eabi-gcc": "10.2.1-1.1.2"
-        }
-      },
-      "stm32f4discovery-cmake-gcc9-debug": {
-        "devDependencies": {
-          "@xpack-dev-tools/arm-none-eabi-gcc": "9.3.1-1.4.1"
-        }
-      }
-    }
-  }
-}
-```
-
-### Dry-run (`-n|--dry-run`)
-
-Do everything except to actually install the packages(s).
-
-### Save to dependencies (`-P|--save-prod`)
-
-Add the installed packages to the `dependencies` array and
-update the `package.json`;
-
-Unless an explicit `-D` or `-O`, source xPacks are stored to
-`dependencies` by default.
-
-### Prevent saving to dependencies (`--no-save`)
-
-Prevent saving to dependencies and updating the `package.json` file.
-
-### Save to devDependencies (`-D|--save-dev`)
-
-Add the installed packages to the `devDependencies` array and
-update the `package.json`.
-
-Unless an explicit `-P`, binary xPacks and npm modules are stored to
-`devDependencies` by default.
-
-### Save to optionalDependencies (`-O|--save-optional`)
-
-Add the installed packages to the `optionalDependencies` array and
-update the `package.json`.
-
-:::info
-
-Currently xpm does not use the
-optional dependencies, but npm may do so.
-
-:::
-
-### Save to bundleDependencies (`-B|--save-bundle`)
-
-Add the installed packages to the `bundleDependencies` array and
-update the `package.json`.
-
-:::info
-
-Currently xpm does not use the
-bundle dependencies, but npm may do so.
-
-:::
-
-### Save with exact version (`-E|--save-exact`)
-
-By default, the stored reference to the installed package
-uses the `^` syntax,
-which is the npm/semver convention that means _compatible_,
-in other words the
-highest version that does not change the major number, if available.
-
-For example:
-
-```json
-{
-  "...": "...",
-  "devDependencies": {
-    "liquidjs": "^9.23.3"
-  },
-  "xpack": {}
-}
-```
-
-This option changes the behaviour by storing the version without `^`,
-which means the exact version is required.
-
-Unless an explicit `-D`, binary xPacks with longer version
-strings (that do not comply to
-semver) are stored without `^` by default, for example:
-
-```json
-{
-  "...": "...",
-  "devDependencies": {
-    "@xpack-dev-tools/arm-none-eabi-gcc": "10.2.1-1.1.2"
-  },
-  "xpack": {}
-}
+'xpm install' completed in 346 ms.
 ```

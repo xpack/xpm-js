@@ -20,6 +20,10 @@ import customField from '@site/src/libs/customField';
 
 # xpm init
 
+## Purpose
+
+Initialise a new project.
+
 ## Synopsis
 
 ```sh
@@ -60,25 +64,25 @@ Usage: xpm init [options...] [--template <xpack>] [--name <string>]
                 [--property <string>]* [--ignore-errors]
 
 Init options:
-  -t|--template <xpack>   The xpm package implementing the template (optional)
-  -n|--name <string>      Project name (optional)
-  -p|--property <string>  Substitution variables (optional, multiple)
-  --ignore-errors         Ignore script errors (optional)
+  -t|--template <xpack>   The xpm package implementing the template (optional)
+  -n|--name <string>      Project name (optional)
+  -p|--property <string>  Substitution variables (optional, multiple)
+  --ignore-errors         Ignore script errors (optional)
 
 Common options:
-  --loglevel <level>      Set log level (silent|warn|info|verbose|debug|trace)
-  -s|--silent             Disable all messages (--loglevel silent)
-  -q|--quiet              Mostly quiet, warnings and errors (--loglevel warn)
-  --informative           Informative (--loglevel info)
-  -v|--verbose            Verbose (--loglevel verbose)
-  -d|--debug              Debug messages (--loglevel debug)
-  -dd|--trace             Trace messages (--loglevel trace, -d -d)
-  --no-update-notifier    Skip check for a more recent version
-  -C <folder>             Set current folder
+  --loglevel <level>      Set log level (silent|warn|info|verbose|debug|trace)
+  -s|--silent             Disable all messages (--loglevel silent)
+  -q|--quiet              Mostly quiet, warnings and errors (--loglevel warn)
+  --informative           Informative (--loglevel info)
+  -v|--verbose            Verbose (--loglevel verbose)
+  -d|--debug              Debug messages (--loglevel debug)
+  -dd|--trace             Trace messages (--loglevel trace, -d -d)
+  --no-update-notifier    Skip check for a more recent version
+  -C <folder>             Set current folder
 
-xpm -h|--help           Quick help
-xpm --version           Show version
-xpm -i|--interactive    Enter interactive mode
+xpm -h|--help             Quick help
+xpm --version             Show version
+xpm -i|--interactive      Enter interactive mode
 
 npm xpm@${customField('releaseVersion')} '/Users/ilg/.nvm/versions/node/v20.18.0/lib/node_modules/xpm'
 Home page: <https://xpack.github.io/xpm-preview/>
@@ -90,7 +94,21 @@ Bug reports: <https://github.com/xpack/xpm-js/issues>
 Create the xpm package using a template. The template itself is an xpm package
 containing a specific code that implements the template API.
 
-#### Example
+### Name (`--name <string>`)
+
+Define a name for the new xpm package. If omitted, the package name is
+derived from the current folder name.
+
+### Properties (`-p|--property <string>`)
+
+Pass pairs of `name=value` properties to the template engine. Multiple
+properties can be defined.
+
+The names, values and behaviours are all specific to each template engine.
+
+## Examples
+
+### Interactive session
 
 Create a project in an interactive session by answering
 several questions:
@@ -121,23 +139,11 @@ File 'LICENSE' generated.
 File 'package.json' generated.
 ```
 
-### Name (`--name <string>`)
-
-Define a name for the new xpm package. If omitted, the package name is
-derived from the current folder name.
-
-### Properties (`-p|--property <string>`)
-
-Pass pairs of `name=value` properties to the template engine. Multiple
-properties can be defined.
-
-The names, values and behaviours are all specific to each template engine.
-
-#### Example
+### Scriptable session
 
 The same template as before, if it receives a mandatory
 `language` property,
-can create the new xpm package without further questions by using defaults:
+can create the project without further questions by using defaults:
 
 ```console
 % mkdir -p my-project && cd my-project

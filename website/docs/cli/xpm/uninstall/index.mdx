@@ -12,6 +12,18 @@ date: 2021-01-27 22:22:00 +0200
 
 ---
 
+import CodeBlock from '@theme/CodeBlock';
+
+import customField from '@site/src/libs/customField';
+
+{/* ------------------------------------------------------------------------ */}
+
+# xpm uninstall
+
+## Purpose
+
+Uninstall dependencies.
+
 ## Synopsis
 
 ```sh
@@ -30,61 +42,57 @@ Aliases:
 
 ## Description
 
-This command uninstalls/removes one or more packages from the project
-available in the current folder or from the global xPacks store.
-
-Example:
-
-```console
-TBD
-```
+Uninstall/remove one or more packages from the project
+available in the current folder or from the user global xPacks store.
 
 ## Options
 
 ### Help (`--help`)
 
-```sh
-xpm uninstall --help
+<CodeBlock language="console"> {
+`% xpm uninstall --help
 
-xPack manager - uninstall package(s)
-Usage: xpm uninstall [options...] [--global] [--system]
-                     [--config <config_name>] [--dry-run] [--no-save]
+xPack project manager - uninstall package(s)
+Usage: xpm uninstall [options...] [--global] [--config <config_name>]
+                     [--dry-run] [--no-save] [--ignore-errors]
                      [[@<scope>/]<name>[@<version]...
 
 Uninstall options:
-  -g|--global                Uninstall the global package(s) (optional)
-  -sy|--system               Uninstall the system package(s) (not impl) (optional)
-  -c|--config <config_name>  Show the configuration specific dependencies (optional)
-  -n|--dry-run               Pretend to uninstall the package (optional)
-  --no-save                  Prevent saving to dependencies (optional)
+  -g|--global                Uninstall the global package(s) (optional)
+  -c|--config <config_name>  Show the configuration specific dependencies (optional)
+  -n|--dry-run               Pretend to uninstall the package (optional)
+  --no-save                  Prevent saving to dependencies (optional)
+  --ignore-errors            Ignore script errors (optional)
 
 Common options:
-  --loglevel <level>         Set log level (silent|warn|info|verbose|debug|trace)
-  -s|--silent                Disable all messages (--loglevel silent)
-  -q|--quiet                 Mostly quiet, warnings and errors (--loglevel warn)
-  --informative              Informative (--loglevel info)
-  -v|--verbose               Verbose (--loglevel verbose)
-  -d|--debug                 Debug messages (--loglevel debug)
-  -dd|--trace                Trace messages (--loglevel trace, -d -d)
-  --no-update-notifier       Skip check for a more recent version
-  -C <folder>                Set current folder
+  --loglevel <level>         Set log level (silent|warn|info|verbose|debug|trace)
+  -s|--silent                Disable all messages (--loglevel silent)
+  -q|--quiet                 Mostly quiet, warnings and errors (--loglevel warn)
+  --informative              Informative (--loglevel info)
+  -v|--verbose               Verbose (--loglevel verbose)
+  -d|--debug                 Debug messages (--loglevel debug)
+  -dd|--trace                Trace messages (--loglevel trace, -d -d)
+  --no-update-notifier       Skip check for a more recent version
+  -C <folder>                Set current folder
 
 xpm -h|--help                Quick help
 xpm --version                Show version
 xpm -i|--interactive         Enter interactive mode
 
-npm xpm@0.9.0 '/Users/ilg/.nvm/versions/node/v14.16.0/lib/node_modules/xpm'
-Home page: <https://xpack.github.io/xpm/>
-Bug reports: <https://github.com/xpack/xpm-js/issues/>
-```
+npm xpm@${customField('releaseVersion')} '/Users/ilg/.nvm/versions/node/v20.18.0/lib/node_modules/xpm'
+Home page: <https://xpack.github.io/xpm-preview/>
+Bug reports: <https://github.com/xpack/xpm-js/issues>
+`} </CodeBlock>
 
 ### Global uninstall (`-g|--global`)
 
 Remove package(s) from the global xPacks store.
 
+{/*
 ### System install (`-sy|--system`)
 
 Remove package(s) from the system xPacks store.
+*/}
 
 ### Configuration (`-c|--config`)
 
@@ -98,3 +106,84 @@ Do everything except to actually uninstall the package(s).
 ### Prevent saving to dependencies (`--no-save`)
 
 Prevent removing the dependencies and updating the `package.json` file.
+
+## Examples
+
+### Remove local packages
+
+Remove source dependency:
+
+```
+% xpm uninstall @micro-os-plus/micro-test-plus --verbose -C tests
+xPack project manager - uninstall package(s)
+
+Symlink 'xpacks/@micro-os-plus/micro-test-plus' removed
+
+'xpm uninstall' completed in 105 ms.
+```
+
+Remove binary dependency:
+
+```console
+% xpm uninstall @xpack-dev-tools/cmake --verbose -C tests
+xPack project manager - uninstall package(s)
+
+Symlink 'xpacks/.bin/ccmake' removed
+Symlink 'xpacks/.bin/cmake' removed
+Symlink 'xpacks/.bin/cpack' removed
+Symlink 'xpacks/.bin/ctest' removed
+Symlink 'xpacks/@xpack-dev-tools/cmake' removed
+package.json devDependencies['@xpack-dev-tools/cmake'] removed
+
+'xpm uninstall' completed in 97 ms.
+```
+
+Remove source dependency from configuration:
+
+```console
+% xpm uninstall @micro-os-plus/architecture-synthetic-posix --config native-cmake-clang-debug  --verbose -C tests
+xPack project manager - uninstall package(s)
+
+Symlink 'build/native-cmake-clang-debug/xpacks/@micro-os-plus/architecture-synthetic-posix' removed
+
+'xpm uninstall' completed in 119 ms.
+```
+
+Remove binary dependencies from a configuration:
+
+```console
+% xpm uninstall @xpack-dev-tools/clang --config native-cmake-clang-debug  --verbose -C tests
+xPack project manager - uninstall package(s)
+
+Symlink 'build/native-cmake-clang-debug/xpacks/@xpack-dev-tools/clang' removed
+
+'xpm uninstall' completed in 119 ms.
+```
+
+
+### Remove global packages
+
+Remove a specific version:
+
+```console
+% xpm uninstall --global @xpack-3rd-party/googletest@1.11.0-1 --verbose
+xPack project manager - uninstall package(s)
+
+Changing permissions to read-write...
+'/Users/ilg/Library/xPacks/@xpack-3rd-party/googletest/1.11.0-1' removed
+
+'xpm uninstall' completed in 120 ms.
+```
+
+Remove all installed versions:
+
+```console
+% xpm uninstall --global @xpack-3rd-party/libucontext --verbose
+xPack project manager - uninstall package(s)
+
+Changing permissions to read-write...
+'/Users/ilg/Library/xPacks/@xpack-3rd-party/libucontext' removed
+
+'xpm uninstall' completed in 226 ms.
+```
+

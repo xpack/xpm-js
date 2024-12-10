@@ -12,6 +12,18 @@ date: 2021-03-27 16:16:00 +0200
 
 ---
 
+import CodeBlock from '@theme/CodeBlock';
+
+import customField from '@site/src/libs/customField';
+
+{/* ------------------------------------------------------------------------ */}
+
+# xpm link
+
+## Purpose
+
+Link writable dependencies for development.
+
 ## Synopsis
 
 Invoked with no package arguments in a writeable dependency folder:
@@ -32,64 +44,148 @@ Aliases:
 
 ## Description
 
-By default, dependencies are installed in read-only folders, to avoid
-inadvertently damaging their contents.
+By default, dependencies are installed in read-only folders to prevent accidental damage to their contents.
 
-This command provides a unified solution for continuing
-development of source libraries while being used as dependencies in
-an application.
+This command offers a unified solution for the ongoing development of source libraries while they are used as dependencies in an application.
 
-It does this by replacing the links to the read-only folders in the
-global xPacks store by links to writeable folders.
+It achieves this by replacing the links to the read-only folders in the user's global xPacks store with links to writable folders.
 
-This is done in two steps:
+This process involves two steps:
 
-- create a special link (called `.link`) from the global xPacks store
-to the writeable folder; this is done by invoking `xpm link` in the
-writeable folder
-- replace the link in the application with a link to the above `.link`;
-this is done by invoking `xpm link <package>` in the application folder.
+1. Create a special link (called `.link`) from the global xPacks store to the writable folder by invoking xpm link in the writable folder.
+2. Replace the link in the application with a link to the `.link` created in the previous step by invoking `xpm link <package>` in the application folder.
 
-Example:
+:::info
 
-```console
-TBD
-```
+This method is inspired by **npm**, but the implementation is slightly
+different.
+
+:::
 
 ## Options
 
 ### Help (`--help`)
 
-```console
-$ xpm link --help
+<CodeBlock language="console"> {
+`% xpm link --help
 
-xPack manager - create links to packages under development
+xPack project manager - create links to packages under development
 Usage: xpm link [options...] [--config <config_name>] [[@<scope>/]<name>]
 
 Link options:
-  -c|--config <config_name>  Link to the configuration build folder (optional)
+  -c|--config <config_name>  Link to the configuration build folder (optional)
 
 Common options:
-  --loglevel <level>         Set log level (silent|warn|info|verbose|debug|trace)
-  -s|--silent                Disable all messages (--loglevel silent)
-  -q|--quiet                 Mostly quiet, warnings and errors (--loglevel warn)
-  --informative              Informative (--loglevel info)
-  -v|--verbose               Verbose (--loglevel verbose)
-  -d|--debug                 Debug messages (--loglevel debug)
-  -dd|--trace                Trace messages (--loglevel trace, -d -d)
-  --no-update-notifier       Skip check for a more recent version
-  -C <folder>                Set current folder
+  --loglevel <level>         Set log level (silent|warn|info|verbose|debug|trace)
+  -s|--silent                Disable all messages (--loglevel silent)
+  -q|--quiet                 Mostly quiet, warnings and errors (--loglevel warn)
+  --informative              Informative (--loglevel info)
+  -v|--verbose               Verbose (--loglevel verbose)
+  -d|--debug                 Debug messages (--loglevel debug)
+  -dd|--trace                Trace messages (--loglevel trace, -d -d)
+  --no-update-notifier       Skip check for a more recent version
+  -C <folder>                Set current folder
 
 xpm -h|--help                Quick help
 xpm --version                Show version
 xpm -i|--interactive         Enter interactive mode
 
-npm xpm@0.9.0 '/Users/ilg/.nvm/versions/node/v14.16.0/lib/node_modules/xpm'
-Home page: <https://xpack.github.io/xpm/>
-Bug reports: <https://github.com/xpack/xpm-js/issues/>
-```
+npm xpm@${customField('releaseVersion')} '/Users/ilg/.nvm/versions/node/v20.18.0/lib/node_modules/xpm'
+Home page: <https://xpack.github.io/xpm-preview/>
+Bug reports: <https://github.com/xpack/xpm-js/issues>
+`} </CodeBlock>
 
 ### Configuration (`-c|--config`)
 
-Link the development package into an existing configuration build folder
-instead of the top project folder.
+Link the development package into an existing configuration build folder rather than the top-level project folder.
+
+## Example
+
+A practical example is the
+[`@micro-os-plus/utils-lists`](https://github.com/micro-os-plus/utils-lists-xpack/)
+project. Within the `tests` folder, it contains several development
+dependencies. After executing `xpm install -C tests` these dependencies
+are linked to the user global xPack store
+(`/Users/ilg/Library/xPacks/` in this case),
+where all content is read-only:
+
+```console
+% ls -l tests/xpacks/@micro-os-plus
+total 0
+lrwxr-xr-x  1 ilg  staff  60 Nov 22 10:59 build-helper -> /Users/ilg/Library/xPacks/@micro-os-plus/build-helper/2.14.1
+lrwxr-xr-x  1 ilg  staff  57 Nov 22 10:59 diag-trace -> /Users/ilg/Library/xPacks/@micro-os-plus/diag-trace/4.2.1
+lrwxr-xr-x  1 ilg  staff  62 Nov 22 10:59 micro-test-plus -> /Users/ilg/Library/xPacks/@micro-os-plus/micro-test-plus/3.2.0
+```
+
+Any of those projects can also be under development.
+For instance, `@micro-os-plus/micro-test-plus`, and its source repository
+have a local clone:
+
+```console
+% ls -l /Users/ilg/MyProjects/micro-os-plus.github/xPacks/micro-test-plus-xpack.git
+total 176
+-rw-r--r--    1 ilg  staff  20424 Dec  6  2023 CHANGELOG.md
+-rw-r--r--    1 ilg  staff   2946 Nov 21 10:53 CMakeLists.txt
+-rw-r--r--    1 ilg  staff   1092 Nov 21 10:53 LICENSE
+-rw-r--r--    1 ilg  staff   1338 Apr  3  2022 LICENSE-Boost
+-rw-r--r--    1 ilg  staff   1861 Nov 25  2023 README.md
+drwxr-xr-x    3 ilg  staff     96 Apr  3  2022 docs
+drwxr-xr-x    3 ilg  staff     96 Jan 28  2022 include
+-rw-r--r--    1 ilg  staff   2613 Nov 21 10:53 meson.build
+drwxr-xr-x  100 ilg  staff   3200 Dec  3  2023 node_modules
+-rw-r--r--    1 ilg  staff  43689 Dec  6  2023 package-lock.json
+-rw-r--r--@   1 ilg  staff   2395 Nov 21 11:05 package.json
+drwxr-xr-x    6 ilg  staff    192 Dec  6  2023 src
+drwxr-xr-x   19 ilg  staff    608 Feb 15  2024 tests
+drwxr-xr-x   14 ilg  staff    448 Dec 26  2023 website
+```
+
+Linking this project to the user's global xPack store is accomplished using
+the `xpm link` command without arguments:
+
+```console
+ % xpm link --verbose
+xPack project manager - create links to packages under development
+
+Development references to package '@micro-os-plus/micro-test-plus' will be redirected to folder '/Users/ilg/MyProjects/micro-os-plus.github/xPacks/micro-test-plus-xpack.git'
+
+'xpm link' completed in 205 ms.
+```
+
+Internally, this creates a `.link` symbolic link pointing to the actual folder:
+
+```console
+% ls -lA /Users/ilg/Library/xPacks/@micro-os-plus/micro-test-plus
+total 0
+lrwxr-xr-x   1 ilg  staff   75 Dec 10 15:28 .link -> /Users/ilg/MyProjects/micro-os-plus.github/xPacks/micro-test-plus-xpack.git
+dr-xr-xr-x  12 ilg  staff  384 Jun  4  2023 3.0.0
+dr-xr-xr-x  11 ilg  staff  352 Nov  7 15:12 3.1.2
+dr-xr-xr-x  11 ilg  staff  352 Dec  6  2023 3.2.0
+```
+
+With this setup, linking the `micro-test-plus` dependency in the initial
+`utils-lists` project replaces the link to the user global xPack store
+`micro-test-plus/3.2.0` to the new `.link`:
+
+```console
+% xpm link @micro-os-plus/micro-test-plus -C tests --verbose
+xPack project manager - create links to packages under development
+
+Local reference to '@micro-os-plus/micro-test-plus' redirected to the development folder '/Users/ilg/MyProjects/micro-os-plus.github/xPacks/micro-test-plus-xpack.git'
+
+'xpm link' completed in 102 ms.
+```
+
+Internally, the redirect is achieved through a symbolic link to the `.link`,
+which points to the final folder:
+
+```console
+% ls -l tests/xpacks/@micro-os-plus
+total 0
+lrwxr-xr-x  1 ilg  staff  60 Dec  5  2023 build-helper -> /Users/ilg/Library/xPacks/@micro-os-plus/build-helper/2.14.1
+lrwxr-xr-x  1 ilg  staff  57 Dec  5  2023 diag-trace -> /Users/ilg/Library/xPacks/@micro-os-plus/diag-trace/4.2.1
+lrwxr-xr-x  1 ilg  staff  62 Dec 10 15:36 micro-test-plus -> /Users/ilg/Library/xPacks/@micro-os-plus/micro-test-plus/.link
+```
+
+With this double link, the dependency in the `utils-lists` project is now
+writable, and further changes are possible.
