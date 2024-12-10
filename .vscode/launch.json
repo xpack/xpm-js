@@ -998,6 +998,37 @@
     {
       "type": "node",
       "request": "launch",
+      "name": "xpm uninstall @xpack-dev-tools/clang",
+      "program": "${workspaceRoot}/bin/xpm.js",
+      "stopOnEntry": true,
+      "args": [
+        "uninstall",
+        "@xpack-dev-tools/clang",
+        "--config",
+        "native-cmake-clang-release",
+        "-C",
+        "/Users/ilg/MyProjects/micro-os-plus.github/xPacks/micro-test-plus-xpack.git/tests",
+        "-dd"
+      ],
+      "cwd": "${workspaceRoot}",
+      "preLaunchTask": null,
+      "runtimeExecutable": null,
+      "runtimeArgs": [
+        "--nolazy"
+      ],
+      "skipFiles": [
+        "async_hooks.js",
+        "inspector_async_hook.js"
+      ],
+      "env": {
+        "NODE_ENV": "development"
+      },
+      "console": "internalConsole",
+      "sourceMaps": false
+    },
+    {
+      "type": "node",
+      "request": "launch",
       "name": "xpm uninstall xx",
       "program": "${workspaceRoot}/bin/xpm.js",
       "stopOnEntry": true,
