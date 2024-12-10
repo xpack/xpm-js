@@ -3,9 +3,22 @@
 Changes in reverse chronological order.
 Don't forget to close GitHub [issues](https://github.com/xpack/xpm-js/issues/).
 
+## 2024-12-10
+
+* v0.20.5 prepared
+* a1e602d #217: fix uninstall in a build configuration
+* d2336ec #218: fix makeDirectory for link
+* 080f97d website: re-generate commons
+* d8ba653 website update
+* ed1409a website: re-generate commons
+* 5359a64 website cli updates
+
 ## 2024-12-09
 
-* v0.20.4 prepared
+* c638096 website: blog post release 0.20.4 published
+* 3323411 0.20.4
+* 62c2daf prepare v0.20.4
+* 0c8b9a6 #215: temporarily remove --system
 * c072af8 #214: fix make-dir references
 * 68036c7 website update
 
