@@ -40,7 +40,7 @@ Although not mandatory, it is recommended to update **npm** to the
 latest version:
 
 ```txt
-npm install -location=global npm@latest
+npm install -location=global npm@latest --verbose
 ```
 
 Update the user `Path` and make it persistent:
@@ -118,7 +118,7 @@ unfortunately use the same name
 With the environment properly set, the command to install **xpm** is:
 
 ```sh
-npm install --location=global xpm@latest
+npm install --location=global xpm@latest --verbose
 ```
 
 This command installs the latest available version.
@@ -126,7 +126,7 @@ This command installs the latest available version.
 To install a specific version, mention it explicitly:
 
 <CodeBlock language="sh"> {
-`npm install --location=global xpm@${customField('releaseVersion')}
+`npm install --location=global xpm@${customField('releaseVersion')} --verbose
 `} </CodeBlock>
 
 <Tabs groupId="operating-systems">

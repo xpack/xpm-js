@@ -35,7 +35,7 @@ function HomepageHeader() {
         <p className="hero__subtitle">{siteConfig.tagline}</p>
 
         <div className={styles.installWithCopy}>
-          <InstallWithCopy>npm install --location=global xpm@latest</InstallWithCopy>
+          <InstallWithCopy>npm install --location=global xpm@latest --verbose</InstallWithCopy>
         </div>
 
       </div>
