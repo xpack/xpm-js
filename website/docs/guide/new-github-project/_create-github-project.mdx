@@ -1,0 +1,107 @@
+
+{/* ------------------------------------------------------------------------ */}
+
+### Create the GitHub project
+
+With a browser, at GitHub, select your account or organisation.
+(for the purposes of this project, the organisations that use xPacks are:
+[xPacks Dev Tools](https://github.com/xpack-dev-tools/),
+[µOS++](https://github.com/micro-os-plus/),
+[3rd party source xPacks](https://github.com/xpack-3rd-party/)).
+
+- click the green **New** button to create a new repository
+  - enter **Repository name**; use all lowercase and hyphens to
+    separate words (not underscores!); preferably suffix the name with `-xpack`
+
+  :::tip
+
+  To easily identify the project as
+  an xPack, it is recommended to suffix the project name with '-xpack'.
+
+    :::
+  - enter **Description** (like _A source library package with ..._ or _A binary package with ..._; no ending dot!)
+  - select **Public**
+  - enable **Initialize this repository with a README**
+  - select **Add .gitignore: Node**
+  - select **Add a license: MIT License**; this is the license of
+    choice for xpm packages, but any other license of your choice is also ok
+  - click the **Create Repository** button
+- select the **Settings** tab
+  - in the **Features** section
+    - disable **Wikis**
+    - enable **Sponsorship** (if needed)
+    - disable **Projects**
+    - enable **Discussions**
+  - quit the **Settings** tab (there is no Save)
+
+### Clone the repository to a local folder
+
+With the GitHub web interface:
+
+- open the project
+- select the **Code** tab
+- click the **Clone or download** button; this will open a
+  small **Clone to HTTPS** window
+- click the **Copy** icon, or explicitly copy the URL
+- in a terminal window, in a place of our choice, create a folder
+  to store all xPacks (for example it can be named `xPacks`):
+
+```sh
+mkdir -p xPacks
+cd xPacks
+git clone https://github.com/<user>/<project>.git <project>.git
+```
+
+### Edit the master `README.md` file
+
+As mentioned in the introduction,
+although for original xPacks there are no constraints on how to
+organise the branches, for consistency with xPacks that use 3rd
+party content, it is recommended to use an `xpack` branch.
+
+In this case, to warn users about this configuration, edit
+the `README.md` file; keep the header line and replace the content with:
+
+```text
+This project does not use the `master` branch, please
+switch to the `xpack` branch to get the project files.
+```
+
+With VS Code, Fork or Git:
+
+- stage the `README.md` file
+- commit with the following message: **README: 'no master' notice**
+
+### Edit the `LICENSE` file
+
+The automatically generated `LICENSE` file already includes the
+user name as the copyright owner. When the project is owned by
+an organisation, the name refers to the organisation. Probably
+this is not exactly what you need, and you might prefer to have
+your name in the copyright notice.
+
+Check and possibly adjust to match your `LICENSE` requirements.
+
+For example, xPack projects use:
+
+```text
+MIT License
+
+Copyright (c) 2022 Liviu Ionescu. All rights reserved.
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+...
+```
+
+With VS Code, Fork or Git:
+
+- stage the file
+- commit with the following message: **LICENSE: update copyright owner**
+
+### Create the `xpack` branch
+
+With VS Code, Fork or Git:
+
+- select the `master` branch
+- create new branch `xpack`
+- switch to it

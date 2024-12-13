@@ -151,7 +151,12 @@ export const customDocsSidebar = [
       {
         type: 'doc',
         id: 'guide/project-templates/index',
-        label: 'Project templates'
+        label: 'Project Templates'
+      },
+      {
+        type: 'doc',
+        id: 'guide/new-github-project/index',
+        label: 'New GitHub Project'
       },
     ]
   },
