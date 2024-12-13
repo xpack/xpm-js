@@ -20,6 +20,8 @@ const sidebars: SidebarsConfig = {
   
   docsSidebar: customDocsSidebar,
   
+  
+  
   cliSidebar
   
 };

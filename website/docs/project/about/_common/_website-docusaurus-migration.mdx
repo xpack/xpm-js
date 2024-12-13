@@ -4,8 +4,9 @@
 {/* ------------------------------------------------------------------------ */}
 
 In **{props.date || 'DATE'}**, as part of the project restructuring,
-the website content was migrated from the TypeDoc sub-site to a local
+the website content was migrated from the {props.from || 'TypeDoc'}
+sub-site to a local
 Docusaurus configuration within the `website` folder.
 To ensure continuity, HTML `<meta>` redirects were added to the old pages.
- Additionally, a GitHub Action was set up to automatically publish
- the site whenever changes are pushed to the `website` Git branch.
+Additionally, a GitHub Action was set up to automatically publish
+the site whenever changes are pushed to the `website` Git branch.

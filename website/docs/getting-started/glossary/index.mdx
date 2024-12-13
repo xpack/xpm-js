@@ -19,8 +19,11 @@ The definitions used in the **xpm** project are listed below.
 
 ### xpm
 
-**xpm** is the xPack Project manager. It uses several concepts:
+**xpm** is the xPack Project manager. It uses several concepts and definitions:
 
+- **xPacks (xpm packages)**: software packages managed by **xpm**; an extension of **npm** packages
+- **dependencies**: source packages required by the current project during compile/link time
+- **development dependencies**: tools required during development of the current project
 - **actions**: sequences of shell commands executed in the environment of the current project dependencies
 - **properties**: named strings with configuration definitions
 - **build configurations**: sets of dependencies, properties and actions used for different builds

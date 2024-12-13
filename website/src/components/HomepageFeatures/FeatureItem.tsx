@@ -15,7 +15,7 @@
 import React from 'react';
 
 export type FeatureItem = {
-    title: string;
-    Svg: React.ComponentType<React.ComponentProps<'svg'>>;
-    description: JSX.Element;
-  };
+  title: string;
+  Svg: React.ComponentType<React.ComponentProps<'svg'>>;
+  description: JSX.Element;
+};

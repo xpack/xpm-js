@@ -15,15 +15,14 @@
 import clsx from 'clsx';
 import Heading from '@theme/Heading';
 import styles from './styles.module.css';
-import Link from '@docusaurus/Link';
 
-import type {FeatureItem} from './FeatureItem'
-
-
-import {FeatureList} from './TopFeatureList';
+import type { FeatureItem } from './FeatureItem'
 
 
-function Feature({title, Svg, description}: FeatureItem) {
+import { FeatureList } from './FeatureList';
+
+
+function Feature({ title, Svg, description }: FeatureItem) {
   return (
     <div className={clsx('col col--4')}>
       <div className="text--center">
