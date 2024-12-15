@@ -19,9 +19,12 @@ The definitions used in the **xpm** project are listed below.
 
 ### xpm
 
-**xpm** is the xPack Project manager. It uses several concepts and definitions:
+**xpm** is the **xPack Project Manager**. It uses several concepts and definitions:
 
 - **xPacks (xpm packages)**: software packages managed by **xpm**; an extension of **npm** packages
+- **author**: from **npm** point of view, the package author is the person who
+maintains the package metadata; it may or may not be the same person who wrote the library source code or the binaries
+- **contributors**: from **npm** point of view, these are the persons who contributed code to the package, i.e. who wrote the the library source code or the binaries; for 3rd party packages, they are usually different from the package _authors_
 - **dependencies**: source packages required by the current project during compile/link time
 - **development dependencies**: tools required during development of the current project
 - **actions**: sequences of shell commands executed in the environment of the current project dependencies

@@ -58,6 +58,7 @@ export const customDocsSidebar = [
     ]
   },
   {
+    // Keep this in sync with /docs/guide sections.
     type: 'category',
     label: 'Package Author\'s Guide',
     link: {

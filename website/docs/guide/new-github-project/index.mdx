@@ -28,105 +28,102 @@ Work in progress.
 
 ## Overview
 
-The technical definition of an xpm package is _a folder which includes a
+The technical definition of an xpm package is _a folder containing a
 package.json file with some minimal content_
-([full definition](../concepts));
-it does not require any special structure for the folders or for the
-version-control system, if any.
+(refer to the [Concepts](../concepts) page for further details).
+This definition does not mandate any particular folders hierarchy
+or version control system, if any.
 
-Therefore, an xpm package can be created with any tool, and can be stored
-in any version control system.
-
-The xPack project uses public GitHub repositories, and, for convenience,
-recommends GitHub for new projects too.
+Therefore, an xpm package can be created using any tool and stored in
+any version control system.
 
 :::tip
 
-As for the main development environment, for all xPack projects the editor
-of choice is Visual Studio Code (VS Code),
-but you can use
-any editor you like; just be sure that on Windows it does not mess the
-line terminators.
+All xPack Project sub-projects are hosted in public **GitHub** repositories.
+For convenience, it is recommended to create new projects on GitHub as well.
 
 :::
 
+:::tip
+
+For the main development environment, **Visual Studio Code** (VS Code)
+is the preferred editor for all xPack projects. However, you may use
+any editor you prefer; just ensure that on Windows, it does not alter
+the line terminators.
+
+:::
 
 ## Recommended workflow
 
-### Project content
+### Project content considerations
 
-From the package author's point of view, there can be packages with
-**original content**, and packages with **3rd party content**.
+From the package author's perspective, there can be packages with
+**original content** and packages with **third-party content**.
 
 <Tabs groupId="package-content-origin">
 
 <TabItem value="original" label="Packages with Original Content" default>
 
-These are generally projects created from scratch, and the package
-author is the same as the content author.
+Packages with original content are typically projects created from scratch,
+where the package author is also the content author.
 
 <CreateGitHubProject />
 
 </TabItem>
 
-<TabItem value="3rd-party" label="Packages with 3rd Party Content">
+<TabItem value="3rd-party" label="Packages with Third Party Content">
 
-For projects with 3rd party content, the ideal case would be to convince the 3rd party project maintainer
-to include the xPack
-metadata (like the `package.json` file)
-in the project and possibly publish the project on npmjs.com.
+For projects with third-party content, the ideal scenario would be
+to persuade the third-party project maintainer to include the xPack
+metadata (such as the `package.json` file) in the project and possibly
+publish it on npmjs.com.
 
-Unfortunately this is rarely possible, and a more realistic approach is
+Unfortunately, this is rarely feasible. A more realistic approach is
 to **fork the project** and add the required metadata.
 
-This must be done carefully, since it may add some **maintenance burden**
+This must be done carefully, as it may add some maintenance burden
 to keep them in sync with the originals.
-
 
 ### The `xpack` branch and three-way merging
 
-One way to reduce the maintenance burden of packages with 3rd party content
-is to use the
+One way to reduce the maintenance burden of packages with third-party content
+is to use Git's
 [three-way merge](https://en.wikipedia.org/wiki/Merge_(version_control)#Three-way_merge)
-feature of Git and a separate branch to accommodate the xPack specific changes.
+feature and a separate branch to accommodate the xPack-specific changes.
 
-This method does not require any changes to the original project, which can
-keep its original structure, with its original branches, regardless
-their names.
+This method does not require any modifications to the original project,
+which can retain its original structure and branches, regardless of their names.
 
 The only requirement is to create a new branch (preferably named `xpack`)
-and to keep the changes on it; thus the main branch (probably `main` or `master`) can
-easily track the upstream repository, while the xPack specific changes
-continue to be developed using the `xpack` branch; from time to time the
-`main` branch can be merged into the `xpack` branch and things kept in sync.
+and to keep the changes on it. Thus the main branch (likely `main` or `master`) can
+easily track the upstream repository, while the xPack-specific changes
+continue to be developed using the `xpack` branch. From time to time, the
+`main` branch can be merged into the `xpack` branch to keep everything in sync.
 
 :::info
 
-The xPack tools do not require and
-do not enforce the use of a branch named `xpack`, this is only
-a recommendation.
+The xPack tools do not require or enforce the use of a branch named `xpack`;
+this is merely a recommendation.
 
 :::
-
-### Projects without a public Git repository
-
-An extra complication can be encountered with projects distributed only as
-archives, without a public Git repository.
-
-For these projects it is recommended to reconstruct the history based on
-existing archives.
 
 <Tabs groupId="git-repo">
 
 <TabItem value="existing" label="Projects with existing Git repository" default>
 
-If the 3rd party project uses a public GitHub repository, fork it. For projects with Git repositories hosted in different sites, clone the project and save them to GitHub.
+If the third-party project has its upstream public repository hosted on GitHub, fork it.
+
+:::info
+
+If the project has a Git repository hosted on a different site, clone the project and save it to GitHub.
+
+:::
 
 With the GitHub web interface:
 
 - select the upstream project
-- fork it, for example in the
-  [3rd party xPacks](https://github.com/xpack-3rd-party) organization)
+- fork it (for example in an organisation like the
+  [xpack-3rd-party](https://github.com/xpack-3rd-party))
 - preferably rename it:
   - add a prefix with the name of the original organization
   - add the `-xpack` suffix
@@ -140,7 +137,7 @@ With the GitHub web interface:
     - enable **Discussions**, Set up discussions
   - quit the **Settings** tab (there is no Save)
 
-#### Clone locally
+### Clone locally
 
 Clone the project locally on the development machine:
 
@@ -152,7 +149,7 @@ With the GitHub web interface:
 - click Open with GitHub Desktop; save to a folder like
   `xpack-3rd-party/<project>-xpack.git`
 
-#### Identify the latest release
+### Identify the latest release
 
 With VS Code, Fork or Git:
 
@@ -165,41 +162,18 @@ With VS Code, Fork or Git:
 With VS Code, Fork or Git:
 
 - select the tagged commit
-- create new branch `xpack`
+- create a new `xpack` branch
 - switch to it
 
-</TabItem>
+### Add the `LICENSE-XPACK` file
 
-<TabItem value="reconstructed" label="Repository reconstructed from archives">
-
-For projects distributed as archives, to simplify maintenance,
-it is recommended to reconstruct the history in a separate branch
-(like `originals`) by adding commits with the content of each released
-archive.
-
-Follow the steps to create a new repository, and watch for the extra steps to
-create the `originals` branch.
-
-<CreateGitHubProject />
-
-</TabItem>
-
-</Tabs>
-
-### Edit the `LICENSE[-XPACK]` file
-
-The automatically generated `LICENSE` file already includes the
-user name as the copyright owner. When the project is owned by
-an organisation, the name refers to the organisation. Probably
-this is not exactly what you need, and you might prefer to have
-your name in the copyright notice.
-
-Check and possibly adjust to match your `LICENSE` requirements.
+The original project probably has its own LICENSE file.
+Add a new file with the xPack specific license that covers the xPack metadata.
 
 ```text
 MIT License
 
-Copyright (c) 2022 Liviu Ionescu
+Copyright (c) 2022 Liviu Ionescu. All rights reserved.
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 ...
@@ -207,43 +181,68 @@ Permission is hereby granted, free of charge, to any person obtaining a copy
 
 With VS Code, Fork or Git:
 
-- for 3rd party content, rename it to `LICENSE-XPACK`
+- copy locally a license file
+- rename it to `LICENSE-XPACK`
 - stage the file
-- commit with the following message: **LICENSE: update copyright owner**
+- commit with the following message: **LICENSE-XPACK: update copyright owner**
+
+</TabItem>
+
+<TabItem value="reconstructed" label="Repository reconstructed from archives">
+
+An additional complication can arise with projects distributed only as release
+archives, without a public Git repository.
+
+For these projects, it is recommended to reconstruct the history based on
+existing archives in a separate branch
+(such as `originals`) by adding commits with the content of each released
+archive.
+
+With each upstream release, while on the `originals` branch,
+fully remove the content extract the newly released archive, commit and push.
+Then merge into `xpack`.
+
+<CreateGitHubProject doReconstruct="true" />
 
 ### Create the `originals` branch
 
-For a 3rd party project that does not use a
-public Git project, but is distributed only as release archives, to
-keep track of the changes it is recommended to
-recreate the Git with the original
-code on a separate branch, like `originals`, and later treat it
-as the `master` branch.
+With VS Code, Fork or Git:
 
-With each upstream release, while on the `originals` branch,
-fully remove the content and extract the newly released archive.
-
-Then merge the update `originals` branch into the `xpack` branch.
-
+- select the `xpack` branch
+- create a new `originals` branch
+- switch to it
+- add the content of the original release archive.
 In case the archive contains binary files, or other large files considered
 not essential for the xPack distribution, add them to `.gitignore`.
+- commit with a message like: **vX.Y.Z content**
 
 Add/Edit the README file to add:
 
 ```text
-This branch is used to recreate the 3rd party project history
+This branch is used to recreate the third-party project history
 from release archives.
 ```
 
-Commit with the following message: **README: notice for 3rd party content**
+- commit with the following message: **README: notice for third-party content**
+- push the `originals` branch
 
+### Merge original content into `xpack`
+
+With VS Code, Fork or Git:
+
+- select the `xpack` branch
+- merge the `originals` branch
+
+</TabItem>
+
+</Tabs>
 
 </TabItem>
 
 </Tabs>
 
 
-### Edit the `.gitignore` file
+### Edit/Add the `.gitignore` file
 
 With VS Code:
 
@@ -389,9 +388,8 @@ Open `package.json` with VS Code:
   your npm organisations) and the project name, without `-xpack.git`
   (like `@micro-os-plus/diag-trace`, `@xpack-dev-tools/ninja-build`,
   `@xpack-3rd-party/arm-cmsis-core`)
-- as **version**, enter `0.1.0` if the project is in early development,
-  or accept 1.0.0 for the first stable release; generally use the
-  [semver](https://semver.org) conventions
+- as **version**, enter `0.1.0; generally use the
+  [SemVer](https://semver.org) conventions
 - as **description**, use the same string as the GitHub project description
 - in **scripts**, check and possibly remove a trailing comma,
 - as **url** and **homepage**, use the actual project Git URL
@@ -402,13 +400,13 @@ Open `package.json` with VS Code:
   "author": {
     "name": "Liviu Ionescu",
     "email": "ilg@livius.net",
-    "url": "https://github.com/ilg-ul/"
+    "url": "https://github.com/ilg-ul"
   }
 }
 ```
 
 - as **license**, enter the [SPDX](https://spdx.org/licenses/) license
-  identifier (like `MIT`); if the license is not a standard one, provide
+  identifier (e.g. `MIT`). If the license is not a standard one, provide
   the text in a `LICENSE` file and update the JSON to read:
 
 ```json
@@ -439,15 +437,25 @@ Update the list of npm scripts:
 {
   "scripts": {
     "npm-install": "npm install",
-    "pack": "npm pack",
-    "version-patch": "npm version patch",
-    "version-minor": "npm version minor",
+    "npm-link": "npm link",
+    "npm-outdated": "npm outdated",
+    "npm-update": "npm update",
+    "npm-pack": "npm pack",
+    "npm-version-patch": "npm version patch",
+    "npm-version-minor": "npm version minor",
     "postversion": "git push origin --all && git push origin --tags",
-    "git-log": "git log --pretty='%cd * %h %s' --date=short"
+    "git-log": "git log --pretty='%cd * %h %s' --date=short",{% if isJavaScript == "true" %}
   },
-  "...": "..."
+  ...
 }
 ```
+
+:::info
+
+Some of the above are merely for convenience when using VS Code,
+as they can be performed with a simple mouse click.
+
+:::
 
 ### Commit the initial package file
 
@@ -495,7 +503,7 @@ and close existing issues and pull requests.
 
 ## 2022-01-03
 
-* v2.0.5
+- v2.0.5
 ```
 
 With VS Code, Fork or Git:
@@ -507,9 +515,8 @@ With VS Code, Fork or Git:
 
 Copy/paste files like:
 
-- `CI.yml`
-- `test-all.yml`
-
+- `test-ci.yml` (to be executed automatically opon pushes)
+- `test-all.yml` (to be triggered manually upon user request)
 - commit with the following message: **.github/workflows preliminary content**
 
 For projects with an upstream Git, disable existing workflows.
