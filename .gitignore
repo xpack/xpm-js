@@ -32,6 +32,7 @@ build/Release
 # Dependency directories
 node_modules
 jspm_packages
+xpacks/
 
 # TypeScript v1 declaration files
 typings/
@@ -61,15 +62,22 @@ typings/
 
 # ---
 
-/cjs/
+cjs/
 **/*.js.map
 **/*.d.ts
 **/*.d.ts.map
 
-/docs/
+# /docs/
 
 tsconfig.tsbuildinfo
 
-/tmp/
+tmp/
+
+.vscode/c_cpp_properties.json
+
+build*/
+
+Thumbs.db
+.DS_Store
 
 #end

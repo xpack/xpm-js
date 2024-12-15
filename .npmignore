@@ -26,29 +26,36 @@
 # -----------------------------------------------------------------------------
 # .gitignore is not automatically included, add relevant lines again.
 
+.DS_Store
+.git/
+.github/
+.gitignore
+.gitmodules
+.clang-*
+.cmake-format
 
-# npm
+# npm pack archives
 /*.tgz
 
 # tap
-/coverage/
-/tests/
+coverage/
+tests/
+.tap/
 
 # nyc test coverage
-/.nyc_output/
+.nyc_output/
 
 # VS Code
-/.vscode/
+.vscode/
 
 # CI
-/.github/
-/.travis.yml
-/.appveyor.yml
+.travis.yml
+.appveyor.yml
 
 README-*.md
-
-/src/
-**/tsconfig*.json
+LICENSE-*
+!LICENSE-XPACK
+CONTRIBUTING**
 
 *.ts
 lib/**/*.ts
@@ -57,17 +64,21 @@ lib/**/*.ts
 !*.d.ts
 !lib/*.d.ts
 
+**/tsconfig*.json
+typedoc.json
 tsconfig.tsbuildinfo
 
-/tests/
-
-typedoc.json
-/docs/
+src/
+xpacks/
+node_modules/
+docs/
 # /assets/ # keep it, xpm needs it.
-/scripts/
-/website/
-/tmp/
-
-.tap
+scripts/
+website/
+tmp/
+patches/
+pkgconfig/
+ci/
+example*/
 
 #end
