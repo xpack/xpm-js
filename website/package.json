@@ -21,7 +21,8 @@
     "deep-clean": "del-cli .docusaurus build node_modules package-lock.json",
     "generate-website-commons": "bash node_modules/@xpack/docusaurus-template-liquid/maintenance-scripts/generate-commons.sh",
     "import-website-releases": "bash node_modules/@xpack/docusaurus-template-liquid/maintenance-scripts/website-import-releases.sh",
-    "generate-website-blog-post": "bash node_modules/@xpack/docusaurus-template-liquid/maintenance-scripts/generate-blog-post.sh"
+    "generate-website-blog-post": "bash node_modules/@xpack/docusaurus-template-liquid/maintenance-scripts/generate-blog-post.sh",
+    "generate-dependencies-details": "bash node_modules/@xpack/docusaurus-template-liquid/maintenance-scripts/generate-dependencies-details.sh"
   },
   "dependencies": {
     "@docusaurus/core": "3.6.3",
@@ -77,6 +78,8 @@
     "hasCustomUserInformation": "true",
     "hasCustomDocsNavbarItem": "true",
     "hasWebpreview": "true",
+    "hasMetadataMinimum": "true",
+    "hasPolicies": "true",
     "nodeVersion": "18.20.4"
   }
 }
