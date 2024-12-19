@@ -52,6 +52,10 @@ hr.hero__hr2 {
   height: 2px;
 }
 
+hr.hero__hr2_margin {
+  margin: calc(var(--ifm-hr-margin-vertical) / 2);
+}
+
 /* Reduce size of blog titles (H2 is 2rem) */
 .title_f1Hy {
   font-size: 2.5rem; /* 3rem; */

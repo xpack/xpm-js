@@ -16,10 +16,9 @@ something: "Some text"
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
+import Heading from '@theme/Heading';
 
 import CodeBlock from '@theme/CodeBlock';
-
-import Heading from '@theme/Heading';
 
 export const world = 'World'
 export const version = '11.2.1'
@@ -184,7 +183,27 @@ const visit = require('unist-util-visit');
 
 </Tabs>
 
+## Headers in tabs
+
 To display headings not showing in the TOC:
 
 <Heading as="h3">My Heading</Heading>
 
+## Conditional markdown
+
+```
+### Edit the {props.doReconstruct === "true" ? (`LICENSE-XPACK`) : (`LICENSE`)} file
+```
+
+or
+
+```
+<ul>
+<li>select the `master` branch</li>
+<li>create a new `xpack` branch</li>
+<li>switch to it</li>
+{props.doReconstruct === "true" ? (<li>rename <code>LICENSE</code> to <code>LICENSE-XPACK</code>.</li>) : (<></>)}
+{props.doReconstruct === "true" ? (<li>rename <code>README.md</code> to <code>README-XPACK.md</code>.</li>) : (<></>)}
+<li>Push the `xpack` branch</li>
+</ul>
+```
