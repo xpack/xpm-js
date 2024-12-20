@@ -175,7 +175,7 @@ const config: Config = {
       attributes: {
         rel: 'icon',
         type: 'image/png',
-        href: '/xpm-preview/favicons/favicon-48x48.png',
+        href: '/xpm/favicons/favicon-48x48.png',
         sizes: '48x48'
       }
     },
@@ -184,14 +184,14 @@ const config: Config = {
       attributes: {
         rel: 'icon',
         type: 'image/svg+xml',
-        href: '/xpm-preview/favicons/favicon.svg'
+        href: '/xpm/favicons/favicon.svg'
       }
     },
     {
       tagName: 'link',
       attributes: {
         rel: 'shortcut icon',
-        href: '/xpm-preview/favicons/favicon.ico'
+        href: '/xpm/favicons/favicon.ico'
       }
     },
     {
@@ -206,7 +206,7 @@ const config: Config = {
       tagName: 'link',
       attributes: {
         rel: 'manifest',
-        href: '/xpm-preview/favicons/site.webmanifest'
+        href: '/xpm/favicons/site.webmanifest'
       }
     }
   ],

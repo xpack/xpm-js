@@ -69,7 +69,7 @@
   "bugs": {
     "url": "https://github.com/xpack/xpm-js/issues"
   },
-  "homepage": "https://xpack.github.io/xpm-preview/",
+  "homepage": "https://xpack.github.io/xpm/",
   "homepagePreview": "https://xpack.github.io/xpm-js/",
   "dependencies": {
     "@ilg/cli-start-options": "^0.8.2",
