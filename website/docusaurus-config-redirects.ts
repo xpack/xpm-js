@@ -17,15 +17,14 @@ export const redirects = {
   redirects: [
     //   // /docs/oldDoc -> /docs/newDoc
     //   {
-    //     to: '/docs/newDoc',
     //     from: '/docs/oldDoc',
+    //     to: '/docs/newDoc',
     //   },
     //   // Redirect from multiple old paths to the new path
     //   {
-    //     to: '/docs/newDoc2',
     //     from: ['/docs/oldDocFrom2019', '/docs/legacyDocFrom2016'],
+    //     to: '/docs/newDoc2',
     //   },
-    { from: '/install', to: '/docs/install' },
     { from: '/cli', to: '/docs/cli/xpm' },
     { from: '/cli/init', to: '/docs/cli/xpm/init' },
     { from: '/cli/install', to: '/docs/cli/xpm/install' },
