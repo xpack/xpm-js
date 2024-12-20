@@ -51,9 +51,20 @@ export const customDocsSidebar = [
         label: 'Folders'
       },
       {
-        type: 'doc',
-        id: 'user/policies/index',
-        label: 'Policies'
+        type: 'category',
+        label: 'Policies',
+        link: {
+          type: 'doc',
+          id: 'user/policies/index',
+        },
+        collapsed: true,
+        items: [
+          {
+            type: 'doc',
+            id: 'user/policies/0001/index',
+            label: '0001'
+          }
+        ]
       },
     ]
   },
