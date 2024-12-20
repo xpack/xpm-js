@@ -21,32 +21,40 @@ application designed to **automate builds**, conduct **tests**, and
 
 <GithubAndNpmjs />
 
-## What are xpm packages? (xPacks)
+## What are xpm packages? (xPacks) {#xpm-packages}
 
 **xpm packages**, abbreviated as **xPacks**, are versatile,
 language-neutral software packages. They have been successfully
 utilised in C/C++ projects.
 
 <details>
-<summary>What the heck are xpm packages / xPacks? Please, do not introduce another package format!</summary>
+<summary>What the heck are xpm packages (xPacks)? Please, do not introduce another package format!</summary>
 
-Based on the content, there are two types of packages:
+Based on the content, there are two types of xpm packages:
 
-- packages with source libraries (source xpm packages)
-- packages with executables, usually platform-specific binary tools (binary xpm packages)
+- packages with source libraries (**source** xpm packages)
+- packages with executables, usually platform-specific binary
+tools (**binary** xpm packages)
 
-Source xpm packages are **regular npm packages** that include library
-source files, typically in C/C++, though there are no language restrictions.
+**Source xpm packages** are regular npm packages that include **library
+source files**, typically in **C/C++**, though there are no language
+restrictions.
 
-Binary xpm packages are also regular npm packages, but with minimal content,
-typically just the `package.json` file. Since these packages provide
-executables for multiple platforms, some of which are quite large,
-it is not practical to include all binaries within the npm package itself.
-Instead, the `package.json` file contains references (URLs) to platform-specific
-binary archives (e.g., `.tar.gz` for Unix or `.zip` for Windows).
+**Binary xpm packages** are also regular npm packages, but with minimal
+content, typically just the `package.json` file. Since these packages
+provide executables for multiple platforms, some of which are quite
+large, it is not practical to include all binaries within the npm
+package itself. Instead, the `package.json` file contains references
+(URLs) to platform-specific binary archives (e.g., `.tar.gz` for Unix or
+`.zip` for Windows).
 
-Simply put, xpm packages can enhance and automate the installation process
-for source libraries and tools.
+These archives are also expanded along with the package metadata.
+Links/forwarders to
+these executables are created in a `.bin` folder,
+eliminating the need to add multiple folders to the `PATH`.
+
+In summary, xpm packages can enhance and automate the installation
+process for source libraries and tools.
 
 </details>
 
