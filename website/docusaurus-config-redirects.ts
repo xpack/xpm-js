@@ -44,7 +44,7 @@ export const redirects = {
     { from: '/support', to: '/docs/support' },
     { from: '/blog/2021/09/03/xpm-v0-10-8-released/', to: '/blog/2021/09/05/xpm-v0-10-8-released/' },
     { from: '/blog/2021/07/20/xpm-v0-10-6-released/', to: '/blog/2021/07/21/xpm-v0-10-6-released/' },
-    { from: '/blog/2023/03/07/xpm-v0-15-0-released/', to: '/blog/2023/03/02/xpm-v0-15-0-released/' },
+    { from: '/blog/2023/02/07/xpm-v0-15-0-released/', to: '/blog/2023/03/02/xpm-v0-15-0-released/' },
   ],
   createRedirects(existingPath) {
     // logger.info(existingPath);
