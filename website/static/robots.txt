@@ -1,0 +1,7 @@
+Sitemap: https://xpack.github.io/xpm/sitemap.xml
+
+User-agent: *
+Disallow: /xpm/blog/archive/
+Disallow: /xpm/blog/authors/
+Disallow: /xpm/blog/page/
+Disallow: /xpm/blog/tags/
