@@ -50,4 +50,4 @@ jobs:
             --header "Content-Type: application/json" \
             --header "Accept: application/vnd.github.v3+json" \
             --data '{"ref":"master","inputs":{}}' \
-            https://api.github.com/repos/xpack/xpm-preview/actions/workflows/publish-github-pages-from-remote.yml/dispatches
+            https://api.github.com/repos/xpack/xpm/actions/workflows/publish-github-pages-from-remote.yml/dispatches

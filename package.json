@@ -97,7 +97,7 @@
   "devDependencies": {
     "del-cli": "^6.0.0",
     "json": "^11.0.0",
-    "liquidjs": "^10.18.0",
+    "liquidjs": "^10.19.1",
     "standard": "^17.1.2",
     "tap": "^21.0.1"
   },
