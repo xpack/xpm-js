@@ -1,0 +1,256 @@
+---
+
+title: xpm Source Packages
+description: The recommended content of xpm source libraries.
+keywords:
+  - xpack
+  - xpm
+  - source
+
+date: 2024-12-23 19:23:00 +0200
+
+---
+
+# xpm Source Packages
+
+**Source xpm packages** are xpm packages that include **library
+source files**, typically in **C/C++**, though there are no language
+restrictions.
+
+## Typical package content
+
+Except for `package.json`, all other files are optional; they can
+have any name and be located in any folder.
+
+### Minimal content
+
+A simple project with a source library may look like:
+
+```txt
+utils-lists-xpack.git
+├── .gitignore
+├── .npmignore
+├── CHANGELOG.md
+├── LICENSE
+├── README.md
+├── include
+│   └── micro-os-plus
+│       └── utils
+│           ├── inlines.h
+│           └── lists.h
+├── package.json
+└── src
+    └── lists.cpp
+
+5 directories, 7 files
+```
+
+For C/C++ projects, it is recommended to place the source
+files in the `src` folder and header files in the `include` folder.
+
+It is also highly recommended to include the `LICENSE` and `README.md` files, and possibly a `CHANGELOG.md` file to document project changes.
+
+### Add build configuration files
+
+A slightly more elaborate version of the project would include
+configuration files
+for integrating the library into existing build systems:
+
+```txt {5,13,17}
+utils-lists-xpack.git
+├── .gitignore
+├── .npmignore
+├── CHANGELOG.md
+├── CMakeLists.txt
+├── LICENSE
+├── README.md
+├── include
+│   └── micro-os-plus
+│       └── utils
+│           ├── inlines.h
+│           └── lists.h
+├── meson.build
+├── package.json
+├── src
+│   └── lists.cpp
+└── xcdl.json
+
+5 directories, 10 files
+```
+
+In this case, support for CMake, meson and xCDL is provided via separate files.
+
+### Add tests
+
+The next step is to add tests to the project, in a separate folder:
+
+```txt {15-47}
+utils-lists-xpack.git
+├── .gitignore
+├── .npmignore
+├── CHANGELOG.md
+├── CMakeLists.txt
+├── LICENSE
+├── README.md
+├── include
+│   └── micro-os-plus
+│       └── utils
+├── meson.build
+├── package.json
+├── src
+│   └── lists.cpp
+├── tests
+│   ├── CMakeLists.txt
+│   ├── README.md
+│   ├── cmake
+│   │   ├── common-options.cmake
+│   │   └── tests-main.cmake
+│   ├── include
+│   │   └── micro-os-plus
+│   ├── meson
+│   │   └── common-options
+│   ├── meson.build
+│   ├── meson_options.txt
+│   ├── package-lock.json
+│   ├── package.json
+│   ├── platforms
+│   │   ├── native
+│   │   ├── qemu-cortex-a15
+│   │   ├── qemu-cortex-a72
+│   │   ├── qemu-cortex-m0
+│   │   ├── qemu-cortex-m3
+│   │   ├── qemu-cortex-m4f
+│   │   ├── qemu-cortex-m7f
+│   │   ├── qemu-riscv-rv32imac
+│   │   └── qemu-riscv-rv64imafdc
+│   ├── scripts
+│   │   ├── common-tests-source.sh
+│   │   ├── helper.sh
+│   │   ├── test-all.sh
+│   │   └── trigger-workflow-test-all.sh
+│   ├── src
+│   │   ├── sample-test.cpp
+│   │   └── unit-test.cpp
+│   └── top -> ..
+└── xcdl.json
+
+24 directories, 22 files
+```
+
+The name of the folder and the hierarchy below it are all at
+author's discretion.
+
+:::tip
+
+**xpm** can be used to automate building and running tests;
+the required metadata
+can be stored in a separate `tests/package.json` file.
+
+To invoke xpm actions from the project folder, use the `-C` option:
+
+```sh
+xpm run test -C tests
+```
+
+:::
+
+### Add documentation
+
+For a professional project, it is also recommended to add a
+documentation website, typically generated
+with [Doxygen](https://www.doxygen.nl).
+
+```txt {46-67}
+utils-lists-xpack.git
+├── CHANGELOG.md
+├── CMakeLists.txt
+├── LICENSE
+├── README.md
+├── include
+│   └── micro-os-plus
+│       └── utils
+├── meson.build
+├── package.json
+├── src
+│   └── lists.cpp
+├── tests
+│   ├── CMakeLists.txt
+│   ├── README.md
+│   ├── cmake
+│   │   ├── common-options.cmake
+│   │   └── tests-main.cmake
+│   ├── include
+│   │   └── micro-os-plus
+│   ├── meson
+│   │   └── common-options
+│   ├── meson.build
+│   ├── meson_options.txt
+│   ├── package-lock.json
+│   ├── package.json
+│   ├── platforms
+│   │   ├── native
+│   │   ├── qemu-cortex-a15
+│   │   ├── qemu-cortex-a72
+│   │   ├── qemu-cortex-m0
+│   │   ├── qemu-cortex-m3
+│   │   ├── qemu-cortex-m4f
+│   │   ├── qemu-cortex-m7f
+│   │   ├── qemu-riscv-rv32imac
+│   │   └── qemu-riscv-rv64imafdc
+│   ├── scripts
+│   │   ├── common-tests-source.sh
+│   │   ├── helper.sh
+│   │   ├── test-all.sh
+│   │   └── trigger-workflow-test-all.sh
+│   ├── src
+│   │   ├── sample-test.cpp
+│   │   └── unit-test.cpp
+│   └── top -> ..
+├── website
+│   ├── DoxygenLayout.xml
+│   ├── README.md
+│   ├── assets
+│   │   ├── intrusive.png
+│   │   ├── low-intrusive.png
+│   │   ├── ppt
+│   │   ├── regular.png
+│   │   └── wall-e-icon-64.png
+│   ├── config.doxyfile
+│   ├── package-lock.json
+│   ├── package.json
+│   ├── pages
+│   │   ├── change-log.md
+│   │   ├── credits.md
+│   │   ├── home.md
+│   │   ├── install.md
+│   │   ├── license.md
+│   │   ├── maintainer.md
+│   │   ├── testing.md
+│   │   └── user-guide.md
+│   └── topics.doxyfile
+└── xcdl.json
+
+28 directories, 40 files
+```
+
+:::tip
+
+**xpm/npm** can be used to automate building the website;
+the required metadata
+can be stored in a separate `website/package.json` file.
+
+To invoke xpm actions from the project folder, use the `-C` option:
+
+```sh
+xpm run build -C website
+```
+
+:::
+
+## .npmignore
+
+The development-specific folders (`tests` and `website`) are not useful
+when consuming the source library as a dependency in an application.
+
+To ignore them when installing the package via xpm, they must be added
+to `.npmignore`.

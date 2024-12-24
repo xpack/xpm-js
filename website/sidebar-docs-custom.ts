@@ -84,6 +84,16 @@ export const customDocsSidebar = [
         label: 'Concepts'
       },
       {
+        type: 'doc',
+        id: 'guide/source-packages/index',
+        label: 'Source Packages'
+      },
+      {
+        type: 'doc',
+        id: 'guide/binary-packages/index',
+        label: 'Binary Packages'
+      },
+      {
         type: 'category',
         label: 'Metadata',
         link: {

@@ -1,0 +1,25 @@
+
+{/* ------------------------------------------------------------------------ */}
+
+<details>
+<summary>Why bother managing versions when auto-configure
+can sort out the differences?</summary>
+
+Traditionally, dealing with different versions and variations between
+systems involves adding a complex auto-configure mechanism. This
+mechanism detects which tools and components are present, identifies
+their versions, and uses this information to parametrise the process
+(such as a project build) to accommodate all these differences.
+
+This approach began with GNU **configure** and has evolved to include
+even more complex solutions, like **CMake** or **meson** scripts.
+
+Instead of constantly figuring out how to utilise new versions
+and making the auto-configure scripts increasingly complex, why
+not allow the application to request the exact versions known
+to be compatible and let an automated tool handle the dependencies?
+
+The **xpm** can do precisely this, bringing the exact
+versions needed into the project, thus rendering the auto-configure
+step superfluous.
+</details>

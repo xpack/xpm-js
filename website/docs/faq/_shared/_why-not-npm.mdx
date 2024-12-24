@@ -1,0 +1,16 @@
+
+{/* ------------------------------------------------------------------------ */}
+
+<details>
+<summary>Why couldn't **npm** be used as-is, and why was it
+necessary to invent **xpm**?</summary>
+
+Each package manager implements a specific strategy for managing
+dependencies. **npm**, **yarn**, and **pnpm** all employ strategies
+tailored to ECMAScript dependencies.
+
+Unfortunately, these strategies do not work for other languages,
+such as C/C++. Additionally, it would be very challenging and
+require inelegant hacks to adapt development dependencies to
+binary archives (for tools like compilers).
+</details>

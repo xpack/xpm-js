@@ -106,7 +106,8 @@ As demonstrated, the workflow for using existing projects is straightforward.
 
 However, for a more comprehensive understanding, it is beneficial to
 learn how to create an **xpm**-enabled project from scratch and add the
-necessary metadata.
+necessary metadata. More details about xpm metadata can be found in the
+[Package Author's Guide](/docs/guide/) pages.
 
 ### Initialise project
 
@@ -257,6 +258,11 @@ the project is locked to this version:
 }
 ```
 
+<Tabs groupId="operating-systems">
+
+<TabItem value="windows" label="Windows" default>
+
+
 :::note
 
 On Windows, where symbolic links to files are problematic, forwarders/shims
@@ -270,10 +276,6 @@ are used. For example:
 ```
 
 :::
-
-<Tabs groupId="operating-systems">
-
-<TabItem value="windows" label="Windows" default>
 
 To test if `clang` starts properly, invoke it via the shim in the
 `.bin` folder:

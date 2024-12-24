@@ -11,7 +11,7 @@
 
 export const customDocsNavbarItem = {
     type: 'dropdown',
-    label: 'Documentation',
+    label: 'Getting Started',
     to: 'docs/getting-started',
     position: 'left',
     items: [
