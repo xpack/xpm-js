@@ -40,7 +40,7 @@ export const FeatureList: FeatureItem[] = [
     Svg: require('@site/static/img/globe.svg').default,
     description: (
       <>
-        The module can be installed with <b>npm</b> from the <b>npmjs.com</b> public repository, just like millions of other packages.
+        The module can be installed with <b><Link to="https://docs.npmjs.com/about-npm">npm</Link></b> from the <b>npmjs.com</b> public repository, just like millions of other packages.
       </>
     ),
   },
