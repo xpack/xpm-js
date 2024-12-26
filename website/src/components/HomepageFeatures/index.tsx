@@ -19,7 +19,7 @@ import styles from './styles.module.css';
 import type { FeatureItem } from './FeatureItem'
 
 
-import { FeatureList } from './FeatureList';
+import { FeatureList } from './CustomFeatureList';
 
 
 function Feature({ title, Svg, description }: FeatureItem) {

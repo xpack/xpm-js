@@ -75,7 +75,7 @@
     "hasCli": "true",
     "isInstallGlobally": "true",
     "shareOnTwitter": "true",
-    "hasTopHomepageFeatures": "true",
+    "hasCustomHomepageFeatures": "true",
     "hasCustomSidebar": "true",
     "hasCustomUserInformation": "true",
     "hasCustomDocsNavbarItem": "true",
