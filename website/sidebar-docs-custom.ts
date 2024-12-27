@@ -183,7 +183,7 @@ export const customDocsSidebar = [
       {
         type: 'doc',
         id: 'guide/new-github-project/index',
-        label: 'New GitHub Project'
+        label: 'Create New GitHub Project'
       },
     ]
   },
