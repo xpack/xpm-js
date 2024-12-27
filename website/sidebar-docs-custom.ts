@@ -47,6 +47,11 @@ export const customDocsSidebar = [
       },
       {
         type: 'doc',
+        id: 'user/ci-integration/index',
+        label: 'CI/CD Integration',
+      },
+      {
+        type: 'doc',
         id: 'user/folders/index',
         label: 'Folders'
       },

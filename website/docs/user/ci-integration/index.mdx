@@ -1,0 +1,150 @@
+---
+
+title: CI/CD Integration
+description: xpm was designed with CI/CD integration in mind; here is an example of how GitHub Actions could use xpm actions.
+keywords:
+  - xpack
+  - xpm
+  - ci
+
+date: 2024-12-26 22:49:00 +0300
+
+---
+
+ {/* ------------------------------------------------------------------------ */}
+
+# How to integrate xpm into CI/CD workflows
+
+Seamless integration with CI/CD environments was a key requirement during the design phase of **xpm**.
+
+Similarly to npm, the workflow involves two steps:
+
+1. Installing dependencies
+2. Running the test
+
+An enhancement over npm is the ability to define separate
+dependencies for each build configuration and execute actions
+within the context of these configurations.
+
+This feature allows for the straightforward definition of
+multi-architecture tests, which can be compiled with specific
+toolchains, including different versions of the same toolchain.
+
+Below is an example of a GitHub Actions workflow:
+
+```yml title='.github/workflows/test-ci.yml' {47,50}
+name: CI on Push
+
+on:
+  push:
+    branches:
+      - 'master'
+      - 'development'
+    tags-ignore:
+      - '**'
+    paths-ignore:
+      - 'website/**'
+
+jobs:
+  xpm-test:
+
+    env:
+      # https://github.com/actions/setup-node
+      node_version: '22'
+      # https://www.npmjs.com/package/xpm?activeTab=versions
+      xpm_version: '0.20.5'
+
+    strategy:
+      matrix:
+        # https://docs.github.com/en/actions/using-github-hosted-runners/using-github-hosted-runners/about-github-hosted-runners
+        os: [ ubuntu-24.04, macos-13, macos-14, windows-2022 ]
+
+    runs-on: ${{ matrix.os }}
+
+    steps:
+    - name: Checkout
+      # https://github.com/actions/checkout
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 1
+
+    - name: Setup Node.js ${{ env.node_version }} on ${{ matrix.os }}
+      # https://github.com/actions/setup-node
+      uses: actions/setup-node@v4
+      with:
+        node-version: ${{ env.node_version }}
+        cache: 'npm'
+
+    - name: Install xpm
+      run: npm install --location=global xpm@${{ env.xpm_version }}
+
+    - name: Install xpm dependencies
+      run: xpm run install-ci -C tests
+
+    - name: Run test
+      run: xpm run test-ci -C tests
+```
+
+:::tip
+
+For reproducibility, it is advisable to use explicit versions.
+
+The versions used in this example are appropriate at the time of
+writing but will need periodic updates.
+
+:::
+
+This configuration file assumes the presence of a separate `package.json` file within the `tests` folder.
+
+It also presumes the existence of two xpm actions named `install-ci`
+and `test-ci`. These actions can chain other actions specific to
+various build configurations, for example:
+
+```json title="tests/package.json" {11-12}
+{
+    "name": "tests",
+    "version": "0.0.0",
+    "xpack": {
+        "actions": {
+            ...
+            "install-ci": [
+                "xpm install"
+            ],
+            "test-ci": [
+                "xpm run test --config debug",
+                "xpm run test --config release"
+            ]
+        },
+        "buildConfigurations": {
+            "debug": {
+                ...
+                "actions": {
+                    ...
+                    "test": [
+                        ...
+                    ]
+                }
+            },
+            "release": {
+                ...
+                "actions": {
+                    ...
+                    "test": [
+                        ...
+                    ]
+                }
+            }
+        }
+    }
+}
+```
+
+For large projects with numerous platforms and toolchains, it is
+advisable to define additional actions, such as:
+
+- `install-all` & `test-all`, to run the comprehensive set of all tests
+- `install` & `test`, to run a minimal set of tests during ongoing development
+
+The `install-all` & `test-all` can also be
+utilised in a separate GitHub Actions workflow, triggered on demand
+to run all tests on multiple operating systems.
