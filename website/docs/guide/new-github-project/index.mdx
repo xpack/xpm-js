@@ -379,7 +379,6 @@ $ cat package.json
   "devDependencies": {},
   "xpack": {}
 }
-$
 ```
 
 Open `package.json` with VS Code:
@@ -397,11 +396,13 @@ Open `package.json` with VS Code:
 
 ```json
 {
+  ...
   "author": {
     "name": "Liviu Ionescu",
     "email": "ilg@livius.net",
     "url": "https://github.com/ilg-ul"
-  }
+  },
+  ...
 }
 ```
 
@@ -418,6 +419,7 @@ Open `package.json` with VS Code:
 
 ```json
 {
+  ...
   "contributors": [
     {
       "name": "SEGGER Microcontroller GmbH & Co. KG",
@@ -427,7 +429,7 @@ Open `package.json` with VS Code:
       "license": "..."
     }
   ],
-  "...": "..."
+  ...
 }
 ```
 
@@ -435,6 +437,7 @@ Update the list of npm scripts:
 
 ```json
 {
+  ...
   "scripts": {
     "npm-install": "npm install",
     "npm-link": "npm link",

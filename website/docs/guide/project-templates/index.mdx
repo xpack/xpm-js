@@ -14,7 +14,7 @@ date: 2021-07-01 16:23:00 +0300
 
 # Project templates
 
-As presented in the [User's Guide](/docs/user/#instantiate-a-template)
+As presented in the [User's Guide](/docs/user/#instantiate-a-template),
 **xpm** is able to create new projects based on templates.
 
 For this, pass the `--template <package>` option to `xpm init`.
@@ -34,7 +34,7 @@ To be accepted as a template, a project must:
 
 The steps invoked by **xpm** to initialise a project from a template are:
 
-- call pacote to install the xPack in the global home folder
+- call `pacote` to install the xPack in the global home folder
 - identify the `main` property in `package.json`
 - import the `XpmInitTemplate` class from the main JavaScript file by
   invoking _require()_
@@ -57,4 +57,4 @@ The full code is in `init.js`, but a simplified version looks like this:
     const code = await xpmInitTemplate.run()
 ```
 
-TODO: add more
+TODO: explain the user configurable properties.
