@@ -17,6 +17,10 @@ date: 2024-12-23 19:23:00 +0200
 source files**, typically in **C/C++**, though there are no language
 restrictions.
 
+## `dependencies`
+
+When installing source packages into an **xpm** project, they are added to the `xpack.dependencies` list in `package.json`.
+
 ## Typical package content
 
 Except for `package.json`, all other files are optional; they can
@@ -26,7 +30,7 @@ have any name and be located in any folder.
 
 A simple project with a source library may look like:
 
-```txt
+```txt {12}
 utils-lists-xpack.git
 ├── .gitignore
 ├── .npmignore
@@ -48,7 +52,8 @@ utils-lists-xpack.git
 For C/C++ projects, it is recommended to place the source
 files in the `src` folder and header files in the `include` folder.
 
-It is also highly recommended to include the `LICENSE` and `README.md` files, and possibly a `CHANGELOG.md` file to document project changes.
+The only mandatory file is `package.json`, but it
+is highly recommended to include the `LICENSE` and `README.md` files, and possibly a `CHANGELOG.md` file to document project changes.
 
 ### Add build configuration files
 
@@ -156,9 +161,8 @@ xpm run test -C tests
 
 ### Add documentation
 
-For a professional project, it is also recommended to add a
-documentation website, typically generated
-with [Doxygen](https://www.doxygen.nl).
+For a professional project, it is advisable to add a documentation website,
+typically generated with [Doxygen](https://www.doxygen.nl).
 
 ```txt {46-67}
 utils-lists-xpack.git
@@ -249,8 +253,9 @@ xpm run build -C website
 
 ## .npmignore
 
-The development-specific folders (`tests` and `website`) are not useful
+The development-specific folders (`tests` and `website`) are not necessary
 when consuming the source library as a dependency in an application.
 
-To ignore them when installing the package via xpm, they must be added
-to `.npmignore`.
+To exclude them when publishing the package on npmjs.com or when installing
+the package via **xpm** directly from Git, these development folders should
+be added to `.npmignore`.

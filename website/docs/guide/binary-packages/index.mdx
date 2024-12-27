@@ -16,8 +16,131 @@ date: 2024-12-23 19:30:00 +0200
 **Binary xpm packages** are xpm packages that include references
 (URLs) to platform-specific binary archive with development tools.
 
-TODO: add more content
+If for source packages the content is stored into the package itself,
+binary packages, by definition, provide platform specific executables.
+
+Therefore it makes no sense to pack the executables for all platforms in the package. Instead, the binaries for each platform are packed in separate
+archives and downloaded for each platform separately.
+
+To inform **xpm** about these archives, in `package.json` there must be
+two mandatory member objects,
+[`xpack.binaries`](/docs/metadata/binaries) and
+[`xpack.executables`](/docs/metadata/executables).
 
 ## `devDependencies`
 
-When installing binary packages into an **xpm** project, they are added to the `devDependencies` list in `package.json`.
+When installing binary packages into an **xpm** project, they are added to the `xpack.devDependencies` list in `package.json`.
+
+## Typical package content
+
+Except for `package.json`, all other files are optional; they can
+have any name and be located in any folder.
+
+### Minimal content
+
+A simple project with a binary package may look like:
+
+```txt {7}
+arm-none-eabi-gcc-xpack.git
+├── .gitignore
+├── .npmignore
+├── CHANGELOG.md
+├── LICENSE
+├── README.md
+└── package.json
+
+1 directory, 6 files
+```
+
+This assumes that the binary archives are built in a separate project.
+
+The only mandatory file is `package.json`, but it
+is highly recommended to include the `LICENSE` and `README.md` files, and possibly a `CHANGELOG.md` file to document project changes.
+
+### Add build assets
+
+In a more realistic scenario, the project also includes the scripts
+required to build the binary archives.
+
+The projects in the
+[`xpack-dev-tools`](https://github.com/xpack-dev-tools/)
+group use a `build-assets` folder,
+with its own `package.json` file.
+
+```txt {7-13}
+arm-none-eabi-gcc-xpack.git
+├── .gitignore
+├── .npmignore
+├── CHANGELOG.md
+├── LICENSE
+├── README.md
+├── build-assets
+│   ├── extras
+│   ├── package-lock.json
+│   ├── package.json
+│   ├── patches
+│   ├── scripts
+│   └── templates
+└── package.json
+
+6 directories, 8 files
+```
+
+In this case the content of the `build-assets` folder is specific
+to the [xPack Build Box (XBB)](https://xpack-dev-tools.github.io/xpack-build-box/).
+
+The challenge in building these platform-specific executables is
+to make them relocatable (able to run from any folder) and standalone
+(including all required libraries). The XBB scripts address this with
+special post-processing steps that collect the necessary libraries and
+fix run path-related details.
+
+### Add documentation
+
+For a professional project, it is advisable to add a documentation website,
+typically generated with [Docusaurus](https://docusaurus.io).
+
+```txt {15-32}
+arm-none-eabi-gcc-xpack.git
+├── .gitignore
+├── .npmignore
+├── CHANGELOG.md
+├── LICENSE
+├── README.md
+├── build-assets
+│   ├── extras
+│   ├── package-lock.json
+│   ├── package.json
+│   ├── patches
+│   ├── scripts
+│   └── templates
+├── package.json
+└── website
+    ├── .gitignore
+    ├── README.md
+    ├── _xpack.github.io
+    ├── authors.yml
+    ├── babel.config.js
+    ├── blog
+    ├── docs
+    ├── docusaurus-config-redirects.ts
+    ├── docusaurus.config.ts
+    ├── i18n
+    ├── package-lock.json
+    ├── package.json
+    ├── sidebar-user.js
+    ├── sidebars.ts
+    ├── src
+    ├── static
+    └── tsconfig.json
+
+13 directories, 19 files
+```
+
+## .npmignore
+
+The `build-assets` and `website` folders are not necessary when installing the package as a development dependency in an application.
+
+To exclude them when publishing the package on npmjs.com or installing the
+package via **xpm** directly from Git, these development folders should be
+added to `.npmignore`.
