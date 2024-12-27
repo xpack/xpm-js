@@ -45,6 +45,20 @@ When substitutions occur within a build configuration, the `properties`
 defined in the build configuration take precedence over `properties`
 with the same name defined at the project level.
 
+## Reserved properties
+
+The properties are generally under the user's full control.
+
+However, **xpm** reserves certain names for variables with special usage.
+
+### `buildFolderRelativePath`
+
+The value of this variable is used by xpm as the folder where the build configuration-specific dependencies will be installed.
+
+The folder is relative to the location of the `package.json` file.
+
+If not explicitly defined, an warning is issued, and the default value of `build/<configurationName>` is used.
+
 ## Examples
 
 Project properties:
