@@ -2,6 +2,7 @@
 # Automatically generated from npm-packages-helper/templates
 
 # https://help.github.com/en/actions
+# https://docs.github.com/en/actions/writing-workflows/workflow-syntax-for-github-actions
 
 # https://github.com/actions
 # https://github.com/actions/checkout
@@ -32,14 +33,14 @@ on:
 jobs:
   npm-test:
 
-    runs-on: ${{ matrix.os }}
-
     strategy:
       matrix:
         # https://github.com/actions/setup-node
         node-version: [18, 20, 22]
         # https://docs.github.com/en/actions/using-github-hosted-runners/using-github-hosted-runners/about-github-hosted-runners
         os: [ubuntu-24.04, macos-13, macos-14, windows-2022]
+
+    runs-on: ${{ matrix.os }}
 
     steps:
     - name: Checkout
@@ -53,6 +54,7 @@ jobs:
       uses: actions/setup-node@v4
       with:
         node-version: ${{ matrix.node-version }}
+        cache: 'npm'
 
     - name: Show node & npm versions, environment
       run: |
