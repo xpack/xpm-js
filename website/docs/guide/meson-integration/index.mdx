@@ -1,0 +1,532 @@
+---
+
+title: Meson Integration
+description: How to integrate the source library into Meson builds.
+keywords:
+  - xpack
+  - xpm
+  - meson
+
+date: 2024-12-27 20:32:00 +0300
+
+---
+
+# How to add support for Meson builds
+
+[Meson](https://mesonbuild.com) is an open source build system meant
+to be both extremely fast, and, even more importantly, as user friendly
+as possible.
+
+There are several degrees of support for Meson builds.
+
+The first level is to enable the source library to be included in
+a project that uses Meson as the system build generator.
+
+## Add `meson.build`
+
+For embedded applications, a recommended practice is to define
+only dependencies. This approach, although non-intuitive,
+instructs Meson to perform all builds at the top level without
+creating intermediate static libraries.
+
+A good example of this is the
+[`@micro-os-plus/utils-lists`](https://micro-os-plus.github.io/utils-lists-xpack/) project.
+
+```meson title="meson.build"
+# -----------------------------------------------------------------------------
+
+message('Processing xPack @micro-os-plus/utils-lists...')
+
+# -----------------------------------------------------------------------------
+
+_local_compile_args = [] # Common C/C++ args.
+_local_compile_c_args = []
+_local_compile_cpp_args = []
+_local_include_directories = []
+_local_sources = []
+_local_compile_definitions = []
+_local_dependencies = []
+_local_link_args = []
+_local_link_with = []
+
+_local_include_directories += [
+  'include',
+]
+
+_local_sources += [
+  'src/lists.cpp',
+]
+
+micro_os_plus_utils_lists_dependency = declare_dependency(
+  include_directories: include_directories(_local_include_directories),
+  compile_args: _local_compile_args,
+  sources: files(_local_sources),
+  dependencies: _local_dependencies,
+  link_args: _local_link_args,
+  link_with: _local_link_with,
+)
+# meson dependencies cannot differentiate c/cpp args; pass them separately.
+micro_os_plus_utils_lists_dependency_compile_c_args = _local_compile_c_args
+micro_os_plus_utils_lists_dependency_compile_cpp_args = _local_compile_cpp_args
+
+foreach name : _local_include_directories
+  message('+ -I ' + name)
+endforeach
+foreach name : _local_sources + _local_compile_definitions + _local_compile_args + _local_compile_c_args + _local_compile_cpp_args
+  message('+ ' + name)
+endforeach
+message('> micro_os_plus_utils_lists_dependency')
+
+# -----------------------------------------------------------------------------
+```
+
+With this file present in the project root folder, the `utils-lists`
+library, after being installed with xpm, can be utilised by the
+application's Meson script with:
+
+```meson
+subdir('xpacks/@micro-os-plus/utils-lists')
+```
+
+The result is a dependency that can be linked with:
+
+```meson
+dependencies: [micro_os_plus_utils_lists_dependency],
+```
+
+## How to build and run tests with Meson
+
+The next level of integration involves adding tests that build the
+library with Meson.
+
+This step requires a `tests/meson.build` and some xpm actions
+added to `tests/package.json`.
+
+### `tests/meson.build`
+
+The Meson configuration used for tests can look like this:
+
+```meson
+# -----------------------------------------------------------------------------
+
+project('micro-os-plus-utils-lists-tests',
+  ['c', 'cpp'],
+  default_options: [
+    'c_std=c11',
+    'cpp_std=c++20',
+    'b_staticpic=false', # Mandatory, startup fails otherwise.
+  ],
+  meson_version: '>= 1.3'
+)
+
+# languages: {c, cpp}
+
+# c_std: none, c89, c99, c11, c17, c18, c2x, gnu89, gnu99, gnu11, gnu17, gnu18, gnu2x
+#
+# cpp_std: none, c++98, c++03, c++11, c++14, c++17, c++20
+# c++2a, c++1z, gnu++03, gnu++11, gnu++14, gnu++17, gnu++1z,
+# gnu++2a, gnu++20, vc++14, vc++17, vc++latest
+
+# -----------------------------------------------------------------------------
+# Global definitions # (these are application specific!)
+
+enable_sample_test = true
+enable_unit_test = true
+
+# -----------------------------------------------------------------------------
+
+fs = import('fs')
+
+c_compiler = meson.get_compiler('c')
+cpp_compiler = meson.get_compiler('cpp')
+# message('Compiler ID: ' + c_compiler.get_id())
+
+# -----------------------------------------------------------------------------
+
+xpack_tests_folder_path = meson.current_source_dir()
+xpack_project_folder_path = fs.parent(xpack_tests_folder_path)
+
+xpack_build_folder_path = meson.project_build_root()
+
+xpack_platform_name = get_option('platform-name')
+
+# Create a symbolic link to project root; don't bother with errors,
+# without it the build will crash anyway.
+if build_machine.system() == 'windows'
+  run_command('cmd', '/C', 'mklink /J top ..', check: false)
+  xpack_path_separator = '\\'
+else
+  run_command('ln', '-s', '..', 'top', check: false)
+  xpack_path_separator = '/'
+endif
+
+# Hack to compute the build folder relative path.
+xpack_build_folder_relative_path = xpack_build_folder_path.replace(xpack_tests_folder_path + xpack_path_separator, '')
+# message('Build relative folder: ' + xpack_build_folder_relative_path)
+
+# -----------------------------------------------------------------------------
+
+# buildtype: {plain, debug, debugoptimized, release, minsize, custom}
+message('Build type: ' + get_option('buildtype'))
+message('Platform name: ' + xpack_platform_name)
+
+# -----------------------------------------------------------------------------
+
+# SUBDIR PLATFORM SPECIFIC DEFINITIONS!
+
+# -----------------------------------------------------------------------------
+# Dependencies #
+
+# Set `xpack_dependencies_folders` with the platform specific dependencies.
+subdir('platforms/'+ xpack_platform_name + '/meson/dependencies-folders')
+
+foreach dep: xpack_dependencies_folders
+  message('Adding ' + dep + '...')
+  subdir(dep)
+endforeach
+
+# -----------------------------------------------------------------------------
+
+# Include the project library, defined one level above.
+message('Adding top library...')
+subdir('top')
+
+# -----------------------------------------------------------------------------
+
+#  SUBDIR MORE PLATFORM DEFINITIONS!
+...
+```
+
+### `tests/package.json`
+
+Since the actions are can be invoked for multiple build configurations,
+it is recommended to define them as parametrised properties:
+
+```json
+{
+  "name": "tests",
+  "version": "0.0.0",
+  "xpack": {
+    "devDependencies": {
+      ...
+      "@xpack-dev-tools/meson-build": "1.3.0-1.1",
+      "@xpack-dev-tools/ninja-build": "1.11.1-2.1"
+    },
+    "properties": {
+      "buildFolderRelativePath": "{{ 'build' | path_join: configuration.name | to_filename | downcase }}",
+      "buildFolderRelativePathPosix": "{{ 'build' | path_posix_join: configuration.name | downcase }}",
+
+      "commandMesonPrepare": "meson setup --backend ninja --buildtype {{ properties.buildType }} -D platform-name={{ properties.platformName }} {{ properties.buildFolderRelativePathPosix }} .",
+      "commandMesonPrepareWithToolchain": "meson setup --backend ninja --buildtype {{ properties.buildType }} -D platform-name={{ properties.platformName }} --native-file meson/toolchains/{{ properties.toolchainFileName }} --native-file platforms/{{ properties.platformName }}/meson/native.ini {{ properties.buildFolderRelativePathPosix }} .",
+      "commandMesonPrepareCross": "meson setup --backend ninja --buildtype {{ properties.buildType }} -D platform-name={{ properties.platformName }} --cross meson/toolchains/{{ properties.toolchainFileName }} --cross platforms/{{ properties.platformName }}/meson/cross.ini {{ properties.buildFolderRelativePathPosix }} .",
+      "commandMesonReconfigure": "meson setup --reconfigure {{ properties.buildFolderRelativePathPosix }} .",
+      "commandMesonBuild": "meson compile -C {{ properties.buildFolderRelativePathPosix }}",
+      "commandMesonBuildVerbose": "meson compile -C {{ properties.buildFolderRelativePathPosix }} --verbose",
+      "commandMesonClean": "meson compile -C {{ properties.buildFolderRelativePathPosix }} --clean",
+      "commandMesonPerformTests": "meson test -C {{ properties.buildFolderRelativePathPosix }} --verbose"
+    },
+    "actions": {
+      "test-native-meson-clang": [
+        "xpm run prepare --config native-meson-clang-debug",
+        "xpm run build --config native-meson-clang-debug",
+        "xpm run test --config native-meson-clang-debug",
+        "xpm run prepare --config native-meson-clang-release",
+        "xpm run build --config native-meson-clang-release",
+        "xpm run test --config native-meson-clang-release"
+      ]
+    },
+    "buildConfigurations": {
+      "native-meson-clang-debug": {
+        "devDependencies": {
+          "@xpack-dev-tools/clang": "17.0.6-1.1",
+          "@micro-os-plus/architecture-synthetic-posix": "4.0.2"
+        },
+        "properties": {
+          "buildType": "debug",
+          "platformName": "native",
+          "toolchainFileName": "clang-{{ os.platform }}.ini"
+        },
+        "actions": {
+          "prepare": "{{ properties.commandMesonPrepareWithToolchain }}",
+          "build": [
+            "{{ properties.commandMesonReconfigure }}",
+            "{{ properties.commandMesonBuild }}"
+          ],
+          "test": "{{ properties.commandMesonPerformTests }}",
+          "clean": "{{ properties.commandMesonClean }}"
+        }
+      },
+      "native-meson-clang-release": {
+        "inherit": [
+          "native-meson-clang-debug"
+        ],
+        "properties": {
+          "buildType": "release"
+        }
+      },
+      ...
+    }
+  }
+}
+```
+
+This configuration defines two build configurations:
+
+- `native-meson-clang-debug`
+- `native-meson-clang-release`
+
+The second build configuration inherits from the first and redefines
+the `buildType` as `release`.
+
+Each of these build configurations define four actions:
+
+- `prepare`
+- `build`
+- `test`
+- `clean`
+
+The top `test-native-meson-clang` action chains these actions for both build configurations.
+
+The `@micro-os-plus/architecture-synthetic-posix` reference is provided
+solely as an example of a source code library dependency, alongside
+the binary dependency on Clang.
+
+This configuration requires a `clang-*.ini` file with the toolchain
+definitions. For xPack clang, this files should include:
+
+```txt title="clang-darwin.ini and clang-linux.ini"
+[binaries]
+c = 'clang'
+cpp = 'clang++'
+ar = 'llvm-ar'
+```
+
+For Windows the file should include the explicit extensions:
+
+```txt title="clang-win32.ini"
+[binaries]
+c = 'clang.cmd'
+cpp = 'clang++.cmd'
+ar = 'llvm-ar.cmd'
+```
+
+### Example
+
+Below are excerpts from an example run:
+
+```console
+$ xpm run test-native-meson-clang -C tests
+> xpm run prepare --config native-meson-clang-debug
+> meson setup --backend ninja --buildtype debug -D platform-name=native --native-file xpacks/@micro-os-plus/build-helper/meson/toolchains/clang-linux.ini --native-file platform-native/meson/native.ini build/native-meson-clang-debug .
+The Meson build system
+Version: 1.3.0
+Source dir: /home/ilg/Work/micro-os-plus/utils-lists-xpack.git/tests
+Build dir: /home/ilg/Work/micro-os-plus/utils-lists-xpack.git/tests/build/native-meson-clang-debug
+Build type: native build
+Project name: micro-os-plus-utils-lists-tests
+Project version: undefined
+C compiler for the host machine: clang (clang 16.0.6 "xPack aarch64 clang version 16.0.6")
+C linker for the host machine: clang ld.bfd 2.38
+C++ compiler for the host machine: clang++ (clang 16.0.6 "xPack aarch64 clang version 16.0.6")
+C++ linker for the host machine: clang++ ld.bfd 2.38
+Host machine cpu family: aarch64
+Host machine cpu: aarch64
+WARNING: You should add the boolean check kwarg to the run_command call.
+         It currently defaults to false,
+         but it will default to true in future releases of meson.
+         See also: https://github.com/mesonbuild/meson/issues/9300
+Message: Build type: debug
+Message: Platform name: native
+...
+Build targets in project: 2
+
+micro-os-plus-utils-lists-tests undefined
+
+  User defined options
+    Native files : xpacks/@micro-os-plus/build-helper/meson/toolchains/clang-linux.ini
+                   platform-native/meson/native.ini
+    backend      : ninja
+    buildtype    : debug
+    platform-name: native
+
+Found ninja-1.11.1 at /home/ilg/Work/micro-os-plus/utils-lists-xpack.git/tests/xpacks/.bin/ninja
+> xpm run build --config native-meson-clang-debug
+> meson setup --reconfigure build/native-meson-clang-debug .
+The Meson build system
+Version: 1.3.0
+Source dir: /home/ilg/Work/micro-os-plus/utils-lists-xpack.git/tests
+Build dir: /home/ilg/Work/micro-os-plus/utils-lists-xpack.git/tests/build/native-meson-clang-debug
+Build type: native build
+Project name: micro-os-plus-utils-lists-tests
+Project version: undefined
+C compiler for the host machine: clang (clang 16.0.6 "xPack aarch64 clang version 16.0.6")
+C linker for the host machine: clang ld.bfd 2.38
+C++ compiler for the host machine: clang++ (clang 16.0.6 "xPack aarch64 clang version 16.0.6")
+C++ linker for the host machine: clang++ ld.bfd 2.38
+Host machine cpu family: aarch64
+Host machine cpu: aarch64
+WARNING: You should add the boolean check kwarg to the run_command call.
+         It currently defaults to false,
+         but it will default to true in future releases of meson.
+         See also: https://github.com/mesonbuild/meson/issues/9300
+Message: Build type: debug
+Message: Platform name: native
+...
+Build targets in project: 2
+
+micro-os-plus-utils-lists-tests undefined
+
+  User defined options
+    Native files : /home/ilg/Work/micro-os-plus/utils-lists-xpack.git/tests/xpacks/@micro-os-plus/build-helper/meson/toolchains/clang-linux.ini
+                   /home/ilg/Work/micro-os-plus/utils-lists-xpack.git/tests/platform-native/meson/native.ini
+    backend      : ninja
+    buildtype    : debug
+    platform-name: native
+
+Found ninja-1.11.1 at /home/ilg/Work/micro-os-plus/utils-lists-xpack.git/tests/xpacks/.bin/ninja
+> meson compile -C build/native-meson-clang-debug
+INFO: autodetecting backend as ninja
+INFO: calculating backend command to run: /home/ilg/Work/micro-os-plus/utils-lists-xpack.git/tests/xpacks/.bin/ninja -C /home/ilg/Work/micro-os-plus/utils-lists-xpack.git/tests/build/native-meson-clang-debug
+ninja: Entering directory `/home/ilg/Work/micro-os-plus/utils-lists-xpack.git/tests/build/native-meson-clang-debug'
+[18/18] Linking target platform-native/unit-test
+> xpm run test --config native-meson-clang-debug
+> meson test -C build/native-meson-clang-debug --verbose
+ninja: Entering directory `/home/ilg/Work/micro-os-plus/utils-lists-xpack.git/tests/build/native-meson-clang-debug'
+ninja: no work to do.
+1/2 sample-test        RUNNING
+>>> ASAN_OPTIONS=halt_on_error=1:abort_on_error=1:print_summary=1 MALLOC_PERTURB_=0 UBSAN_OPTIONS=halt_on_error=1:abort_on_error=1:print_summary=1:print_stacktrace=1 /home/ilg/Work/micro-os-plus/utils-lists-xpack.git/tests/build/native-meson-clang-debug/platform-native/sample-test one two
+
+2/2 unit-test          RUNNING
+>>> ASAN_OPTIONS=halt_on_error=1:abort_on_error=1:print_summary=1 MALLOC_PERTURB_=0 UBSAN_OPTIONS=halt_on_error=1:abort_on_error=1:print_summary=1:print_stacktrace=1 /home/ilg/Work/micro-os-plus/utils-lists-xpack.git/tests/build/native-meson-clang-debug/platform-native/unit-test
+
+1/2 sample-test        OK              0.02s
+...
+2/2 unit-test          OK              0.02s
+...
+
+Ok:                 2
+Expected Fail:      0
+Fail:               0
+Unexpected Pass:    0
+Skipped:            0
+Timeout:            0
+
+Full log written to /home/ilg/Work/micro-os-plus/utils-lists-xpack.git/tests/build/native-meson-clang-debug/meson-logs/testlog.txt
+> xpm run prepare --config native-meson-clang-release
+> meson setup --backend ninja --buildtype release -D platform-name=native --native-file xpacks/@micro-os-plus/build-helper/meson/toolchains/clang-linux.ini --native-file platform-native/meson/native.ini build/native-meson-clang-release .
+The Meson build system
+Version: 1.3.0
+Source dir: /home/ilg/Work/micro-os-plus/utils-lists-xpack.git/tests
+Build dir: /home/ilg/Work/micro-os-plus/utils-lists-xpack.git/tests/build/native-meson-clang-release
+Build type: native build
+Project name: micro-os-plus-utils-lists-tests
+Project version: undefined
+C compiler for the host machine: clang (clang 16.0.6 "xPack aarch64 clang version 16.0.6")
+C linker for the host machine: clang ld.bfd 2.38
+C++ compiler for the host machine: clang++ (clang 16.0.6 "xPack aarch64 clang version 16.0.6")
+C++ linker for the host machine: clang++ ld.bfd 2.38
+Host machine cpu family: aarch64
+Host machine cpu: aarch64
+WARNING: You should add the boolean check kwarg to the run_command call.
+         It currently defaults to false,
+         but it will default to true in future releases of meson.
+         See also: https://github.com/mesonbuild/meson/issues/9300
+Message: Build type: release
+Message: Platform name: native
+...
+Build targets in project: 2
+
+micro-os-plus-utils-lists-tests undefined
+
+  User defined options
+    Native files : xpacks/@micro-os-plus/build-helper/meson/toolchains/clang-linux.ini
+                   platform-native/meson/native.ini
+    backend      : ninja
+    buildtype    : release
+    platform-name: native
+
+Found ninja-1.11.1 at /home/ilg/Work/micro-os-plus/utils-lists-xpack.git/tests/xpacks/.bin/ninja
+> xpm run build --config native-meson-clang-release
+> meson setup --reconfigure build/native-meson-clang-release .
+The Meson build system
+Version: 1.3.0
+Source dir: /home/ilg/Work/micro-os-plus/utils-lists-xpack.git/tests
+Build dir: /home/ilg/Work/micro-os-plus/utils-lists-xpack.git/tests/build/native-meson-clang-release
+Build type: native build
+Project name: micro-os-plus-utils-lists-tests
+Project version: undefined
+C compiler for the host machine: clang (clang 16.0.6 "xPack aarch64 clang version 16.0.6")
+C linker for the host machine: clang ld.bfd 2.38
+C++ compiler for the host machine: clang++ (clang 16.0.6 "xPack aarch64 clang version 16.0.6")
+C++ linker for the host machine: clang++ ld.bfd 2.38
+Host machine cpu family: aarch64
+Host machine cpu: aarch64
+WARNING: You should add the boolean check kwarg to the run_command call.
+         It currently defaults to false,
+         but it will default to true in future releases of meson.
+         See also: https://github.com/mesonbuild/meson/issues/9300
+Message: Build type: release
+Message: Platform name: native
+...
+Build targets in project: 2
+
+micro-os-plus-utils-lists-tests undefined
+
+  User defined options
+    Native files : /home/ilg/Work/micro-os-plus/utils-lists-xpack.git/tests/xpacks/@micro-os-plus/build-helper/meson/toolchains/clang-linux.ini
+                   /home/ilg/Work/micro-os-plus/utils-lists-xpack.git/tests/platform-native/meson/native.ini
+    backend      : ninja
+    buildtype    : release
+    platform-name: native
+
+Found ninja-1.11.1 at /home/ilg/Work/micro-os-plus/utils-lists-xpack.git/tests/xpacks/.bin/ninja
+> meson compile -C build/native-meson-clang-release
+INFO: autodetecting backend as ninja
+INFO: calculating backend command to run: /home/ilg/Work/micro-os-plus/utils-lists-xpack.git/tests/xpacks/.bin/ninja -C /home/ilg/Work/micro-os-plus/utils-lists-xpack.git/tests/build/native-meson-clang-release
+ninja: Entering directory `/home/ilg/Work/micro-os-plus/utils-lists-xpack.git/tests/build/native-meson-clang-release'
+[18/18] Linking target platform-native/unit-test
+> xpm run test --config native-meson-clang-release
+> meson test -C build/native-meson-clang-release --verbose
+ninja: Entering directory `/home/ilg/Work/micro-os-plus/utils-lists-xpack.git/tests/build/native-meson-clang-release'
+ninja: no work to do.
+1/2 sample-test        RUNNING
+>>> MALLOC_PERTURB_=0 ASAN_OPTIONS=halt_on_error=1:abort_on_error=1:print_summary=1 UBSAN_OPTIONS=halt_on_error=1:abort_on_error=1:print_summary=1:print_stacktrace=1 /home/ilg/Work/micro-os-plus/utils-lists-xpack.git/tests/build/native-meson-clang-release/platform-native/sample-test one two
+
+2/2 unit-test          RUNNING
+>>> MALLOC_PERTURB_=0 ASAN_OPTIONS=halt_on_error=1:abort_on_error=1:print_summary=1 UBSAN_OPTIONS=halt_on_error=1:abort_on_error=1:print_summary=1:print_stacktrace=1 /home/ilg/Work/micro-os-plus/utils-lists-xpack.git/tests/build/native-meson-clang-release/platform-native/unit-test
+
+1/2 sample-test        OK              0.01s
+...
+2/2 unit-test          OK              0.01s
+...
+
+Ok:                 2
+Expected Fail:      0
+Fail:               0
+Unexpected Pass:    0
+Skipped:            0
+Timeout:            0
+
+Full log written to /home/ilg/Work/micro-os-plus/utils-lists-xpack.git/tests/build/native-meson-clang-release/meson-logs/testlog.txt
+ilg@ampere:~/Work/micro-os-plus/utils-lists-xpack.git$ xpm run test-native-meson-clang -C tests
+
+```
+
+A full build can be performed by cloning the [`@micro-os-plus/utils-lists`](https://github.com/micro-os-plus/utils-lists-xpack) project, installing dependencies and and running the test action:
+
+```sh
+rm -rf ~/Work/micro-os-plus/utils-lists-xpack.git && \
+mkdir -p ~/Work/micro-os-plus && \
+git clone \
+  https://github.com/micro-os-plus/utils-lists-xpack.git \
+  ~/Work/micro-os-plus/utils-lists-xpack.git
+
+cd ~/Work/micro-os-plus/utils-lists-xpack.git
+
+xpm install -C tests
+xpm install --config native-meson-clang-debug -C tests
+xpm install --config native-meson-clang-release -C tests
+
+xpm run test-native-meson-clang -C tests
+```
+

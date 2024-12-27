@@ -99,6 +99,16 @@ export const customDocsSidebar = [
         label: 'Binary Packages'
       },
       {
+        type: 'doc',
+        id: 'guide/cmake-integration/index',
+        label: 'CMake Integration'
+      },
+      {
+        type: 'doc',
+        id: 'guide/meson-integration/index',
+        label: 'Meson Integration'
+      },
+      {
         type: 'category',
         label: 'Metadata',
         link: {

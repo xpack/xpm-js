@@ -1,0 +1,500 @@
+---
+
+title: CMake Integration
+description: How to integrate the source library into CMake builds.
+keywords:
+  - xpack
+  - xpm
+  - cmake
+
+date: 2024-12-27 20:31:00 +0300
+
+---
+
+# How to add support for CMake builds
+
+[CMake](https://cmake.org) is an open source, cross-platform family of
+tools designed to build, test, and package software.
+
+There are several degrees of support for CMake builds.
+
+The first level is to enable the source library to be included in
+a project that uses CMake as the system build generator.
+
+## Add `CMakeList.txt`
+
+For embedded applications, a recommended practice is to define
+`INTERFACE` libraries. This approach, although non-intuitive,
+instructs CMake to perform all builds at the top level without
+creating intermediate static libraries.
+
+A good example of this is the
+[`@micro-os-plus/utils-lists`](https://micro-os-plus.github.io/utils-lists-xpack/) project.
+
+```cmake title="CMakeLists.txt"
+# -----------------------------------------------------------------------------
+# # Preamble ##
+
+# https://cmake.org/cmake/help/v3.20/
+cmake_minimum_required(VERSION 3.20)
+
+project(micro-os-plus-utils-lists
+  DESCRIPTION "µOS++ utils-lists"
+)
+
+# -----------------------------------------------------------------------------
+# # The project library definitions ##
+add_library(micro-os-plus-utils-lists-interface INTERFACE EXCLUDE_FROM_ALL)
+
+# -----------------------------------------------------------------------------
+# Target settings.
+target_include_directories(micro-os-plus-utils-lists-interface INTERFACE
+  "include"
+)
+
+target_sources(micro-os-plus-utils-lists-interface INTERFACE
+  "src/lists.cpp"
+)
+
+target_compile_definitions(micro-os-plus-utils-lists-interface INTERFACE
+
+  # None.
+)
+
+target_compile_options(micro-os-plus-utils-lists-interface INTERFACE
+
+  # None.
+)
+
+target_link_libraries(micro-os-plus-utils-lists-interface INTERFACE
+
+  # None.
+)
+
+# -----------------------------------------------------------------------------
+# Aliases.
+
+add_library(micro-os-plus::utils-lists ALIAS micro-os-plus-utils-lists-interface)
+message(VERBOSE "> micro-os-plus::utils-lists -> micro-os-plus-utils-lists-interface")
+
+# -----------------------------------------------------------------------------
+```
+
+With this file present in the project root folder, the `utils-lists`
+library, after being installed with xpm, can be utilised by the
+application's CMake script with:
+
+```cmake
+add_subdirectory("xpacks/@micro-os-plus/utils-lists
+```
+
+The result is an interface library that can be linked with:
+
+```
+target_link_libraries(your-target PUBLIC micro-os-plus::utils-lists)
+```
+
+## How to build and run tests with CMake
+
+The next level of integration involves adding tests that build the
+library with CMake.
+
+This step requires a `tests/CMakeLists.txt` and some xpm actions
+added to `tests/package.json`.
+
+### `tests/CMakeLists.txt`
+
+The CMake configuration used for tests can look like this:
+
+```cmake
+# -----------------------------------------------------------------------------
+
+# https://cmake.org/cmake/help/v3.20/
+cmake_minimum_required(VERSION 3.20)
+
+project(
+  micro-os-plus-utils-lists-tests
+  DESCRIPTION "utils-lists tests"
+)
+
+# Must be called from the top CMakeLists.txt.
+enable_testing()
+
+# -----------------------------------------------------------------------------
+
+# Global definitions. (these are application specific!)
+set(ENABLE_SAMPLE_TEST true)
+set(ENABLE_UNIT_TEST true)
+
+# -----------------------------------------------------------------------------
+# Project wide setup #
+
+# Enable the languages used in the tests.
+enable_language(C)
+enable_language(CXX)
+enable_language(ASM)
+
+# Specify the C/C++ standards.
+set(CMAKE_C_STANDARD 11)
+set(CMAKE_C_STANDARD_REQUIRED ON)
+set(CMAKE_C_EXTENSIONS OFF)
+set(CMAKE_CXX_STANDARD 20)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_CXX_EXTENSIONS OFF)
+
+# Generate the compile_commands.json file to feed the indexer.
+# Highly recommended, to help IDEs construct the index.
+set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
+
+# -----------------------------------------------------------------------------
+
+# Protect against in-source builds.
+if(CMAKE_BINARY_DIR STREQUAL CMAKE_SOURCE_DIR)
+  message(FATAL_ERROR "In-source builds are not supported. Please use a separate folder for build.")
+endif()
+
+# -----------------------------------------------------------------------------
+
+# Bare-metal executables have the .elf extension.
+if(CMAKE_SYSTEM_NAME STREQUAL "Generic")
+  set(CMAKE_EXECUTABLE_SUFFIX ".elf")
+endif()
+
+# -----------------------------------------------------------------------------
+# Non-target specific definitions #
+
+# The globals must be included in this scope, before creating any targets.
+# The compile options, symbols and include folders apply to all
+# compiled sources, from all libraries.
+if("${CMAKE_HOST_SYSTEM_NAME}" STREQUAL "Windows")
+  set(extension ".cmd")
+endif()
+
+# INCLUDE PLATFORM SPECIFIC DEFINITIONS!
+
+# -----------------------------------------------------------------------------
+
+# Add the project library, defined one level above.
+message(VERBOSE "Adding top library...")
+add_subdirectory(".." "top-bin")
+
+# -----------------------------------------------------------------------------
+
+# INCLUDES MORE PLATFORM DEFINITIONS!
+...
+```
+
+### `tests/package.json`
+
+Since the actions are can be invoked for multiple build configurations,
+it is recommended to define them as parametrised properties:
+
+
+```json
+{
+  "name": "tests",
+  "version": "0.0.0",
+  "xpack": {
+    "devDependencies": {
+      ...
+      "@xpack-dev-tools/cmake": "3.26.5-1.1",
+      "@xpack-dev-tools/ninja-build": "1.11.1-2.1"
+    },
+    "properties": {
+      "buildFolderRelativePath": "{{ 'build' | path_join: configuration.name | to_filename | downcase }}",
+      "buildFolderRelativePathPosix": "{{ 'build' | path_posix_join: configuration.name | downcase }}",
+
+      "commandCMakeReconfigure": "cmake -S . -B {{ properties.buildFolderRelativePathPosix }} -G Ninja -D CMAKE_BUILD_TYPE={{ properties.buildType }} -D PLATFORM_NAME={{ properties.platformName }} -D CMAKE_EXPORT_COMPILE_COMMANDS=ON",
+      "commandCMakePrepare": "{{ properties.commandCMakeReconfigure }} --log-level=VERBOSE",
+      "commandCMakePrepareWithToolchain": "{{ properties.commandCMakePrepare }} -D CMAKE_TOOLCHAIN_FILE=cmake/toolchains/{{ properties.toolchainFileName }}",
+      "commandCMakeBuild": "cmake --build {{ properties.buildFolderRelativePathPosix }}",
+      "commandCMakeBuildVerbose": "cmake --build {{ properties.buildFolderRelativePathPosix }} --verbose",
+      "commandCMakeClean": "cmake --build {{ properties.buildFolderRelativePathPosix }} --target clean",
+      "commandCMakePerformTests": "cd {{ properties.buildFolderRelativePath }} && ctest -V"
+    },
+    "actions": {
+      "test-native-cmake-clang": [
+        "xpm run prepare --config native-cmake-clang-debug",
+        "xpm run build --config native-cmake-clang-debug",
+        "xpm run test --config native-cmake-clang-debug",
+        "xpm run prepare --config native-cmake-clang-release",
+        "xpm run build --config native-cmake-clang-release",
+        "xpm run test --config native-cmake-clang-release"
+      ]
+    },
+    "buildConfigurations": {
+      "native-cmake-clang-debug": {
+        "devDependencies": {
+          "@xpack-dev-tools/clang": "17.0.6-1.1",
+          "@micro-os-plus/architecture-synthetic-posix": "4.0.2"
+        },
+        "properties": {
+          "buildType": "Debug",
+          "platformName": "native",
+          "toolchainFileName": "clang.cmake"
+        },
+        "actions": {
+          "prepare": "{{ properties.commandCMakePrepareWithToolchain }}",
+          "build": [
+            "{{ properties.commandCMakeReconfigure }}",
+            "{{ properties.commandCMakeBuild }}"
+          ],
+          "test": "{{ properties.commandCMakePerformTests }}",
+          "clean": "{{ properties.commandCMakeClean }}"
+        }
+      },
+      "native-cmake-clang-release": {
+        "inherit": [
+          "native-cmake-clang-debug"
+        ],
+        "properties": {
+          "buildType": "Release"
+        }
+      },
+      ...
+    }
+  }
+}
+```
+
+This configuration defines two build configurations:
+
+- `native-cmake-clang-debug`
+- `native-cmake-clang-release`
+
+The second build configuration inherits from the first and redefines
+the `buildType` as `Release`.
+
+Each of these build configurations define four actions:
+
+- `prepare`
+- `build`
+- `test`
+- `clean`
+
+The top `test-native-cmake-clang` action chains these actions for both build configurations.
+
+The `@micro-os-plus/architecture-synthetic-posix` reference is provided
+solely as an example of a source code library dependency, alongside
+the binary dependency on Clang.
+
+This configuration requires a `clang.cmake` file with the toolchain
+definitions. For xPack clang, this file should include:
+
+```cmake title="clang.cmake"
+set(CMAKE_TRY_COMPILE_TARGET_TYPE "STATIC_LIBRARY")
+
+set(CMAKE_C_COMPILER   "clang")
+set(CMAKE_CXX_COMPILER "clang++")
+
+# Some are autodiscovered, some are not, better make them explicit.
+set(CMAKE_ADDR2LINE "llvm-addr2line")
+set(CMAKE_AR "llvm-ar")
+set(CMAKE_ASM_COMPILER "clang")
+set(CMAKE_ASM_COMPILER_AR "llvm-ar")
+set(CMAKE_ASM_COMPILER_RANLIB "llvm-ranlib")
+set(CMAKE_DLLTOOL "llvm-dlltool")
+set(CMAKE_NM "llvm-nm")
+set(CMAKE_OBJCOPY "llvm-objcopy")
+set(CMAKE_OBJDUMP "llvm-objdump")
+set(CMAKE_RANLIB "llvm-ranlib")
+set(CMAKE_READELF "llvm-readelf")
+set(CMAKE_SIZE "llvm-size") # Must be explicit, not set by CMake.
+
+# -----------------------------------------------------------------------------
+
+# VS Code does not properly identify the shims used by npm/xpm,
+# thus make the extension explicit.
+# https://cmake.org/cmake/help/v3.20/variable/CMAKE_HOST_SYSTEM_NAME.html
+if("${CMAKE_HOST_SYSTEM_NAME}" STREQUAL "Windows")
+  set(CMAKE_C_COMPILER "${CMAKE_C_COMPILER}.cmd")
+  set(CMAKE_CXX_COMPILER "${CMAKE_CXX_COMPILER}.cmd")
+endif()
+```
+
+### Example
+
+Below are excerpts from an example run:
+
+```console
+% xpm run test-native-cmake-clang -C tests
+
+ *  Executing task: xpm run test-native-cmake-clang
+
+> xpm run prepare --config native-cmake-clang-debug
+> cmake -S . -B build/native-cmake-clang-debug -G Ninja -D CMAKE_BUILD_TYPE=Debug -D PLATFORM_NAME=native -D CMAKE_EXPORT_COMPILE_COMMANDS=ON --log-level=VERBOSE -D CMAKE_TOOLCHAIN_FILE=xpacks/@micro-os-plus/build-helper/cmake/toolchains/clang.cmake
+-- The C compiler identification is Clang 17.0.6
+-- The CXX compiler identification is Clang 17.0.6
+-- Detecting C compiler ABI info
+-- Detecting C compiler ABI info - done
+-- Check for working C compiler: /Users/ilg/MyProjects/micro-os-plus.github/xPacks/utils-lists-xpack.git/tests/build/native-cmake-clang-debug/xpacks/.bin/clang - skipped
+-- Detecting C compile features
+-- Detecting C compile features - done
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Check for working CXX compiler: /Users/ilg/MyProjects/micro-os-plus.github/xPacks/utils-lists-xpack.git/tests/build/native-cmake-clang-debug/xpacks/.bin/clang++ - skipped
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+-- The ASM compiler identification is Clang with GNU-like command-line
+-- Found assembler: /Users/ilg/MyProjects/micro-os-plus.github/xPacks/utils-lists-xpack.git/tests/build/native-cmake-clang-debug/xpacks/.bin/clang
+-- Including micro-os-plus-build-helper module...
+-- CMake version: 3.26.5
+-- Compiler: Clang 17.0.6
+-- package.name: @micro-os-plus/utils-lists
+-- package.version: 4.0.0
+-- Platform name: native
+-- Build type: Debug
+-- Project path: /Users/ilg/MyProjects/micro-os-plus.github/xPacks/utils-lists-xpack.git/tests
+-- Build path: /Users/ilg/MyProjects/micro-os-plus.github/xPacks/utils-lists-xpack.git/tests/build/native-cmake-clang-debug
+-- Module path: /Users/ilg/MyProjects/micro-os-plus.github/xPacks/utils-lists-xpack.git/tests/xpacks/@micro-os-plus/build-helper/cmake
+-- CMAKE_C_COMPILER_ID: Clang
+-- CMAKE_SYSTEM_NAME: Darwin
+-- CMAKE_SYSTEM_PROCESSOR: x86_64
+-- Including tests/cmake/common-options.cmake...
+-- Adding clang warnings...
+-- > micro-os-plus-common-options-interface
+...
+-- Configuring done (1.8s)
+-- Generating done (0.0s)
+-- Build files have been written to: /Users/ilg/MyProjects/micro-os-plus.github/xPacks/utils-lists-xpack.git/tests/build/native-cmake-clang-debug
+> xpm run build --config native-cmake-clang-debug
+> cmake -S . -B build/native-cmake-clang-debug -G Ninja -D CMAKE_BUILD_TYPE=Debug -D PLATFORM_NAME=native -D CMAKE_EXPORT_COMPILE_COMMANDS=ON
+-- clang++ RPATH_LIST: -Wl,-rpath,/Users/ilg/Library/xPacks/@xpack-dev-tools/clang/17.0.6-1.1/.content/lib/clang/17
+-- => micro-os-plus::architecture-synthetic-posix
+-- => micro-os-plus::architecture
+-- Configuring done (0.1s)
+-- Generating done (0.0s)
+-- Build files have been written to: /Users/ilg/MyProjects/micro-os-plus.github/xPacks/utils-lists-xpack.git/tests/build/native-cmake-clang-debug
+> cmake --build build/native-cmake-clang-debug
+[8/14] Linking CXX executable platform-bin/sample-test
+-macosx_version_min has been renamed to -macos_version_min
+-macosx_version_min has been renamed to -macos_version_min
+[14/14] Linking CXX executable platform-bin/unit-test
+-macosx_version_min has been renamed to -macos_version_min
+-macosx_version_min has been renamed to -macos_version_min
+> xpm run test --config native-cmake-clang-debug
+> cd build/native-cmake-clang-debug && ctest -V
+UpdateCTestConfiguration  from :/Users/ilg/MyProjects/micro-os-plus.github/xPacks/utils-lists-xpack.git/tests/build/native-cmake-clang-debug/DartConfiguration.tcl
+UpdateCTestConfiguration  from :/Users/ilg/MyProjects/micro-os-plus.github/xPacks/utils-lists-xpack.git/tests/build/native-cmake-clang-debug/DartConfiguration.tcl
+Test project /Users/ilg/MyProjects/micro-os-plus.github/xPacks/utils-lists-xpack.git/tests/build/native-cmake-clang-debug
+Constructing a list of tests
+Done constructing a list of tests
+Updating test list for fixtures
+Added 0 tests to meet fixture requirements
+Checking test dependency graph...
+Checking test dependency graph end
+test 1
+    Start 1: sample-test
+
+1: Test command: /Users/ilg/MyProjects/micro-os-plus.github/xPacks/utils-lists-xpack.git/tests/build/native-cmake-clang-debug/platform-bin/sample-test "one" "two"
+1: Working Directory: /Users/ilg/MyProjects/micro-os-plus.github/xPacks/utils-lists-xpack.git/tests/build/native-cmake-clang-debug/platform-bin
+1: Test timeout computed to be: 10000000
+...
+1/2 Test #1: sample-test ......................   Passed    0.33 sec
+test 2
+    Start 2: unit-test
+
+2: Test command: /Users/ilg/MyProjects/micro-os-plus.github/xPacks/utils-lists-xpack.git/tests/build/native-cmake-clang-debug/platform-bin/unit-test
+2: Working Directory: /Users/ilg/MyProjects/micro-os-plus.github/xPacks/utils-lists-xpack.git/tests/build/native-cmake-clang-debug/platform-bin
+2: Test timeout computed to be: 10000000
+...
+2/2 Test #2: unit-test ........................   Passed    0.17 sec
+
+100% tests passed, 0 tests failed out of 2
+
+Total Test time (real) =   0.51 sec
+> xpm run prepare --config native-cmake-clang-release
+> cmake -S . -B build/native-cmake-clang-release -G Ninja -D CMAKE_BUILD_TYPE=Release -D PLATFORM_NAME=native -D CMAKE_EXPORT_COMPILE_COMMANDS=ON --log-level=VERBOSE -D CMAKE_TOOLCHAIN_FILE=xpacks/@micro-os-plus/build-helper/cmake/toolchains/clang.cmake
+-- The C compiler identification is Clang 17.0.6
+-- The CXX compiler identification is Clang 17.0.6
+-- Detecting C compiler ABI info
+-- Detecting C compiler ABI info - done
+-- Check for working C compiler: /Users/ilg/MyProjects/micro-os-plus.github/xPacks/utils-lists-xpack.git/tests/build/native-cmake-clang-release/xpacks/.bin/clang - skipped
+-- Detecting C compile features
+-- Detecting C compile features - done
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Check for working CXX compiler: /Users/ilg/MyProjects/micro-os-plus.github/xPacks/utils-lists-xpack.git/tests/build/native-cmake-clang-release/xpacks/.bin/clang++ - skipped
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+-- The ASM compiler identification is Clang with GNU-like command-line
+-- Found assembler: /Users/ilg/MyProjects/micro-os-plus.github/xPacks/utils-lists-xpack.git/tests/build/native-cmake-clang-release/xpacks/.bin/clang
+-- Including micro-os-plus-build-helper module...
+-- CMake version: 3.26.5
+-- Compiler: Clang 17.0.6
+-- package.name: @micro-os-plus/utils-lists
+-- package.version: 4.0.0
+-- Platform name: native
+-- Build type: Release
+-- Project path: /Users/ilg/MyProjects/micro-os-plus.github/xPacks/utils-lists-xpack.git/tests
+-- Build path: /Users/ilg/MyProjects/micro-os-plus.github/xPacks/utils-lists-xpack.git/tests/build/native-cmake-clang-release
+-- Module path: /Users/ilg/MyProjects/micro-os-plus.github/xPacks/utils-lists-xpack.git/tests/xpacks/@micro-os-plus/build-helper/cmake
+-- CMAKE_C_COMPILER_ID: Clang
+-- CMAKE_SYSTEM_NAME: Darwin
+-- CMAKE_SYSTEM_PROCESSOR: x86_64
+-- Including tests/cmake/common-options.cmake...
+-- Adding clang warnings...
+-- > micro-os-plus-common-options-interface
+...
+-- Configuring done (0.1s)
+-- Generating done (0.0s)
+-- Build files have been written to: /Users/ilg/MyProjects/micro-os-plus.github/xPacks/utils-lists-xpack.git/tests/build/native-cmake-clang-release
+> cmake --build build/native-cmake-clang-release
+[8/14] Linking CXX executable platform-bin/sample-test
+-macosx_version_min has been renamed to -macos_version_min
+-macosx_version_min has been renamed to -macos_version_min
+[14/14] Linking CXX executable platform-bin/unit-test
+-macosx_version_min has been renamed to -macos_version_min
+-macosx_version_min has been renamed to -macos_version_min
+> xpm run test --config native-cmake-clang-release
+> cd build/native-cmake-clang-release && ctest -V
+UpdateCTestConfiguration  from :/Users/ilg/MyProjects/micro-os-plus.github/xPacks/utils-lists-xpack.git/tests/build/native-cmake-clang-release/DartConfiguration.tcl
+UpdateCTestConfiguration  from :/Users/ilg/MyProjects/micro-os-plus.github/xPacks/utils-lists-xpack.git/tests/build/native-cmake-clang-release/DartConfiguration.tcl
+Test project /Users/ilg/MyProjects/micro-os-plus.github/xPacks/utils-lists-xpack.git/tests/build/native-cmake-clang-release
+Constructing a list of tests
+Done constructing a list of tests
+Updating test list for fixtures
+Added 0 tests to meet fixture requirements
+Checking test dependency graph...
+Checking test dependency graph end
+test 1
+    Start 1: sample-test
+
+1: Test command: /Users/ilg/MyProjects/micro-os-plus.github/xPacks/utils-lists-xpack.git/tests/build/native-cmake-clang-release/platform-bin/sample-test "one" "two"
+1: Working Directory: /Users/ilg/MyProjects/micro-os-plus.github/xPacks/utils-lists-xpack.git/tests/build/native-cmake-clang-release/platform-bin
+1: Test timeout computed to be: 10000000
+...
+1/2 Test #1: sample-test ......................   Passed    0.22 sec
+test 2
+    Start 2: unit-test
+
+2: Test command: /Users/ilg/MyProjects/micro-os-plus.github/xPacks/utils-lists-xpack.git/tests/build/native-cmake-clang-release/platform-bin/unit-test
+2: Working Directory: /Users/ilg/MyProjects/micro-os-plus.github/xPacks/utils-lists-xpack.git/tests/build/native-cmake-clang-release/platform-bin
+2: Test timeout computed to be: 10000000
+2: Built with clang xPack x86_64 Clang 17.0.6 (https://github.com/xpack-dev-tools/clang-xpack 38f9c3d1a33f970247cd6ae2faec07deebfec81c), with exceptions.
+...
+2/2 Test #2: unit-test ........................   Passed    0.17 sec
+
+100% tests passed, 0 tests failed out of 2
+
+Total Test time (real) =   0.39 sec
+ *  Terminal will be reused by tasks, press any key to close it.
+```
+
+A full build can be performed by cloning the [`@micro-os-plus/utils-lists`](https://github.com/micro-os-plus/utils-lists-xpack) project, installing dependencies and and running the test action:
+
+```sh
+rm -rf ~/Work/micro-os-plus/utils-lists-xpack.git && \
+mkdir -p ~/Work/micro-os-plus && \
+git clone \
+  https://github.com/micro-os-plus/utils-lists-xpack.git \
+  ~/Work/micro-os-plus/utils-lists-xpack.git
+
+cd ~/Work/micro-os-plus/utils-lists-xpack.git
+
+xpm install -C tests
+xpm install --config native-cmake-clang-debug -C tests
+xpm install --config native-cmake-clang-release -C tests
+
+xpm run test-native-cmake-clang -C tests
+```
