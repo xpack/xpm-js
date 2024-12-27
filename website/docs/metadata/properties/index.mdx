@@ -59,6 +59,14 @@ The folder is relative to the location of the `package.json` file.
 
 If not explicitly defined, an warning is issued, and the default value of `build/<configurationName>` is used.
 
+:::tip
+
+Ensure that the resulting paths are valid on Windows, meaning they
+should use backslash separators. To achieve this, compose the paths
+using `path_join:` (see the example below).
+
+:::
+
 ## Examples
 
 Project properties:
@@ -72,6 +80,14 @@ Project properties:
     }
 }
 ```
+
+:::info
+
+Please note that the `path_join:` in the above definition is
+platform-specific, and generates paths with back-slashes
+separators on Windows.
+
+:::
 
 Build configuration properties:
 
