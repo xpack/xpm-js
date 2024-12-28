@@ -12,16 +12,23 @@ import WhyXpacks from '../faq/_shared/_why-xpacks.mdx';
 
 ## First, let's clarify what xpm is NOT
 
-- **xpm** is NOT a **npm** replacement
-- **xpm** is NOT just another package manager
-- **xpm** is NOT introducing a new package format
+- **xpm** is NOT a **npm** replacement (like yarn or pnpm)
+- **xpm** is NOT just another package manager (like apt, rpm, etc)
+- **xpm** is NOT introducing a new package format (it uses the npm format)
 
 ## So, what is xpm?
 
 **xpm**, short for **x**Pack **P**roject **M**anager, is a
-[Node.js](https://nodejs.org/en/) CommonJS  module and a CLI
+[Node.js](https://nodejs.org/en/) CommonJS module and a CLI
 application designed to **automate builds**, conduct **tests**, and
-**manage C/C++ dependencies**. It draws inspiration from **npm**.
+**manage C/C++ dependencies**.
+
+It is more than a **package manager**, as it offers features similar
+to those of **[npm](https://docs.npmjs.com/cli/npm)**,
+but extends them to **C/C++** source libraries and
+**binary** tools. Additionally, it manages **build configurations**,
+**actions**, **properties**, substitutions and more.
+It runs on Windows, macOS and GNU/Linux.
 
 <CommonJsCompatibility />
 
