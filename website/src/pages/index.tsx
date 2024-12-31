@@ -22,6 +22,7 @@ import HeadTitle from '@site/src/components/HeadTitle';
 import styles from './index.module.css';
 import HomepageFeatures from '@site/src/components/HomepageFeatures';
 import InstallWithCopy from '@site/src/components/InstallWithCopy';
+import customField from '@site/src/libs/customField';
 
 function HomepageHeader() {
   const {siteConfig} = useDocusaurusContext();
@@ -35,7 +36,7 @@ function HomepageHeader() {
         <p className="hero__subtitle">{siteConfig.tagline}</p>
 
         <div className={styles.installWithCopy}>
-          <InstallWithCopy>npm install --location=global xpm@latest</InstallWithCopy>
+          <InstallWithCopy>npm install --location=global xpm@{customField('releaseVersion')}</InstallWithCopy>
         </div>
 
       </div>
