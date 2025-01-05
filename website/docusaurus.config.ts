@@ -280,11 +280,11 @@ const config: Config = {
               href: `https://github.com/xpack/xpm-js/`,
             },
             {
-              label: 'xpack',
+              label: 'xpack org',
               href: 'https://github.com/xpack/',
             },
             {
-              label: 'xpack-dev-tools',
+              label: 'xpack-dev-tools org',
               href: 'https://github.com/xpack-dev-tools/',
             },
           ]
@@ -353,11 +353,11 @@ const config: Config = {
               href: 'https://github.com/xpack/xpm-js/',
             },
             {
-              label: 'GitHub xpack',
+              label: 'GitHub xpack org',
               href: 'https://github.com/xpack/',
             },
             {
-              label: 'GitHub xpack-dev-tools',
+              label: 'GitHub xpack-dev-tools org',
               href: 'https://github.com/xpack-dev-tools/',
             },
           ],
@@ -370,24 +370,41 @@ const config: Config = {
       darkTheme: prismThemes.dracula,
     },
     // https://docusaurus.io/docs/search#using-algolia-docsearch
+    // https://docsearch.algolia.com/docs/docsearch-v3/
     algolia: {
-      // https://docsearch.algolia.com/docs/docsearch-v3/
+      // The application ID provided by Algolia
       appId: "KIDD7R4CL1",
+
+      // Public API key: it is safe to commit it
       apiKey: "ca2ffc431941284609f2d50202fc5506",
+
       indexName: "xpackio",
 
       // It ensures that search results are relevant to the current
       // language and version. Enabled by default.
       contextualSearch: true,
+
+      // Optional: Specify domains where the navigation should occur
+      // through window.location instead on history.push. Useful when
+      // our Algolia config crawls multiple documentation sites and
+      // we want to navigate with window.location.href to them.
+      // externalUrlRegex: 'external\\.com|domain\\.com',
+
       // Optional: Replace parts of the item URLs from Algolia.
       // Useful when using the same search index for multiple deployments
       // using a different baseUrl. You can use regexp or string in the
       // `from` param. For example: localhost:3000 vs myCompany.com/docs
-      // replaceSearchResultPathname: undefined,
+      // replaceSearchResultPathname: {
+      //  from: '/docs/', // or as RegExp: /\/docs\//
+      //  to: '/',
+      // },
+
       // Optional: Algolia search parameters
       searchParameters: {},
+
       // Optional: path for search page that enabled by default (`false` to disable it)
       searchPagePath: 'search',
+
       // Optional: whether the insights feature is enabled or not on Docsearch (`false` by default)
       insights: false,
     },
