@@ -31,11 +31,9 @@
     "@docusaurus/preset-classic": "3.6.3",
     "@mdx-js/react": "^3.1.0",
     "clsx": "^2.1.1",
-    "del-cli": "^6.0.0",
     "prism-react-renderer": "^2.4.0",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
-    "@docusaurus/theme-search-algolia": "3.6.3",
     "clean-css": "~5.3.3"
   },
   "devDependencies": {
@@ -74,12 +72,12 @@
     "metadataKeywords": "xpm, xpack, project, manager, build, test, dependencies, npm, reproducibility",
     "hasCli": "true",
     "isInstallGlobally": "true",
+    "isWebPreview": "true",
     "shareOnTwitter": "true",
     "hasCustomHomepageFeatures": "true",
     "hasCustomSidebar": "true",
     "hasCustomUserInformation": "true",
     "hasCustomDocsNavbarItem": "true",
-    "hasWebpreview": "true",
     "hasMetadataMinimum": "true",
     "hasPolicies": "true",
     "nodeVersion": "18.20.4"

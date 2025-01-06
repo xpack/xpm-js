@@ -389,6 +389,7 @@ const config: Config = {
       // our Algolia config crawls multiple documentation sites and
       // we want to navigate with window.location.href to them.
       // externalUrlRegex: 'external\\.com|domain\\.com',
+      externalUrlRegex: 'xpack\\.github\\.io|xpack-dev-tools\\.github\\.io',
 
       // Optional: Replace parts of the item URLs from Algolia.
       // Useful when using the same search index for multiple deployments

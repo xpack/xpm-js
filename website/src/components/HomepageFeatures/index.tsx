@@ -14,6 +14,7 @@
 
 import clsx from 'clsx';
 import Heading from '@theme/Heading';
+import Link from '@docusaurus/Link';
 import styles from './styles.module.css';
 
 import type { FeatureItem } from './FeatureItem'
@@ -49,7 +50,7 @@ export default function HomepageFeatures(): JSX.Element {
         </div>
       </section>
       <div className="text--center">
-        <h2><a href="/docs/getting-started/"><span className="getting-started-link">Getting Started!</span></a></h2>
+        <h2><Link to="/docs/getting-started/"><span className="getting-started-link">Getting Started!</span></Link></h2>
       </div>
     </>
   );
