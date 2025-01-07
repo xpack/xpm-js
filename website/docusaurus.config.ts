@@ -141,7 +141,7 @@ const config: Config = {
       // https://tagassistant.google.com
       '@docusaurus/plugin-google-gtag',
       {
-        trackingID: 'G-T50NMR8JZ1',
+        trackingID: 'G-8WX9T80JEK',
         anonymizeIP: false,
       }
     ],
