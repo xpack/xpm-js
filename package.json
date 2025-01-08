@@ -151,7 +151,7 @@
       "**/*.js"
     ]
   },
-  "xConfig": {
+  "topConfig": {
     "hasTriggerPublish": "true",
     "isWebPreview": "true"
   },
