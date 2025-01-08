@@ -80,4 +80,7 @@ build*/
 Thumbs.db
 .DS_Store
 
+website/.docusaurus
+website/build
+
 #end

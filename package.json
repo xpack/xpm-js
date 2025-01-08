@@ -16,6 +16,7 @@
     "xpm": "bin/xpm.js"
   },
   "scripts": {
+    "generate-top-commons": "bash node_modules/@xpack/npm-packages-helper/maintenance-scripts/generate-top-commons.sh --xpack",
     "fix": "standard --fix lib tests",
     "dev-cycle": "npm run fix && npm run test",
     "npm-install": "npm install",
@@ -44,8 +45,7 @@
     "show-versions": "echo $(which node) $(node --version) && echo $(which npm) $(npm --version)",
     "compile": "echo nothing to compile",
     "clean": "del-cli cjs 'tests/**/cjs' 'src/**/*.d.ts' 'src/**/*.d.ts.map' 'src/**/*.js' 'src/**/*.js.map' 'tests/**/*.d.ts' 'tests/**/*.d.ts.map' 'tests/**/*.js' 'tests/**/*.js.map' '**/tsconfig.tsbuildinfo' .nyc_output coverage",
-    "deep-clean": "npm run clean && rm -rf node_modules package-lock.json",
-    "generate-top-commons": "bash node_modules/@xpack/npm-packages-helper/maintenance-scripts/generate-top-commons.sh --xpack"
+    "deep-clean": "npm run clean && rm -rf node_modules package-lock.json"
   },
   "repository": {
     "type": "git",
@@ -152,7 +152,8 @@
     ]
   },
   "config": {
-    "hasTriggerPublish": "true"
+    "hasTriggerPublish": "true",
+    "isWebPreview": "true"
   },
   "engines": {
     "node": " >=18.0.0"

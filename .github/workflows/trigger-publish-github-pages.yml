@@ -49,5 +49,5 @@ jobs:
             --header "Authorization: token ${{secrets.DISPATCH_TOKEN}}" \
             --header "Content-Type: application/json" \
             --header "Accept: application/vnd.github.v3+json" \
-            --data '{"ref":"master","inputs":{}}' \
+            --data '{"ref":"master", "inputs":{"repository":"xpack/xpm-js", "ref":"website"}}' \
             https://api.github.com/repos/xpack/xpm/actions/workflows/publish-github-pages-from-remote.yml/dispatches
