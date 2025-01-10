@@ -259,7 +259,7 @@ const config: Config = {
       items: [
         {
           to: '/',
-          // label: 'Home',
+          label: 'xpm',
           className: 'header-home-link',
           position: 'left'
         },

@@ -19,7 +19,7 @@
     "npm-ci": "npm ci",
     "npm-link-helpers": "npm link @xpack/docusaurus-template-liquid @xpack/npm-packages-helper",
     "deep-clean": "del-cli .docusaurus build node_modules package-lock.json",
-    "generate-website-commons": "bash node_modules/@xpack/docusaurus-template-liquid/maintenance-scripts/generate-commons.sh",
+    "generate-website-commons": "bash node_modules/@xpack/docusaurus-template-liquid/maintenance-scripts/generate-commons.sh --xpack",
     "import-website-releases": "bash node_modules/@xpack/docusaurus-template-liquid/maintenance-scripts/website-import-releases.sh",
     "generate-website-blog-post": "bash node_modules/@xpack/docusaurus-template-liquid/maintenance-scripts/generate-blog-post.sh",
     "generate-dependencies-details": "bash node_modules/@xpack/docusaurus-template-liquid/maintenance-scripts/generate-dependencies-details.sh"
