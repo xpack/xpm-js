@@ -1,5 +1,17 @@
+# -----------------------------------------------------------------------------
 # DO NOT EDIT!
-# Automatically generated from npm-packages-helper/templates
+# Automatically generated from npm-packages-helper/templates/*.
+#
+# This file is part of the xPack project (http://xpack.github.io).
+# Copyright (c) 2021 Liviu Ionescu. All rights reserved.
+#
+# Permission to use, copy, modify, and/or distribute this software
+# for any purpose is hereby granted, under the terms of the MIT license.
+#
+# If a copy of the license was not distributed with this file, it can
+# be obtained from https://opensource.org/licenses/mit/.
+#
+# -----------------------------------------------------------------------------
 
 # https://help.github.com/en/actions
 # https://docs.github.com/en/actions/writing-workflows/workflow-syntax-for-github-actions
@@ -40,7 +52,7 @@ jobs:
         # https://docs.github.com/en/actions/using-github-hosted-runners/using-github-hosted-runners/about-github-hosted-runners
         os: [ubuntu-24.04, macos-13, macos-14, windows-2022]
 
-    runs-on: ${{ matrix.os }}
+    runs-on: ${{matrix.os}}
 
     steps:
     - name: Checkout
@@ -49,11 +61,11 @@ jobs:
       with:
         fetch-depth: 1
 
-    - name: Setup Node.js ${{ matrix.node-version }} on ${{ matrix.os }}
+    - name: Setup Node.js ${{matrix.node-version}} on ${{matrix.os}}
       # https://github.com/actions/setup-node
       uses: actions/setup-node@v4
       with:
-        node-version: ${{ matrix.node-version }}
+        node-version: ${{matrix.node-version}}
         cache: 'npm'
 
     - name: Show node & npm versions, environment

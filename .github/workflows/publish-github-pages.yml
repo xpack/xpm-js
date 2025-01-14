@@ -1,13 +1,26 @@
+# -----------------------------------------------------------------------------
 # DO NOT EDIT!
-# Automatically generated from npm-packages-helper/templates
+# Automatically generated from npm-packages-helper/templates/*.
+#
+# This file is part of the xPack project (http://xpack.github.io).
+# Copyright (c) 2021 Liviu Ionescu. All rights reserved.
+#
+# Permission to use, copy, modify, and/or distribute this software
+# for any purpose is hereby granted, under the terms of the MIT license.
+#
+# If a copy of the license was not distributed with this file, it can
+# be obtained from https://opensource.org/licenses/mit/.
+#
+# -----------------------------------------------------------------------------
 
 # Simple workflow for deploying static content to GitHub Pages
 name: GitHub Pages
 
+# https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows
 on:
   # Runs on pushes, if all conditions are met:
   push:
-    # ... on the website branch ...
+    # ... on the `website` branch ...
     branches:
       - 'webpreview'
     # ... skip tags only ...
@@ -39,10 +52,11 @@ concurrency:
 
 jobs:
   # Single deploy job since we're just deploying
+  # https://docs.github.com/en/actions/using-github-hosted-runners/using-github-hosted-runners/about-github-hosted-runners#standard-github-hosted-runners-for-public-repositories
   deploy:
     environment:
       name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
+      url: ${{steps.deployment.outputs.page_url}}
     runs-on: ubuntu-24.04
 
     steps:
@@ -60,12 +74,12 @@ jobs:
           node-version: 20
 
       - name: Install dependencies
-        run: cd website && npm install
+        run: npm ci -C website
 
       - name: Build the Docusaurus site
         env:
           DOCUSAURUS_IS_PREVIEW: 'true'
-        run: cd website && npm run build
+        run: npm run build -C website
 
       - name: Setup Pages
         # https://github.com/actions/configure-pages
