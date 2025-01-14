@@ -149,6 +149,7 @@ tmp/
 .vscode/c_cpp_properties.json
 
 build*/
+!build-assets/
 
 Thumbs.db
 .DS_Store
