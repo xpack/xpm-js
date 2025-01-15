@@ -152,6 +152,7 @@
     ]
   },
   "topConfig": {
+    "longName": "xPack Project Manager",
     "hasTriggerPublish": "true",
     "isWebPreview": "true"
   },
