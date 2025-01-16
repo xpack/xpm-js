@@ -4,7 +4,6 @@
   "private": true,
   "scripts": {
     "generate-website-commons": "bash node_modules/@xpack/docusaurus-template-liquid/maintenance-scripts/generate-commons.sh --xpack",
-    "generate-website-commons-xxx": "bash node_modules/@xpack/docusaurus-template-liquid/maintenance-scripts/generate-commons-xxx.sh --xpack",
     "docusaurus": "docusaurus",
     "start": "docusaurus start",
     "build": "docusaurus build",
@@ -18,8 +17,8 @@
     "typecheck": "tsc",
     "npm-outdated": "npm outdated",
     "npm-install": "npm install",
-    "npm-ci": "npm ci",
     "npm-link-helpers": "npm link @xpack/docusaurus-template-liquid @xpack/npm-packages-helper",
+    "npm-ci": "npm ci",
     "deep-clean": "del-cli .docusaurus build node_modules package-lock.json",
     "import-website-releases": "bash node_modules/@xpack/docusaurus-template-liquid/maintenance-scripts/website-import-releases.sh",
     "generate-website-blog-post": "bash node_modules/@xpack/docusaurus-template-liquid/maintenance-scripts/generate-blog-post.sh",

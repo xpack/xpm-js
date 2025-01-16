@@ -38,7 +38,8 @@ export default async function SelectReleasesPlugin(context, options) {
             // console.log(permalink)
             releasesTable.push({
               title: post.metadata.title,
-              permalink
+              permalink,
+              downloadUrl: post.metadata.frontMatter['download_url']
             })
           }
         })
