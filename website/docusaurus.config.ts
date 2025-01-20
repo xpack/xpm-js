@@ -104,7 +104,7 @@ const config: Config = {
         sidebarPath: './sidebars.ts',
         // Please change this to your repo.
         // Remove this to remove the "edit this page" links.
-        editUrl: 'https://github.com/xpack/xpack.github.io/edit/master/website/',
+        editUrl: 'https://github.com/xpack/xpm-js/edit/master/website/',
         // showLastUpdateAuthor: true,
         showLastUpdateTime: true,
       },
@@ -151,7 +151,6 @@ const config: Config = {
     ],
     [
       // https://docusaurus.io/docs/api/plugins/@docusaurus/plugin-sitemap
-      // https://cronica-it.github.io/sitemap.xml
       '@docusaurus/plugin-sitemap',
       {
         // https://docusaurus.io/docs/api/plugins/@docusaurus/plugin-sitemap
