@@ -13,46 +13,12 @@ import {customDocsNavbarItem} from './navbar-docs-items'
 
 
 import {redirects} from './docusaurus-config-redirects'
+import {getCustomFields} from './customFields'
 
 // The node.js modules cannot be used in modules imported in browser code:
 // webpack < 5 used to include polyfills for node.js core modules by default.
 // so the entire initialisation code must be in this file, that is
 // not processed by webpack.
-
-import { fileURLToPath } from 'node:url';
-import path from 'node:path';
-import fs from 'node:fs';
-
-// ----------------------------------------------------------------------------
-
-function getCustomFields() {
-  const pwd = fileURLToPath(import.meta.url);
-  // console.log(pwd);
-
-  // First get the version from the top package.json.
-  const topFilePath = path.join(path.dirname(path.dirname(pwd)), 'package.json');
-  // console.log(filePath);
-  const topFileContent = fs.readFileSync(topFilePath);
-
-  const topPackageJson = JSON.parse(topFileContent.toString());
-  const releaseVersion = topPackageJson.version.replace(/[.-]pre/, '');
-
-  console.log(`package version: ${topPackageJson.version}`);
-
-  const enginesNodeVersion = topPackageJson.engines.node.replace(/[^0-9]*/, '') || '';
-  const enginesNodeVersionMajor = enginesNodeVersion.replace(/[.].*/, '');
-  const customFields = {
-    enginesNodeVersion,
-    enginesNodeVersionMajor
-  }
-
-  return {
-    releaseVersion,
-    docusaurusVersion: require('@docusaurus/core/package.json').version,
-    buildTime: new Date().getTime(),
-    ...customFields,
-  }
-}
 
 // ----------------------------------------------------------------------------
 
