@@ -264,7 +264,7 @@ const config: Config = {
           label: 'GitHub',
           items: [
             {
-              label: `xpm-js`,
+              label: `xpm-js project`,
               href: `https://github.com/xpack/xpm-js/`,
             },
             {
@@ -337,7 +337,7 @@ const config: Config = {
               href: 'https://www.paypal.com/donate/?hosted_button_id=5MFRG9ZRBETQ8',
             },
             {
-              label: 'GitHub xpm-js',
+              label: 'GitHub xpm-js project',
               href: 'https://github.com/xpack/xpm-js/',
             },
             {
