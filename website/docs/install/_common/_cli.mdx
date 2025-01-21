@@ -133,7 +133,7 @@ npm install --location=global xpm@latest
 To install a **specific version**, specify it explicitly:
 
 <CodeBlock language="sh"> {
-`npm install --location=global xpm@${customField('releaseVersion')}
+`npm install --location=global xpm@0.20.5
 `} </CodeBlock>
 
 <Tabs groupId="operating-systems">
@@ -167,7 +167,7 @@ already have this path configured and the program should start normally:
 
 <CodeBlock language="console"> {
 `C:\>xpm --version
-${customField('releaseVersion')}
+0.20.5
 `} </CodeBlock>
 
 <TroubleshootingWindows />
@@ -189,7 +189,7 @@ To test if **xpm** starts:
 
 <CodeBlock language="console"> {
 `% xpm --version
-${customField('releaseVersion')}
+0.20.5
 `} </CodeBlock>
 
 <Heading as="h3">Show macOS hidden files</Heading>
@@ -252,7 +252,7 @@ To test if xpm starts:
 `$ which xpm
 /home/ilg/.nvm/versions/node/${props.nodeVersion}/bin/xpm
 $ xpm --version
-${customField('releaseVersion')}
+0.20.5
 `} </CodeBlock>
 
 </TabItem>
@@ -276,7 +276,7 @@ benefit from it by using the `npx` command, as a trampoline to start **xpm**:
 
 <CodeBlock language="console"> {
 `$ npx xpm --version
-${customField('releaseVersion')}
+0.20.5
 `} </CodeBlock>
 
 However, for regular usage, this method is not efficient, since

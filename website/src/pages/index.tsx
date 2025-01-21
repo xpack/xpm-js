@@ -36,7 +36,7 @@ function HomepageHeader() {
         <p className="hero__subtitle">{siteConfig.tagline}</p>
 
         <div className={styles.installWithCopy}>
-          <InstallWithCopy>npm install --location=global xpm@{customField('releaseVersion')}</InstallWithCopy>
+          <InstallWithCopy>npm install --location=global xpm@0.20.5</InstallWithCopy>
         </div>
 
       </div>
