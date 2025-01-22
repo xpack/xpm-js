@@ -58,6 +58,12 @@
     "typedoc": "^0.27.6",
     "typescript": "~5.6.3"
   },
+  "$devDependenciesUrls": [
+    "https://www.npmjs.com/package/docusaurus-plugin-typedoc",
+    "https://www.npmjs.com/package/liquidjs",
+    "https://www.npmjs.com/package/typedoc",
+    "https://www.npmjs.com/package/typescript"
+  ],
   "browserslist": {
     "production": [
       ">0.5%",
@@ -71,12 +77,12 @@
     ]
   },
   "websiteConfig": {
-    "shortName": "xpm",
     "programName": "xpm",
     "title": "xpm - The xPack Project Manager",
     "tagline": "A tool to automate builds, tests and manage C/C++ dependencies, inspired by npm",
     "metadataDescription": "The xPack Project Manager command line tool",
     "metadataKeywords": "xpm, xpack, project, manager, build, test, dependencies, npm, reproducibility",
+    "preferShortName": "true",
     "hasCli": "true",
     "isInstallGlobally": "true",
     "isWebPreview": "true",
@@ -91,11 +97,5 @@
   },
   "engines": {
     "node": ">=18.0"
-  },
-  "$dependenciesUrls": [
-    "https://www.npmjs.com/package/docusaurus-plugin-typedoc",
-    "https://www.npmjs.com/package/liquidjs",
-    "https://www.npmjs.com/package/typedoc",
-    "https://www.npmjs.com/package/typescript"
-  ]
+  }
 }

@@ -213,7 +213,6 @@ const config: Config = {
       }
     ],
     navbar: {
-      // Overriden by i18n/en/docusaurus-theme-classic.
       title: 'The xPack Project',
 
       logo: {
