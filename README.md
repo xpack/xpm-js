@@ -1,15 +1,15 @@
 [![GitHub package.json version](https://img.shields.io/github/package-json/v/xpack/xpm-js)](https://github.com/xpack/xpm-js/blob/master/package.json)
+[![GitHub release (latest by date)](https://img.shields.io/github/v/release/xpack/xpm-js)](https://github.com/xpack/xpm-js/releases)
 [![npm (scoped)](https://img.shields.io/npm/v/xpm.svg?color=blue)](https://www.npmjs.com/package/xpm/)
 [![license](https://img.shields.io/github/license/xpack/xpm-js)](https://github.com/xpack/xpm-js/blob/master/LICENSE)
 
 # The xPack Project Manager
 
-A tool to automate builds, tests and manage C/C++ dependencies, inspired by npm
+A tool to automate builds, tests and manage C/C++ dependencies, inspired by npm.
 
 ## Project documentation
 
-For information on how to install and use this project,
-please refer to the
+For information on how to install and use this project, please refer to the
 [project web site](https://xpack.github.io/xpm/).
 
 ## Project source
