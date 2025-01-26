@@ -7,13 +7,13 @@ import type * as Preset from '@docusaurus/preset-classic';
 // import logger from '@docusaurus/logger';
 import util from 'node:util';
 
-import cliNavbar from './docusaurus-config-navbar-cli'
+import cliNavbar from './docusaurus-config-navbar-cli';
 
-import {customDocsNavbarItem} from './navbar-docs-items'
+import {customDocsNavbarItem} from './navbar-docs-items';
 
 
-import {redirects} from './docusaurus-config-redirects'
-import {getCustomFields} from './customFields'
+import {redirects} from './docusaurus-config-redirects';
+import {getCustomFields} from './customFields';
 
 // The node.js modules cannot be used in modules imported in browser code:
 // webpack < 5 used to include polyfills for node.js core modules by default.

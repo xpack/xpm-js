@@ -1,0 +1,110 @@
+{/* DO NOT EDIT! */}
+{/* Automatically generated from docusaurus-template-liquid/templates/docusaurus. */}
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+{/* ------------------------------------------------------------------------ */}
+
+## Prerequisites
+
+Installing **xpm** requires:
+
+- A recent version of [Node.js](https://nodejs.org) (specified as "engines.node": ">=18.0.0")
+- A recent version of [npm](https://docs.npmjs.com/cli/npm) which is installed alongside Node.js
+
+For those new to Node.js, it is highly recommended to read the instructions
+on the [xPack Prerequisites](https://xpack.github.io/install/) page.
+
+### Quick instructions
+
+For those who have already completed the installation steps on the
+[xPack Prerequisites](https://xpack.github.io/install/) page and are
+familiar with the process, here are the necessary commands.
+Simply copy and paste them into your terminal. When you hover the mouse
+over the command, a **copy button** will appear on
+the right side; click it to copy the command).
+
+<Tabs groupId="operating-systems">
+
+<TabItem value="windows" label="Windows" default>
+
+Download the Windows **Prebuilt Installer** (a `node-v*-x64.msi` file) from the
+[Download Node.js](https://nodejs.org/en/download/prebuilt-installer)
+page. Select the **latest LTS** version
+and install it as usual, ensuring you have administrative rights.
+
+:::tip
+
+Unless specifically required, **refrain** from selecting the
+**Tools for Native Modules** during installation, as this will
+result in the installation of some very large Microsoft tools.
+
+:::
+
+Although not mandatory, it is recommended to update **npm** to the
+latest version:
+
+```txt
+npm install -location=global npm@latest
+```
+
+Update the user `Path` and make it persistent:
+
+```txt
+set Path=%APPDATA%\npm;%Path%
+setx Path "%APPDATA%\npm;%Path%"
+```
+
+Configure PowerShell to allow the execution of node.js applications:
+
+```txt
+Set-ExecutionPolicy -ExecutionPolicy Bypass -Scope CurrentUser
+```
+
+</TabItem>
+
+<TabItem value="macos" label="macOS">
+
+To install **node** via the **nvm** version manager,
+run the following script in your shell:
+
+```sh
+curl https://raw.githubusercontent.com/xpack/assets/master/scripts/install-nvm-node-npm-xpm.sh | ${SHELL}
+
+export NVM_DIR="$HOME/.nvm"
+source "$NVM_DIR/nvm.sh"
+```
+
+:::tip
+
+This script not only installs **node** and **npm** but
+also **xpm**, allowing you to safely skip the next section.
+
+:::
+
+</TabItem>
+
+<TabItem value="linux" label="GNU/Linux">
+
+To install **node** via the **nvm** version manager,
+run the following script in your shell:
+
+```sh
+wget -q -O - https://raw.githubusercontent.com/xpack/assets/master/scripts/install-nvm-node-npm-xpm.sh | ${SHELL}
+
+export NVM_DIR="$HOME/.nvm"
+source "$NVM_DIR/nvm.sh"
+```
+
+:::tip
+
+This script not only installs **node** and **npm** but
+also **xpm**, allowing you to safely skip the next section.
+
+:::
+
+</TabItem>
+
+</Tabs>
+

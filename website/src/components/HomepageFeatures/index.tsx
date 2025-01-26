@@ -17,7 +17,7 @@ import Heading from '@theme/Heading';
 import Link from '@docusaurus/Link';
 import styles from './styles.module.css';
 
-import type { FeatureItem } from './FeatureItem'
+import type { FeatureItem } from './FeatureItem';
 
 
 import { FeatureList } from './CustomFeatureList';

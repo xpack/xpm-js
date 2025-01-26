@@ -1,0 +1,304 @@
+{/* DO NOT EDIT! */}
+{/* Automatically generated from docusaurus-template-liquid/templates/docusaurus. */}
+
+import CodeBlock from '@theme/CodeBlock';
+
+import customField from '@site/src/libs/customField';
+
+import Prerequisites from '../../developer/_common/_prerequisites.mdx';
+import GetProjectSources from '../../developer/_common/_get-project-sources.mdx';
+
+import DependenciesDetails from '../_project/_dependencies-details.mdx';
+
+import More from '../_project/_more.mdx';
+
+{/* ------------------------------------------------------------------------ */}
+
+<Prerequisites nodeVersion="18.0.0" nodeVersionMajor="18"/>
+
+<GetProjectSources />
+
+## Release schedule
+
+There are no fixed releases.
+
+## Prepare the new releases
+
+### Check Git
+
+In the `xpack/xpm-js` Git repo:
+
+- switch to the `development` branch
+- pull new changes
+- if necessary, merge the `master` branch
+- if necessary, merge the `website` branch
+
+:::caution
+
+This is really important, otherwise the next steps will build again the previous release!
+
+:::
+
+The `master` branch should be unchanged since the previous release
+and will be updated when the new release is out.
+
+### Update npm packages
+
+:::note
+
+This package is also used by the VS Code extension and, until VS Code will
+accept ESM dependencies, it must be
+kept as a legacy CommonJS dependency.
+
+:::
+
+- `npm outdated`
+- `npm update` or edit and `npm install`
+- repeat and possibly manually edit `package.json` until everything is
+  up to date
+- commit the changes
+
+<DependenciesDetails />
+
+### Increase the version and update it in the top `package.json`
+
+As required by npm modules, this one also uses [SemVer](https://semver.org).
+
+- determine the next version (like <code>0.20.5</code>)
+- update the version in the top `package.json` file
+- use the new version, suffixed by `-pre`, like <code>0.20.5-pre</code>.
+
+### Update the `websiteConfig` in top `package.json` (if necessary)
+
+Check and possibly update the `websiteConfig`.
+
+### Update the website commons
+
+Run the `website-generate-commons` script in the top `package.json`;
+this will also update the top README.md file.
+
+### Start the local web server
+
+Execute the npm script `clean` then `start` in the website sub-project,
+or run the following in a terminal:
+
+```sh
+npm run clean
+npm run start
+```
+
+Navigate to the **Maintainer Info** page,
+the **Fix possible open issues** section.
+
+### Fix possible open issues
+
+Check GitHub Issues and Pull Requests:
+
+- https://github.com/xpack/xpm-js/issues
+- https://github.com/xpack/xpm-js/pulls
+
+and fix them; assign them to a milestone
+(like <code>0.20.5</code>).
+
+### Update `CHANGELOG.md`
+
+- open the `CHANGELOG.md` file
+- check if all previous fixed issues are in
+- check the latest commits `xpm run git-log`; if necessary, copy/paste lines,
+  group by dates and edit them using the below regular expressions
+
+- to turn the dates into headings, change from:
+
+```txt
+
+
+([0-9][0-9][0-9][0-9]-[0-9][0-9]-[0-9][0-9]) [*]
+```
+
+to:
+
+```txt
+
+
+## $1
+
+*
+```
+
+- to remove the rest of the dates, change from:
+
+```txt
+^[0-9][0-9][0-9][0-9]-[0-9][0-9]-[0-9][0-9] [*]
+```
+
+to:
+
+```txt
+*
+```
+
+- add a new entry like _**\* v0.20.5 prepared**_
+- commit with a message like _**prepare v0.20.5**_
+
+### Prepare the release
+
+- terminate all running tasks (**Terminal** → **Terminate Task...**)
+- switch to the `development` branch
+- commit everything
+- `npm run fix`
+- if there are changes, commit all changes into the `development` branch
+- `npm run test`
+- `npm run pack`; check the list of packaged files, possibly
+  update `.npmignore`
+- push all changes to GitHub
+
+### Set the new version
+
+<CodeBlock language="sh"> {
+`npm version 0.20.5
+`} </CodeBlock>
+
+### CI tests
+
+- the `postversion` npm script should also update tags via
+  `git push origin --tags`; this should trigger CI
+- **wait for CI tests to complete**
+- check https://github.com/xpack/xpm-js/actions
+
+## Prepare a new blog post
+
+- check and possibly update the `website/blog/_templates/blog-post-release-liquid.mdx`
+- run the `generate-website-blog-post` npm script; this will add a file in the `website/blog` folder:
+
+```sh
+npm run generate-website-blog-post
+```
+
+- edit the front matter properties
+- select the correct summary
+- commit with _**website: blog post release 0.20.5 published**_
+- push the `development` branch
+
+## Publish the release to npmjs.com
+
+```sh
+npm publish --tag next
+```
+
+- when publishing for the first time, use:
+
+```sh
+npm publish --access public
+```
+
+After a few moments the version will be visible at
+[xpm Versions](https://www.npmjs.com/package/xpm?activeTab=versions).
+
+### Manual install test
+
+Test if the package can be installed globally:
+
+```bash
+npm install ----location=global xpm@next
+```
+
+Validate the web site content in a local build via the npm `build` script:
+
+```sh
+npm run build
+```
+
+## Prepare the website
+
+The documentation site is built with [Docusaurus](https://docusaurus.io) and
+published in the project
+[GitHub Pages](https://xpack.github.io/xpm/).
+
+- switch to the `development` branch
+- run the `website-generate-commons` script in the top `package.json`
+- commit all changes
+- run the `build` script in `website/package.json`
+- fix any broken links, if any
+
+## Publish the website
+
+The Web site deployment is performed automatically when pushing to the
+`website` branch, by a dedicated workflow in
+[GitHub Actions](https://github.com/xpack/xpm-js/actions/workflows/publish-github-pages.yml).
+
+- switch to the `website` branch
+- merge the `development` branch into the `website` branch
+- push the `website` branch to GitHub
+
+At this moment an automated GitHub Action will generate and publish the website.
+
+- the new release blog post is
+in https://xpack.github.io/xpm/blog/
+- remember the post URL, since it must be used to update the release page
+and the X/Twitter announcement
+
+The `website` branch may be subsequently updated, as long as the
+version in `package.json` is not changed.
+
+Check the result at https://xpack.github.io/xpm/.
+
+## Final updates
+
+### Update the `master` branch
+
+In this Git repo:
+
+- select the `master` branch
+- merge the `development` branch into the `master` branch
+- push the `master` branch to GitHub
+
+### Close milestone
+
+In https://github.com/xpack/xpm-js/milestones:
+
+- close the current milestone.
+
+### Check npm package tags
+
+```sh
+npm dist-tag ls xpm
+```
+
+### Tag the npm package as `latest`
+
+When the release is considered stable, promote it as `latest`:
+
+<CodeBlock language="sh"> {
+`npm dist-tag add xpm@0.20.5 latest
+npm dist-tag ls xpm
+`} </CodeBlock>
+
+## Share on X/Twitter
+
+- in a separate browser windows, open [X/Twitter](https://x.com/)
+- using the `@xpack_project` account
+- paste the release name like **xPack xpm v0.19.4 released**
+- paste the link to the Web page
+  [release](/docs/releases/)
+- click the **Tweet** button
+
+## Analytics
+
+- npmjs.com [`xpm`](https://www.npmjs.com/package/xpm/) package
+  - latest release, per month
+[![npm (scoped)](https://img.shields.io/npm/v/xpm)](https://www.npmjs.com/package/xpm/)
+[![npm](https://img.shields.io/npm/dm/xpm)](https://www.npmjs.com/package/xpm/)
+  - all releases [![npm](https://img.shields.io/npm/dt/xpm)](https://www.npmjs.com/package/xpm/)
+
+Credit to [Shields IO](https://shields.io) for the badges.
+
+## Useful links
+
+- https://www.typescriptlang.org/docs/
+- https://www.typescriptlang.org/tsconfig/
+- https://typedoc.org, https://typedoc.org/guides/doccomments/
+- https://tsdoc.org
+- https://jsdoc.app/index.html
+- https://redfin.engineering/node-modules-at-war-why-commonjs-and-es-modules-cant-get-along-9617135eeca1
+
+<More />

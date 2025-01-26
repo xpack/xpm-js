@@ -1,5 +1,8 @@
 ---
 
+# DO NOT EDIT!
+# Automatically generated from docusaurus-template-liquid/templates/docusaurus.
+
 title: FAQ
 description: Answers to previously asked questions, so you can find solutions without having to ask again.
 keywords:
@@ -11,204 +14,15 @@ keywords:
 
 hide_table_of_contents: true
 
-date: 2024-10-24 23:58:00 +0300
+date: 2020-07-21 17:49:00 +0300
 
 ---
 
-import WhyNotAutoconfig from './_shared/_why-not-autoconfig.mdx';
-import WhyNotNix from './_shared/_why-not-nix.mdx';
-import WhyNotNpm from './_shared/_why-not-npm.mdx';
-import WhyXpacks from './_shared/_why-xpacks.mdx';
+import ProjectContent from './_project/_content.mdx';
 
 {/* ------------------------------------------------------------------------ */}
 
 # The xpm Frequently Asked Questions
 
+<ProjectContent />
 
-<details>
-<summary>`error: Cannot read property 'path' of null` (aggressive antivirus)</summary>
-
-This problem is specific to Windows and is caused by aggressive antivirus programs.
-
-On Windows, binary xPacks are `.zip` archives containing `.exe` files;
-some aggressive antivirus programs may quarantine those files, or
-even modify the content of the archives, affecting the checksum and
-thus preventing the packages to be installed.
-
-Errors may look like:
-
-```console
-Downloading https://github.com/gnu-mcu-eclipse/qemu/releases/download/v2.8.0-4-20190211/gnu-mcu-eclipse-qemu-2.8.0-4-20190211-0633-win64.zip...
-{ Error: sha256-p3CgzXJt4zi5g0kxQXlOpss3Xu5Yy+Zv8HXWXkUdg6g= integrity checksum failed when using sha256: wanted sha256-p3CgzXJt4zi5g0kxQXlOpss3Xu5Yy+Zv8HXWXkUdg6g= but got sha512-k1s9UW6Zb20llIuopUwbf3D38OP1F+Nkgf3wGWwsXPwoQfhuiR89+VF3Rrf7YF20fN3tG4/3jZSC3apiHbQ6NA== sha256-ABnfxLMtY8E5KqJkrtIlPB4ML7CSFvjizCabv7i7SbU=. (9 bytes)
-...
-Extracting 'gnu-mcu-eclipse-qemu-2.8.0-4-20190211-0633-win64.zip'...
-error: Cannot read property 'path' of null
-```
-
-The solution is to configure the antivirus program to be less aggressive,
-at least for files in the
-`AppData\Roaming\xPacks` and `AppData\Local\Caches\xPacks` folders.
-
-If this is not possible, temporarily disable the antivirus program. Or switch
-to a better operating system.
-
-</details>
-
-<details>
-<summary>`... running scripts is disabled on this system` (PowerShell)</summary>
-
-Recent Windows versions use PowerShell, which has a more restrictive
-execution policy intended to prevent
-the execution of malicious scripts; unfortunately this also prevents
-the execution of node.js applications.
-
-If you get a message in the console as the one below:
-
-```txt
-xpm : File C:\Users\...\AppData\Roaming\npm\xpm.ps1 cannot be loaded because running scripts is disabled on this system. For more information, see about_Execution_Policies at
-https:/go.microsoft.com/fwlink/?LinkID=135170.
-At line:1 char:1
-+ xpm init --template @xpack/hello-world-template@latest --property lan ...
-+ ~~~
-    + CategoryInfo          : SecurityError: (:) [], PSSecurityException
-    + FullyQualifiedErrorId : UnauthorizedAccess
-The terminal process "C:\WINDOWS\System32\WindowsPowerShell\v1.0\powershell.exe -Command xpm init --template @xpack/hello-world-template@latest --property language
-```
-
-then run the following command in a PowerShell terminal:
-
-```txt
-Set-ExecutionPolicy -ExecutionPolicy Bypass -Scope CurrentUser
-```
-
-For more details please read the Microsoft
-[about_Execution_Policies](https://docs.microsoft.com/en-gb/powershell/module/microsoft.powershell.core/about/about_execution_policies?view=powershell-7.1) page.
-
-</details>
-
-<details>
-<summary>`zsh: command not found: xpm`</summary>
-
-The location where npm installs global modules got lost; most probably
-you recently switched to `zsh` and forgot to migrate the shell startup
-to `.zprofile`.
-
-Copy the `PATH` setting from your previous shell startup file to
-`.zprofile`.
-
-</details>
-
-<details>
-<summary>Why xpm manages configurations, instead of limiting itself to managing
-dependencies/packages, isn't it a package manager?</summary>
-
-No, xpm is not a _package manager_, it is a **project manager**.
-
-In the most generic use case, configurations can have specific dependencies,
-for example different configurations can use different architecture
-toolchains, or, in test cases, even different versions of the same
-toolchain.
-
-Therefore, defining configurations in `package.json` is probably the
-best choice, otherwise both xpm and the build tools must handle
-multiple files with partly redundant content.
-
-</details>
-
-<details>
-<summary>`static async start () ... SyntaxError: Unexpected identifier`</summary>
-
-This problem occurs usually on GNU/Linux, and is caused by trying to use
-the outdated version of Node available in the distribution, which
-does not understand the `async` keyword.
-
-Errors may look like:
-
-```console
-$ xpm -v
-/home/ilg/opt/npm/lib/node_modules/xpm/node_modules/@ilg/cli-start-options/lib/cli-application.js:150
-  static async start () {
-               ^^^^^
-SyntaxError: Unexpected identifier
-    at exports.runInThisContext (vm.js:53:16)
-    at Module._compile (module.js:374:25)
-    at Object.Module._extensions..js (module.js:417:10)
-    at Module.load (module.js:344:32)
-    at Function.Module._load (module.js:301:12)
-    at Module.require (module.js:354:17)
-    at require (internal/module.js:12:17)
-    at Object.<anonymous> (/home/ilg/opt/npm/lib/node_modules/xpm/node_modules/@ilg/cli-start-options/index.js:55:24)
-    at Module._compile (module.js:410:26)
-    at Object.Module._extensions..js (module.js:417:10)
-```
-
-The solution is to install the most recent LTS version of Node, as
-described in the [prerequisite](/docs/install/) page.
-
-</details>
-
-<details>
-<summary>Cannot find the `Library` folder (on macOS)</summary>
-
-Yes, due to an unfortunate Apple decision,
-this folder is hidden for regular browsing in Finder.
-
-To make it back visible, use:
-
-```sh
-/usr/bin/chflags nohidden ~/Library
-xattr -d com.apple.FinderInfo ~/Library
-```
-
-</details>
-
-<details>
-<summary>Cannot find the `.content` folder (on macOS)</summary>
-
-Yes, due to an unfortunate Apple decision,
-all folders starting with a dot are hidden for regular browsing in Finder.
-
-Fortunately there is a workaround for this:
-
-```console
-cmd+shift+'.'
-```
-
-This keyboard shortcut works like a toggle, using it once makes files
-starting with dot visible,
-using it again reverts to hiding them.
-
-</details>
-
-<details>
-<summary>`Cannot find module '@ilg/cli-start-options'`</summary>
-
-In certain conditions, npm may fail when installing
-a new xpm over a very old existing one, and xpm becomes unusable,
-complaining about missing modules.
-
-```console
-% xpm --version
-internal/modules/cjs/loader.js:888
-  throw err;
-  ^
-
-Error: Cannot find module '@ilg/cli-start-options'
-Require stack:
-- /home/ilg/.nvm/versions/node/v18.18.2/lib/node_modules/xpm/lib/main.js
-- /home/ilg/.nvm/versions/node/v18.18.2/lib/node_modules/xpm/bin/xpm.js
-    at Function.Module._resolveFilename (internal/modules/cjs/loader.js:885:15)
-```
-
-If this happens, a new install usually fixes the problem,
-if not, the safe way is to first uninstall xpm and then re-install.
-
-</details>
-
-<WhyXpacks />
-
-<WhyNotNix />
-
-<WhyNotNpm />
-
-<WhyNotAutoconfig />

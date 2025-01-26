@@ -82,6 +82,7 @@
     "tagline": "A tool to automate builds, tests and manage C/C++ dependencies, inspired by npm",
     "metadataDescription": "The xPack Project Manager command line tool",
     "metadataKeywords": "xpm, xpack, project, manager, build, test, dependencies, npm, reproducibility",
+    "userGuideDescription": "User information, including how to use xpm with existing xpm packages and how to create new packages",
     "preferShortName": "true",
     "hasCli": "true",
     "isInstallGlobally": "true",

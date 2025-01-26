@@ -11,7 +11,7 @@
 
 import Link from '@docusaurus/Link';
 
-import type {FeatureItem} from './FeatureItem'
+import type {FeatureItem} from './FeatureItem';
 
 export const FeatureList: FeatureItem[] = [
   {

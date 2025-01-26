@@ -1,0 +1,143 @@
+{/* DO NOT EDIT! */}
+{/* Automatically generated from docusaurus-template-liquid/templates/docusaurus. */}
+
+{/* ------------------------------------------------------------------------ */}
+
+import customField from '@site/src/libs/customField';
+import CodeBlock from '@theme/CodeBlock';
+
+import Prerequisites from './_prerequisites.mdx';
+import GetProjectSources from './_get-project-sources.mdx';
+
+import TestResults from '../_project/_test-results.mdx';
+import StyleExceptions from '../_project/_style-exceptions.mdx';
+import CoverageExceptions from '../_project/_coverage-exceptions.mdx';
+
+{/* ------------------------------------------------------------------------ */}
+
+This project is currently written in JavaScript, but a rewrite in
+TypeScript is planned.
+
+<Prerequisites nodeVersion="18.0.0" nodeVersionMajor="18"/>
+
+<GetProjectSources />
+
+:::tip
+
+To contribute Pull Requests, fork the project and be sure the **Copy the master branch only** is **disabled**.
+
+Use the `xpack-development` branch and be sure you contribute the
+Pull Requests back to the `xpack-development` branch.
+
+:::
+
+## Satisfy dependencies
+
+```sh
+npm install
+```
+
+## Add links for development
+
+To facilitate the use of this module in other packages, add a link
+from the central npm storage to this local development folder:
+
+```sh
+npm link
+```
+
+And in the projects referring it:
+
+```sh
+npm link xpm
+```
+
+## Start the compile background task
+
+The TypeScript compiler can automatically recompile modified files. For
+this, start it in `watch` mode.
+
+```sh
+npm run compile-watch
+```
+## Language standard compliance
+
+The module uses ECMAScript 6 class definitions and modules.
+
+## Standard style
+
+As style, the project uses the
+[JavaScript Standard Style](https://standardjs.com/),
+automatically checked at each commit via CI.
+
+For spacial cases, it is possible to configure/disable some rules.
+
+```js
+/* eslint-disable-next-line no-xxx-yyy */
+```
+
+The known rules are documented in the
+[eslint](https://eslint.org/docs/latest/rules/)
+project.
+
+Generally, to fit two editor windows side by side in a screen,
+all files should limit the line length to 80.
+
+```js
+/* eslint max-len: [ "error", 80, { "ignoreUrls": true } ] */
+```
+
+Known and accepted exceptions:
+
+<StyleExceptions />
+
+To manually fix compliance with the style guide (where possible):
+
+<CodeBlock language="console"> {
+`% npm run fix
+
+> xpm@0.20.5 fix
+> standard --fix test
+...
+`} </CodeBlock>
+
+## Documentation metadata
+
+The documentation metadata follows the [JSdoc](http://usejsdoc.org) tags.
+
+To enforce checking at file level, add the following comments right after
+the `use strict`:
+
+```js
+'use strict'
+/* eslint valid-jsdoc: "error" */
+/* eslint max-len: [ "error", 80, { "ignoreUrls": true } ] */
+```
+
+Note: be sure C style comments are used, C++ styles are not parsed by
+[ESLint](http://eslint.org).
+
+## Tests
+
+The tests use the [`node-tap`](http://www.node-tap.org) framework
+(_A Test-Anything-Protocol library for Node.js_, written by Isaac Schlueter).
+
+Tests can be written in TypeScript, assuming `ts-node` is also installed.
+
+As for any `npm` package, the standard way to run the project tests is via
+`npm run test`:
+
+```sh
+npm install
+npm run test
+```
+
+<TestResults />
+
+### Continuous Integration (CI)
+
+The module is 
+CI tested on every push via
+[GitHub Actions](https://github.com/xpack/xpm-js/actions), on Ubuntu,
+Windows and macOS, using node 18, 20 and 22.
+

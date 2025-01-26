@@ -10,121 +10,26 @@ import Heading from '@theme/Heading';
 
 import customField from '@site/src/libs/customField';
 
-import Prerequisites from './_prerequisites.mdx';
 import NoAdministrativeRights from './_no-administrative-rights.mdx';
-import TroubleshootingWindows from '../_troubleshooting-windows.mdx';
+import TroubleshootingWindows from '../_project/_troubleshooting-windows.mdx';
 
 {/* ------------------------------------------------------------------------ */}
-
-<Prerequisites />
-
-### Quick instructions
-
-For those who have already performed the install steps on the
-[xPack Prerequisites](https://xpack.github.io/install/) page and are
-familiar with the process, here are the commands you need.
-Simply copy and paste them into your terminal (hover the mouse
-over the command, and a **copy button** will appear on
-the right side; click it to copy the command).
-
-<Tabs groupId="operating-systems">
-
-<TabItem value="windows" label="Windows" default>
-
-Download the Windows **Prebuilt Installer** (a `node-v*-x64.msi` file) from the
-[Download Node.js](https://nodejs.org/en/download/prebuilt-installer)
-page. Choose the **latest LTS** version
-and install it as usual, ensuring you have administrative rights.
-
-:::tip
-
-Unless specifically required, **refrain** from selecting the
-**Tools for Native Modules** during installation, as this will
-result in the installation of some very large Microsoft tools.
-
-:::
-
-Although not mandatory, it is recommended to update **npm** to the
-latest version:
-
-```txt
-npm install -location=global npm@latest
-```
-
-Update the user `Path` and make it persistent:
-
-```txt
-set Path=%APPDATA%\npm;%Path%
-setx Path "%APPDATA%\npm;%Path%"
-```
-
-Configure PowerShell to allow the execution of node.js applications:
-
-```txt
-Set-ExecutionPolicy -ExecutionPolicy Bypass -Scope CurrentUser
-```
-
-</TabItem>
-
-<TabItem value="macos" label="macOS">
-
-To install **node** via the **nvm** version manager,
-run the following script through your shell:
-
-```sh
-curl https://raw.githubusercontent.com/xpack/assets/master/scripts/install-nvm-node-npm-xpm.sh | ${SHELL}
-
-export NVM_DIR="$HOME/.nvm"
-source "$NVM_DIR/nvm.sh"
-```
-
-:::tip
-
-This script, in addition to installing **node** and **npm**,
-also installs **xpm**, so you can safely skip the next section.
-
-:::
-
-</TabItem>
-
-<TabItem value="linux" label="GNU/Linux">
-
-To install **node** via the **nvm** version manager,
-run the following script through your shell:
-
-```sh
-wget -q -O - https://raw.githubusercontent.com/xpack/assets/master/scripts/install-nvm-node-npm-xpm.sh | ${SHELL}
-
-export NVM_DIR="$HOME/.nvm"
-source "$NVM_DIR/nvm.sh"
-```
-
-:::tip
-
-This script, in addition to installing **node** and **npm**,
-also installs **xpm**, so you can safely skip the next section.
-
-:::
-
-</TabItem>
-
-</Tabs>
 
 ## Install
 
 
 :::caution
 
-Please be sure that the **xpm** you are trying to install is the
-**xPack Project Manager**, since there are other projects that
-unfortunately use the same name
-(for example verseles/xpm, the _uniX Package Manager_).
+Please ensure that the **xpm** you are attempting to install is the
+**xPack Project Manager**, as there are other projects that
+unfortunately share the same name
+(for example, verseles/xpm, the _uniX Package Manager_).
 
 :::
 
 
 Once the environment is correctly configured, use the following
-command to install the **latest** version of **xpm** is:
+command to install the **latest** version of **xpm**:
 
 ```sh
 npm install --location=global xpm@latest
@@ -212,8 +117,8 @@ defaults write com.apple.Finder AppleShowAllFiles true
 killall Finder
 ```
 
-Another annoying behaviour of the file browser is to hide names starting
-with `.` (dot), which is a real pity since the binary packages are
+Another frustrating behaviour of the file browser is to hide names starting
+with `.` (dot), which is unfortunate since the binary packages are
 extracted in a folder named `.content`.
 
 Fortunately there is a workaround for this too:
@@ -222,9 +127,9 @@ Fortunately there is a workaround for this too:
 cmd+shift+'.'
 ```
 
-This keyboard shortcut works like a toggle, using it once makes files
+This keyboard shortcut functions as a toggle, using it once makes files
 starting with dot visible,
-using it again reverts to hiding them.
+and using it again reverts to hiding them.
 
 </TabItem>
 
