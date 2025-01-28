@@ -8,10 +8,7 @@ import type * as Preset from '@docusaurus/preset-classic';
 import util from 'node:util';
 
 import cliNavbar from './docusaurus-config-navbar-cli';
-
 import {customDocsNavbarItem} from './navbar-docs-items';
-
-
 import {redirects} from './docusaurus-config-redirects';
 import {getCustomFields} from './customFields';
 
@@ -31,7 +28,8 @@ const config: Config = {
   title: 'xpm - The xPack Project Manager' +
     ((process.env.DOCUSAURUS_IS_PREVIEW === 'true') ? ' (preview)' : ''),
   tagline: 'A tool to automate builds, tests and manage C/C++ dependencies, inspired by npm',
-  favicon: 'img/favicon.ico',
+  // Explicitly set in headTags.
+  // favicon: '/img/favicon.ico',
 
   // Set the production url of your site here
   url: 'https://xpack.github.io/',

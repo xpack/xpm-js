@@ -22,7 +22,6 @@ import HeadTitle from '@site/src/components/HeadTitle';
 import styles from './index.module.css';
 import HomepageFeatures from '@site/src/components/HomepageFeatures';
 import InstallWithCopy from '@site/src/components/InstallWithCopy';
-import customField from '@site/src/libs/customField';
 
 function HomepageHeader() {
   const {siteConfig} = useDocusaurusContext();
@@ -30,15 +29,11 @@ function HomepageHeader() {
     <header className={clsx('hero hero--primary', styles.heroBanner)}>
       <HeadTitle title="Welcome to xpm - The xPack Project Manager!" />
       <div className="container">
-        <Heading as="h1" className="hero__title">
-          {siteConfig.title}
-        </Heading>
+        <Heading as="h1" className="hero__title">{siteConfig.title}</Heading>
         <p className="hero__subtitle">{siteConfig.tagline}</p>
-
         <div className={styles.installWithCopy}>
           <InstallWithCopy>npm install --location=global xpm@0.20.5</InstallWithCopy>
         </div>
-
       </div>
     </header>
   );
