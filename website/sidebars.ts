@@ -17,13 +17,9 @@ import {customDocsSidebar} from "./sidebar-docs-custom";
  */
 const sidebars: SidebarsConfig = {
 
-  
   docsSidebar: customDocsSidebar,
-  
-  
-  
-  cliSidebar
-  
+
+  cliSidebar,
 };
 
 export default sidebars;

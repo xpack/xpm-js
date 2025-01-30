@@ -1,4 +1,5 @@
 {
+  "DO NOT EDIT": "Automatically generated from docusaurus-template-liquid/templates/docusaurus",
   "name": "website",
   "version": "0.0.0",
   "private": true,
@@ -27,19 +28,9 @@
   "dependencies": {
     "@docusaurus/core": "3.6.3",
     "@docusaurus/plugin-client-redirects": "3.6.3",
-    "@docusaurus/plugin-content-blog": "3.6.3",
-    "@docusaurus/plugin-content-docs": "3.6.3",
-    "@docusaurus/plugin-content-pages": "3.6.3",
-    "@docusaurus/plugin-debug": "3.6.3",
-    "@docusaurus/plugin-google-analytics": "3.6.3",
-    "@docusaurus/plugin-google-gtag": "3.6.3",
-    "@docusaurus/plugin-google-tag-manager": "3.6.3",
     "@docusaurus/plugin-ideal-image": "3.6.3",
-    "@docusaurus/plugin-sitemap": "3.6.3",
-    "@docusaurus/theme-classic": "3.6.3",
-    "@docusaurus/theme-common": "3.6.3",
+    "@docusaurus/preset-classic": "3.6.3",
     "@docusaurus/theme-search-algolia": "3.6.3",
-    "@docusaurus/types": "3.6.3",
     "@mdx-js/react": "^3.1.0",
     "clean-css": "~5.3.3",
     "clsx": "^2.1.1",
@@ -59,9 +50,9 @@
     "typescript": "~5.6.3"
   },
   "$devDependenciesUrls": [
-    "https://www.npmjs.com/package/docusaurus-plugin-typedoc",
+    "https://www.npmjs.com/package/del-cli",
+    "https://www.npmjs.com/package/json",
     "https://www.npmjs.com/package/liquidjs",
-    "https://www.npmjs.com/package/typedoc",
     "https://www.npmjs.com/package/typescript"
   ],
   "browserslist": {
@@ -86,7 +77,6 @@
     "preferShortName": "true",
     "hasCli": "true",
     "isInstallGlobally": "true",
-    "isWebPreview": "true",
     "shareOnTwitter": "true",
     "hasCustomHomepageFeatures": "true",
     "hasCustomSidebar": "true",
