@@ -18,7 +18,6 @@ import Link from '@docusaurus/Link';
 import styles from './styles.module.css';
 
 import type { FeatureItem } from './FeatureItem';
-
 import { FeatureList } from './CustomFeatureList';
 
 function Feature({title, Svg, description}: FeatureItem) {

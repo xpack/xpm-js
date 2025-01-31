@@ -9,29 +9,65 @@ keywords:
   - xpack
   - xpm
   - overview
+  - features
+  - benefits
   - compatibility
+  - documentation
 
-date: 2024-10-24 18:58:00 +0300
+date: 2020-07-21 17:49:00 +0300
 
 ---
 
-import Link from '@docusaurus/Link';
-
+import UserDeveloperMaintainer from './_common/_user-developer-maintainer.mdx';
 import License from './_common/_license.mdx';
 import Credits from './_common/_credits.mdx';
-import MoreCredits from './_project/_more-credits.mdx';
 import EnjoyedUsing from './_common/_enjoyed-using.mdx';
+import SupportAndFeedback from './_common/_support-and-feedback.mdx';
+import ChangeLog from './_common/_change-log.mdx';
+import Releases from './_common/_releases.mdx';
+
+import Documentation from '../_shared/_documentation.mdx';
+import ReleaseSchedule from '../_shared/_release-schedule.mdx';
+
+import MoreCredits from './_project/_more-credits.mdx';
+import Status from './_project/_status.mdx';
+import CompatibilityNotices from './_project/_compatibility-notices.mdx';
 
 import Content from './_common/_content.mdx';
 
 {/* ------------------------------------------------------------------------ */}
 
+# Getting Started with xpm
+
 [![license](https://img.shields.io/github/license/xpack/xpm-js)](https://github.com/xpack/xpm-js/blob/master/LICENSE)
 ![GitHub Repo stars](https://img.shields.io/github/stars/xpack/xpm-js)
 
-# Getting Started with xpm
+<UserDeveloperMaintainer />
 
 <Content />
+
+<Status />
+
+## Documentation
+
+<Documentation/>
+
+<ReleaseSchedule/>
+
+<Releases />
+
+<ChangeLog />
+
+<SupportAndFeedback />
+
+## Compatibility notices
+
+According to [SemVer](https://semver.org) rules:
+
+> Major version X (X.y.z | X > 0) MUST be incremented if any
+backwards incompatible changes are introduced to the public API.
+
+<CompatibilityNotices />
 
 <License />
 
