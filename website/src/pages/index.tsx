@@ -31,6 +31,11 @@ function HomepageHeader() {
       <div className="container">
         <Heading as="h1" className="hero__title">{siteConfig.title}</Heading>
         <p className="hero__subtitle">{siteConfig.tagline}
+        <span className="margin-left-platforms">
+          <span className="tagline-platform-windows"></span>
+          <span className="tagline-platform-apple"></span>
+          <span className="tagline-platform-linux"></span>
+        </span>
         </p>
         <div className={styles.installWithCopy}>
           <InstallWithCopy>npm install --location=global xpm@0.20.5</InstallWithCopy>
