@@ -28,8 +28,8 @@ In the `xpack/xpm-js` Git repo:
 
 - switch to the `development` branch
 - pull new changes
-- if necessary, merge the `master` branch
-- if necessary, merge the `website` branch
+- if necessary, **merge** the `master` branch
+- if necessary, **merge** the `website` branch
 
 :::caution
 
@@ -54,7 +54,7 @@ kept as a legacy CommonJS dependency.
 - `npm update` or edit and `npm install`
 - repeat and possibly manually edit `package.json` until everything is
   up to date
-- commit the changes
+- **commit** the changes
 
 <DependenciesDetails />
 
@@ -136,7 +136,7 @@ to:
 ```
 
 - add a new entry like _**\* v0.20.5 prepared**_
-- commit with a message like _**prepare v0.20.5**_
+- **commit** with a message like _**prepare v0.20.5**_
 
 ### Prepare the release
 
@@ -144,11 +144,11 @@ to:
 - switch to the `development` branch
 - commit everything
 - `npm run fix`
-- if there are changes, commit all changes into the `development` branch
+- if there are changes, **commit** all changes into the `development` branch
 - `npm run test`
 - `npm run pack`; check the list of packaged files, possibly
   update `.npmignore`
-- push all changes to GitHub
+- **push** all changes to GitHub
 
 ### Set the new version
 
@@ -174,8 +174,8 @@ npm run generate-website-blog-post
 
 - edit the front matter properties
 - select the correct summary
-- commit with _**website: blog post release 0.20.5 published**_
-- push the `development` branch
+- **commit** with _**website: blog post release 0.20.5 published**_
+- **push** the `development` branch
 
 ## Publish the release to npmjs.com
 
@@ -214,7 +214,7 @@ published in the project
 
 - switch to the `development` branch
 - run the `website-generate-commons` script in the top `package.json`
-- commit all changes
+- **commit** all changes
 - run the `build` script in `website/package.json`
 - fix any broken links, if any
 
@@ -225,8 +225,8 @@ The Web site deployment is performed automatically when pushing to the
 [GitHub Actions](https://github.com/xpack/xpm-js/actions/workflows/publish-github-pages.yml).
 
 - switch to the `website` branch
-- merge the `development` branch into the `website` branch
-- push the `website` branch to GitHub
+- **merge** the `development` branch into the `website` branch
+- **push** the `website` branch to GitHub
 
 At this moment an automated GitHub Action will generate and publish the website.
 
@@ -247,8 +247,8 @@ Check the result at https://xpack.github.io/xpm/.
 In this Git repo:
 
 - select the `master` branch
-- merge the `development` branch into the `master` branch
-- push the `master` branch to GitHub
+- **merge** the `development` branch into the `master` branch
+- **push** the `master` branch to GitHub
 
 ### Close milestone
 
