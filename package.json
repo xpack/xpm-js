@@ -152,8 +152,8 @@
     ]
   },
   "topConfig": {
-    "longName": "xPack Project Manager",
-    "shortName": "xpm",
+    "descriptiveName": "xPack Project Manager",
+    "permalinkName": "xpm",
     "hasTriggerPublish": "true",
     "isWebPreview": "true"
   },
