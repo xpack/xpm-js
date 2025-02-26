@@ -3,6 +3,212 @@
 Changes in reverse chronological order.
 Don't forget to close GitHub [issues](https://github.com/xpack/xpm-js/issues/).
 
+## 2025-02-26
+
+* v0.20.6 prepared
+* bda8ba4 install.js: cosmetise message
+* fd23b55 install.js reindents
+* ca554ca #220: implement dependency platforms check
+* 99c8676 #219: do not warn missing local
+
+## 2025-02-24
+
+* 7408e2e website: re-generate commons
+* b66aa9e re-generate descriptive & permalink names
+
+## 2025-02-02
+
+* ad58f7f website: re-generate commons
+* 85a270e website: re-generate commons
+
+## 2025-01-31
+
+* 97dc8d4 website: updates and final common rework
+
+## 2025-01-30
+
+* 47e06a5 website: more rework with commons
+
+## 2025-01-29
+
+* adc47df website: more rework with commons
+
+## 2025-01-26
+
+* 0386a3f website: rework with _project
+
+## 2025-01-23
+
+* c02511f website: re-generate commons
+* 0721e18 website: re-generate commons
+
+## 2025-01-22
+
+* be8a65e re-generate commons
+* 3a6a529 website: re-generate commons
+
+## 2025-01-21
+
+* 936550c website: re-generate commons
+* 208ca65 website: re-generate commons
+* c8619f6 website: re-generate commons
+
+## 2025-01-20
+
+* 30ae550 website: getting-started NOT a build system
+* 70b921a website: re-generate commons
+
+## 2025-01-17
+
+* eae7197 website: re-generate commons
+* bbc78e0 re-generate commons
+* ad03973 website: re-generate commons
+
+## 2025-01-15
+
+* d816f56 getting-started: fix star address
+* 35f9120 website/package-lock.json update
+* 2ce3f5f website/package-lock.json update
+* b4d50a2 website: re-generate commons
+* e1a5e4c re-generate commons
+
+## 2025-01-14
+
+* 6ab7100 re-generate commons
+* b206bf7 re-generate commons
+
+## 2025-01-10
+
+* 78fc733 website: metadata update
+* 5e9ad9c website: re-generate commons
+
+## 2025-01-08
+
+* 6c45abb re-generate commons
+* 5e7dac1 website: re-generate commons
+* fe7bb94 package.json: update xConfig
+* 68a0a20 re-generate commons
+
+## 2025-01-07
+
+* b8da9be package-lock.json update
+* 463464d website: package.json no preset
+* 13808ca website: fix trackingID
+* 607315c package.json update
+* 3e6f68f website: re-generate commons - no preset
+* f11bced website: re-generate commons
+
+## 2025-01-06
+
+* ce9a80c website: navbar Documentation
+
+## 2025-01-05
+
+* 19a5b17 website: updates
+
+## 2025-01-02
+
+* 974e461 re-generate commons
+* 2c39d28 website: updates
+
+## 2024-12-31
+
+* 349b8a0 website: updates
+
+## 2024-12-30
+
+* 12aae10 website: updates
+* ff1da4d website: updates
+* 5490dc5 website: updates
+
+## 2024-12-28
+
+* 886cad2 website: guide update ninja.cmd
+* dddd51e website: getting-started update
+* 09106ec website: getting-started update
+* 42d358a website: getting-started update
+
+## 2024-12-27
+
+* 77d6ca3 re-generate commons
+* 4b8190e website: add cmake & meson integration
+* 16e7fd1 website: cosmetics
+* 6afe57a website: capitalise Meson
+* fab6af9 website: sidebar Create New GitHub Project
+* 3a29efd website: cosmetics
+* a012b8d website remove unused sun-rise*.jpg
+* 576a5b7 website: metadata updates
+* ae57648 website: user fix build-assets
+* a7b0ea5 website: guide source & binary packages
+* 4501d63 website: metadata explain buildFolderRelativePath
+* afc5aaf website: metadata explain buildFolderRelativePath
+* f1e8b66 website: user cosmetics
+* 4dd6740 website: add ci/cd integration
+
+## 2024-12-26
+
+* 22e3383 website: updates
+* e324693 website: updates
+* 0df36d6 website: updates
+* 2a49068 website updates
+
+## 2024-12-24
+
+* 1937c4a package-lock.json update
+* b86ceb8 re-generate commons
+* 6064ff3 website: updates
+* b31250b website: updates
+
+## 2024-12-23
+
+* 2f14698 website cleanups
+* e35ac84 website: re-generate blog posts
+
+## 2024-12-22
+
+* 4d3212d website: add robots.txt
+
+## 2024-12-21
+
+* a1e35da website: fix blog post dates
+* 600cc51 website: fix blog post dates
+* b38f9dd website: add _xpack.github.io
+
+## 2024-12-20
+
+* acf1e73 website: update redirects
+* cf017a8 website: update redirects
+* 1f80953 website: sidebar update policies
+* ea08127 website: re-generate commons
+* ae528fd website: re-generate commons
+
+## 2024-12-19
+
+* bb4eed7 website: re-generate commons
+* 9fd7c71 website re-generate commons
+* af3577d website re-generate commons
+
+## 2024-12-15
+
+* e45a59c re-generate top dot files
+* dd22ca5 website update
+* 945da06 website: fix links
+* c8ea1c4 website update
+
+## 2024-12-13
+
+* 8cb8b47 website updates
+* b7c0403 website: add preliminary New GitHub Project
+
+## 2024-12-11
+
+* 76afb25 website update
+* c3a94ea website: cli update
+* 6e1d08e README update
+* 28ffbe6 website: blog post release 0.20.5 published
+* 8302a9c 0.20.5
+* 5ddfdb9 prepare v0.20.5
+
 ## 2024-12-10
 
 * v0.20.5 prepared
