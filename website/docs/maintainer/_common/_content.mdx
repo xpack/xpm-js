@@ -62,9 +62,9 @@ kept as a legacy CommonJS dependency.
 
 As required by npm modules, this one also uses [SemVer](https://semver.org).
 
-- determine the next version (like <code>0.20.6</code>)
+- determine the next version (like <code>0.20.7</code>)
 - update the version in the top `package.json` file
-- use the new version, suffixed by `-pre`, like <code>0.20.6-pre</code>.
+- use the new version, suffixed by `-pre`, like <code>0.20.7-pre</code>.
 
 ### Update the `websiteConfig` in top `package.json` (if necessary)
 
@@ -96,7 +96,7 @@ Check GitHub Issues and Pull Requests:
 - https://github.com/xpack/xpm-js/pulls
 
 and fix them; assign them to a milestone
-(like <code>0.20.6</code>).
+(like <code>0.20.7</code>).
 
 ### Update `CHANGELOG.md`
 
@@ -135,8 +135,8 @@ to:
 *
 ```
 
-- add a new entry like _**\* v0.20.6 prepared**_
-- **commit** with a message like _**prepare v0.20.6**_
+- add a new entry like _**\* v0.20.7 prepared**_
+- **commit** with a message like _**prepare v0.20.7**_
 
 ### Prepare the release
 
@@ -153,7 +153,7 @@ to:
 ### Set the new version
 
 <CodeBlock language="sh"> {
-`npm version 0.20.6
+`npm version 0.20.7
 `} </CodeBlock>
 
 ### CI tests
@@ -174,7 +174,7 @@ npm run generate-website-blog-post
 
 - edit the front matter properties
 - select the correct summary
-- **commit** with _**website: blog post release 0.20.6 published**_
+- **commit** with _**website: blog post release 0.20.7 published**_
 - **push** the `development` branch
 
 ## Publish the release to npmjs.com
@@ -190,7 +190,8 @@ npm publish --access public
 ```
 
 After a few moments the version will be visible at
-[xpm Versions](https://www.npmjs.com/package/xpm?activeTab=versions).
+<a href="https://www.npmjs.com/package/xpm?activeTab=versions">npmjs.com</a>,
+the Versions tab.
 
 ### Manual install test
 
@@ -267,7 +268,7 @@ npm dist-tag ls xpm
 When the release is considered stable, promote it as `latest`:
 
 <CodeBlock language="sh"> {
-`npm dist-tag add xpm@0.20.6 latest
+`npm dist-tag add xpm@0.20.7 latest
 npm dist-tag ls xpm
 `} </CodeBlock>
 

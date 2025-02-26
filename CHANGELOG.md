@@ -5,7 +5,11 @@ Don't forget to close GitHub [issues](https://github.com/xpack/xpm-js/issues/).
 
 ## 2025-02-26
 
-* v0.20.6 prepared
+* v0.20.7 prepared
+* 3bf4b8b #220: implement dependency platforms check
+* e2d3852 website: blog post release 0.20.6 published
+* 59924fb 0.20.6
+* 661adc6 prepare v0.20.6
 * bda8ba4 install.js: cosmetise message
 * fd23b55 install.js reindents
 * ca554ca #220: implement dependency platforms check
