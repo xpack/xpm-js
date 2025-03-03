@@ -62,9 +62,9 @@ kept as a legacy CommonJS dependency.
 
 As required by npm modules, this one also uses [SemVer](https://semver.org).
 
-- determine the next version (like <code>0.20.7</code>)
+- determine the next version (like <code>0.20.8</code>)
 - update the version in the top `package.json` file
-- use the new version, suffixed by `-pre`, like <code>0.20.7-pre</code>.
+- use the new version, suffixed by `-pre`, like <code>0.20.8-pre</code>.
 
 ### Update the `websiteConfig` in top `package.json` (if necessary)
 
@@ -96,7 +96,7 @@ Check GitHub Issues and Pull Requests:
 - https://github.com/xpack/xpm-js/pulls
 
 and fix them; assign them to a milestone
-(like <code>0.20.7</code>).
+(like <code>0.20.8</code>).
 
 ### Update `CHANGELOG.md`
 
@@ -135,8 +135,8 @@ to:
 *
 ```
 
-- add a new entry like _**\* v0.20.7 prepared**_
-- **commit** with a message like _**prepare v0.20.7**_
+- add a new entry like _**\* v0.20.8 prepared**_
+- **commit** with a message like _**prepare v0.20.8**_
 
 ### Prepare the release
 
@@ -153,7 +153,7 @@ to:
 ### Set the new version
 
 <CodeBlock language="sh"> {
-`npm version 0.20.7
+`npm version 0.20.8
 `} </CodeBlock>
 
 ### CI tests
@@ -174,7 +174,7 @@ npm run generate-website-blog-post
 
 - edit the front matter properties
 - select the correct summary
-- **commit** with _**website: blog post release 0.20.7 published**_
+- **commit** with _**website: blog post release 0.20.8 published**_
 - **push** the `development` branch
 
 ## Publish the release to npmjs.com
@@ -201,7 +201,7 @@ Test if the package can be installed globally:
 npm install ----location=global xpm@next
 ```
 
-Validate the web site content in a local build via the npm `build` script:
+Validate the website content in a local build via the npm `build` script:
 
 ```sh
 npm run build
@@ -221,7 +221,7 @@ published in the project
 
 ## Publish the website
 
-The Web site deployment is performed automatically when pushing to the
+The website deployment is performed automatically when pushing to the
 `website` branch, by a dedicated workflow in
 [GitHub Actions](https://github.com/xpack/xpm-js/actions/workflows/publish-github-pages.yml).
 
@@ -268,7 +268,7 @@ npm dist-tag ls xpm
 When the release is considered stable, promote it as `latest`:
 
 <CodeBlock language="sh"> {
-`npm dist-tag add xpm@0.20.7 latest
+`npm dist-tag add xpm@0.20.8 latest
 npm dist-tag ls xpm
 `} </CodeBlock>
 
@@ -276,7 +276,7 @@ npm dist-tag ls xpm
 
 - in a separate browser windows, open [X/Twitter](https://x.com/)
 - using the `@xpack_project` account
-- paste the release name like **xPack xpm v0.20.7 released**
+- paste the release name like **xPack xpm v0.20.8 released**
 - paste the link to the Web page
   [release](/docs/releases/)
 - click the **Tweet** button

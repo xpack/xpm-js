@@ -38,7 +38,7 @@ function HomepageHeader() {
         </span>
         </p>
         <div className={styles.installWithCopy}>
-          <InstallWithCopy>npm install --location=global xpm@0.20.7</InstallWithCopy>
+          <InstallWithCopy>npm install --location=global xpm@0.20.8</InstallWithCopy>
         </div>
       </div>
     </header>
