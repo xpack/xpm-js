@@ -55,6 +55,7 @@ tests/
 README-*.md
 LICENSE-*
 !LICENSE-XPACK
+!LICENSE-liquid
 CONTRIBUTING**
 NOTES.md
 
