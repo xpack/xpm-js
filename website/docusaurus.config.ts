@@ -171,6 +171,15 @@ const config: Config = {
       attributes: {
         rel: 'icon',
         type: 'image/png',
+        href: actualBaseUrl + 'favicons/favicon-96x96.png',
+        sizes: '96x96'
+      }
+    },
+    {
+      tagName: 'link',
+      attributes: {
+        rel: 'icon',
+        type: 'image/png',
         href: actualBaseUrl + 'favicons/favicon-48x48.png',
         sizes: '48x48'
       }
@@ -223,7 +232,7 @@ const config: Config = {
 
       logo: {
         alt: 'xPack Logo',
-        src: 'img/components-256.png',
+        src: 'img/logo-256.png',
         href: 'https://xpack.github.io/'
       },
       items: [

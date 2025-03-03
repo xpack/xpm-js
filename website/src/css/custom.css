@@ -7,7 +7,11 @@
  * work well for content-centric websites.
  */
 
-/* You can override the default Infima variables here. */
+/*
+ * You can override the default Infima variables here.
+ * https://docusaurus.io/docs/styling-layout#styling-your-site-with-infima
+ */
+/* xPack blue colours */
 :root {
   --ifm-color-primary: #3a88fe;
   --ifm-color-primary-dark: #1b75fe;
