@@ -498,7 +498,7 @@ With the editor of your choice:
 ### License
 
 The original content is released under the
-[MIT License](https://opensource.org/licenses/MIT), with all rights reserved to
+[MIT License](https://opensource.org/license/mit), with all rights reserved to
 [Liviu Ionescu](https://github.com/ilg-ul/).
 ```
 
