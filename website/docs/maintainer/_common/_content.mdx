@@ -3,42 +3,47 @@
 
 import CodeBlock from '@theme/CodeBlock';
 
-import Prerequisites from '../../developer/_common/_prerequisites.mdx';
-import GetProjectSources from '../../developer/_common/_get-project-sources.mdx';
+import CommonBuildWebsiteLocally from '@site/docs/_common/_build-website-locally.mdx';
+import CommonPrerequisites from '@site/docs/_common/_prerequisites.mdx';
+import CommonGetProjectSources from '@site/docs/_common/_get-project-sources.mdx';
+import CommonStartLocalWebServer from '@site/docs/_common/_start-local-web-server.mdx';
+import CommonPublishWebsite from '@site/docs/_common/_publish-website.mdx';
+import CommonPrepareWebsite from '@site/docs/_common/_prepare-website.mdx';
+import CommonGenerateWebsiteCommons from '@site/docs/_common/_generate-website-commons.mdx';
 
-import DependenciesDetails from '../_project/_dependencies-details.mdx';
+import CommonAnalytics from '../_common/_analytics.mdx';
+import CommonCheckGit from '../_common/_check-git.mdx';
+import CommonIncreaseVersion from '../_common/_increase-version.mdx';
+import CommonCloseMilestone from '../_common/_close-milestone.mdx';
+import CommonCiTests from '../_common/_ci-tests.mdx';
+import CommonCloseOpenIssues from '../_common/_close-open-issues.mdx';
+import CommonFixOpenIssues from '../_common/_fix-open-issues.mdx';
+import CommonShareOnTwitter from '../_common/_share-on-twitter.mdx'
+import CommonTagNpmLatest from '../_common/_tag-npm-latest.mdx';
+import CommonUpdateMainBranch from '../_common/_update-main-branch.mdx';
+import CommonPublishRelease from '../_common/_publish-release.mdx'
+import CommonPrepareNewBlogPost from '../_common/_prepare-new-blog-post.mdx'
+import CommonSetNewVersion from '../_common/_set-new-version.mdx';
+import CommonPrepareRelease from '../_common/_prepare-release.mdx'
+import CommonUpdateChangelog from '../_common/_update-changelog.mdx';
+import CommonUpdateWebsiteConfig from '../_common/_update-website-config.mdx';
 
-import More from '../_project/_more.mdx';
+import ProjectDependenciesDetails from '../_project/_dependencies-details.mdx';
+import ProjectMore from '../_project/_more.mdx';
 
 {/* ------------------------------------------------------------------------ */}
 
-<Prerequisites nodeVersion="18.0.0" nodeVersionMajor="18"/>
+<CommonPrerequisites nodeVersion="18.0.0" nodeVersionMajor="18"/>
 
-<GetProjectSources />
+<CommonGetProjectSources />
 
 ## Release schedule
 
 There are no fixed releases.
 
-## Prepare the new releases
+## Prepare a new release
 
-### Check Git
-
-In the `xpack/xpm-js` Git repo:
-
-- switch to the `development` branch
-- pull new changes
-- if necessary, **merge** the `master` branch
-- if necessary, **merge** the `website` branch
-
-:::caution
-
-This is really important, otherwise the next steps will build again the previous release!
-
-:::
-
-The `master` branch should be unchanged since the previous release
-and will be updated when the new release is out.
+<CommonCheckGit />
 
 ### Update npm packages
 
@@ -56,142 +61,29 @@ kept as a legacy CommonJS dependency.
   up to date
 - **commit** the changes
 
-<DependenciesDetails />
+<ProjectDependenciesDetails />
 
-### Increase the version and update it in the top `package.json`
+<CommonIncreaseVersion />
 
-As required by npm modules, this one also uses [SemVer](https://semver.org).
+<CommonUpdateWebsiteConfig />
 
-- determine the next version (like <code>0.20.8</code>)
-- update the version in the top `package.json` file
-- use the new version, suffixed by `-pre`, like <code>0.20.8-pre</code>.
+<CommonGenerateWebsiteCommons />
 
-### Update the `websiteConfig` in top `package.json` (if necessary)
+<CommonStartLocalWebServer />
 
-Check and possibly update the `websiteConfig`.
+<CommonFixOpenIssues />
 
-### Update the website commons
+<CommonUpdateChangelog />
 
-Run the `website-generate-commons` script in the top `package.json`;
-this will also update the top README.md file.
+<CommonPrepareRelease />
 
-### Start the local web server
+<CommonSetNewVersion />
 
-Execute the npm script `clean` then `start` in the website sub-project,
-or run the following in a terminal:
+<CommonCiTests />
 
-```sh
-npm run clean
-npm run start
-```
+<CommonPrepareNewBlogPost />
 
-Navigate to the **Maintainer Info** page,
-the **Fix possible open issues** section.
-
-### Fix possible open issues
-
-Check GitHub Issues and Pull Requests:
-
-- https://github.com/xpack/xpm-js/issues
-- https://github.com/xpack/xpm-js/pulls
-
-and fix them; assign them to a milestone
-(like <code>0.20.8</code>).
-
-### Update `CHANGELOG.md`
-
-- open the `CHANGELOG.md` file
-- check if all previous fixed issues are in
-- check the latest commits `xpm run git-log`; if necessary, copy/paste lines,
-  group by dates and edit them using the below regular expressions
-
-- to turn the dates into headings, change from:
-
-```txt
-
-
-([0-9][0-9][0-9][0-9]-[0-9][0-9]-[0-9][0-9]) [*]
-```
-
-to:
-
-```txt
-
-
-## $1
-
-*
-```
-
-- to remove the rest of the dates, change from:
-
-```txt
-^[0-9][0-9][0-9][0-9]-[0-9][0-9]-[0-9][0-9] [*]
-```
-
-to:
-
-```txt
-*
-```
-
-- add a new entry like _**\* v0.20.8 prepared**_
-- **commit** with a message like _**prepare v0.20.8**_
-
-### Prepare the release
-
-- terminate all running tasks (**Terminal** → **Terminate Task...**)
-- switch to the `development` branch
-- commit everything
-- `npm run fix`
-- if there are changes, **commit** all changes into the `development` branch
-- `npm run test`
-- `npm run pack`; check the list of packaged files, possibly
-  update `.npmignore`
-- **push** all changes to GitHub
-
-### Set the new version
-
-<CodeBlock language="sh"> {
-`npm version 0.20.8
-`} </CodeBlock>
-
-### CI tests
-
-- the `postversion` npm script should also update tags via
-  `git push origin --tags`; this should trigger CI
-- **wait for CI tests to complete**
-- check https://github.com/xpack/xpm-js/actions
-
-## Prepare a new blog post
-
-- check and possibly update the `website/blog/_templates/blog-post-release-liquid.mdx`
-- run the `generate-website-blog-post` npm script; this will add a file in the `website/blog` folder:
-
-```sh
-npm run generate-website-blog-post
-```
-
-- edit the front matter properties
-- select the correct summary
-- **commit** with _**website: blog post release 0.20.8 published**_
-- **push** the `development` branch
-
-## Publish the release to npmjs.com
-
-```sh
-npm publish --tag next
-```
-
-- when publishing for the first time, use:
-
-```sh
-npm publish --access public
-```
-
-After a few moments the version will be visible at
-<a href="https://www.npmjs.com/package/xpm?activeTab=versions">npmjs.com</a>,
-the Versions tab.
+<CommonPublishRelease />
 
 ### Manual install test
 
@@ -201,95 +93,31 @@ Test if the package can be installed globally:
 npm install --location=global xpm@next
 ```
 
-Validate the website content in a local build via the npm `build` script:
+Validate the website content in a local build via the npm **build** script:
 
 ```sh
 npm run build
 ```
 
-## Prepare the website
+<CommonPrepareWebsite />
 
-The documentation site is built with [Docusaurus](https://docusaurus.io) and
-published in the project
-[GitHub Pages](https://xpack.github.io/xpm/).
+<CommonBuildWebsiteLocally />
 
-- switch to the `development` branch
-- run the `website-generate-commons` script in the top `package.json`
-- **commit** all changes
-- run the `build` script in `website/package.json`
-- fix any broken links, if any
-
-## Publish the website
-
-The website deployment is performed automatically when pushing to the
-`website` branch, by a dedicated workflow in
-[GitHub Actions](https://github.com/xpack/xpm-js/actions/workflows/publish-github-pages.yml).
-
-- switch to the `website` branch
-- **merge** the `development` branch into the `website` branch
-- **push** the `website` branch to GitHub
-
-At this moment an automated GitHub Action will generate and publish the website.
-
-- the new release blog post is
-in https://xpack.github.io/xpm/blog/
-- remember the post URL, since it must be used to update the release page
-and the X/Twitter announcement
-
-The `website` branch may be subsequently updated, as long as the
-version in `package.json` is not changed.
-
-Check the result at https://xpack.github.io/xpm/.
+<CommonPublishWebsite />
 
 ## Final updates
 
-### Update the `master` branch
+<CommonUpdateMainBranch />
 
-In this Git repo:
+<CommonCloseOpenIssues />
 
-- select the `master` branch
-- **merge** the `development` branch into the `master` branch
-- **push** the `master` branch to GitHub
+<CommonCloseMilestone />
 
-### Close milestone
+<CommonTagNpmLatest />
 
-In https://github.com/xpack/xpm-js/milestones:
+<CommonShareOnTwitter />
 
-- close the current milestone.
-
-### Check npm package tags
-
-```sh
-npm dist-tag ls xpm
-```
-
-### Tag the npm package as `latest`
-
-When the release is considered stable, promote it as `latest`:
-
-<CodeBlock language="sh"> {
-`npm dist-tag add xpm@0.20.8 latest
-npm dist-tag ls xpm
-`} </CodeBlock>
-
-## Share on X/Twitter
-
-- in a separate browser windows, open [X/Twitter](https://x.com/)
-- using the `@xpack_project` account
-- paste the release name like **xPack xpm v0.20.8 released**
-- paste the link to the Web page
-  [release](/docs/releases/)
-- click the **Tweet** button
-
-## Analytics
-
-- npmjs.com [`xpm`](https://www.npmjs.com/package/xpm/) package
-  - latest release, per month
-[![NPM Version](https://img.shields.io/npm/v/xpm?color=green)](https://www.npmjs.com/package/xpm/)
-[![NPM Downloads](https://img.shields.io/npm/dm/xpm)](https://www.npmjs.com/package/xpm/)
-  - all releases [![NPM Downloads](https://img.shields.io/npm/dt/xpm)](https://www.npmjs.com/package/xpm/)
-
-Credit to [Shields IO](https://shields.io) for the badges.
+<CommonAnalytics />
 
 ## Useful links
 
@@ -300,4 +128,4 @@ Credit to [Shields IO](https://shields.io) for the badges.
 - https://jsdoc.app/index.html
 - https://redfin.engineering/node-modules-at-war-why-commonjs-and-es-modules-cant-get-along-9617135eeca1
 
-<More />
+<ProjectMore />

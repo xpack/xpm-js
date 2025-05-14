@@ -1,0 +1,19 @@
+{/* DO NOT EDIT! */}
+{/* Automatically generated from docusaurus-template-liquid/templates/docusaurus. */}
+
+{/* ------------------------------------------------------------------------ */}
+
+### Prepare a new blog post
+
+- check and possibly update the `website/blog/_templates/blog-post*-release-liquid.mdx`
+- run the **generate-website-blog-post** npm script; this will add a file in the `website/blog` folder:
+  ```sh
+  npm run generate-website-blog-post -C website
+  ```
+- edit the front matter properties (the `description` property)
+- select the correct summary (maintenance vs. new release)
+- add entries in the **Bug fixes**; use the following syntax
+  ```
+  - [[#N](https://github.com/xpack/xpm-js/issues/N)]:
+  ```
+- **commit** with the message _**website: blog post release 0.20.8 published**_

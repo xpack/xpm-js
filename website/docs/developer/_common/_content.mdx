@@ -5,50 +5,26 @@
 
 import CodeBlock from '@theme/CodeBlock';
 
-import Prerequisites from '../_common/_prerequisites.mdx';
-import GetProjectSources from '../_common/_get-project-sources.mdx';
+import CommonPrerequisites from '@site/docs/_common/_prerequisites.mdx';
+import CommonGetProjectSources from '@site/docs/_common/_get-project-sources.mdx';
 
-import TestResults from '../_project/_test-results.mdx';
-import StyleExceptions from '../_project/_style-exceptions.mdx';
-import CoverageExceptions from '../_project/_coverage-exceptions.mdx';
+import ProjectTestResults from '../_project/_test-results.mdx';
+import ProjectStyleExceptions from '../_project/_style-exceptions.mdx';
+import ProjectCoverageExceptions from '../_project/_coverage-exceptions.mdx';
 
 {/* ------------------------------------------------------------------------ */}
 
 This project is currently written in JavaScript, but a rewrite in
 TypeScript is planned.
 
-<Prerequisites nodeVersion="18.0.0" nodeVersionMajor="18"/>
+<CommonPrerequisites nodeVersion="18.0.0" nodeVersionMajor="18"/>
 
-<GetProjectSources />
-
-:::tip
-
-To contribute Pull Requests, fork the project and be sure the **Copy the master branch only** is **disabled**.
-
-Use the `xpack-development` branch and be sure you contribute the
-Pull Requests back to the `xpack-development` branch.
-
-:::
+<CommonGetProjectSources />
 
 ## Satisfy dependencies
 
 ```sh
 npm install
-```
-
-## Add links for development
-
-To facilitate the use of this module in other packages, add a link
-from the central npm storage to this local development folder:
-
-```sh
-npm link
-```
-
-And in the projects referring it:
-
-```sh
-npm link xpm
 ```
 
 ## Start the compile background task
@@ -59,6 +35,7 @@ this, start it in `watch` mode.
 ```sh
 npm run compile-watch
 ```
+
 ## Language standard compliance
 
 The module uses ECMAScript 6 class definitions and modules.
@@ -88,7 +65,7 @@ all files should limit the line length to 80.
 
 Known and accepted exceptions:
 
-<StyleExceptions />
+<ProjectStyleExceptions />
 
 To manually fix compliance with the style guide (where possible):
 
@@ -131,7 +108,7 @@ npm install
 npm run test
 ```
 
-<TestResults />
+<ProjectTestResults />
 
 ### Continuous Integration (CI)
 

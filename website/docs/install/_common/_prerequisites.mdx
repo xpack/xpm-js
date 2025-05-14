@@ -1,0 +1,52 @@
+{/* DO NOT EDIT! */}
+{/* Automatically generated from docusaurus-template-liquid/templates/docusaurus. */}
+
+{/* ------------------------------------------------------------------------ */}
+
+### Prerequisites
+
+The only requirement for an automated install is a recent
+[xpm](https://xpack.github.io/xpm/), which is a portable
+[Node.js](https://nodejs.org) command line application
+that complements [npm](https://docs.npmjs.com)
+with several extra features specific to
+**C/C++ projects**.
+
+To install **xpm**,
+follow the instructions in the
+[xpm install](https://xpack.github.io/xpm/install/) page.
+
+If already installed, it is always a good idea to update it to the
+latest version with:
+
+```sh
+npm install --location=global xpm@latest
+```
+
+:::tip
+
+Although not mandated by **xpm**, it is also a good idea to upgrade
+**npm** to the latest version, and
+**node** to a reasonably recent version (currently **npm** requires
+a **node** >=18.17.0).
+
+:::
+
+<details>
+<summary>Local installs</summary>
+
+One of the xPack design goals is to allow each project to
+choose the exact versions of the libraries it requires.
+
+Similarly to **npm** being able to install specific versions of the
+JavaScript tools into each project,
+**xpm** was also designed to be able to install specific versions of the
+required libraries locally into each project.
+
+Therefore, similarly to the way **npm** installs the JavaScript packages into
+`node_modules`, **xpm** installs the libraries into
+`xpacks`. Here there will be separate folders with the installed
+packages, for example
+<code>xpacks/xpm</code>.
+
+</details>

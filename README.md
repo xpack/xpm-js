@@ -1,6 +1,6 @@
 [![GitHub package.json version](https://img.shields.io/github/package-json/v/xpack/xpm-js)](https://github.com/xpack/xpm-js/blob/master/package.json)
 [![GitHub release (latest by date)](https://img.shields.io/github/v/release/xpack/xpm-js)](https://github.com/xpack/xpm-js/releases)
-[![NPM Version](https://img.shields.io/npm/v/xpm?color=green)](https://www.npmjs.com/package/xpm/)
+[![NPM Version](https://img.shields.io/npm/v/xpm?color=blue)](https://www.npmjs.com/package/xpm/)
 [![license](https://img.shields.io/github/license/xpack/xpm-js)](https://github.com/xpack/xpm-js/blob/master/LICENSE)
 
 # The xPack Project Manager

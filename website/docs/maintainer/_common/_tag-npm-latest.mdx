@@ -1,0 +1,34 @@
+{/* DO NOT EDIT! */}
+{/* Automatically generated from docusaurus-template-liquid/templates/docusaurus. */}
+
+import CodeBlock from '@theme/CodeBlock';
+
+{/* ------------------------------------------------------------------------ */}
+
+### Check npm package tags
+
+Run the following command in a terminal:
+
+```sh
+npm dist-tag ls xpm
+```
+
+### Tag the npm package as `latest`
+
+When the release is considered stable, promote it as `latest`:
+
+<CodeBlock language="sh"> {
+`npm dist-tag add xpm@0.20.8 latest
+`} </CodeBlock>
+
+Check the result:
+
+<CodeBlock language="sh"> {
+`npm dist-tag ls xpm
+`} </CodeBlock>
+
+In case the release proves problematic and needs to be unpublished:
+
+<CodeBlock language="sh"> {
+`npm unpublish xpm@0.20.8
+`} </CodeBlock>
