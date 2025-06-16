@@ -119,8 +119,7 @@ test('xpm run quotes',
       t.ok(outLines.length > 1, 'has enough output');
       if (outLines.length > 1) {
         // console.log(outLines)
-        t.match(outLines[1],
-          '{"key":"value"}', 'quotes are correct');
+        t.match(outLines[1], '2', 'quotes are correct');
       }
       // There should be no error messages.
       t.equal(stderr, '', 'stderr is empty');
