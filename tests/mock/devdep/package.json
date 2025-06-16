@@ -38,8 +38,11 @@
     },
     "properties": {},
     "actions": {
-      "quotes": "node -p \"JSON.stringify({'key':'value'})\""
-    },
-    "buildConfigurations": {}
+      "echo_rot13": "echo {{ 'echo' | rot13 }}",
+      "prepare": [
+        "{{ properties.commandEchoGLOBAL[os.platform] }}"
+      ],
+      "quotes": "node -p \"1+1\""
+    }
   }
 }
