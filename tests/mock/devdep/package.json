@@ -37,7 +37,9 @@
       }
     },
     "properties": {},
-    "actions": {},
+    "actions": {
+            "quotes": "node -p \"JSON.stringify({'key':'value'})\""
+    },
     "buildConfigurations": {}
   }
 }
