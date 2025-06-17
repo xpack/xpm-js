@@ -24,6 +24,8 @@
 
 // The `[node-tap](http://www.node-tap.org)` framework.
 import { test } from 'tap'
+import * as path from 'node:path'
+import { fileURLToPath } from 'node:url'
 
 // ----------------------------------------------------------------------------
 
