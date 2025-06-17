@@ -42,7 +42,7 @@
       "prepare": [
         "{{ properties.commandEchoGLOBAL[os.platform] }}"
       ],
-      "quotes": "node -p \"1+1\""
+      "quotes": "node -p \"1 + 1\""
     }
   }
 }
