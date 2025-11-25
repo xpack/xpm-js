@@ -17,7 +17,7 @@ import ProjectCoverageExceptions from '../_project/_coverage-exceptions.mdx';
 This project is currently written in JavaScript, but a rewrite in
 TypeScript is planned.
 
-<CommonPrerequisites nodeVersion="18.0.0" nodeVersionMajor="18"/>
+<CommonPrerequisites nodeVersion="20.0.0" nodeVersionMajor="20"/>
 
 <CommonGetProjectSources />
 
@@ -72,7 +72,7 @@ To manually fix compliance with the style guide (where possible):
 <CodeBlock language="console"> {
 `% npm run fix
 
-> xpm@0.20.8 fix
+> xpm@0.21.0 fix
 > standard --fix test
 ...
 `} </CodeBlock>
@@ -81,7 +81,7 @@ To manually fix compliance with the style guide (where possible):
 
 The documentation metadata follows the [JSdoc](http://usejsdoc.org) tags.
 
-To enforce checking at file level, add the following comments right after
+To enforce checking at file level, add the following comments immediately after
 the `use strict`:
 
 ```js
@@ -90,17 +90,17 @@ the `use strict`:
 /* eslint max-len: [ "error", 80, { "ignoreUrls": true } ] */
 ```
 
-Note: be sure C style comments are used, C++ styles are not parsed by
+Note: ensure C style comments are used, as C++ styles are not parsed by
 [ESLint](http://eslint.org).
 
 ## Tests
 
-The tests use the [`node-tap`](http://www.node-tap.org) framework
+The tests utilise the [`node-tap`](http://www.node-tap.org) framework
 (_A Test-Anything-Protocol library for Node.js_, written by Isaac Schlueter).
 
-Tests can be written in TypeScript, assuming `ts-node` is also installed.
+Tests can be written in TypeScript, provided `ts-node` is also installed.
 
-As for any `npm` package, the standard way to run the project tests is via
+As with any `npm` package, the standard method to execute the project tests is via
 `npm run test`:
 
 ```sh
@@ -113,6 +113,6 @@ npm run test
 ### Continuous Integration (CI)
 
 The module is 
-CI tested on every push via
+subject to CI testing on every push via
 [GitHub Actions](https://github.com/xpack/xpm-js/actions), on Ubuntu,
-Windows and macOS, using node 18, 20 and 22.
+Windows and macOS, utilising node 18, 20 and 22.

@@ -20,12 +20,12 @@ such as dependency installation, and ensuring reproducibility.
 xpm packages are managed by **[xpm](https://xpack.github.io/xpm/)**
 (the xPack Project Manager), a
 utility that complements the **[npm](https://docs.npmjs.com/cli/)**
-CLI, the widely-used JavaScript
+CLI, the widely-utilised JavaScript
 package manager, by introducing language-neutral features.
 
 The xPacks Framework **does not establish a new package format**.
 Instead, it **adopts the standard npm package format**, which comprises
-a collection of files and directories, along with a `package.json`
+a collection of files and folders, along with a `package.json`
 file containing the metadata.
 
 **xpm** is capable of installing packages from the same repositories
@@ -45,17 +45,17 @@ often platform-specific binary tools.
 are not restricted to any particular programming language.
 
 **Binary xpm packages** are also standard npm packages but have
-minimal contents, generally limited to a `package.json`  file.
+minimal contents, generally limited to a `package.json` file.
 Since these packages provide executables for multiple platforms —
 many of which can be considerably large — it is impractical to
 include all binaries within the npm package itself. Instead, the
-`package.json`  file includes references (URLs) to platform-specific
+`package.json` file includes references (URLs) to platform-specific
 binary archives (e.g., `.tar.gz` for Unix or `.zip` for Windows).
 
 These archives, along with the package metadata, are extracted.
 Additionally, links or forwarders to the executables are created
-in a `.bin` folder, thereby eliminating the need to add multiple
-directories to the system PATH.
+within a `.bin` folder, thereby eliminating the need to add multiple
+folders to the system PATH.
 
 In conclusion, xpm packages simplify and streamline the installation
 process for source libraries and tools, enhancing efficiency and

@@ -1,17 +1,16 @@
 // DO NOT EDIT!
 // Automatically generated from docusaurus-template-liquid/templates/docusaurus.
 
-import {themes as prismThemes} from 'prism-react-renderer';
-import type {Config} from '@docusaurus/types';
+/* eslint-disable */
+import { themes as prismThemes } from 'prism-react-renderer';
+import type { Config } from '@docusaurus/types';
 import type * as Preset from '@docusaurus/preset-classic';
 // import logger from '@docusaurus/logger';
 import util from 'node:util';
-
 import cliNavbar from './docusaurus-config-navbar-cli';
-import {customDocsNavbarItem} from './navbar-docs-items';
-
-import {redirects} from './docusaurus-config-redirects';
-import {getCustomFields} from './customFields';
+import { customDocsNavbarItem } from './navbar-docs-items';
+import { redirects } from './docusaurus-config-redirects';
+import { getCustomFields } from './customFields';
 
 // The node.js modules cannot be used in modules imported in browser code:
 // webpack < 5 used to include polyfills for node.js core modules by default.
@@ -24,7 +23,7 @@ const customFields = getCustomFields();
 console.log('customFields: ' + util.inspect(customFields));
 
 const actualBaseUrl = process.env.DOCUSAURUS_BASEURL ??
-    '/xpm-js/';
+  '/xpm-js/';
 
 // ----------------------------------------------------------------------------
 
@@ -49,7 +48,6 @@ const config: Config = {
 
   onBrokenAnchors: 'throw',
   onBrokenLinks: 'throw',
-  onBrokenMarkdownLinks: 'throw',
 
   onDuplicateRoutes: 'throw',
 
@@ -65,73 +63,18 @@ const config: Config = {
     locales: ['en'],
   },
 
+  markdown: {
+    format: 'detect',
+    hooks: {
+        onBrokenMarkdownLinks: 'throw'
+    }
+  },
+
   plugins: [
-    [
-      '@docusaurus/plugin-content-docs',
-      {
-        sidebarPath: './sidebars.ts',
-        // Please change this to your repo.
-        // Remove this to remove the "edit this page" links.
-        editUrl: 'https://github.com/xpack/xpm-js/edit/website/website/',
-        // showLastUpdateAuthor: true,
-        showLastUpdateTime: true,
-      },
-    ],
-    [
-      // https://docusaurus.io/docs/api/plugins/@docusaurus/plugin-content-blog
-      '@docusaurus/plugin-content-blog',
-      {
-        showReadingTime: true,
-        blogSidebarCount: 8,
-        feedOptions: {
-          type: ['rss', 'atom'],
-          xslt: true,
-        },
-        // Please change this to your repo.
-        // Remove this to remove the "edit this page" links.
-        editUrl: 'https://github.com/xpack/xpm-js/edit/website/website/',
-        // Useful options to enforce blogging best practices
-        onInlineTags: 'warn',
-        onInlineAuthors: 'warn',
-        onUntruncatedBlogPosts: 'warn',
-      },
-    ],
-    [
-      '@docusaurus/plugin-content-pages',
-      {}
-    ],
     [
       // https://docusaurus.io/docs/next/api/plugins/@docusaurus/plugin-client-redirects#redirects
       '@docusaurus/plugin-client-redirects',
       redirects,
-    ],
-    [
-      '@docusaurus/plugin-debug',
-      {}
-    ],
-    [
-      // https://docusaurus.io/docs/api/plugins/@docusaurus/plugin-google-gtag
-      // https://tagassistant.google.com
-      '@docusaurus/plugin-google-gtag',
-      {
-        trackingID: 'G-8WX9T80JEK',
-        anonymizeIP: false,
-      }
-    ],
-    [
-      // https://docusaurus.io/docs/api/plugins/@docusaurus/plugin-sitemap
-      '@docusaurus/plugin-sitemap',
-      {
-        lastmod: 'date',
-        changefreq: 'weekly',
-        priority: 0.5,
-        ignorePatterns: [
-          actualBaseUrl + 'blog/archive/**',
-          actualBaseUrl + 'blog/authors/**',
-          actualBaseUrl + 'blog/tags/**'
-        ],
-        filename: 'sitemap.xml',
-      }
     ],
     [
       '@docusaurus/plugin-ideal-image',
@@ -149,18 +92,70 @@ const config: Config = {
   ],
 
   themes: [
+    // [
+    //   // Explicitly required when not using `preset-classic`.
+    //   // https://docusaurus.io/docs/search#using-algolia-docsearch
+    //   '@docusaurus/theme-search-algolia',
+    //   {
+    //   }
+    // ],
+  ],
+
+  presets: [
     [
-      '@docusaurus/theme-classic',
+      'classic',
       {
-        customCss: './src/css/custom.css',
-      }
-    ],
-    [
-      // Explicitly required when not using `preset-classic`.
-      // https://docusaurus.io/docs/search#using-algolia-docsearch
-      '@docusaurus/theme-search-algolia',
-      {
-      }
+        docs: {
+          sidebarPath: './sidebars.ts',
+          // Please change this to your repo.
+          // Remove this to remove the "edit this page" links.
+          editUrl: 'https://github.com/xpack/xpm-js/edit/website/website/',
+          // showLastUpdateAuthor: true,
+          showLastUpdateTime: true,
+        },
+        // https://docusaurus.io/docs/api/plugins/@docusaurus/plugin-content-blog
+        blog: {
+          showReadingTime: true,
+          blogSidebarCount: 8,
+          feedOptions: {
+            type: ['rss', 'atom'],
+            xslt: true,
+          },
+          // Please change this to your repo.
+          // Remove this to remove the "edit this page" links.
+          editUrl: 'https://github.com/xpack/xpm-js/edit/website/website/',
+          // Useful options to enforce blogging best practices
+          onInlineTags: 'warn',
+          onInlineAuthors: 'warn',
+          onUntruncatedBlogPosts: 'warn',
+        },
+        pages: {},
+        // https://docusaurus.io/docs/api/plugins/@docusaurus/plugin-google-gtag
+        // https://tagassistant.google.com
+        gtag: {
+          trackingID: 'G-8WX9T80JEK',
+          anonymizeIP: false,
+        },
+        // https://docusaurus.io/docs/api/plugins/@docusaurus/plugin-sitemap
+        sitemap: {
+          lastmod: 'date',
+          changefreq: 'weekly',
+          priority: 0.5,
+          ignorePatterns: [
+            actualBaseUrl + 'blog/archive/**',
+            actualBaseUrl + 'blog/authors/**',
+            actualBaseUrl + 'blog/tags/**'
+          ],
+          filename: 'sitemap.xml',
+        },
+
+        debug: true,
+
+        theme: {
+          customCss: './src/css/custom.css',
+        },
+
+      } satisfies Preset.Options,
     ],
   ],
 
@@ -411,6 +406,12 @@ const config: Config = {
       insights: false,
     },
   } satisfies Preset.ThemeConfig,
+
+  // TODO: find out how to disable cascade CSSs.
+  // future: {
+  //   v4: true,
+  //   experimental_faster: true,
+  // },
 
   customFields: customFields,
 };

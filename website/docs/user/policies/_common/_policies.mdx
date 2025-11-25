@@ -3,9 +3,9 @@
 
 {/* ------------------------------------------------------------------------ */}
 
-Similarly to CMake, **{props.name}**, policies are employed to preserve backward-compatible behaviour across multiple releases.
+Similarly to CMake, **{props.name}** policies are utilised to preserve backward-compatible behaviour across multiple releases.
 
-Newer **{props.name}** releases can adjust some functionality to match that of an older release, based on the value of the <code>minimum{String(props.name).charAt(0).toUpperCase() + String(props.name).slice(1)}Required</code> property in <code>{props.fileName}.json</code>.
+Newer **{props.name}** releases can adjust some functionality to match that of an older release, based on the value of the <code>minimum{String(props.name).charAt(0).toUpperCase() + String(props.name).slice(1)}Required</code> property within <code>{props.fileName}.json</code>.
 
 When such policies are applied, warnings are issued to inform developers about deprecated features, providing them with time to update their packages.
 

@@ -3,7 +3,7 @@
  * Automatically generated from docusaurus-template-liquid/templates/docusaurus.
  *
  * This file is part of the xPack project (http://xpack.github.io).
- * Copyright (c) 2024 Liviu Ionescu. All rights reserved.
+ * Copyright (c) 2024-2025 Liviu Ionescu. All rights reserved.
  *
  * Permission to use, copy, modify, and/or distribute this software
  * for any purpose is hereby granted, under the terms of the MIT license.
@@ -38,8 +38,7 @@ function HomepageHeader() {
         </span>
         </p>
         <div className={styles.installWithCopy}>
-          <InstallWithCopy>npm install --global xpm@0.20.8</InstallWithCopy>
-
+          <InstallWithCopy>npm install --global xpm@0.21.0</InstallWithCopy>
         </div>
       </div>
     </header>

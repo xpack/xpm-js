@@ -7,7 +7,7 @@ import CodeBlock from '@theme/CodeBlock';
 
 ### Check npm package tags
 
-Run the following command in a terminal:
+Execute the following command in a terminal:
 
 ```sh
 npm dist-tag ls xpm
@@ -18,7 +18,7 @@ npm dist-tag ls xpm
 When the release is considered stable, promote it as `latest`:
 
 <CodeBlock language="sh"> {
-`npm dist-tag add xpm@0.20.8 latest
+`npm dist-tag add xpm@0.21.0 latest
 `} </CodeBlock>
 
 Check the result:
@@ -27,8 +27,8 @@ Check the result:
 `npm dist-tag ls xpm
 `} </CodeBlock>
 
-In case the release proves problematic and needs to be unpublished:
+Should the release prove problematic and require unpublishing:
 
 <CodeBlock language="sh"> {
-`npm unpublish xpm@0.20.8
+`npm unpublish xpm@0.21.0
 `} </CodeBlock>

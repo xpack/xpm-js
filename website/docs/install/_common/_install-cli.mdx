@@ -14,7 +14,7 @@ import ProjectTroubleshootingWindows from '../_project/_troubleshooting-windows.
 
 {/* ------------------------------------------------------------------------ */}
 
-## Install
+## Installation
 
 :::caution
 
@@ -25,17 +25,41 @@ unfortunately share the same name
 
 :::
 
-Once the environment is correctly configured, use the following
-command to install the **latest** version of **xpm**:
+The package is available as
+[`xpm`](https://www.npmjs.com/package/xpm/)
+from the public [`npmjs`](https://www.npmjs.com) repository;
+it may be added as a
+development dependency to any **npm**
+project or it may be installed into the user's global environment.
+
+### Project installation
+
+The command to install the
+**latest** available version of **xpm** as a development dependency in an **npm** project is:
+
+```sh
+npm install xpm@latest --save-dev
+```
+
+For a **specific version**, use the explicit version numbers:
+
+<CodeBlock language="sh"> {
+`npm install xpm@0.21.0 --save-dev
+`} </CodeBlock>
+
+### Global installation
+
+Since the package includes command-line tools, it may also
+be installed globally and utilised in any project.
 
 ```sh
 npm install --location=global xpm@latest
 ```
 
-To install a **specific version**, specify it explicitly:
+For a **specific version**, use the explicit version numbers:
 
 <CodeBlock language="sh"> {
-`npm install --location=global xpm@0.20.8
+`npm install --location=global xpm@0.21.0
 `} </CodeBlock>
 
 <Tabs groupId="operating-systems">
@@ -43,8 +67,8 @@ To install a **specific version**, specify it explicitly:
 <TabItem value="windows" label="Windows" default>
 
 On Windows, global Node.js packages are installed in the
-user home folder, in `%APPDATA%\npm`
-(like `C:\Users\ilg\AppData\Roaming\npm`), and managing packages
+user home folder, within `%APPDATA%\npm`
+(such as `C:\Users\ilg\AppData\Roaming\npm`), and managing packages
 does not require administrative rights.
 
 The result of installing **xpm** is a set of files in the `%APPDATA%\npm` folder:
@@ -65,11 +89,11 @@ C:\>dir "%APPDATA%"\npm\xpm*
 
 If you followed the instructions in the
 prerequisites section, you should
-already have this path configured and the program should start normally:
+already have this path configured and the programme should start normally:
 
 <CodeBlock language="console"> {
 `C:\>xpm --version
-0.20.8
+0.21.0
 `} </CodeBlock>
 
 <ProjectTroubleshootingWindows />
@@ -78,9 +102,9 @@ already have this path configured and the program should start normally:
 
 <TabItem value="macos" label="macOS">
 
-On macOS, if you ran the `install-nvm-node-npm-xpm.sh` scripts described
+On macOS, if you executed the `install-nvm-node-npm-xpm.sh` scripts described
 in the previous section, you should
-already have **npm** correctly configured to use a location in the home folder.
+already have **npm** correctly configured to utilise a location in the home folder.
 
 <CodeBlock language="console"> {
 `% which xpm
@@ -91,7 +115,7 @@ To test if **xpm** starts:
 
 <CodeBlock language="console"> {
 `% xpm --version
-0.20.8
+0.21.0
 `} </CodeBlock>
 
 <Heading as="h3">Show macOS hidden files</Heading>
@@ -100,7 +124,7 @@ The default location used to install the global packages is
 below `~/Library`, a folder that, due to an unfortunate Apple decision,
 is hidden for regular browsing in Finder.
 
-To make it back visible, use:
+To make it visible again, utilise:
 
 ```sh
 /usr/bin/chflags nohidden ~/Library
@@ -114,18 +138,18 @@ defaults write com.apple.Finder AppleShowAllFiles true
 killall Finder
 ```
 
-Another frustrating behaviour of the file browser is to hide names starting
+Another frustrating behaviour of the file browser is to hide names beginning
 with `.` (dot), which is unfortunate since the binary packages are
-extracted in a folder named `.content`.
+extracted into a folder named `.content`.
 
-Fortunately there is a workaround for this too:
+Fortunately, there is a workaround for this too:
 
 ```console
 cmd+shift+'.'
 ```
 
-This keyboard shortcut functions as a toggle, using it once makes files
-starting with dot visible,
+This keyboard shortcut functions as a toggle; using it once makes files
+beginning with dot visible,
 and using it again reverts to hiding them.
 
 </TabItem>
@@ -135,9 +159,9 @@ and using it again reverts to hiding them.
 On GNU/Linux, by default, when using system packages,
 global Node.js packages are installed in
 `/usr/local`, and managing them requires administrative rights,
-but if you ran the `install-nvm-node-npm-xpm.sh` scripts described
+but if you executed the `install-nvm-node-npm-xpm.sh` scripts described
 in the previous section, you should
-already have **npm** correctly configured to use a location in the home folder.
+already have **npm** correctly configured to utilise a location in the home folder.
 
 :::note
 
@@ -152,7 +176,7 @@ To test if xpm starts:
 `$ which xpm
 /home/ilg/.nvm/versions/node/${props.nodeVersion}/bin/xpm
 $ xpm --version
-0.20.8
+0.21.0
 `} </CodeBlock>
 
 </TabItem>
@@ -161,29 +185,31 @@ $ xpm --version
 
 ## Uninstall
 
-The command to remove **xpm** is:
+The command to remove **xpm** from a project is:
+
+```sh
+npm uninstall xpm
+```
+
+The command to remove **xpm** from the global user environment is:
 
 ```sh
 npm uninstall --location=global xpm
 ```
 
-<CommonNoAdministrativeRights />
-
 ## npx
 
 If, for any reason, you decide not to install **xpm**, you can still
-benefit from it by using the `npx` command, as a trampoline to start **xpm**:
+benefit from it by utilising the `npx` command, as a trampoline to start **xpm**:
 
 <CodeBlock language="console"> {
-`$ npx xpm --version
-0.20.8
+`$ npx --package xpm -- xpm --version
+0.21.0
 `} </CodeBlock>
 
-However, for regular usage, this method is not efficient, since
-**npx** will need to prepare the Node.js module
-for each run, and this takes some time.
+However, for regular use, this method may be less convenient, as invoking **npx** requires a more verbose command.
 
 ## npm folders
 
-For more details on the folders used by npm, see
+For more details on the folders used by npm, refer to
 [npm-folders](https://docs.npmjs.com/files/folders).

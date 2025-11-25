@@ -33,7 +33,7 @@ import ProjectMore from '../_project/_more.mdx';
 
 {/* ------------------------------------------------------------------------ */}
 
-<CommonPrerequisites nodeVersion="18.0.0" nodeVersionMajor="18"/>
+<CommonPrerequisites nodeVersion="20.0.0" nodeVersionMajor="20"/>
 
 <CommonGetProjectSources />
 
@@ -49,17 +49,17 @@ There are no fixed releases.
 
 :::note
 
-This package is also used by the VS Code extension and, until VS Code will
-accept ESM dependencies, it must be
-kept as a legacy CommonJS dependency.
+This package is also utilised by the VS Code extension and, until VS Code
+accepts ESM dependencies, it must be
+maintained as a legacy CommonJS dependency.
 
 :::
 
 - `npm outdated`
 - `npm update` or edit and `npm install`
-- repeat and possibly manually edit `package.json` until everything is
+- Repeat and possibly manually edit `package.json` until everything is
   up to date
-- **commit** the changes
+- **Commit** the changes
 
 <ProjectDependenciesDetails />
 
@@ -93,7 +93,7 @@ Test if the package can be installed globally:
 npm install --location=global xpm@next
 ```
 
-Validate the website content in a local build via the npm **build** script:
+Validate the website content through a local build using the npm **build** script:
 
 ```sh
 npm run build
