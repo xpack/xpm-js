@@ -1,6 +1,6 @@
 {
   "name": "xpm",
-  "version": "0.20.8",
+  "version": "0.21.0-pre",
   "description": "The xPack project manager command line tool",
   "type": "module",
   "exports": {
@@ -75,31 +75,31 @@
     "@ilg/cli-start-options": "^0.8.2",
     "@npmcli/arborist": "^7.4.0",
     "@xpack/cmd-shim": "^4.1.0-2",
-    "@xpack/xpm-liquid": "^2.0.0",
+    "@xpack/xpm-liquid": "^2.1.0",
     "cacache": "^18.0.2",
-    "copy-file": "^11.0.0",
-    "cross-spawn": "^7.0.3",
+    "copy-file": "^11.1.0",
+    "cross-spawn": "^7.0.6",
     "decompress": "^4.2.1",
-    "del": "^8.0.0",
-    "https-proxy-agent": "^7.0.4",
+    "del": "^8.0.1",
+    "https-proxy-agent": "^7.0.6",
     "is-windows": "^1.0.2",
     "json": "^11.0.0",
-    "liquidjs": "^10.18.0",
-    "make-dir": "^5.0.0",
+    "liquidjs": "^10.24.0",
+    "make-dir": "^5.1.0",
     "mz": "^2.7.0",
     "node-fetch": "^3.3.2",
     "pacote": "^17.0.6",
     "parse-git-config": "^3.0.0",
     "proxy-from-env": "^1.1.0",
-    "semver": "^7.6.0",
+    "semver": "^7.7.3",
     "tar": "^7.4.3"
   },
   "devDependencies": {
-    "del-cli": "^6.0.0",
+    "del-cli": "^7.0.0",
     "json": "^11.0.0",
-    "liquidjs": "^10.19.1",
+    "liquidjs": "^10.24.0",
     "standard": "^17.1.2",
-    "tap": "^21.0.1"
+    "tap": "^21.1.6"
   },
   "bundleDependencies": [
     "@ilg/cli-start-options",
@@ -154,10 +154,12 @@
   "topConfig": {
     "descriptiveName": "xPack Project Manager",
     "permalinkName": "xpm",
+    "preferShortName": "true",
     "hasTriggerPublish": "true",
+    "hasCli": "true",
     "isWebPreview": "true"
   },
   "engines": {
-    "node": " >=18.0.0"
+    "node": " >=20.0.0"
   }
 }
