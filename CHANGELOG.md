@@ -5,7 +5,8 @@ Don't forget to close GitHub [issues](https://github.com/xpack/xpm-js/issues/).
 
 ## 2025-11-25
 
-* v0.21.0 prepared
+* v0.21.0 published on npmjs.com
+* 02869ba prepare v0.21.0
 * dfe6ffc re-generate website commons
 * d6c5557 package.json bump deps for new xpmLiquid
 
