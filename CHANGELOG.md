@@ -3,9 +3,27 @@
 Changes in reverse chronological order.
 Don't forget to close GitHub [issues](https://github.com/xpack/xpm-js/issues/).
 
+## 2025-11-25
+
+* v0.21.0 prepared
+* dfe6ffc re-generate website commons
+* d6c5557 package.json bump deps for new xpmLiquid
+
+## 2025-05-14
+
+* dc186e2 website re-generate commons
+* 4cc30ba website update commons
+* 51bf7ca website troubleshooting windows update
+
+## 2025-03-04
+
+* 22b58ac website: re-generate commons
+* 834646a website: blog post release 0.20.8 published
+
 ## 2025-03-03
 
-* 0d02fc1 prepare v0.20.8
+* 0bc115d 0.20.8
+* 1133c08 prepare v0.20.8
 * 3eeb10e website: re-generate commons
 * 1c21f7b re-generate commons for the MIT link
 * ea000ec #221: fix .npmignore
