@@ -1,57 +1,13 @@
-// Place your settings in this file to overwrite default and user settings.
 {
-  "markdownlint.config": {
-    "MD041": false
-  },
-  // Insert spaces when pressing Tab. This setting is overriden based on the file contents when `editor.detectIndentation` is on.
-  "editor.insertSpaces": true,
-  // When opening a file, `editor.tabSize` and `editor.insertSpaces` will be detected based on the file contents.
   "editor.detectIndentation": false,
-  // The number of spaces a tab is equal to. This setting is overriden based on the file contents when `editor.detectIndentation` is on.
+  "editor.insertSpaces": true,
   "editor.tabSize": 2,
-  "standard.autoFixOnSave": true,
-  "cSpell.ignoreWords": [
-    "APPDATA",
-    "ENOENT",
-    "IWUSR",
-    "Ionescu",
-    "JoeBenczarski",
-    "LOCALAPPDATA",
-    "Liviu",
-    "Millis",
-    "Schlueter",
-    "Tarbz",
-    "Targz",
-    "cacache",
-    "cleanups",
-    "cmake",
-    "dirents",
-    "dumpconf",
-    "eabi",
-    "endfor",
-    "endl",
-    "impove",
-    "liquidjs",
-    "loglevel",
-    "mipsel",
-    "mkdir",
-    "nodecli",
-    "npmcli",
-    "npmignore",
-    "npmjs",
-    "pacote",
-    "parseable",
-    "pnam",
-    "posix",
-    "postpublish",
-    "postversion",
-    "promisifier",
-    "semihosted",
-    "sunos",
-    "tarxz",
-    "vars",
-    "xpack",
-    "xpacks",
-    "zkochan"
-  ]
+  "editor.formatOnSave": true,
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[typescript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "files.associations": { "*.json": "jsonc" }
 }

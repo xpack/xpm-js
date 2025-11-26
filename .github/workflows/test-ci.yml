@@ -3,7 +3,7 @@
 # Automatically generated from npm-packages-helper/templates/*.
 #
 # This file is part of the xPack project (http://xpack.github.io).
-# Copyright (c) 2021 Liviu Ionescu. All rights reserved.
+# Copyright (c) 2021-2025 Liviu Ionescu. All rights reserved.
 #
 # Permission to use, copy, modify, and/or distribute this software
 # for any purpose is hereby granted, under the terms of the MIT license.
@@ -42,28 +42,33 @@ on:
       - '.github/workflows/trigger-publish-github-pages*.yml'
       - 'typedoc.json'
 
+# Allow one concurrent run.
+concurrency:
+  group: "test"
+  cancel-in-progress: true
+
 jobs:
   npm-test:
 
     strategy:
       matrix:
         # https://github.com/actions/setup-node
-        node-version: [18, 20, 22]
+        node-version: [20, 22]
         # https://docs.github.com/en/actions/using-github-hosted-runners/using-github-hosted-runners/about-github-hosted-runners
-        os: [ubuntu-24.04, macos-13, macos-14, windows-2022]
+        os: [ 'ubuntu-24.04', 'ubuntu-24.04-arm', 'macos-15-intel', 'macos-15', 'windows-2025' ]
 
     runs-on: ${{matrix.os}}
 
     steps:
     - name: Checkout
       # https://github.com/actions/checkout
-      uses: actions/checkout@v4
+      uses: actions/checkout@v5
       with:
         fetch-depth: 1
 
     - name: Setup Node.js ${{matrix.node-version}} on ${{matrix.os}}
       # https://github.com/actions/setup-node
-      uses: actions/setup-node@v4
+      uses: actions/setup-node@v5
       with:
         node-version: ${{matrix.node-version}}
         cache: 'npm'

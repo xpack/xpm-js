@@ -69,7 +69,6 @@ lib/**/*.ts
 **/tsconfig*.json
 typedoc.json
 tsconfig.tsbuildinfo
-
 src/
 xpacks/
 node_modules/
@@ -88,5 +87,11 @@ docs/
 build-assets/
 wrappers/
 extras/
+inspiration/
+maintenance-scripts/
+
+.prettierignore
+api-extractor.json
+eslint.config.js
 
 #end
