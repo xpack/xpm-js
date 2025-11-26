@@ -3,8 +3,18 @@
 Changes in reverse chronological order.
 Don't forget to close GitHub [issues](https://github.com/xpack/xpm-js/issues/).
 
+## 2025-11-26
+
+* v0.21.1 prepared
+* 5fd5c92 website re-generate commons
+* c962403 re-generate top commons
+* 798de99 #229: perform actions substitutions line by line
+
 ## 2025-11-25
 
+* aeca7ab 0.21.0
+* 516202e CHANGELOG: publish npm v0.21.0
+* ad60461 re-generate website commons
 * v0.21.0 published on npmjs.com
 * 02869ba prepare v0.21.0
 * dfe6ffc re-generate website commons
