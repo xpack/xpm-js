@@ -5,6 +5,7 @@ Don't forget to close GitHub [issues](https://github.com/xpack/xpm-js/issues/).
 
 ## 2025-11-26
 
+* v0.21.2 published on npmjs.com
 * v0.21.2 prepared
 * bc2eb92 re-generate website commons
 * d876472 Merge branch 'development' of https://github.com/xpack/xpm-js into development
