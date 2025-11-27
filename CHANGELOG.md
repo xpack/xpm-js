@@ -5,6 +5,7 @@ Don't forget to close GitHub [issues](https://github.com/xpack/xpm-js/issues/).
 
 ## 2025-11-27
 
+* v0.21.3 published on npmjs.com
 * v0.21.3 prepared
 * 4663153 re-generate website commons
 
