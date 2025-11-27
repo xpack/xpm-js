@@ -1,6 +1,6 @@
 {
   "name": "xpm",
-  "version": "0.21.2",
+  "version": "0.21.3-pre",
   "description": "The xPack project manager command line tool",
   "type": "module",
   "exports": {

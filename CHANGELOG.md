@@ -3,10 +3,16 @@
 Changes in reverse chronological order.
 Don't forget to close GitHub [issues](https://github.com/xpack/xpm-js/issues/).
 
+## 2025-11-27
+
+* v0.21.3 prepared
+* 4663153 re-generate website commons
+
 ## 2025-11-26
 
-* v0.21.2 published on npmjs.com
-* v0.21.2 prepared
+* 468cd87 0.21.2
+* 8c8d9fb CHANGELOG: publish npm v0.21.2
+* b7a14ac prepare v0.21.2
 * bc2eb92 re-generate website commons
 * d876472 Merge branch 'development' of https://github.com/xpack/xpm-js into development
 * 05c0087 0.21.1
