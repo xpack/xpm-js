@@ -5,6 +5,7 @@ Don't forget to close GitHub [issues](https://github.com/xpack/xpm-js/issues/).
 
 ## 2025-11-27
 
+* v0.21.4 published on npmjs.com
 * v0.21.4 prepared
 * 365159b website package*.json update
 * 91e2d46 website: blog post release 0.21.3 published
