@@ -52,8 +52,8 @@
     "del-cli": "^7.0.0",
     "docusaurus-plugin-typedoc": "^1.2.1",
     "json": "^11.0.0",
-    "liquidjs": "^10.23.0",
-    "typedoc": "^0.27.6",
+    "liquidjs": "^10.24.0",
+    "typedoc": "^0.28.7",
     "typescript": "~5.9.3"
   },
   "$devDependenciesUrls": [
