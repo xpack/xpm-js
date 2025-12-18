@@ -22,7 +22,7 @@
 
 // ----------------------------------------------------------------------------
 
-// https://nodejs.org/docs/latest-v12.x/api/index.htm
+// https://nodejs.org/docs/latest/api/
 import path from 'path'
 import { fileURLToPath } from 'url'
 
@@ -61,9 +61,7 @@ test('setup', async (t) => {
 
 test('xpm --version (spawn)', async (t) => {
   try {
-    const { code, stdout, stderr } = await Common.xpmCli([
-      '--version'
-    ])
+    const { code, stdout, stderr } = await Common.xpmCli(['--version'])
     // Check exit code.
     t.equal(code, 0, 'exit 0')
     // Check if version matches the package.
@@ -79,20 +77,20 @@ test('xpm --version (spawn)', async (t) => {
 
 test('xpm -h (spawn)', async (t) => {
   try {
-    const { code, stdout, stderr } = await Common.xpmCli([
-      '-h'
-    ])
+    const { code, stdout, stderr } = await Common.xpmCli(['-h'])
     t.equal(code, 0, 'exit 0')
     t.match(stdout, 'Usage: xpm <command>', 'has Usage')
 
-    t.match(stdout, 'The xPack project manager command line tool',
-      'has title')
+    t.match(stdout, 'The xPack project manager command line tool', 'has title')
     t.match(stdout, 'xpm -h|--help', 'has -h|--help')
     t.match(stdout, 'xpm <command> -h|--help', 'has <command> -h|--help')
     t.match(stdout, 'xpm --version', 'has --version')
     t.match(stdout, 'xpm -i|--interactive', 'has -i|--interactive')
-    t.match(stdout, 'Set log level (silent|warn|info|verbose|debug|trace)',
-      'has log levels')
+    t.match(
+      stdout,
+      'Set log level (silent|warn|info|verbose|debug|trace)',
+      'has log levels'
+    )
     t.match(stdout, '-s|--silent', 'has -s|--silent')
     t.match(stdout, 'Bug reports:', 'has Bug reports:')
     // There should be no error messages.
@@ -105,9 +103,7 @@ test('xpm -h (spawn)', async (t) => {
 
 test('xpm --help (spawn)', async (t) => {
   try {
-    const { code, stdout, stderr } = await Common.xpmCli([
-      '--help'
-    ])
+    const { code, stdout, stderr } = await Common.xpmCli(['--help'])
     t.equal(code, 0, 'exit 0')
     t.match(stdout, 'Usage: xpm <command>', 'has Usage')
     // There should be no error messages.
@@ -120,10 +116,7 @@ test('xpm --help (spawn)', async (t) => {
 
 test('xpm -d (spawn)', async (t) => {
   try {
-    const { code, stdout, stderr } = await Common.xpmCli([
-      '--version',
-      '-dd'
-    ])
+    const { code, stdout, stderr } = await Common.xpmCli(['--version', '-dd'])
     t.equal(code, 0, 'exit 0')
     t.ok(stdout.length > 0, 'has stdout')
     t.match(stdout, 'debug: start arg0:', 'has debug')

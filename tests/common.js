@@ -16,7 +16,7 @@
 
 // ----------------------------------------------------------------------------
 
-// https://nodejs.org/docs/latest-v12.x/api/index.htm
+// https://nodejs.org/docs/latest/api/
 
 import assert from 'assert'
 import { spawn } from 'child_process'
@@ -39,8 +39,8 @@ import { Xpm } from '../lib/main.js'
 
 // ----------------------------------------------------------------------------
 
-const nodeBin = process.env.npm_node_execpath || process.env.NODE ||
-  process.execPath
+const nodeBin =
+  process.env.npm_node_execpath || process.env.NODE || process.execPath
 const executableName = './bin/xpm.js'
 const programName = 'xpm'
 
@@ -145,12 +145,20 @@ export class Common {
   static async extractTgz (tgzPath, destPath) {
     return new Promise((resolve, reject) => {
       fs.createReadStream(tgzPath)
-        .on('error', (er) => { reject(er) })
+        .on('error', (er) => {
+          reject(er)
+        })
         .pipe(zlib.createGunzip())
-        .on('error', (er) => { reject(er) })
+        .on('error', (er) => {
+          reject(er)
+        })
         .pipe(tar.Extract({ path: destPath }))
-        .on('error', (er) => { reject(er) })
-        .on('end', () => { resolve() })
+        .on('error', (er) => {
+          reject(er)
+        })
+        .on('end', () => {
+          resolve()
+        })
     })
   }
 }
