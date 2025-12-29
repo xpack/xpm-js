@@ -13,7 +13,8 @@
     "test": "./tests"
   },
   "bin": {
-    "xpm": "bin/xpm.js"
+    "xpm": "bin/xpm.js",
+    "xpm-dev": "bin/xpm-dev.js"
   },
   "scripts": {
     "generate-top-commons": "bash node_modules/@xpack/npm-packages-helper/maintenance-scripts/generate-top-commons.sh --xpack",
