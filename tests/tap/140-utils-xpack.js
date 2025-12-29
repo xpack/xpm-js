@@ -33,9 +33,9 @@ import cliStartOptionsCsj from '@ilg/cli-start-options'
 
 // ----------------------------------------------------------------------------
 
-import { ManifestIds, Xpack } from '../../lib/utils/xpack.js'
+import { ManifestIds } from '../../lib/utils/manifest-ids.js'
 
-import { Policies } from '../../lib/utils/policies.js'
+import { XpmPolicies } from '../../lib/utils/policies.js'
 
 // ----------------------------------------------------------------------------
 
@@ -46,14 +46,11 @@ const { CliLogger } = cliStartOptionsCsj
 // let pack = null
 // const rootPath = path.dirname(path.dirname(__dirname))
 
-test('utils/xpack', (t) => {
+test('utils/manifest-ids', (t) => {
   const context = {}
   context.log = new CliLogger(console)
 
-  const xpack = new Xpack('x', context)
-  t.ok(xpack, 'spawn set')
-
-  const policies = new Policies('0.0.0', context)
+  const policies = new XpmPolicies('0.0.0', context)
 
   const mid = new ManifestIds({ _id: 'xx' }, policies)
   t.ok(mid, 'mid set')
