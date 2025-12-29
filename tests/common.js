@@ -164,16 +164,3 @@ export class Common {
 }
 
 // ----------------------------------------------------------------------------
-// Node.js specific export definitions.
-
-// By default, `module.exports = {}`.
-// The Main class is added as a property to this object.
-
-// module.exports.Common = Common
-
-// In ES6, it would be:
-// export class Common { ... }
-// ...
-// import { Common } from 'common.js'
-
-// ----------------------------------------------------------------------------
