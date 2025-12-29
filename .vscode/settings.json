@@ -9,5 +9,11 @@
   "[typescript]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
-  "files.associations": { "*.json": "jsonc" }
+  "files.associations": {
+    "*.json": "jsonc"
+  },
+  "xpack.exclude": [
+    "**/tests/**",
+    "**/tmp/**"
+  ]
 }
