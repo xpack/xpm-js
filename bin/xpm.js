@@ -3,7 +3,7 @@
 
 /*
  * This file is part of the xPack project (http://xpack.github.io).
- * Copyright (c) 2017 Liviu Ionescu. All rights reserved.
+ * Copyright (c) 2017-2025 Liviu Ionescu. All rights reserved.
  *
  * Permission to use, copy, modify, and/or distribute this software
  * for any purpose is hereby granted, under the terms of the MIT license.
@@ -12,7 +12,7 @@
  * be obtained from https://opensource.org/license/mit.
  */
 
-'use strict'
+"use strict"
 
 /*
  * On POSIX platforms, when installing a global package,
@@ -37,11 +37,13 @@
 // ----------------------------------------------------------------------------
 
 // ES6: `import { Xpm } from 'main.js'
-import { Xpm } from '../lib/main.js'
+import { Xpm } from "../lib/main.js"
 
 // ----------------------------------------------------------------------------
 
 // TODO: use instances, not static classes.
-Xpm.start().then((code) => { process.exitCode = code })
+Xpm.start().then((code) => {
+  process.exitCode = code
+})
 
 // ----------------------------------------------------------------------------
