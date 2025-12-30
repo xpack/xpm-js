@@ -39,10 +39,15 @@
 // ES6: `import { Xpm } from 'main.js'
 import { Xpm } from "../lib/main.js"
 
+// https://nodejs.org/docs/latest/api/
+import { Logger } from '@xpack/logger'
+
 // ----------------------------------------------------------------------------
 
+const log = new Logger({ level: 'info' })
+
 // TODO: use instances, not static classes.
-Xpm.start().then((code) => {
+Xpm.start(log).then((code) => {
   process.exitCode = code
 })
 
