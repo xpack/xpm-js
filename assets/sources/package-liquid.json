@@ -1,7 +1,7 @@
 {
   "name": "@<scope>/{{ projectName }}",
   "version": "0.1.0",
-  "description": "A source xPack with <your-description-here>",
+  "description": "A source xpm package with <your-description-here>",
   "main": "",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -23,7 +23,6 @@
     "url": "{{ author.url }}"
   },
   "license": "MIT",
-  "config": {},
   "dependencies": {},
   "devDependencies": {},
   "xpack": {
