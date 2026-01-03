@@ -3,8 +3,30 @@
 Changes in reverse chronological order.
 Don't forget to close GitHub [issues](https://github.com/xpack/xpm-js/issues/).
 
+## 2026-01-03
+
+* v0.22.0 prepared
+* b844507 pretier* b7ad712 copyright 2026* 319ea60 update to use xpm-lib
+
+## 2025-12-31
+
+* cdb9636 cosmetise xpm init* d607cff update for separate logger
+
+## 2025-12-30
+
+* ac3f5a6 copyright -2025 & reformatiing* 1dc7ff7 bottom comments cleanups* 81d2deb migrate to xpm-lib* 4a0f5cc bin/xpm-dev* a0ebc49 package*.json remove unused deps* 82db602 settings.json: xpack.exclude tests
+
+## 2025-12-27
+
+* d82581b extract manifest-ids
+
+## 2025-12-18
+
+* d21cfd9 pretty & cosmetics
+
 ## 2025-11-27
 
+* 604ab8c website: blog post release 0.21.3 removed* 63378c6 website: blog post release 0.21.4 published* ab0ff2b website/pacakge*.json update* 38022ae 0.21.4* bb5a3ba CHANGELOG: publish npm v0.21.4* 42c7324 prepare v0.21.4* e5672a3 re-generate website commons
 * v0.21.4 published on npmjs.com
 * v0.21.4 prepared
 * 365159b website package*.json update
