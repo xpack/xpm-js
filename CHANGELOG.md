@@ -5,6 +5,7 @@ Don't forget to close GitHub [issues](https://github.com/xpack/xpm-js/issues/).
 
 ## 2026-01-03
 
+* v0.22.2 published on npmjs.com
 * v0.22.2 prepared
 * 6ed763d init.js cosmetics
 * e26fb35 0.22.1
