@@ -1,6 +1,6 @@
 {
   "name": "xpm",
-  "version": "0.22.1",
+  "version": "0.22.2-pre",
   "description": "The xPack project manager command line tool",
   "type": "module",
   "exports": {
@@ -79,7 +79,7 @@
     "@ilg/cli-start-options": "^0.9.0",
     "@xpack/cmd-shim": "^4.1.0-2",
     "@xpack/logger": "^6.0.0",
-    "@xpack/xpm-lib": "^3.0.0",
+    "@xpack/xpm-lib": "^3.1.1",
     "copy-file": "^11.1.0",
     "cross-spawn": "^7.0.6",
     "del": "^8.0.1",

@@ -5,8 +5,11 @@ Don't forget to close GitHub [issues](https://github.com/xpack/xpm-js/issues/).
 
 ## 2026-01-03
 
-* v0.22.1 published on npmjs.com
-* v0.22.1 prepared
+* v0.22.2 prepared
+* 6ed763d init.js cosmetics
+* e26fb35 0.22.1
+* 44d3513 CHANGELOG: publish npm v0.22.1
+* 4c1d4b7 prepare v0.22.1
 * 694e88b init.js: fix XpmInitTemplate context
 * 645dad3 0.22.0
 * 059be58 CHANGELOG: publish npm v0.22.0
