@@ -44,45 +44,51 @@ on:
 
 # Allow one concurrent run.
 concurrency:
-  group: "test"
+  group: 'test'
   cancel-in-progress: true
 
 jobs:
   npm-test:
-
     strategy:
       matrix:
         # https://github.com/actions/setup-node
         node-version: [20, 22]
         # https://docs.github.com/en/actions/using-github-hosted-runners/using-github-hosted-runners/about-github-hosted-runners
-        os: [ 'ubuntu-24.04', 'ubuntu-24.04-arm', 'macos-15-intel', 'macos-15', 'windows-2025' ]
+        os:
+          [
+            'ubuntu-24.04',
+            'ubuntu-24.04-arm',
+            'macos-15-intel',
+            'macos-15',
+            'windows-2025',
+          ]
 
     runs-on: ${{matrix.os}}
 
     steps:
-    - name: Checkout
-      # https://github.com/actions/checkout
-      uses: actions/checkout@v5
-      with:
-        fetch-depth: 1
+      - name: Checkout
+        # https://github.com/actions/checkout
+        uses: actions/checkout@v5
+        with:
+          fetch-depth: 1
 
-    - name: Setup Node.js ${{matrix.node-version}} on ${{matrix.os}}
-      # https://github.com/actions/setup-node
-      uses: actions/setup-node@v5
-      with:
-        node-version: ${{matrix.node-version}}
-        cache: 'npm'
+      - name: Setup Node.js ${{matrix.node-version}} on ${{matrix.os}}
+        # https://github.com/actions/setup-node
+        uses: actions/setup-node@v5
+        with:
+          node-version: ${{matrix.node-version}}
+          cache: 'npm'
 
-    - name: Show node & npm versions, environment
-      run: |
-        node --version
-        npm --version
-        env | sort
+      - name: Show node & npm versions, environment
+        run: |
+          node --version
+          npm --version
+          env | sort
 
-    - name: Install dependencies
-      run: npm ci
+      - name: Install dependencies
+        run: npm ci
 
-    - name: Run test
-      run: npm run test-ci
-      env:
-        CI: true
+      - name: Run test
+        run: npm run test-ci
+        env:
+          CI: true

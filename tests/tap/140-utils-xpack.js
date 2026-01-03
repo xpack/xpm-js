@@ -37,6 +37,8 @@ import { ManifestIds } from '../../lib/utils/manifest-ids.js'
 
 import { XpmPolicies } from '../../lib/utils/policies.js'
 
+import { Logger } from '@xpack/logger'
+
 // ----------------------------------------------------------------------------
 
 const { CliLogger } = cliStartOptionsCsj
@@ -48,7 +50,7 @@ const { CliLogger } = cliStartOptionsCsj
 
 test('utils/manifest-ids', (t) => {
   const context = {}
-  context.log = new CliLogger(console)
+  context.log = new Logger({ level: 'info' })
 
   const policies = new XpmPolicies('0.0.0', context)
 
