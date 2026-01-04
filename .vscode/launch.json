@@ -4,7 +4,6 @@
   // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
   "version": "0.2.0",
   "configurations": [
-
     {
       "type": "node",
       "request": "launch",
@@ -480,9 +479,12 @@
         "--template",
         "/Users/ilg/My Files/WKS Projects/xpack.github/xpm-templates/hello-world-template-xpack.git",
         "--name 001",
-        "--property", "buildGenerator=cmake",
-        "--property", "language=cpp",
-        "--property", "toolchain=gcc",
+        "--property",
+        "buildGenerator=cmake",
+        "--property",
+        "language=cpp",
+        "--property",
+        "toolchain=gcc",
         "-dd",
         "-C",
         "/Users/ilg/tmp/hello-world"
@@ -975,7 +977,6 @@
       "args": [
         "uninstall",
         "-g",
-
         "@babu/riba@1.2.3",
         "-dd"
       ],
@@ -1292,7 +1293,7 @@
       "stopOnEntry": true,
       "args": [
         "install",
-        "@xpack-dev-tools/sed@4.9.0-3.1",  
+        "@xpack-dev-tools/sed@4.9.0-3.1",
         "--force",
         "-dd",
         "-C",
@@ -1389,6 +1390,44 @@
         "release",
         "-C",
         "/Users/ilg/MyProjects/xpack.github/packages/hello-world-template-xpack.git/build/001-cmake-c-system"
+      ],
+      "cwd": "${workspaceRoot}",
+      "preLaunchTask": null,
+      "runtimeExecutable": null,
+      "runtimeArgs": [
+        "--nolazy"
+      ],
+      "skipFiles": [
+        "async_hooks.js",
+        "inspector_async_hook.js"
+      ],
+      "env": {
+        "NODE_ENV": "development"
+      },
+      "console": "internalConsole",
+      "sourceMaps": false
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "xpm init --template",
+      "program": "${workspaceRoot}/bin/xpm.js",
+      "stopOnEntry": true,
+      "args": [
+        "init",
+        "-dd",
+        "--template",
+        "/Users/ilg/MyProjects/xpack.github/packages/hello-world-template-xpack.git",
+        "--name",
+        "001",
+        "--property",
+        "buildGenerator=cmake",
+        "--property",
+        "language=cpp",
+        "--property",
+        "toolchain=clang",
+        "-C",
+        "/Users/ilg/MyProjects/xpack.github/packages/hello-world-template-xpack.git/build/001-cmake-cpp-clang"
       ],
       "cwd": "${workspaceRoot}",
       "preLaunchTask": null,
