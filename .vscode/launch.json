@@ -1378,6 +1378,37 @@
     {
       "type": "node",
       "request": "launch",
+      "name": "xpm run prepare --config release ",
+      "program": "${workspaceRoot}/bin/xpm.js",
+      "stopOnEntry": true,
+      "args": [
+        "run",
+        "prepare",
+        "-dd",
+        "--config",
+        "release",
+        "-C",
+        "/Users/ilg/MyProjects/xpack.github/packages/hello-world-template-xpack.git/build/001-cmake-c-system"
+      ],
+      "cwd": "${workspaceRoot}",
+      "preLaunchTask": null,
+      "runtimeExecutable": null,
+      "runtimeArgs": [
+        "--nolazy"
+      ],
+      "skipFiles": [
+        "async_hooks.js",
+        "inspector_async_hook.js"
+      ],
+      "env": {
+        "NODE_ENV": "development"
+      },
+      "console": "internalConsole",
+      "sourceMaps": false
+    },
+    {
+      "type": "node",
+      "request": "launch",
       "name": "Launch Program",
       "program": "${workspaceRoot}/index.js"
     },
