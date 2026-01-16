@@ -20,8 +20,8 @@
         "--nolazy"
       ],
       "skipFiles": [
-        "async_hooks.js",
-        "inspector_async_hook.js"
+        "<node_internals>/**",
+        "**/async-hook-domain/**"
       ],
       "env": {
         "NODE_ENV": "development"
@@ -46,8 +46,8 @@
         "--nolazy"
       ],
       "skipFiles": [
-        "async_hooks.js",
-        "inspector_async_hook.js"
+        "<node_internals>/**",
+        "**/async-hook-domain/**"
       ],
       "env": {
         "NODE_ENV": "development"
@@ -72,8 +72,8 @@
         "--nolazy"
       ],
       "skipFiles": [
-        "async_hooks.js",
-        "inspector_async_hook.js"
+        "<node_internals>/**",
+        "**/async-hook-domain/**"
       ],
       "env": {
         "NODE_ENV": "development"
@@ -98,8 +98,8 @@
         "--nolazy"
       ],
       "skipFiles": [
-        "async_hooks.js",
-        "inspector_async_hook.js"
+        "<node_internals>/**",
+        "**/async-hook-domain/**"
       ],
       "env": {
         "NODE_ENV": "development"
@@ -124,8 +124,8 @@
         "--nolazy"
       ],
       "skipFiles": [
-        "async_hooks.js",
-        "inspector_async_hook.js"
+        "<node_internals>/**",
+        "**/async-hook-domain/**"
       ],
       "env": {
         "NODE_ENV": "development"
@@ -152,8 +152,8 @@
         "--nolazy"
       ],
       "skipFiles": [
-        "async_hooks.js",
-        "inspector_async_hook.js"
+        "<node_internals>/**",
+        "**/async-hook-domain/**"
       ],
       "env": {
         "NODE_ENV": "development"
@@ -185,8 +185,8 @@
         "--nolazy"
       ],
       "skipFiles": [
-        "async_hooks.js",
-        "inspector_async_hook.js"
+        "<node_internals>/**",
+        "**/async-hook-domain/**"
       ],
       "env": {
         "NODE_ENV": "development"
@@ -213,8 +213,8 @@
         "--nolazy"
       ],
       "skipFiles": [
-        "async_hooks.js",
-        "inspector_async_hook.js"
+        "<node_internals>/**",
+        "**/async-hook-domain/**"
       ],
       "env": {
         "NODE_ENV": "development"
@@ -242,8 +242,8 @@
         "--nolazy"
       ],
       "skipFiles": [
-        "async_hooks.js",
-        "inspector_async_hook.js"
+        "<node_internals>/**",
+        "**/async-hook-domain/**"
       ],
       "env": {
         "NODE_ENV": "development"
@@ -272,8 +272,8 @@
         "--nolazy"
       ],
       "skipFiles": [
-        "async_hooks.js",
-        "inspector_async_hook.js"
+        "<node_internals>/**",
+        "**/async-hook-domain/**"
       ],
       "env": {
         "NODE_ENV": "development"
@@ -302,8 +302,8 @@
         "--nolazy"
       ],
       "skipFiles": [
-        "async_hooks.js",
-        "inspector_async_hook.js"
+        "<node_internals>/**",
+        "**/async-hook-domain/**"
       ],
       "env": {
         "NODE_ENV": "development"
@@ -332,8 +332,8 @@
         "--nolazy"
       ],
       "skipFiles": [
-        "async_hooks.js",
-        "inspector_async_hook.js"
+        "<node_internals>/**",
+        "**/async-hook-domain/**"
       ],
       "env": {
         "NODE_ENV": "development"
@@ -364,8 +364,8 @@
         "--nolazy"
       ],
       "skipFiles": [
-        "async_hooks.js",
-        "inspector_async_hook.js"
+        "<node_internals>/**",
+        "**/async-hook-domain/**"
       ],
       "env": {
         "NODE_ENV": "development"
@@ -398,8 +398,8 @@
         "--nolazy"
       ],
       "skipFiles": [
-        "async_hooks.js",
-        "inspector_async_hook.js"
+        "<node_internals>/**",
+        "**/async-hook-domain/**"
       ],
       "env": {
         "NODE_ENV": "development"
@@ -429,8 +429,8 @@
         "--nolazy"
       ],
       "skipFiles": [
-        "async_hooks.js",
-        "inspector_async_hook.js"
+        "<node_internals>/**",
+        "**/async-hook-domain/**"
       ],
       "env": {
         "NODE_ENV": "development"
@@ -459,8 +459,8 @@
         "--nolazy"
       ],
       "skipFiles": [
-        "async_hooks.js",
-        "inspector_async_hook.js"
+        "<node_internals>/**",
+        "**/async-hook-domain/**"
       ],
       "env": {
         "NODE_ENV": "development"
@@ -496,8 +496,8 @@
         "--nolazy"
       ],
       "skipFiles": [
-        "async_hooks.js",
-        "inspector_async_hook.js"
+        "<node_internals>/**",
+        "**/async-hook-domain/**"
       ],
       "env": {
         "NODE_ENV": "development"
@@ -525,8 +525,8 @@
         "--nolazy"
       ],
       "skipFiles": [
-        "async_hooks.js",
-        "inspector_async_hook.js"
+        "<node_internals>/**",
+        "**/async-hook-domain/**"
       ],
       "env": {
         "NODE_ENV": "development"
@@ -553,8 +553,8 @@
         "--nolazy"
       ],
       "skipFiles": [
-        "async_hooks.js",
-        "inspector_async_hook.js"
+        "<node_internals>/**",
+        "**/async-hook-domain/**"
       ],
       "env": {
         "NODE_ENV": "development"
@@ -581,8 +581,8 @@
         "--nolazy"
       ],
       "skipFiles": [
-        "async_hooks.js",
-        "inspector_async_hook.js"
+        "<node_internals>/**",
+        "**/async-hook-domain/**"
       ],
       "env": {
         "NODE_ENV": "development"
@@ -609,8 +609,8 @@
         "--nolazy"
       ],
       "skipFiles": [
-        "async_hooks.js",
-        "inspector_async_hook.js"
+        "<node_internals>/**",
+        "**/async-hook-domain/**"
       ],
       "env": {
         "NODE_ENV": "development"
@@ -638,8 +638,8 @@
         "--nolazy"
       ],
       "skipFiles": [
-        "async_hooks.js",
-        "inspector_async_hook.js"
+        "<node_internals>/**",
+        "**/async-hook-domain/**"
       ],
       "env": {
         "NODE_ENV": "development"
@@ -669,8 +669,8 @@
         "--nolazy"
       ],
       "skipFiles": [
-        "async_hooks.js",
-        "inspector_async_hook.js"
+        "<node_internals>/**",
+        "**/async-hook-domain/**"
       ],
       "env": {
         "NODE_ENV": "development"
@@ -697,8 +697,8 @@
         "--nolazy"
       ],
       "skipFiles": [
-        "async_hooks.js",
-        "inspector_async_hook.js"
+        "<node_internals>/**",
+        "**/async-hook-domain/**"
       ],
       "env": {
         "NODE_ENV": "development"
@@ -726,8 +726,8 @@
         "--nolazy"
       ],
       "skipFiles": [
-        "async_hooks.js",
-        "inspector_async_hook.js"
+        "<node_internals>/**",
+        "**/async-hook-domain/**"
       ],
       "env": {
         "NODE_ENV": "development"
@@ -756,8 +756,8 @@
         "--nolazy"
       ],
       "skipFiles": [
-        "async_hooks.js",
-        "inspector_async_hook.js"
+        "<node_internals>/**",
+        "**/async-hook-domain/**"
       ],
       "env": {
         "NODE_ENV": "development"
@@ -787,8 +787,8 @@
         "--nolazy"
       ],
       "skipFiles": [
-        "async_hooks.js",
-        "inspector_async_hook.js"
+        "<node_internals>/**",
+        "**/async-hook-domain/**"
       ],
       "env": {
         "NODE_ENV": "development"
@@ -815,8 +815,8 @@
         "--nolazy"
       ],
       "skipFiles": [
-        "async_hooks.js",
-        "inspector_async_hook.js"
+        "<node_internals>/**",
+        "**/async-hook-domain/**"
       ],
       "env": {
         "NODE_ENV": "development"
@@ -843,8 +843,8 @@
         "--nolazy"
       ],
       "skipFiles": [
-        "async_hooks.js",
-        "inspector_async_hook.js"
+        "<node_internals>/**",
+        "**/async-hook-domain/**"
       ],
       "env": {
         "NODE_ENV": "development"
@@ -871,8 +871,8 @@
         "--nolazy"
       ],
       "skipFiles": [
-        "async_hooks.js",
-        "inspector_async_hook.js"
+        "<node_internals>/**",
+        "**/async-hook-domain/**"
       ],
       "env": {
         "NODE_ENV": "development"
@@ -900,8 +900,8 @@
         "--nolazy"
       ],
       "skipFiles": [
-        "async_hooks.js",
-        "inspector_async_hook.js"
+        "<node_internals>/**",
+        "**/async-hook-domain/**"
       ],
       "env": {
         "NODE_ENV": "development"
@@ -929,8 +929,8 @@
         "--nolazy"
       ],
       "skipFiles": [
-        "async_hooks.js",
-        "inspector_async_hook.js"
+        "<node_internals>/**",
+        "**/async-hook-domain/**"
       ],
       "env": {
         "NODE_ENV": "development"
@@ -959,8 +959,8 @@
         "--nolazy"
       ],
       "skipFiles": [
-        "async_hooks.js",
-        "inspector_async_hook.js"
+        "<node_internals>/**",
+        "**/async-hook-domain/**"
       ],
       "env": {
         "NODE_ENV": "development"
@@ -987,8 +987,8 @@
         "--nolazy"
       ],
       "skipFiles": [
-        "async_hooks.js",
-        "inspector_async_hook.js"
+        "<node_internals>/**",
+        "**/async-hook-domain/**"
       ],
       "env": {
         "NODE_ENV": "development"
@@ -1018,8 +1018,8 @@
         "--nolazy"
       ],
       "skipFiles": [
-        "async_hooks.js",
-        "inspector_async_hook.js"
+        "<node_internals>/**",
+        "**/async-hook-domain/**"
       ],
       "env": {
         "NODE_ENV": "development"
@@ -1047,8 +1047,8 @@
         "--nolazy"
       ],
       "skipFiles": [
-        "async_hooks.js",
-        "inspector_async_hook.js"
+        "<node_internals>/**",
+        "**/async-hook-domain/**"
       ],
       "env": {
         "NODE_ENV": "development"
@@ -1076,8 +1076,8 @@
         "--nolazy"
       ],
       "skipFiles": [
-        "async_hooks.js",
-        "inspector_async_hook.js"
+        "<node_internals>/**",
+        "**/async-hook-domain/**"
       ],
       "env": {
         "NODE_ENV": "development"
@@ -1105,8 +1105,8 @@
         "--nolazy"
       ],
       "skipFiles": [
-        "async_hooks.js",
-        "inspector_async_hook.js"
+        "<node_internals>/**",
+        "**/async-hook-domain/**"
       ],
       "env": {
         "NODE_ENV": "development"
@@ -1133,8 +1133,8 @@
         "--nolazy"
       ],
       "skipFiles": [
-        "async_hooks.js",
-        "inspector_async_hook.js"
+        "<node_internals>/**",
+        "**/async-hook-domain/**"
       ],
       "env": {
         "NODE_ENV": "development"
@@ -1161,8 +1161,8 @@
         "--nolazy"
       ],
       "skipFiles": [
-        "async_hooks.js",
-        "inspector_async_hook.js"
+        "<node_internals>/**",
+        "**/async-hook-domain/**"
       ],
       "env": {
         "NODE_ENV": "development"
@@ -1188,8 +1188,8 @@
         "--nolazy"
       ],
       "skipFiles": [
-        "async_hooks.js",
-        "inspector_async_hook.js"
+        "<node_internals>/**",
+        "**/async-hook-domain/**"
       ],
       "env": {
         "NODE_ENV": "development"
@@ -1219,8 +1219,8 @@
         "--nolazy"
       ],
       "skipFiles": [
-        "async_hooks.js",
-        "inspector_async_hook.js"
+        "<node_internals>/**",
+        "**/async-hook-domain/**"
       ],
       "env": {
         "NODE_ENV": "development"
@@ -1248,8 +1248,8 @@
         "--nolazy"
       ],
       "skipFiles": [
-        "async_hooks.js",
-        "inspector_async_hook.js"
+        "<node_internals>/**",
+        "**/async-hook-domain/**"
       ],
       "env": {
         "NODE_ENV": "development"
@@ -1276,8 +1276,8 @@
         "--nolazy"
       ],
       "skipFiles": [
-        "async_hooks.js",
-        "inspector_async_hook.js"
+        "<node_internals>/**",
+        "**/async-hook-domain/**"
       ],
       "env": {
         "NODE_ENV": "development"
@@ -1306,8 +1306,8 @@
         "--nolazy"
       ],
       "skipFiles": [
-        "async_hooks.js",
-        "inspector_async_hook.js"
+        "<node_internals>/**",
+        "**/async-hook-domain/**"
       ],
       "env": {
         "NODE_ENV": "development"
@@ -1336,8 +1336,8 @@
         "--nolazy"
       ],
       "skipFiles": [
-        "async_hooks.js",
-        "inspector_async_hook.js"
+        "<node_internals>/**",
+        "**/async-hook-domain/**"
       ],
       "env": {
         "NODE_ENV": "development"
@@ -1367,8 +1367,8 @@
         "--nolazy"
       ],
       "skipFiles": [
-        "async_hooks.js",
-        "inspector_async_hook.js"
+        "<node_internals>/**",
+        "**/async-hook-domain/**"
       ],
       "env": {
         "NODE_ENV": "development"
@@ -1398,8 +1398,8 @@
         "--nolazy"
       ],
       "skipFiles": [
-        "async_hooks.js",
-        "inspector_async_hook.js"
+        "<node_internals>/**",
+        "**/async-hook-domain/**"
       ],
       "env": {
         "NODE_ENV": "development"
@@ -1436,8 +1436,66 @@
         "--nolazy"
       ],
       "skipFiles": [
-        "async_hooks.js",
-        "inspector_async_hook.js"
+        "<node_internals>/**",
+        "**/async-hook-domain/**"
+      ],
+      "env": {
+        "NODE_ENV": "development"
+      },
+      "console": "internalConsole",
+      "sourceMaps": false
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "xpm init --template hello-world-qemu-template",
+      "program": "${workspaceRoot}/bin/xpm.js",
+      "stopOnEntry": true,
+      "args": [
+        "init",
+        "-dd",
+        "--template",
+        "@micro-os-plus/hello-world-qemu-template@latest",
+        "-C",
+        "/Users/ilg/tmp/qqq"
+      ],
+      "cwd": "${workspaceRoot}",
+      "preLaunchTask": null,
+      "runtimeExecutable": null,
+      "runtimeArgs": [
+        "--nolazy"
+      ],
+      "skipFiles": [
+        "<node_internals>/**",
+        "**/async-hook-domain/**"
+      ],
+      "env": {
+        "NODE_ENV": "development"
+      },
+      "console": "internalConsole",
+      "sourceMaps": false
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "xpm run (utils-lists-xpack tests)",
+      "program": "${workspaceRoot}/bin/xpm.js",
+      "stopOnEntry": true,
+      "args": [
+        "run",
+        "-dd",
+        "-C",
+        "/Users/ilg/MyProjects/micro-os-plus.github/xPacks/utils-lists-xpack.git/tests"
+      ],
+      "cwd": "${workspaceRoot}",
+      "preLaunchTask": null,
+      "runtimeExecutable": null,
+      "runtimeArgs": [
+        "--nolazy"
+      ],
+      "skipFiles": [
+        "<node_internals>/**",
+        "**/async-hook-domain/**"
       ],
       "env": {
         "NODE_ENV": "development"
