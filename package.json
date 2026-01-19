@@ -85,8 +85,8 @@
   "homepagePreview": "https://xpack.github.io/xpm-js/",
   "dependencies": {
     "@npmcli/arborist": "^9.1.9",
-    "pacote": "^17.0.6",
-    "cacache": "^18.0.2",
+    "pacote": "^21.0.4",
+    "cacache": "^20.0.0",
     "decompress": "^4.2.1",
     "https-proxy-agent": "^7.0.6",
     "proxy-from-env": "^1.1.0",
