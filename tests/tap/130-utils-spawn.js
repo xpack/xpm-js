@@ -25,7 +25,7 @@
 // The `[node-tap](http://www.node-tap.org)` framework.
 import { test } from 'tap'
 
-import { Spawn } from '../../lib/utils/spawn.js'
+import { Spawn } from '../../src/functions/spawn.js'
 
 // ----------------------------------------------------------------------------
 

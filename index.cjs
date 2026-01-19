@@ -9,7 +9,7 @@
  * be obtained from https://opensource.org/license/mit.
  */
 
-"use strict"
+'use strict'
 
 /**
  * This is the module entry point, the file that is processed when
@@ -25,7 +25,7 @@
  * ```
  */
 
-const { Main } = require("./lib/main.js")
+const { Main } = require('./src/main.js')
 
 // ----------------------------------------------------------------------------
 // Node.js specific export definitions.

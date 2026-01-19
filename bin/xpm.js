@@ -37,7 +37,7 @@
 // ----------------------------------------------------------------------------
 
 // ES6: `import { Xpm } from 'main.js'
-import { Xpm } from '../lib/main.js'
+import { Xpm } from '../src/main.js'
 
 // https://nodejs.org/docs/latest/api/
 import { Logger } from '@xpack/logger'

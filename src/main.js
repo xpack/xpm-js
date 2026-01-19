@@ -30,6 +30,8 @@
 
 // ----------------------------------------------------------------------------
 
+import fs from 'fs'
+
 // https://nodejs.org/docs/latest/api/
 import path from 'path'
 
@@ -38,7 +40,6 @@ import { fileURLToPath } from 'url'
 // ----------------------------------------------------------------------------
 
 // ES6: `import { CliApplication, CliOptions } from 'cli-start-options'
-// import { CliApplication, CliOptions } from '@ilg/cli-start-options'
 import cliStartOptionsCsj from '@ilg/cli-start-options'
 
 // ----------------------------------------------------------------------------
@@ -48,7 +49,8 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url))
 
 // ============================================================================
 
-export class XpmDev extends CliApplication {
+// export
+export class Xpm extends CliApplication {
   // --------------------------------------------------------------------------
 
   /**
@@ -76,14 +78,42 @@ export class XpmDev extends CliApplication {
     // ------------------------------------------------------------------------
     // Initialise the tree of known commands.
     // Paths should be relative to the package root.
-    CliOptions.addCommand(['binaries'], 'lib/xpm-dev/binaries.js')
-    CliOptions.addCommand(['binaries-update'], 'lib/xpm-dev/binaries-update.js')
+    CliOptions.addCommand(['install', 'i', 'intsall'], 'src/xpm/install.js')
+    CliOptions.addCommand(
+      ['run', 'rum', 'ru', 'run-action', 'run-script'],
+      'src/xpm/run-action.js'
+    )
+    CliOptions.addCommand(['init', 'ini'], 'src/xpm/init.js')
+    CliOptions.addCommand(['link', 'lnk'], 'src/xpm/link.js')
+    CliOptions.addCommand(['list', 'ls', 'll'], 'src/xpm/list.js')
+    CliOptions.addCommand(
+      ['uninstall', 'un', 'uni', 'unin', 'unintsall', 'unlink', 'rm', 'r'],
+      'src/xpm/uninstall.js'
+    )
 
     // 24 hours in seconds.
     Self.checkUpdatesIntervalSeconds = 60 * 60 * 24
 
     // The common options were already initialised by the caller,
     // and are ok, no need to redefine them.
+
+    // ------------------------------------------------------------------------
+
+    // Hack!
+    // For unknown reasons, on Windows these definitions are not available.
+    if (process.platform === 'win32') {
+      if (fs.constants.S_IWUSR === undefined) {
+        fs.constants.S_IWUSR = 128 // 0200
+      }
+      if (fs.constants.S_IWGRP === undefined) {
+        fs.constants.S_IWGRP = 16 // 0020
+      }
+      if (fs.constants.S_IWOTH === undefined) {
+        fs.constants.S_IWOTH = 2 // 0002
+      }
+    }
+
+    // ------------------------------------------------------------------------
   }
 
   // --------------------------------------------------------------------------

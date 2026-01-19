@@ -23,6 +23,7 @@
 // ----------------------------------------------------------------------------
 
 // https://nodejs.org/docs/latest/api/
+import assert from 'assert'
 import fs from 'fs'
 import os from 'os'
 import path from 'path'
@@ -46,12 +47,14 @@ import { XpmPackage, XpmPolicies, Liquid } from '@xpack/xpm-lib'
 
 // ----------------------------------------------------------------------------
 
-import { GlobalConfig } from '../utils/global-config.js'
+import { GlobalConfig } from '../classes/global-config.js'
 
-import { ManifestIds } from '../utils/manifest-ids.js'
-import { Spawn } from '../../lib/utils/spawn.js'
+import { ManifestIds } from '../classes/manifest-ids.js'
+import { Spawn } from '../functions/spawn.js'
 
-import { convertXpmError } from '../../lib/utils/functions.js'
+import { convertXpmError } from '../functions/convert-xpm-errors.js'
+
+import { XpmDownloader } from '../classes/downloader.js'
 
 // ----------------------------------------------------------------------------
 
@@ -147,6 +150,9 @@ export class Init extends CliCommand {
    */
   async doRun(args) {
     const log = this.log
+    const context = this.context
+    const config = context.config
+
     log.trace(`${this.constructor.name}.doRun()`)
 
     log.verbose(this.title)
@@ -158,16 +164,7 @@ export class Init extends CliCommand {
       }
     })
 
-    const context = this.context
-    const config = context.config
-
     log.info()
-
-    const xpmPackage = new XpmPackage({ log, packageFolderPath: config.cwd })
-    this.xpmPackage = xpmPackage
-
-    // Undefined for empty folders, existing package.json otherwise.
-    this.jsonPackage = await xpmPackage.readPackageDotJson()
 
     if (config.projectName) {
       // Validate `--name` as project name.
@@ -190,10 +187,6 @@ export class Init extends CliCommand {
       .replace(/[^@/a-zA-Z0-9-_]/g, '-')
       .replace(/--/g, '-')
 
-    // Remove the pre-release part.
-    const xpmVersion = context.package.version.replace(/-.*$/, '')
-    this.policies = new XpmPolicies({ log, minVersion: xpmVersion })
-
     let code
     if (config.template) {
       code = await this.doInitWithTemplate()
@@ -213,18 +206,24 @@ export class Init extends CliCommand {
     const context = this.context
     const config = context.config
 
-    const xpmPackage = this.xpmPackage
+    const xpmPackage = new XpmPackage({ log, packageFolderPath: config.cwd })
+    this.xpmPackage = xpmPackage
+
+    // Undefined for empty folders, existing package.json otherwise.
+    await xpmPackage.readPackageDotJson()
+
     if (xpmPackage.isNpmPackage()) {
       log.error('the destination folder already has a package.json file')
       return CliExitCodes.ERROR.OUTPUT // Possible override.
     }
 
     context.globalConfig = new GlobalConfig()
+    const xpmDownloader = new XpmDownloader({ log })
 
     const cacheFolderPath = context.globalConfig.cacheFolderPath
     let manifest
     try {
-      manifest = await xpmPackage.pacoteCreateManifest({
+      manifest = await xpmDownloader.pacoteCreateManifest({
         specifier: config.template,
         cacheFolderPath,
       })
@@ -234,7 +233,9 @@ export class Init extends CliCommand {
       return CliExitCodes.ERROR.INPUT
     }
     log.trace(util.inspect(manifest))
-    const manifestIds = new ManifestIds(manifest, this.policies)
+
+    const policies = new XpmPolicies({ log })
+    const manifestIds = new ManifestIds(manifest, policies)
     const globalPackagePath = path.join(
       context.globalConfig.globalFolderPath,
       manifestIds.getPath()
@@ -250,7 +251,7 @@ export class Init extends CliCommand {
 
     if (!jsonGlobal) {
       log.info(`Installing ${packFullName}...`)
-      await globalXpmPackage.pacoteExtract({
+      await xpmDownloader.pacoteExtract({
         specifier: config.template,
         destinationFolderPath: globalPackagePath,
         cacheFolderPath,
@@ -266,11 +267,12 @@ export class Init extends CliCommand {
       }
 
       try {
-        await globalXpmPackage.checkMinimumXpmRequired({
+        const minVersion = await globalXpmPackage.checkMinimumXpmRequired({
           xpmRootFolderPath: context.rootPath,
         })
+        this.policies = new XpmPolicies({ log, minVersion })
       } catch (err) {
-        convertXpmError(err)
+        throw convertXpmError(err)
       }
 
       if (!jsonGlobal?.main) {
@@ -308,7 +310,6 @@ export class Init extends CliCommand {
             CliExitCodes.ERROR.APPLICATION
           )
         }
-        // For just in case, the new code triggers an exception.
         const code = result.code
         if (code !== 0) {
           await deleteAsync(globalPackagePath, { force: true })
@@ -318,6 +319,17 @@ export class Init extends CliCommand {
           )
         }
       }
+    } else {
+      try {
+        const minVersion = await globalXpmPackage.checkMinimumXpmRequired({
+          xpmRootFolderPath: context.rootPath,
+        })
+        this.policies = new XpmPolicies({ log, minVersion })
+      } catch (err) {
+        throw convertXpmError(err)
+      }
+
+      log.info(`Using cached ${packFullName}...`)
     }
 
     log.info(`Processing ${packFullName}...`)
@@ -343,15 +355,20 @@ export class Init extends CliCommand {
     context.CliExitCodes = CliExitCodes
 
     let xpmInitTemplate
+    assert(this.policies, 'XpmPolicies not set')
     if (this.policies.singleParameterXpmInitTemplate) {
       xpmInitTemplate = new XpmInitTemplate(context)
     } else {
       xpmInitTemplate = new XpmInitTemplate({ context })
     }
 
-    const exitCode = await xpmInitTemplate.run()
-
-    return exitCode
+    try {
+      const exitCode = await xpmInitTemplate.run()
+      return exitCode
+    } catch (err) {
+      log.error(`template execution failed: ${err.message}`)
+      return CliExitCodes.ERROR.APPLICATION
+    }
   }
 
   async doInitSimple() {
@@ -360,8 +377,11 @@ export class Init extends CliCommand {
     const context = this.context
     const config = context.config
 
-    const xpmPackage = this.xpmPackage
-    const jsonPackage = this.jsonPackage
+    const xpmPackage = new XpmPackage({ log, packageFolderPath: config.cwd })
+    this.xpmPackage = xpmPackage
+
+    // Undefined for empty folders, existing package.json otherwise.
+    await xpmPackage.readPackageDotJson()
 
     const liquidMap = {}
 

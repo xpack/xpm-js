@@ -37,14 +37,14 @@ import path from 'path'
 import cliStartOptionsCsj from '@ilg/cli-start-options'
 
 // https://www.npmjs.com/package/@xpack/xpm-lib
-import { XpmLiquidPackage, XpmPackage } from '@xpack/xpm-lib'
+import { XpmLiquidPackage, XpmPackage, isString } from '@xpack/xpm-lib'
 
 // ----------------------------------------------------------------------------
 
-import { GlobalConfig } from '../utils/global-config.js'
-import { Spawn } from '../utils/spawn.js'
+import { GlobalConfig } from '../classes/global-config.js'
+import { Spawn } from '../functions/spawn.js'
 
-import { isString, convertXpmError } from '../utils/functions.js'
+import { convertXpmError } from '../functions/convert-xpm-errors.js'
 
 // ----------------------------------------------------------------------------
 
@@ -157,11 +157,12 @@ export class RunAction extends CliCommand {
    */
   async doRun(args) {
     const log = this.log
+    const context = this.context
+    const config = context.config
+
     log.trace(`${this.constructor.name}.doRun()`)
 
     log.verbose(this.title)
-    const context = this.context
-    const config = context.config
 
     context.globalConfig = new GlobalConfig()
 

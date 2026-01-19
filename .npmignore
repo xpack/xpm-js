@@ -60,11 +60,11 @@ CONTRIBUTING**
 NOTES.md
 
 *.ts
-lib/**/*.ts
+src/**/*.ts
 # The above removes all TypeScript including the .d.ts files.
 # Bring those later back.
 !*.d.ts
-!lib/*.d.ts
+!src/*.d.ts
 
 **/tsconfig*.json
 typedoc.json

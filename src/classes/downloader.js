@@ -65,7 +65,7 @@ export class XpmDownloader {
   // --------------------------------------------------------------------------
   // Constructor.
 
-  constructor({ log }/* : { log: Logger } */) {
+  constructor({ log } /* : { log: Logger } */) {
     this.#log = log
 
     log.trace(`${XpmDownloader.name}()`)
@@ -74,13 +74,12 @@ export class XpmDownloader {
   // --------------------------------------------------------------------------
   // Methods.
 
-  async pacoteCreateManifest({
-    specifier,
-    cacheFolderPath,
-  }/* : {
+  async pacoteCreateManifest(
+    { specifier, cacheFolderPath } /* : {
     specifier: string
     cacheFolderPath: string
-  } */)/* : Promise<AbbreviatedManifest & ManifestResult> */ {
+  } */
+  ) /* : Promise<AbbreviatedManifest & ManifestResult> */ {
     const log = this.#log
     log.trace(`${XpmDownloader.name}.pacoteCreateManifest('${specifier}')`)
     const manifest = await pacote.manifest(specifier, {
@@ -90,16 +89,17 @@ export class XpmDownloader {
     return manifest
   }
 
-  async pacoteExtractPackage({
-    packFullName,
-    specifier,
-    destinationFolderPath,
-    cacheFolderPath,
-    setReadOnly,
-    verboseMessage,
-    config,
-    policies,
-  }/* : {
+  async pacoteExtractPackage(
+    {
+      packFullName,
+      specifier,
+      destinationFolderPath,
+      cacheFolderPath,
+      setReadOnly,
+      verboseMessage,
+      config,
+      policies,
+    } /* : {
     packFullName: string
     specifier: string
     destinationFolderPath: string
@@ -108,7 +108,8 @@ export class XpmDownloader {
     verboseMessage: string
     config: XpmConfig
     policies: XpmPolicies
-  } */)/*: Promise<void> */ {
+  } */
+  ) /*: Promise<void> */ {
     assert(packFullName)
     assert(specifier)
     assert(destinationFolderPath)
@@ -231,15 +232,13 @@ export class XpmDownloader {
     }
   }
 
-  async pacoteExtract({
-    specifier,
-    destinationFolderPath,
-    cacheFolderPath,
-  }/* : {
+  async pacoteExtract(
+    { specifier, destinationFolderPath, cacheFolderPath } /* : {
     specifier: string
     destinationFolderPath: string
     cacheFolderPath: string
-  } */)/*: Promise<void> */ {
+  } */
+  ) /*: Promise<void> */ {
     assert(specifier)
     assert(destinationFolderPath)
     assert(cacheFolderPath)
@@ -261,17 +260,19 @@ export class XpmDownloader {
     }
   }
 
-  async #downloadBinaries({
-    destinationXpmPackage,
-    destinationFolderPath,
-    cacheFolderPath,
-    config,
-  }/* : {
+  async #downloadBinaries(
+    {
+      destinationXpmPackage,
+      destinationFolderPath,
+      cacheFolderPath,
+      config,
+    } /* : {
     destinationXpmPackage: XpmPackage
     destinationFolderPath: string
     cacheFolderPath: string
     config: XpmConfig
-  } */)/*: Promise<void> */ {
+  } */
+  ) /*: Promise<void> */ {
     assert(destinationXpmPackage)
     assert(destinationFolderPath)
     assert(cacheFolderPath)
@@ -386,7 +387,7 @@ export class XpmDownloader {
       // If the cache has no idea of the desired file, proceed with
       // the download.
       log.info(`Downloading ${fileUrl}...`)
-      const opts/* : { integrity?: string } */= {}
+      const opts /* : { integrity?: string } */ = {}
       if (integrityDigest) {
         // Enable hash checking.
         opts.integrity = integrityDigest
@@ -481,18 +482,15 @@ export class XpmDownloader {
   }
 
   // Returns nothing. Used by downloadBinaries().
-  async cacheArchive({
-    url,
-    cacheFolderPath,
-    key,
-    opts,
-  }/*: {
+  async cacheArchive(
+    { url, cacheFolderPath, key, opts } /*: {
     url: string
     cacheFolderPath: string
     key: string
 
     opts: put.Options
-  } */)/*: Promise<void> */ {
+  } */
+  ) /*: Promise<void> */ {
     assert(url)
     assert(cacheFolderPath)
     assert(key)
@@ -508,7 +506,7 @@ export class XpmDownloader {
     let timeoutMillis = 1000
     // If no proxy is set, an empty string is returned.
 
-    const proxyUrl/* : string */ = getProxyForUrl(url)
+    const proxyUrl /* : string */ = getProxyForUrl(url)
     log.trace(`proxyUrl ${proxyUrl}`)
     const maxRetry = 5
     for (let retry = 0; retry < maxRetry; ++retry) {
@@ -564,7 +562,7 @@ export class XpmDownloader {
         )
         timeoutMillis = timeoutMillis + jitter
         log.debug(`timeoutMillis: ${timeoutMillis.toString()}`)
-        const sleep = (ms/* : number */) =>
+        const sleep = (ms /* : number */) =>
           new Promise((resolve) => setTimeout(resolve, ms))
         await sleep(timeoutMillis)
 

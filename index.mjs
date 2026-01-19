@@ -9,7 +9,7 @@
  * be obtained from https://opensource.org/license/mit.
  */
 
-"use strict"
+'use strict'
 
 /**
  * This is the module entry point, the file that is processed when
@@ -25,8 +25,8 @@
  * ```
  */
 
-// ES6: `import { Main } from './lib/main.js'
-import mainCsj from "./lib/main.js"
+// ES6: `import { Main } from './src/main.js'
+import mainCsj from './src/main.js'
 
 export const { Main } = mainCsj
 

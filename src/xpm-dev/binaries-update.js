@@ -38,7 +38,7 @@ import { XpmPackage } from '@xpack/xpm-lib'
 
 // ----------------------------------------------------------------------------
 
-import { GlobalConfig } from '../utils/global-config.js'
+import { GlobalConfig } from '../classes/global-config.js'
 
 // ----------------------------------------------------------------------------
 

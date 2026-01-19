@@ -29,7 +29,7 @@ import zlib from 'zlib'
 // ----------------------------------------------------------------------------
 
 // ES6: `import { CliHelp } from './utils/cli-helps.js'
-import { Xpm } from '../lib/main.js'
+import { Xpm } from '../src/main.js'
 
 // ----------------------------------------------------------------------------
 

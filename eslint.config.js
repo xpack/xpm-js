@@ -14,7 +14,7 @@ export default tseslint.config({
     tseslint.configs.stylisticTypeChecked,
     prettierConfig,
   ],
-  ignores: ['src/lib/xpm-liquid.ts'],
+  ignores: [],
   rules: {
     'max-len': [
       'warn',

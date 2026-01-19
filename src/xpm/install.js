@@ -60,20 +60,18 @@ import {
   XpmLiquidPackage,
   XpmPolicies,
   getPlatformKey,
+  isString,
+  isObject,
 } from '@xpack/xpm-lib'
 
 // ----------------------------------------------------------------------------
 
-import { GlobalConfig } from '../utils/global-config.js'
-import { ManifestIds } from '../utils/manifest-ids.js'
-import { Spawn } from '../../lib/utils/spawn.js'
-import { XpmDownloader } from '../utils/downloader.js'
+import { GlobalConfig } from '../classes/global-config.js'
+import { ManifestIds } from '../classes/manifest-ids.js'
+import { Spawn } from '../functions/spawn.js'
+import { XpmDownloader } from '../classes/downloader.js'
 
-import {
-  isString,
-  isObject,
-  convertXpmError,
-} from '../../lib/utils/functions.js'
+import { convertXpmError } from '../functions/convert-xpm-errors.js'
 
 // ----------------------------------------------------------------------------
 
@@ -283,10 +281,10 @@ export class Install extends CliCommand {
    */
   async doRun(args) {
     const log = this.log
-    log.trace(`${this.constructor.name}.doRun()`)
-
     const context = this.context
     const config = context.config
+
+    log.trace(`${this.constructor.name}.doRun()`)
 
     // TODO: remove when cli-start-options is updated.
     log.debug(

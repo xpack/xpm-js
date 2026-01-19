@@ -51,7 +51,7 @@ import {
 
 // ----------------------------------------------------------------------------
 
-import { GlobalConfig } from '../utils/global-config.js'
+import { GlobalConfig } from '../classes/global-config.js'
 
 // ----------------------------------------------------------------------------
 
@@ -169,9 +169,10 @@ export class Uninstall extends CliCommand {
    */
   async doRun(args) {
     const log = this.log
-    log.trace(`${this.constructor.name}.doRun()`)
     const context = this.context
     const config = context.config
+
+    log.trace(`${this.constructor.name}.doRun()`)
 
     log.verbose(this.title)
     log.verbose()
@@ -200,15 +201,14 @@ export class Uninstall extends CliCommand {
 
     this.jsonPackage = await xpmPackage.readPackageDotJson()
 
-    let minVersion
     try {
-      minVersion = await xpmPackage.checkMinimumXpmRequired({
+      const minVersion = await xpmPackage.checkMinimumXpmRequired({
         xpmRootFolderPath: context.rootPath,
       })
+      this.policies = new XpmPolicies({ log, minVersion })
     } catch (err) {
-      throw new CliError(err.message, CliExitCodes.ERROR.PREREQUISITES)
+      throw convertXpmError(err)
     }
-    this.policies = new XpmPolicies({ log, minVersion })
 
     for (const arg of args) {
       if (config.isSystem) {

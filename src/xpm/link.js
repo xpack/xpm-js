@@ -47,9 +47,9 @@ import { XpmLiquidPackage, XpmPackage, XpmPolicies } from '@xpack/xpm-lib'
 
 // ----------------------------------------------------------------------------
 
-import { GlobalConfig } from '../utils/global-config.js'
-import { ManifestIds } from '../utils/manifest-ids.js'
-import { convertXpmError } from '../../lib/utils/functions.js'
+import { GlobalConfig } from '../classes/global-config.js'
+import { ManifestIds } from '../classes/manifest-ids.js'
+import { convertXpmError } from '../functions/convert-xpm-errors.js'
 
 // ----------------------------------------------------------------------------
 
@@ -106,13 +106,14 @@ export class Link extends CliCommand {
    */
   async doRun(args) {
     const log = this.log
+
+    const context = this.context
+    const config = context.config
+
     log.trace(`${this.constructor.name}.doRun()`)
 
     log.verbose(this.title)
     log.verbose()
-
-    const context = this.context
-    const config = context.config
 
     context.globalConfig = new GlobalConfig()
 
@@ -145,7 +146,7 @@ export class Link extends CliCommand {
       })
       this.policies = new XpmPolicies({ log, minVersion })
     } catch (err) {
-      convertXpmError(err)
+      throw convertXpmError(err)
     }
 
     if (args.length === 0) {

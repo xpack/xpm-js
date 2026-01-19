@@ -23,18 +23,6 @@ import { XpmPrerequisitesError, XpmInputError, XpmError } from '@xpack/xpm-lib'
 
 const { CliErrorPrerequisites, CliErrorInput, CliError } = cliStartOptionsCsj
 
-export function isString(x) {
-  return Object.prototype.toString.call(x) === '[object String]'
-}
-
-export function isObject(x) {
-  return typeof x === 'object' && !Array.isArray(x)
-}
-
-export function isBoolean(x) {
-  return typeof x === 'boolean'
-}
-
 export function convertXpmError(error) {
   if (error instanceof XpmPrerequisitesError) {
     return new CliErrorPrerequisites(error.message)

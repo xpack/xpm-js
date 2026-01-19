@@ -33,9 +33,9 @@ import cliStartOptionsCsj from '@ilg/cli-start-options'
 
 // ----------------------------------------------------------------------------
 
-import { ManifestIds } from '../../lib/utils/manifest-ids.js'
+import { ManifestIds } from '../../src/classes/manifest-ids.js'
 
-import { XpmPolicies } from '../../lib/utils/policies.js'
+import { XpmPolicies } from '../../src/classes/policies.js'
 
 import { Logger } from '@xpack/logger'
 

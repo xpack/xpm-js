@@ -47,7 +47,7 @@ import { XpmLiquidPackage, XpmPackage, XpmPolicies } from '@xpack/xpm-lib'
 
 // ----------------------------------------------------------------------------
 
-import { GlobalConfig } from '../utils/global-config.js'
+import { GlobalConfig } from '../classes/global-config.js'
 
 // ----------------------------------------------------------------------------
 
@@ -130,9 +130,10 @@ export class List extends CliCommand {
    */
   async doRun(args) {
     const log = this.log
-    log.trace(`${this.constructor.name}.doRun()`)
     const context = this.context
     const config = context.config
+
+    log.trace(`${this.constructor.name}.doRun()`)
 
     log.verbose(this.title)
     // log.verbose()

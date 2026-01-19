@@ -25,7 +25,7 @@
 // The `[node-tap](http://www.node-tap.org)` framework.
 import { test } from 'tap'
 
-import { GlobalConfig } from '../../lib/utils/global-config.js'
+import { GlobalConfig } from '../../src/classes/global-config.js'
 
 // ----------------------------------------------------------------------------
 
