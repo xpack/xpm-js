@@ -56,7 +56,7 @@
     "postpublish": "git push origin --follow-tags",
     "dumpconf": "env | sort | uniq",
     "show-versions": "echo $(which node) $(node --version) && echo $(which npm) $(npm --version)",
-    "clean": "del-cli dist cjs 'tests/**/cjs' 'src/**/*.d.ts' 'src/**/*.d.ts.map' 'src/**/*.js' 'src/**/*.js.map' 'tests/**/*.d.ts' 'tests/**/*.d.ts.map' 'tests/**/*.js' 'tests/**/*.js.map' '**/tsconfig.tsbuildinfo' .nyc_output coverage",
+    "clean": "del-cli dist cjs 'tests/**/cjs' 'src/**/*.d.ts' 'src/**/*.d.ts.map' 'src/**/*.js' 'src/**/*.js.map' 'tests/**/*.d.ts' 'tests/**/*.d.ts.map'  'tests/**/*.js.map' '**/tsconfig.tsbuildinfo' .nyc_output coverage",
     "deep-clean": "npm run clean && rm -rf node_modules package-lock.json"
   },
   "repository": {
@@ -102,22 +102,30 @@
     "make-dir": "^5.1.0",
     "parse-git-config": "^3.0.0",
     "semver": "^7.7.3",
-    "tar": "^7.4.3"
+    "tar": "^7.5.3"
   },
   "devDependencies": {
     "del-cli": "^7.0.0",
-    "eslint": "^8.57.1",
+    "eslint": "^9.39.2",
     "@eslint/js": "^9.31.0",
     "eslint-config-prettier": "^10.1.8",
     "liquidjs": "^10.24.0",
-    "prettier": "^3.7.4",
+    "prettier": "^3.8.0",
     "standard": "^17.1.2",
     "tap": "^21.1.6",
     "typescript-eslint": "^8.38.0"
   },
   "bundleDependencies": [
+    "@npmcli/arborist",
+    "pacote",
+    "cacache",
+    "decompress",
+    "https-proxy-agent",
+    "proxy-from-env",
+    "node-fetch",
     "@ilg/cli-start-options",
     "@xpack/cmd-shim",
+    "@xpack/logger",
     "@xpack/xpm-lib",
     "copy-file",
     "cross-spawn",
