@@ -18,13 +18,16 @@
   },
   "scripts": {
     "generate-top-commons": "bash node_modules/@xpack/npm-packages-helper/maintenance-scripts/generate-top-commons.sh --xpack",
-    "prettier": "prettier lib bin --write",
+    "compile-watch": "tsc --build --verbose --watch src",
+    "prettier": "prettier src tests/tap --write",
     "fix": "echo standard --fix lib tests",
     "fix2": "eslint --fix lib tests",
+    "compile": "echo tsc --build --verbose src",
+    "fix-compile": "npm run prettier && npm run fix && npm run compile",
     "dev-cycle": "npm run fix && npm run test",
     "npm-install": "npm install",
     "npm-link-deps": "npm link @ilg/cli-start-options @xpack/xpm-lib",
-    "npm-link-deps-lib": "npm link @xpack/xpm-lib",
+    "npm-link-lib": "npm link @xpack/xpm-lib",
     "npm-link-helpers": "npm link @xpack/npm-packages-helper @xpack/docusaurus-template-liquid",
     "npm-outdated": "npm outdated",
     "npm-update": "npm update",
@@ -35,19 +38,24 @@
     "postversion": "git push origin --all && git push origin --tags",
     "git-log": "git log --pretty='%cd * %h %s' --date=short",
     "lint": "echo standard lib",
+    "lint2": "eslint lib tests",
     "prepare": "npm run lint",
-    "pretest-coverage": "npm run lint",
-    "pretest-no-coverage": "npm run lint",
-    "test-coverage": "tap --show-full-coverage",
-    "test-no-coverage": "tap --disable-coverage",
-    "tap": "tap --reporter=tap",
-    "test": "npm run test-no-coverage",
-    "test-ci": "npm run test-no-coverage",
+    "pretest": "npm run compile && npm run lint",
+    "test-ci": "tap run --reporter=terse --disable-coverage",
+    "test": "tap run --disable-coverage",
+    "test-coverage": "tap run",
+    "test-all": "tap run --reporter=tap --disable-coverage",
+    "test-one-010": "tap run --reporter=tap --disable-coverage tests/tap/010-*.ts",
+    "test-one-020": "tap run --reporter=tap --disable-coverage tests/tap/020-*.ts",
+    "test-one-030": "tap run --reporter=tap --disable-coverage tests/tap/030-*.ts",
+    "test-one-040": "tap run --reporter=tap --disable-coverage tests/tap/040-*.ts",
+    "test-one-050": "tap run --reporter=tap --disable-coverage tests/tap/050-*.ts",
+    "test-one-060": "tap run --reporter=tap --disable-coverage tests/tap/060-*.ts",
+    "test-tap-config-list": "tap config list",
     "prepublishOnly": "npm run lint && npm run test",
     "postpublish": "git push origin --follow-tags",
     "dumpconf": "env | sort | uniq",
     "show-versions": "echo $(which node) $(node --version) && echo $(which npm) $(npm --version)",
-    "compile": "echo nothing to compile",
     "clean": "del-cli dist cjs 'tests/**/cjs' 'src/**/*.d.ts' 'src/**/*.d.ts.map' 'src/**/*.js' 'src/**/*.js.map' 'tests/**/*.d.ts' 'tests/**/*.d.ts.map' 'tests/**/*.js' 'tests/**/*.js.map' '**/tsconfig.tsbuildinfo' .nyc_output coverage",
     "deep-clean": "npm run clean && rm -rf node_modules package-lock.json"
   },
@@ -76,6 +84,13 @@
   "homepage": "https://xpack.github.io/xpm/",
   "homepagePreview": "https://xpack.github.io/xpm-js/",
   "dependencies": {
+    "@npmcli/arborist": "^9.1.9",
+    "pacote": "^17.0.6",
+    "cacache": "^18.0.2",
+    "decompress": "^4.2.1",
+    "https-proxy-agent": "^7.0.6",
+    "proxy-from-env": "^1.1.0",
+    "node-fetch": "^3.3.2",
     "@ilg/cli-start-options": "^0.9.0",
     "@xpack/cmd-shim": "^4.1.0-2",
     "@xpack/logger": "^6.0.0",
@@ -92,11 +107,13 @@
   "devDependencies": {
     "del-cli": "^7.0.0",
     "eslint": "^8.57.1",
+    "@eslint/js": "^9.31.0",
     "eslint-config-prettier": "^10.1.8",
     "liquidjs": "^10.24.0",
     "prettier": "^3.7.4",
     "standard": "^17.1.2",
-    "tap": "^21.1.6"
+    "tap": "^21.1.6",
+    "typescript-eslint": "^8.38.0"
   },
   "bundleDependencies": [
     "@ilg/cli-start-options",
@@ -111,27 +128,10 @@
     "semver",
     "tar"
   ],
-  "tap": {
-    "files": [
-      "tests/tap/*.js"
-    ],
-    "reporter": "base"
-  },
   "standard": {
     "ignore": [
       "/website/"
     ]
-  },
-  "eslintConfig": {
-    "rules": {
-      "max-len": [
-        "error",
-        80,
-        {
-          "ignoreUrls": true
-        }
-      ]
-    }
   },
   "ts-standard": {
     "ignore": [
