@@ -1534,6 +1534,90 @@
     {
       "type": "node",
       "request": "launch",
+      "name": "xpm list (utils-lists-xpack tests)",
+      "program": "${workspaceRoot}/bin/xpm.js",
+      "stopOnEntry": true,
+      "args": [
+        "list",
+        "-dd",
+        "-C",
+        "/Users/ilg/MyProjects/micro-os-plus.github/xPacks/utils-lists-xpack.git/tests"
+      ],
+      "cwd": "${workspaceRoot}",
+      "preLaunchTask": null,
+      "runtimeExecutable": null,
+      "runtimeArgs": [
+        "--nolazy"
+      ],
+      "skipFiles": [
+        "<node_internals>/**",
+        "**/async-hook-domain/**"
+      ],
+      "env": {
+        "NODE_ENV": "development"
+      },
+      "console": "internalConsole",
+      "sourceMaps": false
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "xpm run (micro-test-plus-xpack tests)",
+      "program": "${workspaceRoot}/bin/xpm.js",
+      "stopOnEntry": true,
+      "args": [
+        "run",
+        "-dd",
+        "-C",
+        "/Users/ilg/MyProjects/micro-os-plus.github/xPacks/micro-test-plus-xpack.git/tests"
+      ],
+      "cwd": "${workspaceRoot}",
+      "preLaunchTask": null,
+      "runtimeExecutable": null,
+      "runtimeArgs": [
+        "--nolazy"
+      ],
+      "skipFiles": [
+        "<node_internals>/**",
+        "**/async-hook-domain/**"
+      ],
+      "env": {
+        "NODE_ENV": "development"
+      },
+      "console": "internalConsole",
+      "sourceMaps": false
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "xpm list (micro-test-plus-xpack tests)",
+      "program": "${workspaceRoot}/bin/xpm.js",
+      "stopOnEntry": true,
+      "args": [
+        "list",
+        "-dd",
+        "-C",
+        "/Users/ilg/MyProjects/micro-os-plus.github/xPacks/micro-test-plus-xpack.git/tests"
+      ],
+      "cwd": "${workspaceRoot}",
+      "preLaunchTask": null,
+      "runtimeExecutable": null,
+      "runtimeArgs": [
+        "--nolazy"
+      ],
+      "skipFiles": [
+        "<node_internals>/**",
+        "**/async-hook-domain/**"
+      ],
+      "env": {
+        "NODE_ENV": "development"
+      },
+      "console": "internalConsole",
+      "sourceMaps": false
+    },
+    {
+      "type": "node",
+      "request": "launch",
       "name": "Launch Program",
       "program": "${workspaceRoot}/index.js"
     },
