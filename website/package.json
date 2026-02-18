@@ -23,7 +23,8 @@
     "deep-clean": "del-cli .docusaurus build node_modules package-lock.json",
     "import-website-releases": "bash node_modules/@xpack/docusaurus-template-liquid/maintenance-scripts/import-releases.sh --xpack",
     "generate-website-blog-post": "bash node_modules/@xpack/docusaurus-template-liquid/maintenance-scripts/generate-blog-post.sh --xpack",
-    "generate-dependencies-details": "bash node_modules/@xpack/docusaurus-template-liquid/maintenance-scripts/generate-dependencies-details.sh --xpack"
+    "generate-dependencies-details": "bash node_modules/@xpack/docusaurus-template-liquid/maintenance-scripts/generate-dependencies-details.sh --xpack",
+    "clean": "del-cli .docusaurus build"
   },
   "author": {
     "name": "Liviu Ionescu",
@@ -37,12 +38,12 @@
     "@docusaurus/plugin-ideal-image": "3.9.2",
     "@docusaurus/preset-classic": "3.9.2",
     "@docusaurus/theme-search-algolia": "3.9.2",
-    "@mdx-js/react": "^3.0.0",
+    "@mdx-js/react": "^3.1.1",
     "clean-css": "~5.3.3",
     "clsx": "^2.0.0",
     "prism-react-renderer": "^2.3.0",
-    "react": "^19.0.0",
-    "react-dom": "^19.0.0",
+    "react": "^19.2.3",
+    "react-dom": "^19.2.3",
     "@docusaurus/faster": "3.9.2"
   },
   "devDependencies": {
@@ -54,7 +55,11 @@
     "json": "^11.0.0",
     "liquidjs": "^10.24.0",
     "typedoc": "^0.28.7",
-    "typescript": "~5.9.3"
+    "typescript": "~5.9.3",
+    "@microsoft/api-documenter": "^7.28.2",
+    "@microsoft/api-extractor": "^7.55.2",
+    "@xpack/docusaurus-template-liquid": "github:xpack/docusaurus-template-liquid",
+    "@xpack/npm-packages-helper": "github:xpack/npm-packages-helper"
   },
   "$devDependenciesUrls": [
     "https://www.npmjs.com/package/del-cli",

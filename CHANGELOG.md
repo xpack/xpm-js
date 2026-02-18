@@ -3,6 +3,40 @@
 Changes in reverse chronological order.
 Don't forget to close GitHub [issues](https://github.com/xpack/xpm-js/issues/).
 
+## 2026-02-18
+
+* v0.22.7 prepared
+* 303fd32 package*.json bump deps
+* 5fa88d1 launch.json update
+* 0942259 src update for xpm-lib
+
+## 2026-01-19
+
+* b82d5cd move sources to src; fix init policies
+* a321773 package.json update pacote & cacache
+* 42053a4 package.json update deps
+* e11506f launch.json update
+* 9eebce3 pacakge.json updates with downloader deps
+* 6a8d4b3 add eslint.config.js
+* 4c1d15e add .taprc
+* c185132 bring downloader back
+
+## 2026-01-18
+
+* b7df50e use XpmDownloader
+* 855c34c run-action.js: fix errors
+
+## 2026-01-16
+
+* 37330d6 pacakge.json 0.22.7-pre
+* 1e25a73 launch.json updates
+* a74609a more updates for xpm-lib
+
+## 2026-01-05
+
+* 799c922 0.22.6
+* 43505dc prepare v0.22.6
+
 ## 2026-01-04
 
 * v0.22.6 prepared
