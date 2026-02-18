@@ -69,7 +69,7 @@ src/**/*.ts
 **/tsconfig*.json
 typedoc.json
 tsconfig.tsbuildinfo
-src/
+
 xpacks/
 node_modules/
 docs/
@@ -93,5 +93,8 @@ maintenance-scripts/
 .prettierignore
 api-extractor.json
 eslint.config.js
+
+.prettierrc.json
+.taprc
 
 #end
