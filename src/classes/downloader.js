@@ -51,7 +51,7 @@ import fetch from 'node-fetch'
 // import { Logger } from '@xpack/logger'
 
 // https://www.npmjs.com/package/@xpack/xpm-lib
-import { chmodRecursive, getPlatformKey, XpmPackage } from '@xpack/xpm-lib'
+import * as xpmLib from '@xpack/xpm-lib'
 
 // ----------------------------------------------------------------------------
 
@@ -121,7 +121,7 @@ export class XpmDownloader {
     const log = this.#log
     log.trace(`${XpmDownloader.name}.pacoteExtractContent('${specifier}')`)
 
-    let destinationXpmPackage = new XpmPackage({
+    let destinationXpmPackage = new xpmLib.Package({
       log,
       packageFolderPath: destinationFolderPath,
     })
@@ -147,7 +147,7 @@ export class XpmDownloader {
           )
         } else {
           log.verbose('Changing permissions to read-write...')
-          await chmodRecursive({
+          await xpmLib.chmodRecursively({
             inputPath: destinationFolderPath,
             readOnly: false,
             log,
@@ -182,7 +182,7 @@ export class XpmDownloader {
       if (!log.isVerbose) {
         log.info(`${packFullName} => '${destinationFolderPath}'`)
       }
-      destinationXpmPackage = new XpmPackage({
+      destinationXpmPackage = new xpmLib.Package({
         log,
         packageFolderPath: destinationTmpFolderPath,
       })
@@ -223,7 +223,7 @@ export class XpmDownloader {
       log.trace(`in '${destinationFolderPath}'`)
       if (setReadOnly) {
         log.verbose('Changing permissions to read-only...')
-        await chmodRecursive({
+        await xpmLib.chmodRecursively({
           inputPath: destinationFolderPath,
           readOnly: true,
           log,
@@ -298,7 +298,7 @@ export class XpmDownloader {
       return
     }
 
-    const platformKey = getPlatformKey()
+    const platformKey = xpmLib.getPlatformKey()
     // const platformKeyAliases = new Set<string>()
     const platformKeyAliases = new Set()
 

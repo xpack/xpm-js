@@ -43,7 +43,7 @@ import semver from 'semver'
 import cliStartOptionsCsj from '@ilg/cli-start-options'
 
 // https://www.npmjs.com/package/@xpack/xpm-lib
-import { XpmLiquidPackage, XpmPackage, XpmPolicies } from '@xpack/xpm-lib'
+import * as xpmLib from '@xpack/xpm-lib'
 
 // ----------------------------------------------------------------------------
 
@@ -148,12 +148,15 @@ export class List extends CliCommand {
     await context.globalConfig.checkDeprecatedFolders(log)
 
     // The current folder may not be an xpm package or even a package at all.
-    const xpmPackage = new XpmPackage({ log, packageFolderPath: config.cwd })
+    const xpmPackage = new xpmLib.Package({
+      log,
+      packageFolderPath: config.cwd,
+    })
     this.xpmPackage = xpmPackage
 
     this.jsonPackage = await xpmPackage.readPackageDotJson()
     const minVersion = xpmPackage.getMinimumXpmRequired()
-    this.policies = new XpmPolicies({ log, minVersion })
+    this.policies = new xpmLib.Policies({ log, minVersion })
 
     if (config.isSystem) {
       await this.listPackagesSystem()
@@ -203,13 +206,13 @@ export class List extends CliCommand {
       )
     }
 
-    const xpmLiquidPackage = new XpmLiquidPackage({
+    const xpmDataModel = new xpmLib.DataModel({
       log,
       jsonPackage: this.jsonPackage,
     })
-    this.xpmLiquidPackage = xpmLiquidPackage
+    this.xpmDataModel = xpmDataModel
 
-    const buildConfigurations = xpmLiquidPackage.buildConfigurations
+    const buildConfigurations = xpmDataModel.buildConfigurations
     await buildConfigurations.initialise()
 
     if (buildConfigurationName) {
@@ -225,7 +228,7 @@ export class List extends CliCommand {
       // Show the package dependencies.
       await this.listPackagesFromOneFolder()
 
-      const buildConfigurationsNames = buildConfigurations.names()
+      const buildConfigurationsNames = buildConfigurations.names
       for (const buildConfigurationName of buildConfigurationsNames) {
         const buildConfiguration = buildConfigurations.get(
           buildConfigurationName
@@ -236,7 +239,7 @@ export class List extends CliCommand {
           (Object.keys(buildConfiguration.dependencies).length > 0 ||
             Object.keys(buildConfiguration.devDependencies).length > 0 ||
             log.isVerbose) &&
-          !buildConfiguration.hidden
+          !buildConfiguration.isHidden
         ) {
           log.info()
 
@@ -260,14 +263,14 @@ export class List extends CliCommand {
 
     const context = this.context
     const config = context.config
-    const xpmLiquidPackage = this.xpmLiquidPackage
+    const xpmDataModel = this.xpmDataModel
 
     // const configurationPrefix = (configurationName + '/') || ''
 
     let xpacksFolderPath
 
     if (buildConfigurationName) {
-      const buildConfiguration = xpmLiquidPackage.buildConfigurations.get(
+      const buildConfiguration = xpmDataModel.buildConfigurations.get(
         buildConfigurationName
       )
       await buildConfiguration.initialise()
@@ -372,7 +375,7 @@ export class List extends CliCommand {
           continue
         }
         log.trace(`checking folder '${subFolderPath}'`)
-        const subFolderXpmPackage = new XpmPackage({
+        const subFolderXpmPackage = new xpmLib.Package({
           log,
           packageFolderPath: subFolderPath,
         })
@@ -475,7 +478,10 @@ export class List extends CliCommand {
     // The first concern is to terminate the recursion when
     // identifying folders that look like a package.
 
-    const xpmPackage = new XpmPackage({ log, packageFolderPath: folderPath })
+    const xpmPackage = new xpmLib.Package({
+      log,
+      packageFolderPath: folderPath,
+    })
     const jsonPackage = await xpmPackage.readPackageDotJson()
 
     if (jsonPackage) {

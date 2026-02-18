@@ -37,7 +37,7 @@ import path from 'path'
 import cliStartOptionsCsj from '@ilg/cli-start-options'
 
 // https://www.npmjs.com/package/@xpack/xpm-lib
-import { XpmLiquidPackage, XpmPackage, isString } from '@xpack/xpm-lib'
+import * as xpmLib from '@xpack/xpm-lib'
 
 // ----------------------------------------------------------------------------
 
@@ -168,7 +168,10 @@ export class RunAction extends CliCommand {
 
     await context.globalConfig.checkDeprecatedFolders(log)
 
-    const xpmPackage = new XpmPackage({ log, packageFolderPath: config.cwd })
+    const xpmPackage = new xpmLib.Package({
+      log,
+      packageFolderPath: config.cwd,
+    })
     this.xpmPackage = xpmPackage
 
     try {
@@ -201,11 +204,11 @@ export class RunAction extends CliCommand {
       throw convertXpmError(err)
     }
 
-    const xpmLiquidPackage = new XpmLiquidPackage({
+    const xpmDataModel = new xpmLib.DataModel({
       log,
       jsonPackage: this.jsonPackage,
     })
-    this.xpmLiquidPackage = xpmLiquidPackage
+    this.xpmDataModel = xpmDataModel
 
     let exitCode = CliExitCodes.SUCCESS
     try {
@@ -214,16 +217,16 @@ export class RunAction extends CliCommand {
         await this.showScripts()
       } else {
         if (config.isAllConfigs) {
-          const buildConfigurations = xpmLiquidPackage.buildConfigurations
+          const buildConfigurations = xpmDataModel.buildConfigurations
           await buildConfigurations.initialise()
 
-          for (const buildConfigurationName of buildConfigurations.names()) {
+          for (const buildConfigurationName of buildConfigurations.names) {
             const buildConfiguration = buildConfigurations.get(
               buildConfigurationName
             )
             await buildConfiguration.initialise()
 
-            if (buildConfiguration.hidden) {
+            if (buildConfiguration.isHidden) {
               // Ignore hidden configurations.
               continue
             }
@@ -231,7 +234,7 @@ export class RunAction extends CliCommand {
             const actions = buildConfiguration.actions
             await actions.initialise()
 
-            if (actions.empty()) {
+            if (actions.isEmpty) {
               // Ignore configurations without actions.
               continue
             }
@@ -287,13 +290,13 @@ export class RunAction extends CliCommand {
       }
     }
 
-    const xpmLiquidPackage = this.xpmLiquidPackage
+    const xpmDataModel = this.xpmDataModel
 
-    const actions = xpmLiquidPackage.actions
+    const actions = xpmDataModel.actions
     await actions.initialise()
 
-    if (!actions.empty()) {
-      for (const actionName of actions.names()) {
+    if (!actions.isEmpty) {
+      for (const actionName of actions.names) {
         const action = actions.get(actionName)
         await action.initialise()
 
@@ -303,25 +306,25 @@ export class RunAction extends CliCommand {
       }
     }
 
-    const buildConfigurations = xpmLiquidPackage.buildConfigurations
+    const buildConfigurations = xpmDataModel.buildConfigurations
     await buildConfigurations.initialise()
 
-    if (!buildConfigurations.empty()) {
-      for (const buildConfigurationName of buildConfigurations.names()) {
+    if (!buildConfigurations.isEmpty) {
+      for (const buildConfigurationName of buildConfigurations.names) {
         const buildConfiguration = buildConfigurations.get(
           buildConfigurationName
         )
-        await buildConfiguration.initialise()
-        if (buildConfiguration.hidden) {
+        if (buildConfiguration.isHidden) {
           // Ignore hidden configurations.
           continue
         }
+        await buildConfiguration.initialise()
 
         const actions = buildConfiguration.actions
         await actions.initialise()
 
-        if (!actions.empty()) {
-          for (const actionName of actions.names()) {
+        if (!actions.isEmpty) {
+          for (const actionName of actions.names) {
             const action = actions.get(actionName)
             await action.initialise()
 
@@ -340,7 +343,7 @@ export class RunAction extends CliCommand {
 
   showCommands(value) {
     const log = this.log
-    if (isString(value)) {
+    if (xpmLib.isString(value)) {
       const trimmed = value.trim()
       if (trimmed.length > 0) {
         log.output(`    ${trimmed}`)
@@ -360,7 +363,7 @@ export class RunAction extends CliCommand {
     const context = this.context
     const config = context.config
     const jsonPackage = this.jsonPackage
-    const xpmLiquidPackage = this.xpmLiquidPackage
+    const xpmDataModel = this.xpmDataModel
 
     log.trace(`${this.constructor.name}.executeAction('${name}')`)
 
@@ -390,7 +393,7 @@ export class RunAction extends CliCommand {
         }
       }
 
-      const buildConfigurations = xpmLiquidPackage.buildConfigurations
+      const buildConfigurations = xpmDataModel.buildConfigurations
       await buildConfigurations.initialise()
 
       buildConfiguration = buildConfigurations.get(buildConfigurationName)
@@ -407,7 +410,7 @@ export class RunAction extends CliCommand {
         )
       }
     } else {
-      actions = xpmLiquidPackage.actions
+      actions = xpmDataModel.actions
       await actions.initialise()
 
       if (!actions.has(name)) {

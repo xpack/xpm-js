@@ -43,7 +43,7 @@ import { makeDirectory } from 'make-dir'
 import cliStartOptionsCsj from '@ilg/cli-start-options'
 
 // https://www.npmjs.com/package/@xpack/xpm-lib
-import { XpmLiquidPackage, XpmPackage, XpmPolicies } from '@xpack/xpm-lib'
+import * as xpmLib from '@xpack/xpm-lib'
 
 // ----------------------------------------------------------------------------
 
@@ -120,7 +120,10 @@ export class Link extends CliCommand {
     await context.globalConfig.checkDeprecatedFolders(log)
 
     // The current folder may not be an xpm package or even a package at all.
-    const xpmPackage = new XpmPackage({ log, packageFolderPath: config.cwd })
+    const xpmPackage = new xpmLib.Package({
+      log,
+      packageFolderPath: config.cwd,
+    })
     this.xpmPackage = xpmPackage
 
     try {
@@ -144,7 +147,7 @@ export class Link extends CliCommand {
       const minVersion = await xpmPackage.checkMinimumXpmRequired({
         xpmRootFolderPath: context.rootPath,
       })
-      this.policies = new XpmPolicies({ log, minVersion })
+      this.policies = new xpmLib.Policies({ log, minVersion })
     } catch (err) {
       throw convertXpmError(err)
     }
@@ -299,7 +302,7 @@ export class Link extends CliCommand {
         throw new CliErrorInput(`package '${arg}' is not linked to a folder`)
       }
 
-      const destinationXpmPackage = new XpmPackage({
+      const destinationXpmPackage = new xpmLib.Package({
         log,
         packageFolderPath: globalPackageLinkPath,
       })
@@ -325,12 +328,12 @@ export class Link extends CliCommand {
       let localXpacksFolderPath
 
       if (configurationName) {
-        const xpmLiquidPackage = new XpmLiquidPackage({
+        const xpmDataModel = new xpmLib.DataModel({
           log,
           jsonPackage: this.jsonPackage,
         })
 
-        const buildConfigurations = xpmLiquidPackage.buildConfigurations
+        const buildConfigurations = xpmDataModel.buildConfigurations
         await buildConfigurations.initialise()
 
         if (!buildConfigurations.has(configurationName)) {

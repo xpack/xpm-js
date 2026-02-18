@@ -55,14 +55,7 @@ import cliStartOptionsCsj from '@ilg/cli-start-options'
 import cmdShim from '@xpack/cmd-shim'
 
 // https://www.npmjs.com/package/@xpack/xpm-lib
-import {
-  XpmPackage,
-  XpmLiquidPackage,
-  XpmPolicies,
-  getPlatformKey,
-  isString,
-  isObject,
-} from '@xpack/xpm-lib'
+import * as xpmLib from '@xpack/xpm-lib'
 
 // ----------------------------------------------------------------------------
 
@@ -311,7 +304,10 @@ export class Install extends CliCommand {
     context.hasFileSymLink = false
 
     // The current folder may not be an xpm package or even a package at all.
-    const xpmPackage = new XpmPackage({ log, packageFolderPath: config.cwd })
+    const xpmPackage = new xpmLib.Package({
+      log,
+      packageFolderPath: config.cwd,
+    })
     this.xpmPackage = xpmPackage
 
     // Read package.json if present. May be undefined.
@@ -334,7 +330,7 @@ export class Install extends CliCommand {
       const minVersion = await xpmPackage.checkMinimumXpmRequired({
         xpmRootFolderPath: context.rootPath,
       })
-      this.policies = new XpmPolicies({ log, minVersion })
+      this.policies = new xpmLib.Policies({ log, minVersion })
     } catch (err) {
       throw convertXpmError(err)
     }
@@ -349,7 +345,7 @@ export class Install extends CliCommand {
 
     this.issueShareNpmDependenciesWarning = false
 
-    this.xpmLiquidPackage = undefined
+    this.xpmDataModel = undefined
 
     try {
       if (args.length === 0) {
@@ -591,7 +587,7 @@ export class Install extends CliCommand {
 
     const xpmDownloader = new XpmDownloader({ log })
 
-    const globalXpmPackage = new XpmPackage({
+    const globalXpmPackage = new xpmLib.Package({
       log,
       packageFolderPath: globalPackagePath,
     })
@@ -629,12 +625,12 @@ export class Install extends CliCommand {
     let buildFolderRelativePath = undefined
 
     if (buildConfigurationName) {
-      const globalLiquidPackage = new XpmLiquidPackage({
+      const globalXpmDataModel = new xpmLib.DataModel({
         log,
         jsonPackage: jsonGlobal,
       })
 
-      const buildConfigurations = globalLiquidPackage.buildConfigurations
+      const buildConfigurations = globalXpmDataModel.buildConfigurations
       await buildConfigurations.initialise()
 
       if (!buildConfigurations.hasConfiguration(buildConfigurationName)) {
@@ -666,7 +662,7 @@ export class Install extends CliCommand {
     log.debug(`local path: ${localPackagePath}`)
 
     // The package may be already installed.
-    const destinationXpmPackage = new XpmPackage({
+    const destinationXpmPackage = new xpmLib.Package({
       log,
       packageFolderPath: localPackagePath,
     })
@@ -833,7 +829,7 @@ export class Install extends CliCommand {
 
     const xpmDownloader = new XpmDownloader({ log })
 
-    const globalXpmPackage = new XpmPackage({
+    const globalXpmPackage = new xpmLib.Package({
       log,
       packageFolderPath: globalPackagePath,
     })
@@ -1141,13 +1137,13 @@ export class Install extends CliCommand {
         log.warn('option --all-configs ignored')
       }
 
-      const xpmLiquidPackage = new XpmLiquidPackage({
+      const xpmDataModel = new xpmLib.DataModel({
         log,
         jsonPackage: this.jsonPackage,
       })
-      this.xpmLiquidPackage = xpmLiquidPackage
+      this.xpmDataModel = xpmDataModel
 
-      const buildConfigurations = xpmLiquidPackage.buildConfigurations
+      const buildConfigurations = xpmDataModel.buildConfigurations
       await buildConfigurations.initialise()
 
       if (!buildConfigurations.has(configurationName)) {
@@ -1225,22 +1221,22 @@ export class Install extends CliCommand {
       })
 
       if (config.isAllConfigs) {
-        const xpmLiquidPackage = new XpmLiquidPackage({
+        const xpmDataModel = new xpmLib.DataModel({
           log,
           jsonPackage: this.jsonPackage,
         })
 
-        const buildConfigurations = xpmLiquidPackage.buildConfigurations
+        const buildConfigurations = xpmDataModel.buildConfigurations
         await buildConfigurations.initialise()
 
-        if (!buildConfigurations.empty()) {
-          const configurationNames = buildConfigurations.names()
+        if (!buildConfigurations.isEmpty) {
+          const configurationNames = buildConfigurations.names
           for (const configurationName of configurationNames) {
             const buildConfiguration =
               buildConfigurations.get(configurationName)
             await buildConfiguration.initialise()
 
-            if (buildConfiguration.hidden) {
+            if (buildConfiguration.isHidden) {
               // Ignore hidden configurations.
               continue
             }
@@ -1405,7 +1401,7 @@ export class Install extends CliCommand {
     let verboseMessage
 
     // log.trace(`${globalPackagePath}`)
-    const globalXpmPackage = new XpmPackage({
+    const globalXpmPackage = new xpmLib.Package({
       log,
       packageFolderPath: globalPackagePath,
     })
@@ -1849,7 +1845,7 @@ export class Install extends CliCommand {
               ...keyParts
             )
 
-            const npmPackage = new XpmPackage({
+            const npmPackage = new xpmLib.Package({
               log,
               packageFolderPath: npmFolderPath,
             })
@@ -1902,13 +1898,13 @@ export class Install extends CliCommand {
     let dependencyKind = 'link'
     let specifier
     let dependency
-    if (isString(value)) {
+    if (xpmLib.isString(value)) {
       dependency = {
         specifier: value,
         local: 'link',
         platforms: 'all',
       }
-    } else if (isObject(value) && isString(value.specifier)) {
+    } else if (xpmLib.isObject(value) && xpmLib.isString(value.specifier)) {
       dependency = value
     } else {
       log.warn(
@@ -1921,7 +1917,7 @@ export class Install extends CliCommand {
 
     if (dependency.local) {
       if (
-        isString(dependency.local) &&
+        xpmLib.isString(dependency.local) &&
         ['link', 'copy'].includes(dependency.local)
       ) {
         dependencyKind = dependency.local
@@ -1941,7 +1937,7 @@ export class Install extends CliCommand {
       dependency.platforms &&
       dependency.platforms.toLowerCase().trim() !== 'all'
     ) {
-      const platformKey = getPlatformKey()
+      const platformKey = xpmLib.getPlatformKey()
       const platformKeysArray = dependency.platforms
         .toLowerCase()
         .split(',')

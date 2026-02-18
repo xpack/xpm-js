@@ -26,7 +26,7 @@
 import cliStartOptionsCsj from '@ilg/cli-start-options'
 
 // https://www.npmjs.com/package/@xpack/xpm-lib
-import { XpmPackage } from '@xpack/xpm-lib'
+import * as xpmLib from '@xpack/xpm-lib'
 
 // ----------------------------------------------------------------------------
 
@@ -74,7 +74,10 @@ export class Binaries extends CliCommand {
 
     context.globalConfig = new GlobalConfig()
 
-    const xpmPackage = new XpmPackage({ log, packageFolderPath: config.cwd })
+    const xpmPackage = new xpmLib.Package({
+      log,
+      packageFolderPath: config.cwd,
+    })
 
     try {
       // Read `package.json`; throw if not valid.

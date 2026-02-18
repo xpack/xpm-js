@@ -43,7 +43,10 @@ import parseGitConfig from 'parse-git-config'
 import cliStartOptionsCsj from '@ilg/cli-start-options'
 
 // https://www.npmjs.com/package/@xpack/xpm-lib
-import { XpmPackage, XpmPolicies, Liquid } from '@xpack/xpm-lib'
+import * as xpmLib from '@xpack/xpm-lib'
+
+// https://www.npmjs.com/package/liquidjs
+import { Liquid } from 'liquidjs'
 
 // ----------------------------------------------------------------------------
 
@@ -206,7 +209,10 @@ export class Init extends CliCommand {
     const context = this.context
     const config = context.config
 
-    const xpmPackage = new XpmPackage({ log, packageFolderPath: config.cwd })
+    const xpmPackage = new xpmLib.Package({
+      log,
+      packageFolderPath: config.cwd,
+    })
     this.xpmPackage = xpmPackage
 
     // Undefined for empty folders, existing package.json otherwise.
@@ -234,7 +240,7 @@ export class Init extends CliCommand {
     }
     log.trace(util.inspect(manifest))
 
-    const policies = new XpmPolicies({ log })
+    const policies = new xpmLib.Policies({ log })
     const manifestIds = new ManifestIds(manifest, policies)
     const globalPackagePath = path.join(
       context.globalConfig.globalFolderPath,
@@ -243,7 +249,7 @@ export class Init extends CliCommand {
 
     const packFullName = manifestIds.getFullName()
 
-    const globalXpmPackage = new XpmPackage({
+    const globalXpmPackage = new xpmLib.Package({
       log,
       packageFolderPath: globalPackagePath,
     })
@@ -270,7 +276,7 @@ export class Init extends CliCommand {
         const minVersion = await globalXpmPackage.checkMinimumXpmRequired({
           xpmRootFolderPath: context.rootPath,
         })
-        this.policies = new XpmPolicies({ log, minVersion })
+        this.policies = new xpmLib.Policies({ log, minVersion })
       } catch (err) {
         throw convertXpmError(err)
       }
@@ -324,7 +330,7 @@ export class Init extends CliCommand {
         const minVersion = await globalXpmPackage.checkMinimumXpmRequired({
           xpmRootFolderPath: context.rootPath,
         })
-        this.policies = new XpmPolicies({ log, minVersion })
+        this.policies = new xpmLib.Policies({ log, minVersion })
       } catch (err) {
         throw convertXpmError(err)
       }
@@ -377,7 +383,10 @@ export class Init extends CliCommand {
     const context = this.context
     const config = context.config
 
-    const xpmPackage = new XpmPackage({ log, packageFolderPath: config.cwd })
+    const xpmPackage = new xpmLib.Package({
+      log,
+      packageFolderPath: config.cwd,
+    })
     this.xpmPackage = xpmPackage
 
     // Undefined for empty folders, existing package.json otherwise.

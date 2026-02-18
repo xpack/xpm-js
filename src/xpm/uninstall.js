@@ -42,12 +42,7 @@ import { deleteAsync } from 'del'
 import cliStartOptionsCsj from '@ilg/cli-start-options'
 
 // https://www.npmjs.com/package/@xpack/xpm-lib
-import {
-  XpmLiquidPackage,
-  XpmPackage,
-  XpmPolicies,
-  chmodRecursive,
-} from '@xpack/xpm-lib'
+import * as xpmLib from '@xpack/xpm-lib'
 
 // ----------------------------------------------------------------------------
 
@@ -196,7 +191,10 @@ export class Uninstall extends CliCommand {
     await context.globalConfig.checkDeprecatedFolders(log)
 
     // The current folder may not be an xpm package or even a package at all.
-    const xpmPackage = new XpmPackage({ log, packageFolderPath: config.cwd })
+    const xpmPackage = new xpmLib.Package({
+      log,
+      packageFolderPath: config.cwd,
+    })
     this.xpmPackage = xpmPackage
 
     this.jsonPackage = await xpmPackage.readPackageDotJson()
@@ -205,7 +203,7 @@ export class Uninstall extends CliCommand {
       const minVersion = await xpmPackage.checkMinimumXpmRequired({
         xpmRootFolderPath: context.rootPath,
       })
-      this.policies = new XpmPolicies({ log, minVersion })
+      this.policies = new xpmLib.Policies({ log, minVersion })
     } catch (err) {
       throw convertXpmError(err)
     }
@@ -295,13 +293,13 @@ export class Uninstall extends CliCommand {
     let xPacksBasePath = config.cwd
 
     if (configurationName) {
-      const xpmLiquidPackage = new XpmLiquidPackage({
+      const xpmDataModel = new xpmLib.DataModel({
         log,
         jsonPackage: this.jsonPackage,
       })
-      this.xpmLiquidPackage = xpmLiquidPackage
+      this.xpmDataModel = xpmDataModel
 
-      const buildConfigurations = xpmLiquidPackage.buildConfigurations
+      const buildConfigurations = xpmDataModel.buildConfigurations
       await buildConfigurations.initialise()
 
       if (!buildConfigurations.has(configurationName)) {
@@ -541,7 +539,7 @@ export class Uninstall extends CliCommand {
     if (stat.isDirectory()) {
       if (!config.isDryRun) {
         log.verbose('Changing permissions to read-write...')
-        await chmodRecursive({
+        await xpmLib.chmodRecursively({
           inputPath: globalPackagePath,
           readOnly: false,
           log,
@@ -629,7 +627,10 @@ export class Uninstall extends CliCommand {
   async removeDotBinLinks({ xPacksBasePath, dotBinRelativePath, packagePath }) {
     const log = this.log
 
-    const xpmPackage = new XpmPackage({ log, packageFolderPath: packagePath })
+    const xpmPackage = new xpmLib.Package({
+      log,
+      packageFolderPath: packagePath,
+    })
     const jsonPackage = await xpmPackage.readPackageDotJson()
     if (!jsonPackage) {
       return // Not a package (unlikely, but for just in case)

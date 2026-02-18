@@ -14,7 +14,7 @@
 import cliStartOptionsCsj from '@ilg/cli-start-options'
 
 // https://www.npmjs.com/package/@xpack/xpm-lib
-import { XpmPrerequisitesError, XpmInputError, XpmError } from '@xpack/xpm-lib'
+import * as xpmLib from '@xpack/xpm-lib'
 
 /* eslint valid-jsdoc: "error" */
 /* eslint max-len: [ "error", 80, { "ignoreUrls": true } ] */
@@ -24,12 +24,10 @@ import { XpmPrerequisitesError, XpmInputError, XpmError } from '@xpack/xpm-lib'
 const { CliErrorPrerequisites, CliErrorInput, CliError } = cliStartOptionsCsj
 
 export function convertXpmError(error) {
-  if (error instanceof XpmPrerequisitesError) {
+  if (error instanceof xpmLib.PrerequisitesError) {
     return new CliErrorPrerequisites(error.message)
-  } else if (error instanceof XpmInputError) {
+  } else if (error instanceof xpmLib.InputError) {
     return new CliErrorInput(error.message)
-  } else if (error instanceof XpmError) {
-    return new CliError(error.message)
   }
   return new CliError(error.message)
 }
