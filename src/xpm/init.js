@@ -240,8 +240,8 @@ export class Init extends CliCommand {
     }
     log.trace(util.inspect(manifest))
 
-    const policies = new xpmLib.Policies({ log })
-    const manifestIds = new ManifestIds(manifest, policies)
+    // No policies; getFolderName() will fail if used.
+    const manifestIds = new ManifestIds({ manifest })
     const globalPackagePath = path.join(
       context.globalConfig.globalFolderPath,
       manifestIds.getPath()

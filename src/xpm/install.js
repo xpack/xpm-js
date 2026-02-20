@@ -434,7 +434,7 @@ export class Install extends CliCommand {
       throw new CliErrorInput(`Package '${specifier}' not found`)
     }
 
-    const manifestIds = new ManifestIds(manifest, this.policies)
+    const manifestIds = new ManifestIds({ manifest, policies: this.policies })
     const globalPackagePath = path.join(
       context.globalConfig.globalFolderPath,
       manifestIds.getPath()
@@ -1389,7 +1389,7 @@ export class Install extends CliCommand {
 
     const xpmDownloader = new XpmDownloader({ log })
 
-    const manifestIds = new ManifestIds(manifest, this.policies)
+    const manifestIds = new ManifestIds({ manifest, policies: this.policies })
     const globalPackagePath = path.join(
       context.globalConfig.globalFolderPath,
       manifestIds.getPath()

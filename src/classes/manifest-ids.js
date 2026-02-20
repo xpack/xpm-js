@@ -22,8 +22,7 @@ import path from 'path'
 // ----------------------------------------------------------------------------
 
 export class ManifestIds {
-  constructor(manifest, policies) {
-    assert(policies)
+  constructor({ manifest, policies }) {
     this.policies = policies
 
     if (manifest._id) {
@@ -92,6 +91,7 @@ export class ManifestIds {
 
   getFolderName() {
     if (this.scope) {
+      assert(this.policies, 'Policies must be set to get folder name')
       if (this.policies.nonHierarchicalLocalXpacksFolder) {
         // Linearise the name into a single folder.
         return `${this.scope.slice(1)}-${this.name}`

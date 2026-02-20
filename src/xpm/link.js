@@ -189,7 +189,10 @@ export class Link extends CliCommand {
 
     const jsonPackage = this.jsonPackage
 
-    this.manifestIds = new ManifestIds(jsonPackage, this.policies)
+    this.manifestIds = new ManifestIds({
+      manifest: jsonPackage,
+      policies: this.policies,
+    })
 
     const globalPackagePath = path.join(
       context.globalConfig.globalFolderPath,
@@ -323,7 +326,10 @@ export class Link extends CliCommand {
         )
       }
 
-      const destManifestIds = new ManifestIds(jsonDestination, this.policies)
+      const destManifestIds = new ManifestIds({
+        manifest: jsonDestination,
+        policies: this.policies,
+      })
 
       let localXpacksFolderPath
 
