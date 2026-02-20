@@ -361,11 +361,14 @@ export class Init extends CliCommand {
     context.CliExitCodes = CliExitCodes
 
     let xpmInitTemplate
-    assert(this.policies, 'XpmPolicies not set')
+    assert(this.policies, 'this.policies must be set')
     if (this.policies.singleParameterXpmInitTemplate) {
       xpmInitTemplate = new XpmInitTemplate(context)
     } else {
-      xpmInitTemplate = new XpmInitTemplate({ context })
+      xpmInitTemplate = new XpmInitTemplate({
+        context,
+        policies: this.policies,
+      })
     }
 
     try {
