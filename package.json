@@ -157,6 +157,6 @@
     "testCoverage": "false"
   },
   "engines": {
-    "node": " >=20.0.0"
+    "node": ">=20.0.0"
   }
 }
