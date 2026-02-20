@@ -131,7 +131,7 @@ cd hello-world
 # https://github.com/xpack/hello-world-template-xpack
 run_verbose xpm init --template @xpack/hello-world-template --property language=cpp
 run_verbose xpm install
-run_verbose xpm run test
+run_verbose xpm run test-all
 
 # Completed successfully.
 exit 0
