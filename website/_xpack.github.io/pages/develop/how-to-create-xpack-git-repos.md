@@ -5,7 +5,6 @@ permalink: /develop/how-to-new-git/
 comments: true
 
 date: 2019-07-09 17:48:00 +0300
-
 ---
 
 ## Overview
@@ -32,7 +31,7 @@ originals.
 ### The `xpack` branch and three-way merging
 
 One way to reduce the maintenance burden of source xPacks is to use the
-[three-way merge](https://en.wikipedia.org/wiki/Merge_(version_control)#Three-way_merge)
+[three-way merge](<https://en.wikipedia.org/wiki/Merge_(version_control)#Three-way_merge>)
 feature of Git and a separate branch to accommodate the xPack specific changes.
 
 This method does not require any changes to the original project, which can
@@ -222,7 +221,7 @@ Check and possibly adjust to match your `LICENSE` requirements.
 ```text
 MIT License
 
-Copyright (c) 2022 Liviu Ionescu
+Copyright (c) 2022-2026 Liviu Ionescu
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 ...
@@ -429,7 +428,7 @@ Open `package.json` with VS Code:
   "author": {
     "name": "Liviu Ionescu",
     "email": "ilg@livius.net",
-    "url": "https://github.com/ilg-ul/"
+    "url": "https://github.com/ilg-ul"
   }
 }
 ```
@@ -499,7 +498,7 @@ With the editor of your choice:
 
 The original content is released under the
 [MIT License](https://opensource.org/license/mit), with all rights reserved to
-[Liviu Ionescu](https://github.com/ilg-ul/).
+[Liviu Ionescu](https://github.com/ilg-ul).
 ```
 
 With VS Code, Fork or Git:
@@ -534,7 +533,7 @@ and close existing issues and pull requests.
 
 ## 2022-01-03
 
-* v2.0.5
+- v2.0.5
 ```
 
 With VS Code, Fork or Git:
@@ -542,7 +541,7 @@ With VS Code, Fork or Git:
 - stage the `CHANGELOG.md` files
 - commit with the following message: **CHANGELOG: preliminary content**
 
-### Add .github/workflows/*
+### Add .github/workflows/\*
 
 Copy/paste files like:
 
@@ -595,8 +594,8 @@ With VS Code, Fork or Git:
 - `npm version v1.10.0-1.1`; the first 4 numbers are the same as the
   GitHub release; the fifth number is the npm specific version
 - `npm pack` and check the content of the archive, which should list
-only the desired content and
-the `package.json`, the `README.md`, `LICENSE` and `CHANGELOG.md` files
+  only the desired content and
+  the `package.json`, the `README.md`, `LICENSE` and `CHANGELOG.md` files
 - push all changes to GitHub
 - `npm publish --access public --tag next`
 

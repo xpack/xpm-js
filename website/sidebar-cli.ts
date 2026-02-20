@@ -1,6 +1,6 @@
 /*
  * This file is part of the xPack project (http://xpack.github.io).
- * Copyright (c) 2024 Liviu Ionescu. All rights reserved.
+ * Copyright (c) 2024-2026 Liviu Ionescu. All rights reserved.
  *
  * Permission to use, copy, modify, and/or distribute this software
  * for any purpose is hereby granted, under the terms of the MIT license.
@@ -31,37 +31,37 @@ const cliSidebar = [
           {
             type: 'doc',
             id: 'cli/xpm/init/index',
-            label: 'xpm init'
+            label: 'xpm init',
           },
           {
             type: 'doc',
             id: 'cli/xpm/install/index',
-            label: 'xpm install'
+            label: 'xpm install',
           },
           {
             type: 'doc',
             id: 'cli/xpm/link/index',
-            label: 'xpm link'
+            label: 'xpm link',
           },
           {
             type: 'doc',
             id: 'cli/xpm/list/index',
-            label: 'xpm list'
+            label: 'xpm list',
           },
           {
             type: 'doc',
             id: 'cli/xpm/run/index',
-            label: 'xpm run'
+            label: 'xpm run',
           },
           {
             type: 'doc',
             id: 'cli/xpm/uninstall/index',
-            label: 'xpm uninstall'
+            label: 'xpm uninstall',
           },
-        ]
+        ],
       },
     ],
-  }
+  },
 ]
 
-export default cliSidebar;
+export default cliSidebar

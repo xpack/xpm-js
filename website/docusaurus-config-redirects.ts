@@ -1,6 +1,6 @@
 /*
  * This file is part of the xPack project (http://xpack.github.io).
- * Copyright (c) 2024 Liviu Ionescu. All rights reserved.
+ * Copyright (c) 2024-2026 Liviu Ionescu. All rights reserved.
  *
  * Permission to use, copy, modify, and/or distribute this software
  * for any purpose is hereby granted, under the terms of the MIT license.
@@ -42,9 +42,18 @@ export const redirects = {
     { from: '/policies', to: '/docs/user/policies' },
     { from: '/policies/0001', to: '/docs/user/policies/0001' },
     { from: '/support', to: '/docs/support' },
-    { from: '/blog/2021/09/03/xpm-v0-10-8-released/', to: '/blog/2021/09/05/xpm-v0-10-8-released/' },
-    { from: '/blog/2021/07/20/xpm-v0-10-6-released/', to: '/blog/2021/07/21/xpm-v0-10-6-released/' },
-    { from: '/blog/2023/02/07/xpm-v0-15-0-released/', to: '/blog/2023/03/02/xpm-v0-15-0-released/' },
+    {
+      from: '/blog/2021/09/03/xpm-v0-10-8-released/',
+      to: '/blog/2021/09/05/xpm-v0-10-8-released/',
+    },
+    {
+      from: '/blog/2021/07/20/xpm-v0-10-6-released/',
+      to: '/blog/2021/07/21/xpm-v0-10-6-released/',
+    },
+    {
+      from: '/blog/2023/02/07/xpm-v0-15-0-released/',
+      to: '/blog/2023/03/02/xpm-v0-15-0-released/',
+    },
   ],
   createRedirects(existingPath) {
     // logger.info(existingPath);
@@ -63,5 +72,5 @@ export const redirects = {
     //   }
     //   return undefined; // Return a falsy value: no redirect created
     //   },
-  }
+  },
 }

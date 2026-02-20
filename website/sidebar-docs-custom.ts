@@ -1,6 +1,6 @@
 /*
  * This file is part of the xPack project (http://xpack.github.io).
- * Copyright (c) 2024 Liviu Ionescu. All rights reserved.
+ * Copyright (c) 2024-2026 Liviu Ionescu. All rights reserved.
  *
  * Permission to use, copy, modify, and/or distribute this software
  * for any purpose is hereby granted, under the terms of the MIT license.
@@ -22,18 +22,18 @@ export const customDocsSidebar = [
       {
         type: 'doc',
         id: 'getting-started/glossary/index',
-        label: 'Glossary'
+        label: 'Glossary',
       },
-    ]
+    ],
   },
   {
     type: 'doc',
     id: 'install/index',
-    label: 'Install Guide'
+    label: 'Install Guide',
   },
   {
     type: 'category',
-    label: 'User\'s Guide',
+    label: "User's Guide",
     link: {
       type: 'doc',
       id: 'user/index',
@@ -43,7 +43,7 @@ export const customDocsSidebar = [
       {
         type: 'doc',
         id: 'user/index',
-        label: 'How to use'
+        label: 'How to use',
       },
       {
         type: 'doc',
@@ -53,7 +53,7 @@ export const customDocsSidebar = [
       {
         type: 'doc',
         id: 'user/folders/index',
-        label: 'Folders'
+        label: 'Folders',
       },
       {
         type: 'category',
@@ -67,16 +67,16 @@ export const customDocsSidebar = [
           {
             type: 'doc',
             id: 'user/policies/0001/index',
-            label: '0001'
-          }
-        ]
+            label: '0001',
+          },
+        ],
       },
-    ]
+    ],
   },
   {
     // Keep this in sync with /docs/guide sections.
     type: 'category',
-    label: 'Package Author\'s Guide',
+    label: "Package Author's Guide",
     link: {
       type: 'doc',
       id: 'guide/index',
@@ -86,27 +86,27 @@ export const customDocsSidebar = [
       {
         type: 'doc',
         id: 'guide/concepts/index',
-        label: 'Concepts'
+        label: 'Concepts',
       },
       {
         type: 'doc',
         id: 'guide/source-packages/index',
-        label: 'Source Packages'
+        label: 'Source Packages',
       },
       {
         type: 'doc',
         id: 'guide/binary-packages/index',
-        label: 'Binary Packages'
+        label: 'Binary Packages',
       },
       {
         type: 'doc',
         id: 'guide/cmake-integration/index',
-        label: 'CMake Integration'
+        label: 'CMake Integration',
       },
       {
         type: 'doc',
         id: 'guide/meson-integration/index',
-        label: 'Meson Integration'
+        label: 'Meson Integration',
       },
       {
         type: 'category',
@@ -116,58 +116,58 @@ export const customDocsSidebar = [
           id: 'metadata/index',
         },
         collapsed: true,
-        "items": [
+        items: [
           {
             type: 'doc',
             id: 'metadata/liquidjs-substitutions/index',
-            label: 'LiquidJS Substitutions'
+            label: 'LiquidJS Substitutions',
           },
           {
             type: 'doc',
             id: 'metadata/index',
-            label: 'xpack'
+            label: 'xpack',
           },
           {
             type: 'doc',
             id: 'metadata/minimumXpmRequired/index',
-            label: 'minimumXpmRequired'
+            label: 'minimumXpmRequired',
           },
           {
             type: 'doc',
             id: 'metadata/actions/index',
-            label: 'actions'
+            label: 'actions',
           },
           {
             type: 'doc',
             id: 'metadata/binaries/index',
-            label: 'binaries'
+            label: 'binaries',
           },
           {
             type: 'doc',
             id: 'metadata/buildConfigurations/index',
-            label: 'buildConfigurations'
+            label: 'buildConfigurations',
           },
           {
             type: 'doc',
             id: 'metadata/dependencies/index',
-            label: 'dependencies'
+            label: 'dependencies',
           },
           {
             type: 'doc',
             id: 'metadata/devDependencies/index',
-            label: 'devDependencies'
+            label: 'devDependencies',
           },
           {
             type: 'doc',
             id: 'metadata/executables/index',
-            label: 'executables'
+            label: 'executables',
           },
           {
             type: 'doc',
             id: 'metadata/properties/index',
-            label: 'properties'
+            label: 'properties',
           },
-        ]
+        ],
       },
       {
         type: 'category',
@@ -181,25 +181,25 @@ export const customDocsSidebar = [
           {
             type: 'doc',
             id: 'guide/files/package.json/index',
-            label: 'package.json'
+            label: 'package.json',
           },
-        ]
+        ],
       },
       {
         type: 'doc',
         id: 'guide/project-templates/index',
-        label: 'Project Templates'
+        label: 'Project Templates',
       },
       {
         type: 'doc',
         id: 'guide/new-github-project/index',
-        label: 'Create New GitHub Project'
+        label: 'Create New GitHub Project',
       },
-    ]
+    ],
   },
   {
     type: 'category',
-    label: 'Contributor\'s Guide',
+    label: "Contributor's Guide",
     link: {
       type: 'doc',
       id: 'developer/index',
@@ -209,29 +209,29 @@ export const customDocsSidebar = [
       {
         type: 'doc',
         id: 'developer/windows-symbolic-links/index',
-        label: 'Windows symbolic links'
+        label: 'Windows symbolic links',
       },
-    ]
+    ],
   },
   {
     type: 'doc',
     id: 'maintainer/index',
-    label: 'Maintainer\'s Guide'
+    label: "Maintainer's Guide",
   },
   {
     type: 'doc',
     id: 'faq/index',
-    label: 'FAQ'
+    label: 'FAQ',
   },
   {
     type: 'doc',
     id: 'support/index',
-    label: 'Help Centre'
+    label: 'Help Centre',
   },
   {
     type: 'doc',
     id: 'releases/index',
-    label: 'Releases'
+    label: 'Releases',
   },
   {
     type: 'category',
@@ -245,18 +245,18 @@ export const customDocsSidebar = [
       {
         type: 'doc',
         id: 'project/about/index',
-        label: 'About'
+        label: 'About',
       },
       {
         type: 'doc',
         id: 'project/history/index',
-        label: 'History'
+        label: 'History',
       },
       {
         type: 'link',
         label: 'License',
         href: 'https://opensource.org/license/MIT',
       },
-    ]
+    ],
   },
 ]
