@@ -20,7 +20,7 @@
 // ----------------------------------------------------------------------------
 
 // https://nodejs.org/docs/latest/api/
-import fs from 'fs'
+import fs from 'fs/promises'
 import path from 'path'
 import util from 'util'
 
@@ -40,7 +40,6 @@ import { GlobalConfig } from '../classes/global-config.js'
 // ----------------------------------------------------------------------------
 
 const { CliCommand, CliError, CliErrorInput, CliExitCodes } = cliStartOptionsCsj
-const fsPromises = fs.promises
 
 // ============================================================================
 
@@ -115,11 +114,11 @@ export class BinariesUpdate extends CliCommand {
     }
 
     const version = args[0]
-    const fromFolderPath = await fsPromises.realpath(args[1])
+    const fromFolderPath = await fs.realpath(args[1])
     // Follow the link and check the destination.
     let stats
     try {
-      stats = await fsPromises.stat(fromFolderPath)
+      stats = await fs.stat(fromFolderPath)
     } catch {
       throw new CliErrorInput(`'${fromFolderPath}' does not exist`)
     }
@@ -131,7 +130,7 @@ export class BinariesUpdate extends CliCommand {
 
     const archiveNames = {}
 
-    const fileNames = await fsPromises.readdir(fromFolderPath)
+    const fileNames = await fs.readdir(fromFolderPath)
     for (const fileName of fileNames) {
       log.trace(`File name: ${fileName}`)
 
@@ -144,7 +143,7 @@ export class BinariesUpdate extends CliCommand {
         const filePath = path.join(fromFolderPath, fileName)
         log.verbose(`Parsing file: ${filePath}...`)
 
-        const fileContent = await fsPromises.readFile(filePath, {
+        const fileContent = await fs.readFile(filePath, {
           encoding: 'ascii',
         })
 

@@ -21,7 +21,7 @@
 
 // https://nodejs.org/docs/latest/api/
 import assert from 'assert'
-import fs from 'fs'
+import fs from 'fs/promises'
 // import os from 'os'
 import path from 'path'
 // import util from 'util'
@@ -42,10 +42,6 @@ import { GlobalConfig } from '../classes/global-config.js'
 import { Spawn } from '../functions/spawn.js'
 
 import { convertXpmError } from '../functions/convert-xpm-errors.js'
-
-// ----------------------------------------------------------------------------
-
-const fsPromises = fs.promises
 
 // ----------------------------------------------------------------------------
 
@@ -584,7 +580,7 @@ export class RunAction extends CliCommand {
 
     const binPath = path.join(basePath, folderName, '.bin')
     try {
-      await fsPromises.stat(binPath)
+      await fs.stat(binPath)
       // If the folder exists, return a new array with the binPath prepended.
       return [binPath, ...pathArray]
     } catch {

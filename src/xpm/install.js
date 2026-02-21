@@ -21,7 +21,7 @@
 
 // https://nodejs.org/docs/latest/api/
 import assert from 'assert'
-import fs from 'fs'
+import fs from 'fs/promises'
 import path from 'path'
 import os from 'os'
 import util from 'util'
@@ -66,7 +66,6 @@ import { convertXpmError } from '../functions/convert-xpm-errors.js'
 // ----------------------------------------------------------------------------
 
 const { CliCommand, CliExitCodes, CliError, CliErrorInput } = cliStartOptionsCsj
-const fsPromises = fs.promises
 
 // Shims with paths relative to local xpacks fail in subtle ways, for example
 // arm-none-eabi-g++ cannot find <bits/c++-allocator.h>.
@@ -682,7 +681,7 @@ export class Install extends CliCommand {
       // The destination is not a package, may be a custom folder,
       // or even a file.
       try {
-        const stat = await fsPromises.stat(localPackagePath)
+        const stat = await fs.stat(localPackagePath)
         const kind = stat.isDirectory ? 'folder' : 'file'
 
         if (config.doForce) {
@@ -874,7 +873,7 @@ export class Install extends CliCommand {
 
     try {
       // Avoid overriding an existing folder.
-      await fsPromises.stat(localPackagePath)
+      await fs.stat(localPackagePath)
 
       if (config.doForce) {
         log.verbose(`Removing existing package from '${localPackagePath}'...`)
@@ -907,7 +906,7 @@ export class Install extends CliCommand {
     })
 
     // When everything is ready, rename the folder to the desired name.
-    await fsPromises.rename(localPackageTmpPath, localPackagePath)
+    await fs.rename(localPackageTmpPath, localPackagePath)
     log.trace(`rename(${localPackageTmpPath}, ${localPackagePath})`)
 
     // Standalone packages preserve their mode bits, are not set to RO.
@@ -1585,7 +1584,7 @@ export class Install extends CliCommand {
       try {
         // If the original file is not present, throw.
         log.trace(`stat ${fromFilePath}`)
-        await fsPromises.stat(fromFilePath)
+        await fs.stat(fromFilePath)
       } catch {
         if (os.platform() === 'win32') {
           // As usual, things are a bit more complicated on Windows,
@@ -1604,7 +1603,7 @@ export class Install extends CliCommand {
           suffix = '.exe'
           try {
             log.trace(`stat ${fromFilePath}`)
-            await fsPromises.stat(fromFilePath)
+            await fs.stat(fromFilePath)
           } catch {
             // Neither the POSIX name, nor the Windows name is present.
             continue
@@ -1706,11 +1705,7 @@ export class Install extends CliCommand {
         // The first choice, but works only if Developer Mode is enabled.
         log.trace(`symlink('${fromFilePath}', '${toFilePath}${suffix}')`)
         try {
-          await fsPromises.symlink(
-            fromFilePath,
-            `${toFilePath}${suffix}`,
-            'file'
-          )
+          await fs.symlink(fromFilePath, `${toFilePath}${suffix}`, 'file')
           if (log.isVerbose) {
             log.verbose(
               `File '${localRelativeFilePath}${suffix}' ` +
@@ -1784,7 +1779,7 @@ export class Install extends CliCommand {
       // Delete any existing link or file/folder.
       await deleteAsync(toFilePath, { force: true })
 
-      await fsPromises.symlink(fromRelativePath, toFilePath, 'file')
+      await fs.symlink(fromRelativePath, toFilePath, 'file')
       if (log.isVerbose) {
         log.verbose(
           `File '${localRelativeFilePath}' ` + `linked to '${fromRelativePath}'`
@@ -2079,7 +2074,7 @@ export class Install extends CliCommand {
         'symlink' + `(${globalPackagePath}, ${linkPath}, ${symlinkType})`
       )
       try {
-        await fsPromises.symlink(globalPackagePath, linkPath, symlinkType)
+        await fs.symlink(globalPackagePath, linkPath, symlinkType)
       } catch (error) {
         const absPath = path.resolve(linkPath)
         // console.log(absPath)
@@ -2092,7 +2087,7 @@ export class Install extends CliCommand {
       }
     } else {
       // In macOS and GNU/Linux, symbolic links are fine.
-      await fsPromises.symlink(globalPackagePath, linkPath)
+      await fs.symlink(globalPackagePath, linkPath)
     }
 
     const folderPath = path.join(

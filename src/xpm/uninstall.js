@@ -21,7 +21,7 @@
 
 // https://nodejs.org/docs/latest/api/
 import assert from 'assert'
-import fs from 'fs'
+import fs from 'fs/promises'
 // import util from 'util'
 import os from 'os'
 import path from 'path'
@@ -51,7 +51,6 @@ import { GlobalConfig } from '../classes/global-config.js'
 
 const { CliCommand, CliExitCodes, CliErrorSyntax, CliError, CliErrorInput } =
   cliStartOptionsCsj
-const fsPromises = fs.promises
 
 // ============================================================================
 
@@ -361,7 +360,7 @@ export class Uninstall extends CliCommand {
 
     let stat
     try {
-      stat = await fsPromises.lstat(xPackFolderPath)
+      stat = await fs.lstat(xPackFolderPath)
     } catch {
       log.warn(`${npmPackageSpecifier} not a dependency, ignored`)
       stat = undefined
@@ -407,7 +406,7 @@ export class Uninstall extends CliCommand {
           })
 
           // Remove the link, it should not throw, it was verified.
-          await fsPromises.unlink(xPackFolderPath)
+          await fs.unlink(xPackFolderPath)
 
           if (log.isVerbose) {
             log.verbose(`Symlink '${dependencyShownLocation}' removed`)
@@ -440,7 +439,7 @@ export class Uninstall extends CliCommand {
       )
 
       try {
-        stat = await fsPromises.lstat(nodeFolderPath)
+        stat = await fs.lstat(nodeFolderPath)
       } catch {
         if (config.isIgnoreErrors) {
           log.warn(`local package '${npmPackageSpecifier}' not installed`)
@@ -467,7 +466,7 @@ export class Uninstall extends CliCommand {
         })
 
         // Remove the link, it should not throw, it was verified.
-        await fsPromises.unlink(nodeFolderPath)
+        await fs.unlink(nodeFolderPath)
 
         if (log.isVerbose) {
           log.verbose(`Symlink '${nodeFolderName}' removed`)
@@ -523,7 +522,7 @@ export class Uninstall extends CliCommand {
 
     let stat
     try {
-      stat = await fsPromises.stat(globalPackagePath)
+      stat = await fs.stat(globalPackagePath)
     } catch {
       if (config.isIgnoreErrors) {
         log.warn(`global package '${npmPackageSpecifier}' not installed`)
@@ -657,10 +656,10 @@ export class Uninstall extends CliCommand {
         // On Windows there are two files for each binary, a `.cmd` shim
         // for the Windows console and a script for mingw-style terminals.
         try {
-          const stat = await fsPromises.stat(linkPath + '.cmd')
+          const stat = await fs.stat(linkPath + '.cmd')
           if (stat.isFile()) {
             // Remove the file.
-            await fsPromises.unlink(linkPath + '.cmd')
+            await fs.unlink(linkPath + '.cmd')
             if (log.isVerbose) {
               log.verbose(
                 `Shim '${path.join(dotBinRelativePath, key)}.cmd' removed`
@@ -677,10 +676,10 @@ export class Uninstall extends CliCommand {
           // Not present anyway, nothing to do.
         }
         try {
-          const stat = await fsPromises.stat(linkPath)
+          const stat = await fs.stat(linkPath)
           if (stat.isFile()) {
             // Remove the file.
-            await fsPromises.unlink(linkPath)
+            await fs.unlink(linkPath)
             if (log.isVerbose) {
               log.verbose(
                 'Script ' + `'${path.join(dotBinRelativePath, key)}' removed`
@@ -697,10 +696,10 @@ export class Uninstall extends CliCommand {
       } else {
         // macOS and GNU/Linux platforms.
         try {
-          const stat = await fsPromises.lstat(linkPath)
+          const stat = await fs.lstat(linkPath)
           if (stat.isSymbolicLink()) {
             // Remove the link.
-            await fsPromises.unlink(linkPath)
+            await fs.unlink(linkPath)
             if (log.isVerbose) {
               log.verbose(
                 `Symlink '${path.join(dotBinRelativePath, key)}' removed`

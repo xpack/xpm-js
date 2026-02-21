@@ -20,7 +20,7 @@
 // ----------------------------------------------------------------------------
 
 // https://nodejs.org/docs/latest/api/
-import fs from 'fs'
+import fs from 'fs/promises'
 // import util from 'util'
 import path from 'path'
 
@@ -49,7 +49,6 @@ import { GlobalConfig } from '../classes/global-config.js'
 // ----------------------------------------------------------------------------
 
 const { CliCommand, CliExitCodes, CliError, CliErrorInput } = cliStartOptionsCsj
-const fsPromises = fs.promises
 
 // ============================================================================
 
@@ -328,7 +327,7 @@ export class List extends CliCommand {
 
     let stat
     try {
-      stat = await fsPromises.lstat(folderPath)
+      stat = await fs.lstat(folderPath)
     } catch {
       stat = undefined
     }
@@ -336,7 +335,7 @@ export class List extends CliCommand {
     const dotBin = context.globalConfig.dotBin
 
     if (stat && stat.isDirectory()) {
-      const dirents = await fsPromises.readdir(folderPath, {
+      const dirents = await fs.readdir(folderPath, {
         withFileTypes: true,
       })
       if (depth === 1) {
@@ -357,7 +356,7 @@ export class List extends CliCommand {
 
         const subFolderPath = path.join(folderPath, dirent.name)
         try {
-          const direntStat = await fsPromises.stat(subFolderPath)
+          const direntStat = await fs.stat(subFolderPath)
           if (!direntStat.isDirectory()) {
             log.trace(`${dirent.name} not a folder`)
             continue
@@ -399,7 +398,7 @@ export class List extends CliCommand {
           log.output()
           log.verbose(`${message} binaries:`)
 
-          const binaryDirents = await fsPromises.readdir(
+          const binaryDirents = await fs.readdir(
             path.join(folderPath, dotBin),
             { withFileTypes: true }
           )
@@ -501,7 +500,7 @@ export class List extends CliCommand {
     }
 
     // Recurse on children folders.
-    const dirents = await fsPromises.readdir(folderPath, {
+    const dirents = await fs.readdir(folderPath, {
       withFileTypes: true,
     })
     for (const dirent of dirents) {

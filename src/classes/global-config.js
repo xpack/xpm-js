@@ -15,7 +15,7 @@
 
 // https://nodejs.org/docs/latest/api/
 import assert from 'assert'
-import fs from 'fs'
+import fs from 'fs/promises'
 import os from 'os'
 import path from 'path'
 
@@ -27,7 +27,6 @@ import cliStartOptionsCsj from '@ilg/cli-start-options'
 // ----------------------------------------------------------------------------
 
 const { CliError } = cliStartOptionsCsj
-const fsPromises = fs.promises
 
 // ============================================================================
 
@@ -89,7 +88,7 @@ export class GlobalConfig {
     if (this.globalDeprecatedFolderPaths) {
       try {
         // Use `stat()` to follow links.
-        const stat = await fsPromises.stat(this.globalDefaultFolderPath)
+        const stat = await fs.stat(this.globalDefaultFolderPath)
         if (!stat.isDirectory) {
           throw new CliError(
             `${this.globalDefaultFolderPath} + must be a folder`
@@ -98,17 +97,14 @@ export class GlobalConfig {
       } catch {
         for (const folderPath of this.globalDeprecatedFolderPaths) {
           try {
-            const stat = await fsPromises.stat(folderPath)
+            const stat = await fs.stat(folderPath)
             if (stat.isDirectory) {
               try {
                 // Rename the deprecated name to the new default name.
                 log.debug(
                   `rename(${folderPath}, ${this.globalDefaultFolderPath})`
                 )
-                await fsPromises.rename(
-                  folderPath,
-                  this.globalDefaultFolderPath
-                )
+                await fs.rename(folderPath, this.globalDefaultFolderPath)
               } catch {
                 throw new CliError(
                   `cannot rename '${folderPath}' ` +
@@ -122,16 +118,13 @@ export class GlobalConfig {
                   `symlink(${this.globalDefaultFolderPath}, ${folderPath})`
                 )
                 if (os.platform() === 'win32') {
-                  await fsPromises.symlink(
+                  await fs.symlink(
                     this.globalDefaultFolderPath,
                     folderPath,
                     'junction'
                   )
                 } else {
-                  await fsPromises.symlink(
-                    this.globalDefaultFolderPath,
-                    folderPath
-                  )
+                  await fs.symlink(this.globalDefaultFolderPath, folderPath)
                 }
               } catch {
                 throw new CliError(

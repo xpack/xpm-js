@@ -21,7 +21,7 @@
 
 // https://nodejs.org/docs/latest/api/
 import assert from 'assert'
-import fs from 'fs'
+import fs from 'fs/promises'
 import os from 'os'
 import path from 'path'
 import util from 'util'
@@ -59,7 +59,6 @@ import { XpmDownloader } from '../classes/downloader.js'
 // ----------------------------------------------------------------------------
 
 const { CliCommand, CliExitCodes, CliError } = cliStartOptionsCsj
-const fsPromises = fs.promises
 
 // ============================================================================
 
@@ -497,7 +496,7 @@ export class Init extends CliCommand {
 
     try {
       const readmePath = path.resolve(config.cwd, 'LICENSE')
-      await fsPromises.access(readmePath)
+      await fs.access(readmePath)
 
       log.info("File 'LICENSE' preserved, not overridden")
     } catch {
@@ -515,7 +514,7 @@ export class Init extends CliCommand {
 
     // const headerPath = path.resolve(codePath, `${pnam}.h`)
     try {
-      await fsPromises.writeFile(outputFileRelativePath, str, 'utf8')
+      await fs.writeFile(outputFileRelativePath, str, 'utf8')
     } catch (error) {
       log.trace(util.inspect(error))
       throw new CliError(error.message, CliExitCodes.ERROR.OUTPUT)
