@@ -12,6 +12,8 @@
   "files.associations": {
     "*.json": "jsonc"
   },
+  "cSpell.language": "en-GB",
+  "cSpell.ignoreWords": [],
   "xpack.exclude": [
     "**/tests/**",
     "**/tmp/**"

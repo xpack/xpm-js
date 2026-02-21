@@ -2,6 +2,7 @@
 [![GitHub release (latest by date)](https://img.shields.io/github/v/release/xpack/xpm-js)](https://github.com/xpack/xpm-js/releases)
 [![NPM Version](https://img.shields.io/npm/v/xpm?color=blue)](https://www.npmjs.com/package/xpm/)
 [![license](https://img.shields.io/github/license/xpack/xpm-js)](https://github.com/xpack/xpm-js/blob/master/LICENSE)
+[![Website](https://img.shields.io/website?url=https%3A%2F%2Fxpack.github.io%2Fxpm-js%2F)](https://xpack.github.io/xpm/)
 
 # The xPack Project Manager
 
@@ -15,7 +16,7 @@ For information on how to install and use this project, please refer to the
 ## Project source
 
 The source code of the current release is available on
-[GitHub tag v0.22.6 tree](https://github.com/xpack/xpm-js/tree/v0.22.6).
+[GitHub tag v0.23.1 tree](https://github.com/xpack/xpm-js/tree/v0.23.1).
 
 ## License
 

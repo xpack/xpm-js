@@ -59,13 +59,6 @@ LICENSE-*
 CONTRIBUTING**
 NOTES.md
 
-*.ts
-src/**/*.ts
-# The above removes all TypeScript including the .d.ts files.
-# Bring those later back.
-!*.d.ts
-!src/*.d.ts
-
 **/tsconfig*.json
 typedoc.json
 tsconfig.tsbuildinfo
@@ -89,12 +82,14 @@ wrappers/
 extras/
 inspiration/
 maintenance-scripts/
+config
 
 .prettierignore
+.prettierrc.json
+
+.taprc
+
 api-extractor.json
 eslint.config.js
-
-.prettierrc.json
-.taprc
 
 #end
