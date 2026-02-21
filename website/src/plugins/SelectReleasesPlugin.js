@@ -20,6 +20,7 @@ export default async function SelectReleasesPlugin(context, options) {
   return {
     name: 'select-releases',
     async allContentLoaded({ allContent, actions }) {
+
       const allBlogs = allContent['docusaurus-plugin-content-blog']
       // console.log('SelectReleasesPlugin 1 ' + util.inspect(allBlogs))
 
@@ -27,18 +28,18 @@ export default async function SelectReleasesPlugin(context, options) {
       // console.log('SelectReleasesPlugin 2 ' + util.inspect(blogPosts))
 
       const releasesTable = []
-      blogPosts.forEach((post) => {
+      blogPosts.forEach(post => {
         // console.log('SelectReleasesPlugin 3 ' + util.inspect(post.metadata.tags))
-        post.metadata.tags.forEach((tag) => {
+        post.metadata.tags.forEach(tag => {
           if (tag.label.toLowerCase() === 'releases') {
-            const permalink = post.metadata.permalink.endsWith('/')
-              ? post.metadata.permalink
-              : post.metadata.permalink + '/'
+            const permalink = post.metadata.permalink.endsWith('/') ?
+                              post.metadata.permalink :
+                              post.metadata.permalink + '/'
             // console.log(permalink)
             releasesTable.push({
               title: post.metadata.title,
               permalink,
-              downloadUrl: post.metadata.frontMatter['download_url'],
+              downloadUrl: post.metadata.frontMatter['download_url']
             })
           }
         })
@@ -48,5 +49,5 @@ export default async function SelectReleasesPlugin(context, options) {
 
       actions.setGlobalData({ releasesTable: releasesTable })
     },
-  }
+  };
 }

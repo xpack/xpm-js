@@ -9,15 +9,16 @@ import CommonPrerequisites from '@site/docs/_common/_prerequisites.mdx';
 import CommonGetProjectSources from '@site/docs/_common/_get-project-sources.mdx';
 
 import ProjectTestResults from '../_project/_test-results.mdx';
-import ProjectStyleExceptions from '../_project/_style-exceptions.mdx';
 import ProjectCoverageExceptions from '../_project/_coverage-exceptions.mdx';
+
+import ProjectStyleExceptions from '../_project/_style-exceptions.mdx';
 
 {/* ------------------------------------------------------------------------ */}
 
 This project is currently written in JavaScript, but a rewrite in
 TypeScript is planned.
 
-<CommonPrerequisites nodeVersion="20.0.0" nodeVersionMajor="20"/>
+<CommonPrerequisites nodeVersion="20.0" nodeVersionMajor="20"/>
 
 <CommonGetProjectSources />
 
@@ -40,11 +41,10 @@ npm run compile-watch
 
 The module uses ECMAScript 6 class definitions and modules.
 
-## Standard style
+## Style
 
-As style, the project uses the
-[JavaScript Standard Style](https://standardjs.com/),
-automatically checked at each commit via CI.
+As style, the project uses [typescript-eslint](https://typescript-eslint.io),
+a set of rules for static analysis of JavaScript and TypeScript code
 
 For spacial cases, it is possible to configure/disable some rules.
 
@@ -56,26 +56,9 @@ The known rules are documented in the
 [eslint](https://eslint.org/docs/latest/rules/)
 project.
 
-Generally, to fit two editor windows side by side in a screen,
-all files should limit the line length to 80.
-
-```js
-/* eslint max-len: [ "error", 80, { "ignoreUrls": true } ] */
-```
-
 Known and accepted exceptions:
 
 <ProjectStyleExceptions />
-
-To manually fix compliance with the style guide (where possible):
-
-<CodeBlock language="console"> {
-`% npm run fix
-
-> xpm@0.22.6 fix
-> standard --fix test
-...
-`} </CodeBlock>
 
 ## Documentation metadata
 
@@ -115,4 +98,4 @@ npm run test
 The module is 
 subject to CI testing on every push via
 [GitHub Actions](https://github.com/xpack/xpm-js/actions), on Ubuntu,
-Windows and macOS, utilising node 18, 20 and 22.
+Windows and macOS, utilising node 20, 22 and 24.

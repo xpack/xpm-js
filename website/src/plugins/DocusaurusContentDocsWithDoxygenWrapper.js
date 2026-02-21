@@ -12,14 +12,11 @@
  * be obtained from https://opensource.org/licenses/mit.
  */
 
-import pluginContentDocs from '@docusaurus/plugin-content-docs'
-import { validateOptions as pluginContentDocsValidateOptions } from '@docusaurus/plugin-content-docs'
+import pluginContentDocs from '@docusaurus/plugin-content-docs';
+import { validateOptions as pluginContentDocsValidateOptions } from '@docusaurus/plugin-content-docs';
 
 import pluginDoxygen from '@xpack/docusaurus-plugin-doxygen'
-import {
-  validateOptions as pluginDoxygenValidateOptions,
-  extendCliGenerateDoxygen,
-} from '@xpack/docusaurus-plugin-doxygen'
+import { validateOptions as pluginDoxygenValidateOptions, extendCliGenerateDoxygen } from '@xpack/docusaurus-plugin-doxygen'
 
 // ----------------------------------------------------------------------------
 
@@ -31,21 +28,15 @@ export function validateOptions({ validate, options }) {
 
   // Validate the Docs plugin options, with the Doxygen one removed.
   delete options.doxygenPluginOptions
-  const actualDocsPluginOptions = pluginContentDocsValidateOptions({
-    validate,
-    options,
-  })
+  const actualDocsPluginOptions = pluginContentDocsValidateOptions({ validate, options })
 
   // Validate the Doxygen plugin options.
-  const actualDoxygenPluginOptions = pluginDoxygenValidateOptions({
-    validate,
-    options: doxygenPluginOptions,
-  })
+  const actualDoxygenPluginOptions = pluginDoxygenValidateOptions({ validate, options: doxygenPluginOptions })
 
   // Recompose the options. It will be split again below, during initialisation.
   const validatedOptions = {
     ...actualDocsPluginOptions,
-    doxygenPluginOptions: actualDoxygenPluginOptions,
+    doxygenPluginOptions: actualDoxygenPluginOptions
   }
 
   // console.log(validatedOptions)
@@ -54,10 +45,8 @@ export function validateOptions({ validate, options }) {
 
 // ----------------------------------------------------------------------------
 
-export default async function pluginContentDocsWithDoxygenWrapper(
-  context,
-  options
-) {
+export default async function pluginContentDocsWithDoxygenWrapper(context, options) {
+
   const doxygenPluginOptions = options.doxygenPluginOptions ?? {}
   // console.log(doxygenPluginOptions)
 
@@ -65,13 +54,10 @@ export default async function pluginContentDocsWithDoxygenWrapper(
   // console.log(options)
 
   // Instantiate the original docs plugin.
-  const pluginContentDocsInstance = await pluginContentDocs(context, options)
+  const pluginContentDocsInstance = await pluginContentDocs(context, options);
 
   // Instantiate the doxygen plugin.
-  const pluginDoxygenInstance = await pluginDoxygen(
-    context,
-    doxygenPluginOptions
-  )
+  const pluginDoxygenInstance = await pluginDoxygen(context, doxygenPluginOptions);
 
   return {
     // Get all properties from the Docusaurus Docs plugin.
@@ -80,20 +66,21 @@ export default async function pluginContentDocsWithDoxygenWrapper(
     // Extend the Docs plugin lifecycle method with the Doxygen plugin one.
     async loadContent() {
       // Run custom logic before to load Doxygen pages; ignore returned data
-      await pluginDoxygenInstance.loadContent?.()
+      await pluginDoxygenInstance.loadContent?.();
 
-      const content = await pluginContentDocsInstance.loadContent?.()
+      const content = await pluginContentDocsInstance.loadContent?.();
       // console.log(content)
 
       // Return the Docs plugin content, it'll be processed in contentLoaded()
-      return content
+      return content;
     },
 
     // https://docusaurus.io/docs/api/plugin-methods/extend-infrastructure#extendCli
     extendCli(cli) {
       extendCliGenerateDoxygen(cli, context, doxygenPluginOptions)
-    },
-  }
+    }
+
+  };
 }
 
 // ----------------------------------------------------------------------------

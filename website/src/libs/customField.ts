@@ -12,8 +12,8 @@
  * be obtained from https://opensource.org/licenses/mit.
  */
 
-import useDocusaurusContext from '@docusaurus/useDocusaurusContext'
+import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 
 export default function customField(name: string): string {
-  return useDocusaurusContext().siteConfig.customFields[name]
+  return useDocusaurusContext().siteConfig.customFields[name];
 }

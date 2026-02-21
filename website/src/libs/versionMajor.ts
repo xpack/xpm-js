@@ -14,5 +14,5 @@
 
 export default function getVersionMajor(version: string): number {
   // Remove from the first dot to the end.
-  return parseInt(version.replace(/[.].*/, ''), 10)
+  return parseInt(version.replace(/[.].*/, ''), 10);
 }

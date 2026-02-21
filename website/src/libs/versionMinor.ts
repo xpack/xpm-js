@@ -15,5 +15,5 @@
 export default function getVersionMinor(version: string): number {
   // Remove from the beginning to the first dot and, in the remaining string
   // from the first dot to the end.
-  return parseInt(version.replace(/^[0-9]*[.]/, '').replace(/[.].*/, ''), 10)
+  return parseInt(version.replace(/^[0-9]*[.]/, '').replace(/[.].*/, ''), 10);
 }
