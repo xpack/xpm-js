@@ -11,11 +11,20 @@ The website deployment is performed automatically when pushing to the
 
 - Open https://xpack.github.io/xpm/docs/maintainer/#publish-the-website in a separate window
 - **Stop** the local web server
+- Switch to the `webpreview` branch
+- **Merge** the `development` branch into the `webpreview` branch
+- **Push** the `webpreview` branch to GitHub
+  :::info
+  At this point, an automated GitHub Action will generate and publish 
+  the [preview website](https://xpack.github.io/xpm-js/).
+  :::
 - Switch to the `website` branch
 - **Merge** the `development` branch into the `website` branch
 - **Push** the `website` branch to GitHub
   :::info
-  At this point, an automated GitHub Action will generate and publish the website.
+  At this point, an automated forwarding GitHub Action will trigger 
+  a GitHub Action in the separate project to generate and publish 
+  the [website]https://xpack.github.io/xpm/.
   :::
 - Check out the `development` branch
 - **Wait** for the publication to complete
