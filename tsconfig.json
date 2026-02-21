@@ -1,11 +1,15 @@
 {
   /* https://www.typescriptlang.org/tsconfig */
   "$schema": "https://json.schemastore.org/tsconfig",
-  "extends": "./tsconfig-common.json",
+  "extends": "./config/tsconfig-common.json",
   "compilerOptions": {
+    "outDir": "dist"
   },
-  "exclude": [],
+  "exclude": [
+    "tests",
+    "website"
+  ],
   "include": [
-    "**/*.ts"
+    "src/**/*.ts"
   ]
 }
