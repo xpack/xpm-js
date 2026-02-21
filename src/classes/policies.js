@@ -11,9 +11,6 @@
 
 'use strict'
 
-/* eslint valid-jsdoc: "error" */
-/* eslint max-len: [ "error", 80, { "ignoreUrls": true } ] */
-
 // ----------------------------------------------------------------------------
 
 // https://nodejs.org/docs/latest/api/

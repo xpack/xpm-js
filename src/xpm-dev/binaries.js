@@ -11,9 +11,6 @@
 
 'use strict'
 
-/* eslint valid-jsdoc: "error" */
-/* eslint max-len: [ "error", 80, { "ignoreUrls": true } ] */
-
 // ----------------------------------------------------------------------------
 
 /**
@@ -57,12 +54,12 @@ export class Binaries extends CliCommand {
   /**
    * @summary Execute the `link` command.
    *
-   * @param {string[]} args Command line arguments.
+   * @param {string[]} _args Command line arguments.
    * @returns {number} Return code.
    *
    * @override
    */
-  async doRun(args) {
+  async doRun(_args) {
     const log = this.log
     log.trace(`${this.constructor.name}.doRun()`)
 

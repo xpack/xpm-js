@@ -11,9 +11,6 @@
 
 'use strict'
 
-/* eslint valid-jsdoc: "error" */
-/* eslint max-len: [ "error", 80, { "ignoreUrls": true } ] */
-
 // ----------------------------------------------------------------------------
 
 /**
@@ -332,7 +329,7 @@ export class List extends CliCommand {
     let stat
     try {
       stat = await fsPromises.lstat(folderPath)
-    } catch (error) {
+    } catch {
       stat = undefined
     }
 
@@ -365,7 +362,9 @@ export class List extends CliCommand {
             log.trace(`${dirent.name} not a folder`)
             continue
           }
-        } catch (error) {}
+        } catch {
+          // Nothing to do.
+        }
 
         if (dirent.name === dotBin) {
           hasBin = true

@@ -9,7 +9,7 @@
  * be obtained from https://opensource.org/license/mit.
  */
 
-/* eslint max-len: [ "error", 80, { "ignoreUrls": true } ] */
+'use strict'
 
 // ----------------------------------------------------------------------------
 
@@ -52,6 +52,13 @@ import fetch from 'node-fetch'
 
 // https://www.npmjs.com/package/@xpack/xpm-lib
 import * as xpmLib from '@xpack/xpm-lib'
+
+// ES6: `import { CliError } from 'cli-start-options'
+import cliStartOptionsCsj from '@ilg/cli-start-options'
+
+// ----------------------------------------------------------------------------
+
+const { CliError } = cliStartOptionsCsj
 
 // ----------------------------------------------------------------------------
 
@@ -382,7 +389,6 @@ export class XpmDownloader {
     // Debug only, to force the downloads.
     // await cacache.rm.entry(cacheFolderPath, cacheKey)
     let cacheInfo = await cacache.get.info(cacheFolderPath, cacheKey)
-    // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
     if (!cacheInfo) {
       // If the cache has no idea of the desired file, proceed with
       // the download.
@@ -418,7 +424,6 @@ export class XpmDownloader {
       }
       // Update the cache info after downloading the file.
       cacheInfo = await cacache.get.info(cacheFolderPath, cacheKey)
-      // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
       if (!cacheInfo) {
         throw new CliError('download failed, quit')
       }
@@ -431,8 +436,7 @@ export class XpmDownloader {
     if (jsonPackage.xpack.binaries.skip) {
       try {
         skip = jsonPackage.xpack.binaries.skip
-        // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      } catch (error) {
+      } catch {
         // Ignore invalid skip value, use default
       }
     }

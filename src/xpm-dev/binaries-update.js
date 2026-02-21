@@ -11,9 +11,6 @@
 
 'use strict'
 
-/* eslint valid-jsdoc: "error" */
-/* eslint max-len: [ "error", 80, { "ignoreUrls": true } ] */
-
 // ----------------------------------------------------------------------------
 
 /**
@@ -123,7 +120,7 @@ export class BinariesUpdate extends CliCommand {
     let stats
     try {
       stats = await fsPromises.stat(fromFolderPath)
-    } catch (error) {
+    } catch {
       throw new CliErrorInput(`'${fromFolderPath}' does not exist`)
     }
     if (!stats.isDirectory()) {

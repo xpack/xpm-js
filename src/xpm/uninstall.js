@@ -11,9 +11,6 @@
 
 'use strict'
 
-/* eslint valid-jsdoc: "error" */
-/* eslint max-len: [ "error", 80, { "ignoreUrls": true } ] */
-
 // ----------------------------------------------------------------------------
 
 /**
@@ -43,6 +40,8 @@ import cliStartOptionsCsj from '@ilg/cli-start-options'
 
 // https://www.npmjs.com/package/@xpack/xpm-lib
 import * as xpmLib from '@xpack/xpm-lib'
+
+import { convertXpmError } from '../functions/convert-xpm-errors.js'
 
 // ----------------------------------------------------------------------------
 
@@ -363,7 +362,7 @@ export class Uninstall extends CliCommand {
     let stat
     try {
       stat = await fsPromises.lstat(xPackFolderPath)
-    } catch (error) {
+    } catch {
       log.warn(`${npmPackageSpecifier} not a dependency, ignored`)
       stat = undefined
     }
@@ -442,7 +441,7 @@ export class Uninstall extends CliCommand {
 
       try {
         stat = await fsPromises.lstat(nodeFolderPath)
-      } catch (error) {
+      } catch {
         if (config.isIgnoreErrors) {
           log.warn(`local package '${npmPackageSpecifier}' not installed`)
           return
@@ -525,7 +524,7 @@ export class Uninstall extends CliCommand {
     let stat
     try {
       stat = await fsPromises.stat(globalPackagePath)
-    } catch (error) {
+    } catch {
       if (config.isIgnoreErrors) {
         log.warn(`global package '${npmPackageSpecifier}' not installed`)
         return
@@ -674,7 +673,7 @@ export class Uninstall extends CliCommand {
           } else {
             // Not a file, preserve.
           }
-        } catch (error) {
+        } catch {
           // Not present anyway, nothing to do.
         }
         try {
@@ -692,7 +691,7 @@ export class Uninstall extends CliCommand {
           } else {
             // Not a file, preserve.
           }
-        } catch (error) {
+        } catch {
           // Not present anyway, nothing to do.
         }
       } else {
@@ -712,7 +711,7 @@ export class Uninstall extends CliCommand {
           } else {
             // Not a link, preserve.
           }
-        } catch (error) {
+        } catch {
           // Not present anyway, nothing to do.
         }
       }

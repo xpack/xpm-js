@@ -11,9 +11,6 @@
 
 'use strict'
 
-/* eslint valid-jsdoc: "error" */
-/* eslint max-len: [ "error", 80, { "ignoreUrls": true } ] */
-
 // ----------------------------------------------------------------------------
 
 // https://nodejs.org/docs/latest-v12.x/api/index.htmchild_process.html#child_process_child_process_spawn_command_args_options

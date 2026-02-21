@@ -11,9 +11,6 @@
 
 'use strict'
 
-/* eslint valid-jsdoc: "error" */
-/* eslint max-len: [ "error", 80, { "ignoreUrls": true } ] */
-
 // ----------------------------------------------------------------------------
 
 /**
@@ -204,7 +201,7 @@ export class Link extends CliCommand {
     try {
       // Use `lstat`, since `stat` follows the links.
       stats = await fsPromises.lstat(globalPackageLinkPath)
-    } catch (error) {
+    } catch {
       // `lstat` failed, the path does not exist; proceed to create the link.
       stats = null
     }
@@ -381,7 +378,7 @@ export class Link extends CliCommand {
       try {
         // Use `lstat`, since `stat` follows the links.
         stats = await fsPromises.lstat(localXpacksLinkPath)
-      } catch (error) {
+      } catch {
         stats = null
         // `lstat` failed, the path does not exist; proceed to create the link.
       }

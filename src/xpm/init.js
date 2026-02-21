@@ -11,9 +11,6 @@
 
 'use strict'
 
-/* eslint valid-jsdoc: "error" */
-/* eslint max-len: [ "error", 80, { "ignoreUrls": true } ] */
-
 // ----------------------------------------------------------------------------
 
 /**
@@ -393,7 +390,7 @@ export class Init extends CliCommand {
     this.xpmPackage = xpmPackage
 
     // Undefined for empty folders, existing package.json otherwise.
-    await xpmPackage.readPackageDotJson()
+    const jsonPackage = await xpmPackage.readPackageDotJson()
 
     const liquidMap = {}
 
@@ -412,14 +409,16 @@ export class Init extends CliCommand {
     let gitConfig = null
     try {
       gitConfig = await parseGitConfig.promise()
-    } catch (error) {}
+    } catch {
+      // Nothing to do.
+    }
     if (gitConfig === null) {
       try {
         gitConfig = await parseGitConfig.promise({
           cwd: os.homedir(),
           path: '.gitconfig',
         })
-      } catch (error) {
+      } catch {
         // ENOENT: no such file or directory, stat '/github/home/.gitconfig'
       }
     }
@@ -501,7 +500,7 @@ export class Init extends CliCommand {
       await fsPromises.access(readmePath)
 
       log.info("File 'LICENSE' preserved, not overridden")
-    } catch (er) {
+    } catch {
       // The LICENSE is not present. That's fine.
       await this.render('LICENSE-liquid', 'LICENSE', liquidMap)
     }

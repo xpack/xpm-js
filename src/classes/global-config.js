@@ -11,9 +11,6 @@
 
 'use strict'
 
-/* eslint valid-jsdoc: "error" */
-/* eslint max-len: [ "error", 80, { "ignoreUrls": true } ] */
-
 // ----------------------------------------------------------------------------
 
 // https://nodejs.org/docs/latest/api/
@@ -98,7 +95,7 @@ export class GlobalConfig {
             `${this.globalDefaultFolderPath} + must be a folder`
           )
         }
-      } catch (error) {
+      } catch {
         for (const folderPath of this.globalDeprecatedFolderPaths) {
           try {
             const stat = await fsPromises.stat(folderPath)
@@ -112,7 +109,7 @@ export class GlobalConfig {
                   folderPath,
                   this.globalDefaultFolderPath
                 )
-              } catch (error) {
+              } catch {
                 throw new CliError(
                   `cannot rename '${folderPath}' ` +
                     `to '${this.globalDefaultFolderPath}'`
@@ -136,7 +133,7 @@ export class GlobalConfig {
                     folderPath
                   )
                 }
-              } catch (error) {
+              } catch {
                 throw new CliError(
                   `cannot symlink '${this.globalDefaultFolderPath}' ` +
                     `as '${folderPath}'`
@@ -149,7 +146,7 @@ export class GlobalConfig {
               )
               break
             }
-          } catch (error) {
+          } catch {
             // Next.
           }
         }

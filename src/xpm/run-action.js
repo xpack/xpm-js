@@ -11,9 +11,6 @@
 
 'use strict'
 
-/* eslint valid-jsdoc: "error" */
-/* eslint max-len: [ "error", 80, { "ignoreUrls": true } ] */
-
 // ----------------------------------------------------------------------------
 
 /**
@@ -590,7 +587,7 @@ export class RunAction extends CliCommand {
       await fsPromises.stat(binPath)
       // If the folder exists, return a new array with the binPath prepended.
       return [binPath, ...pathArray]
-    } catch (error) {
+    } catch {
       // If the folder does not exist, return the same array.
       return pathArray
     }

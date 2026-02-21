@@ -11,9 +11,6 @@
 
 'use strict'
 
-/* eslint valid-jsdoc: "error" */
-/* eslint max-len: [ "error", 80, { "ignoreUrls": true } ] */
-
 // ----------------------------------------------------------------------------
 
 /**
@@ -699,7 +696,7 @@ export class Install extends CliCommand {
           // TODO: decide if there should be an error or success.
           return // CliExitCodes.ERROR.OUTPUT
         }
-      } catch (error) {
+      } catch {
         await deleteAsync(localPackagePath, { force: true })
       }
     }
@@ -889,7 +886,7 @@ export class Install extends CliCommand {
           CliExitCodes.ERROR.OUTPUT
         )
       }
-    } catch (error) {
+    } catch {
       // Not present, no danger.
     }
 
@@ -905,6 +902,7 @@ export class Install extends CliCommand {
       destinationFolderPath: localPackagePath,
       destinationTmpFolderPath: localPackageTmpPath,
       cacheFolderPath,
+      // eslint-disable-next-line max-len
       verboseMessage: `Installing standalone package in '${localPackagePath}'...`,
     })
 
@@ -1588,7 +1586,7 @@ export class Install extends CliCommand {
         // If the original file is not present, throw.
         log.trace(`stat ${fromFilePath}`)
         await fsPromises.stat(fromFilePath)
-      } catch (error) {
+      } catch {
         if (os.platform() === 'win32') {
           // As usual, things are a bit more complicated on Windows,
           // and it is necessary to process the explicit `.exe`.
@@ -1607,7 +1605,7 @@ export class Install extends CliCommand {
           try {
             log.trace(`stat ${fromFilePath}`)
             await fsPromises.stat(fromFilePath)
-          } catch (error) {
+          } catch {
             // Neither the POSIX name, nor the Windows name is present.
             continue
           }
@@ -1721,7 +1719,7 @@ export class Install extends CliCommand {
           } else {
             log.info(`'${localRelativeFilePath}${suffix}' -> '${fromFilePath}'`)
           }
-        } catch (error) {
+        } catch {
           log.warn('Developer Mode not enabled, using .cmd shims.')
           context.hasFileSymLink = false
         }
@@ -1956,7 +1954,7 @@ export class Install extends CliCommand {
       log.trace(`url: ${url}`)
       // If an URL, keep it as is.
       specifier = dependency.specifier
-    } catch (error) {
+    } catch {
       // If not accepted by URL, it might be a registry scoped name,
       // but only if the specifier is a valid semver.
       const version = semver.valid(dependency.specifier.replace(/\s*[~^]/, ''))

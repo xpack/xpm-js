@@ -11,13 +11,12 @@
 
 'use strict'
 
+// ----------------------------------------------------------------------------
+
 import cliStartOptionsCsj from '@ilg/cli-start-options'
 
 // https://www.npmjs.com/package/@xpack/xpm-lib
 import * as xpmLib from '@xpack/xpm-lib'
-
-/* eslint valid-jsdoc: "error" */
-/* eslint max-len: [ "error", 80, { "ignoreUrls": true } ] */
 
 // ----------------------------------------------------------------------------
 
