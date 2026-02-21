@@ -3,10 +3,35 @@
 Changes in reverse chronological order.
 Don't forget to close GitHub [issues](https://github.com/xpack/xpm-js/issues/).
 
+## 2026-02-21
+
+* v0.23.1 published on npmjs.com
+* v0.23.1 prepared
+* f6b1418 re-generate top commons
+* a01d10e package*.json update
+* 04ef739 config cleanups
+* 054d14a fsPromises -> fs/promises
+* 940d767 eslint fixes
+* 0ee55a9 fix xpmLib.InputError
+* 5d84edc src cosmetics catch (error)
+* 02b99c7 re-generate website commons
+
+## 2026-02-20
+
+* 46f038b website: update copyright 2026
+* 307a560 test-hello-world.sh: test-all
+* 70cb024 package*.json cosmetics
+* d68421c init.js: pass policies to XpmInitTemplate
+* 1048a72 add config/.prettier*
+* f393458 ManifestIds with destructured parameters
+
 ## 2026-02-18
 
-* v0.22.7 published on npmjs.com
-* v0.22.7 prepared
+* 4994fa7 website: blog post release 0.22.7 published
+* 8bffa1f 0.22.7
+* f74812b .npmignore update
+* b75f626 CHANGELOG: publish npm v0.22.7
+* 842b429 prepare v0.22.7
 * 303fd32 package*.json bump deps
 * 5fa88d1 launch.json update
 * 0942259 src update for xpm-lib
