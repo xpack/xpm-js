@@ -1,16 +1,14 @@
 {
   "name": "xpm",
-  "version": "0.22.7",
+  "version": "0.23.1-pre",
   "description": "The xPack project manager command line tool",
   "type": "module",
   "exports": {
-    "request": "./index.cjs",
     "import": "./index.mjs"
   },
   "directories": {
     "bin": "./bin",
-    "lib": "./src",
-    "test": "./tests"
+    "src": "./src"
   },
   "bin": {
     "xpm": "bin/xpm.js",
@@ -19,9 +17,8 @@
   "scripts": {
     "generate-top-commons": "bash node_modules/@xpack/npm-packages-helper/maintenance-scripts/generate-top-commons.sh --xpack",
     "compile-watch": "tsc --build --verbose --watch src",
-    "prettier": "prettier src tests/tap --write",
-    "fix": "echo standard --fix lib tests",
-    "fix2": "eslint --fix lib tests",
+    "prettier": "prettier src tests --write --config config/.prettierrc.json --ignore-path config/.prettierignore",
+    "fix": "eslint --config config/eslint.config.js --fix src",
     "compile": "echo tsc --build --verbose src",
     "fix-compile": "npm run prettier && npm run fix && npm run compile",
     "dev-cycle": "npm run fix && npm run test",
@@ -37,13 +34,12 @@
     "npm-link": "npm link",
     "postversion": "git push origin --all && git push origin --tags",
     "git-log": "git log --pretty='%cd * %h %s' --date=short",
-    "lint": "echo standard lib",
-    "lint2": "eslint lib tests",
+    "lint": "eslint --config config/eslint.config.js src",
     "prepare": "npm run lint",
     "pretest": "npm run compile && npm run lint",
     "test-ci": "tap run --reporter=terse --disable-coverage",
-    "test": "tap run --disable-coverage",
-    "test-coverage": "tap run",
+    "test": "npm run test-no-coverage",
+    "test-coverage": "tap --show-full-coverage",
     "test-all": "tap run --reporter=tap --disable-coverage",
     "test-one-010": "tap run --reporter=tap --disable-coverage tests/tap/010-*.ts",
     "test-one-020": "tap run --reporter=tap --disable-coverage tests/tap/020-*.ts",
@@ -57,7 +53,11 @@
     "dumpconf": "env | sort | uniq",
     "show-versions": "echo $(which node) $(node --version) && echo $(which npm) $(npm --version)",
     "clean": "del-cli dist",
-    "deep-clean": "npm run clean && del-cli node_modules package-lock.json"
+    "deep-clean": "npm run clean && rm -rf node_modules package-lock.json",
+    "pretest-coverage": "npm run lint",
+    "pretest-no-coverage": "npm run lint",
+    "test-no-coverage": "tap --disable-coverage",
+    "tap": "tap --reporter=tap"
   },
   "repository": {
     "type": "git",
@@ -84,31 +84,32 @@
   "homepage": "https://xpack.github.io/xpm/",
   "homepagePreview": "https://xpack.github.io/xpm-js/",
   "dependencies": {
-    "@npmcli/arborist": "^9.3.0",
-    "pacote": "^21.3.1",
-    "cacache": "^20.0.0",
-    "decompress": "^4.2.1",
-    "https-proxy-agent": "^7.0.6",
-    "proxy-from-env": "^2.0.0",
-    "node-fetch": "^3.3.2",
     "@ilg/cli-start-options": "^0.9.0",
+    "@npmcli/arborist": "^9.3.1",
     "@xpack/cmd-shim": "^4.1.0-2",
     "@xpack/logger": "^6.0.0",
-    "@xpack/xpm-lib": "^4.0.0",
+    "@xpack/xpm-lib": "^5.0.0",
+    "cacache": "^20.0.0",
     "copy-file": "^11.1.0",
     "cross-spawn": "^7.0.6",
+    "decompress": "^4.2.1",
     "del": "^8.0.1",
+    "https-proxy-agent": "^7.0.6",
     "liquidjs": "^10.24.0",
     "make-dir": "^5.1.0",
+    "node-fetch": "^3.3.2",
+    "pacote": "^21.3.1",
     "parse-git-config": "^3.0.0",
+    "proxy-from-env": "^2.0.0",
     "semver": "^7.7.4",
     "tar": "^7.5.9"
   },
   "devDependencies": {
+    "@eslint/js": "^9.31.0",
     "del-cli": "^7.0.0",
     "eslint": "^9.39.2",
-    "@eslint/js": "^9.31.0",
     "eslint-config-prettier": "^10.1.8",
+    "json": "^11.0.0",
     "liquidjs": "^10.24.0",
     "prettier": "^3.8.1",
     "standard": "^17.1.2",
@@ -149,6 +150,18 @@
   },
   "topConfig": {
     "descriptiveName": "xPack Project Manager",
+    "githubActionsNodeVersions": [
+      "20",
+      "22",
+      "24"
+    ],
+    "githubActionsOses": [
+      "ubuntu-24.04",
+      "ubuntu-24.04-arm",
+      "macos-15-intel",
+      "macos-15",
+      "windows-2025"
+    ],
     "permalinkName": "xpm",
     "preferShortName": "true",
     "hasTriggerPublish": "true",
@@ -157,6 +170,6 @@
     "testCoverage": "false"
   },
   "engines": {
-    "node": ">=20.0.0"
+    "node": ">=20.0"
   }
 }
