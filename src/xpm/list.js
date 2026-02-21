@@ -332,7 +332,7 @@ export class List extends CliCommand {
     let stat
     try {
       stat = await fsPromises.lstat(folderPath)
-    } catch (err) {
+    } catch (error) {
       stat = undefined
     }
 
@@ -365,7 +365,7 @@ export class List extends CliCommand {
             log.trace(`${dirent.name} not a folder`)
             continue
           }
-        } catch (err) {}
+        } catch (error) {}
 
         if (dirent.name === dotBin) {
           hasBin = true

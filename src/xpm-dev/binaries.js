@@ -84,8 +84,8 @@ export class Binaries extends CliCommand {
       this.jsonPackage = await xpmPackage.readPackageDotJson({
         withThrow: true,
       })
-    } catch (err) {
-      throw new CliErrorInput(err.message)
+    } catch (error) {
+      throw new CliErrorInput(error.message)
     }
 
     if (!xpmPackage.isXpmPackage()) {

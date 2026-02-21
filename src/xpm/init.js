@@ -233,9 +233,9 @@ export class Init extends CliCommand {
         specifier: config.template,
         cacheFolderPath,
       })
-    } catch (err) {
-      log.trace(util.inspect(err))
-      log.error(err.message)
+    } catch (error) {
+      log.trace(util.inspect(error))
+      log.error(error.message)
       return CliExitCodes.ERROR.INPUT
     }
     log.trace(util.inspect(manifest))
@@ -277,8 +277,8 @@ export class Init extends CliCommand {
           xpmRootFolderPath: context.rootPath,
         })
         this.policies = new xpmLib.Policies({ log, minVersion })
-      } catch (err) {
-        throw convertXpmError(err)
+      } catch (error) {
+        throw convertXpmError(error)
       }
 
       if (!jsonGlobal?.main) {
@@ -308,8 +308,8 @@ export class Init extends CliCommand {
               log,
             }
           )
-        } catch (err) {
-          log.verbose(err)
+        } catch (error) {
+          log.verbose(error)
           await deleteAsync(globalPackagePath, { force: true })
           throw new CliError(
             'install dependencies failed (npm returned error)',
@@ -331,8 +331,8 @@ export class Init extends CliCommand {
           xpmRootFolderPath: context.rootPath,
         })
         this.policies = new xpmLib.Policies({ log, minVersion })
-      } catch (err) {
-        throw convertXpmError(err)
+      } catch (error) {
+        throw convertXpmError(error)
       }
 
       log.info(`Using cached ${packFullName}...`)
@@ -374,8 +374,8 @@ export class Init extends CliCommand {
     try {
       const exitCode = await xpmInitTemplate.run()
       return exitCode
-    } catch (err) {
-      log.error(`template execution failed: ${err.message}`)
+    } catch (error) {
+      log.error(`template execution failed: ${error.message}`)
       return CliExitCodes.ERROR.APPLICATION
     }
   }
@@ -412,14 +412,14 @@ export class Init extends CliCommand {
     let gitConfig = null
     try {
       gitConfig = await parseGitConfig.promise()
-    } catch (err) {}
+    } catch (error) {}
     if (gitConfig === null) {
       try {
         gitConfig = await parseGitConfig.promise({
           cwd: os.homedir(),
           path: '.gitconfig',
         })
-      } catch (err) {
+      } catch (error) {
         // ENOENT: no such file or directory, stat '/github/home/.gitconfig'
       }
     }
@@ -517,9 +517,9 @@ export class Init extends CliCommand {
     // const headerPath = path.resolve(codePath, `${pnam}.h`)
     try {
       await fsPromises.writeFile(outputFileRelativePath, str, 'utf8')
-    } catch (err) {
-      log.trace(util.inspect(err))
-      throw new CliError(err.message, CliExitCodes.ERROR.OUTPUT)
+    } catch (error) {
+      log.trace(util.inspect(error))
+      throw new CliError(error.message, CliExitCodes.ERROR.OUTPUT)
     }
     log.info(`File '${outputFileRelativePath}' generated`)
   }

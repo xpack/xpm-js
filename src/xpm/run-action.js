@@ -179,8 +179,8 @@ export class RunAction extends CliCommand {
       this.jsonPackage = await xpmPackage.readPackageDotJson({
         withThrow: true,
       })
-    } catch (err) {
-      throw new CliErrorInput(err.message)
+    } catch (error) {
+      throw new CliErrorInput(error.message)
     }
 
     if (!xpmPackage.isNpmPackage()) {
@@ -200,8 +200,8 @@ export class RunAction extends CliCommand {
       await xpmPackage.checkMinimumXpmRequired({
         xpmRootFolderPath: context.rootPath,
       })
-    } catch (err) {
-      throw convertXpmError(err)
+    } catch (error) {
+      throw convertXpmError(error)
     }
 
     const xpmDataModel = new xpmLib.DataModel({
@@ -522,8 +522,8 @@ export class RunAction extends CliCommand {
         try {
           result = await spawn.spawnShellPromise(commandWithArguments, opts)
           exitCode = result.code
-        } catch (err) {
-          log.verbose(err)
+        } catch (error) {
+          log.verbose(error)
           if (config.isIgnoreErrors) {
             log.warn(`running '${commandWithArguments}' failed`)
             exitCode = CliExitCodes.SUCCESS
@@ -547,8 +547,8 @@ export class RunAction extends CliCommand {
             try {
               result = await spawn.spawnShellPromise(trimmedCommand, opts)
               exitCode = result.code
-            } catch (err) {
-              log.verbose(err)
+            } catch (error) {
+              log.verbose(error)
               if (config.isIgnoreErrors) {
                 log.warn(`running '${trimmedCommand}' failed`)
                 exitCode = CliExitCodes.SUCCESS
@@ -590,7 +590,7 @@ export class RunAction extends CliCommand {
       await fsPromises.stat(binPath)
       // If the folder exists, return a new array with the binPath prepended.
       return [binPath, ...pathArray]
-    } catch (err) {
+    } catch (error) {
       // If the folder does not exist, return the same array.
       return pathArray
     }

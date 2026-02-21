@@ -54,7 +54,7 @@ test('utils/manifest-ids', (t) => {
 
   const policies = new XpmPolicies('0.0.0', context)
 
-  const mid = new ManifestIds({manifest: { _id: 'xx' }, policies})
+  const mid = new ManifestIds({ manifest: { _id: 'xx' }, policies })
   t.ok(mid, 'mid set')
 
   t.end()

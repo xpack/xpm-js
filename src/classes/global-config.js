@@ -98,7 +98,7 @@ export class GlobalConfig {
             `${this.globalDefaultFolderPath} + must be a folder`
           )
         }
-      } catch (err) {
+      } catch (error) {
         for (const folderPath of this.globalDeprecatedFolderPaths) {
           try {
             const stat = await fsPromises.stat(folderPath)
@@ -112,7 +112,7 @@ export class GlobalConfig {
                   folderPath,
                   this.globalDefaultFolderPath
                 )
-              } catch (err) {
+              } catch (error) {
                 throw new CliError(
                   `cannot rename '${folderPath}' ` +
                     `to '${this.globalDefaultFolderPath}'`
@@ -136,7 +136,7 @@ export class GlobalConfig {
                     folderPath
                   )
                 }
-              } catch (err) {
+              } catch (error) {
                 throw new CliError(
                   `cannot symlink '${this.globalDefaultFolderPath}' ` +
                     `as '${folderPath}'`
@@ -149,7 +149,7 @@ export class GlobalConfig {
               )
               break
             }
-          } catch (err) {
+          } catch (error) {
             // Next.
           }
         }

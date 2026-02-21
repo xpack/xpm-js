@@ -131,8 +131,8 @@ export class Link extends CliCommand {
       this.jsonPackage = await xpmPackage.readPackageDotJson({
         withThrow: true,
       })
-    } catch (err) {
-      throw convertXpmError(err)
+    } catch (error) {
+      throw convertXpmError(error)
     }
     const jsonPackage = this.jsonPackage
 
@@ -148,8 +148,8 @@ export class Link extends CliCommand {
         xpmRootFolderPath: context.rootPath,
       })
       this.policies = new xpmLib.Policies({ log, minVersion })
-    } catch (err) {
-      throw convertXpmError(err)
+    } catch (error) {
+      throw convertXpmError(error)
     }
 
     if (args.length === 0) {
@@ -204,7 +204,7 @@ export class Link extends CliCommand {
     try {
       // Use `lstat`, since `stat` follows the links.
       stats = await fsPromises.lstat(globalPackageLinkPath)
-    } catch (err) {
+    } catch (error) {
       // `lstat` failed, the path does not exist; proceed to create the link.
       stats = null
     }
@@ -214,8 +214,8 @@ export class Link extends CliCommand {
         try {
           log.trace(`del('${globalPackageLinkPath}')`)
           await deleteAsync(globalPackageLinkPath, { force: true })
-        } catch (err) {
-          log.trace(util.inspect(err))
+        } catch (error) {
+          log.trace(util.inspect(error))
           throw new CliError(`cannot remove '${globalPackageLinkPath}'`)
         }
       } else {
@@ -281,8 +281,8 @@ export class Link extends CliCommand {
       let stats
       try {
         stats = await fsPromises.lstat(globalPackageLinkPath)
-      } catch (err) {
-        log.trace(util.inspect(err))
+      } catch (error) {
+        log.trace(util.inspect(error))
         throw new CliErrorInput(
           `there is no development link for package '${arg}'`
         )
@@ -297,8 +297,8 @@ export class Link extends CliCommand {
       // Follow the link and check the destination.
       try {
         stats = await fsPromises.stat(globalPackageLinkPath)
-      } catch (err) {
-        log.trace(util.inspect(err))
+      } catch (error) {
+        log.trace(util.inspect(error))
         throw new CliError(`broken link '${globalPackageLinkPath}'`)
       }
       if (!stats.isDirectory()) {
@@ -314,9 +314,9 @@ export class Link extends CliCommand {
         jsonDestination = await destinationXpmPackage.readPackageDotJson({
           withThrow: true,
         })
-      } catch (err) {
+      } catch (error) {
         // log.trace(util.inspect(err))
-        throw convertXpmError(err)
+        throw convertXpmError(error)
       }
 
       if (!destinationXpmPackage.isXpmPackage()) {
@@ -381,7 +381,7 @@ export class Link extends CliCommand {
       try {
         // Use `lstat`, since `stat` follows the links.
         stats = await fsPromises.lstat(localXpacksLinkPath)
-      } catch (err) {
+      } catch (error) {
         stats = null
         // `lstat` failed, the path does not exist; proceed to create the link.
       }
@@ -398,8 +398,8 @@ export class Link extends CliCommand {
         try {
           log.trace(`del('${localXpacksLinkPath}')`)
           await deleteAsync(localXpacksLinkPath, { force: true })
-        } catch (err) {
-          log.trace(util.inspect(err))
+        } catch (error) {
+          log.trace(util.inspect(error))
           throw new CliError(`cannot remove '${localXpacksLinkPath}'`)
         }
       }

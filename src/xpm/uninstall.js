@@ -204,8 +204,8 @@ export class Uninstall extends CliCommand {
         xpmRootFolderPath: context.rootPath,
       })
       this.policies = new xpmLib.Policies({ log, minVersion })
-    } catch (err) {
-      throw convertXpmError(err)
+    } catch (error) {
+      throw convertXpmError(error)
     }
 
     for (const arg of args) {
@@ -363,7 +363,7 @@ export class Uninstall extends CliCommand {
     let stat
     try {
       stat = await fsPromises.lstat(xPackFolderPath)
-    } catch (err) {
+    } catch (error) {
       log.warn(`${npmPackageSpecifier} not a dependency, ignored`)
       stat = undefined
     }
@@ -442,7 +442,7 @@ export class Uninstall extends CliCommand {
 
       try {
         stat = await fsPromises.lstat(nodeFolderPath)
-      } catch (err) {
+      } catch (error) {
         if (config.isIgnoreErrors) {
           log.warn(`local package '${npmPackageSpecifier}' not installed`)
           return
@@ -525,7 +525,7 @@ export class Uninstall extends CliCommand {
     let stat
     try {
       stat = await fsPromises.stat(globalPackagePath)
-    } catch (err) {
+    } catch (error) {
       if (config.isIgnoreErrors) {
         log.warn(`global package '${npmPackageSpecifier}' not installed`)
         return
@@ -674,7 +674,7 @@ export class Uninstall extends CliCommand {
           } else {
             // Not a file, preserve.
           }
-        } catch (err) {
+        } catch (error) {
           // Not present anyway, nothing to do.
         }
         try {
@@ -692,7 +692,7 @@ export class Uninstall extends CliCommand {
           } else {
             // Not a file, preserve.
           }
-        } catch (err) {
+        } catch (error) {
           // Not present anyway, nothing to do.
         }
       } else {
@@ -712,7 +712,7 @@ export class Uninstall extends CliCommand {
           } else {
             // Not a link, preserve.
           }
-        } catch (err) {
+        } catch (error) {
           // Not present anyway, nothing to do.
         }
       }

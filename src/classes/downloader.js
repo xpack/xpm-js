@@ -254,9 +254,9 @@ export class XpmDownloader {
         { cache: cacheFolderPath, Arborist }
       )
       log.trace(`fetchResult: ${util.inspect(fetchResult)}`)
-    } catch (err) {
-      log.trace(util.inspect(err))
-      throw new XpmInputError(`Package ${specifier} not found`)
+    } catch (error) {
+      log.trace(util.inspect(error))
+      throw new xpmLib.InputError(`Package ${specifier} not found`)
     }
   }
 
@@ -400,13 +400,13 @@ export class XpmDownloader {
           opts,
         })
         log.trace(`cache written for ${fileUrl}`)
-      } catch (err) {
-        log.trace(util.inspect(err))
+      } catch (error) {
+        log.trace(util.inspect(error))
         // Do not throw yet, only display the error.
-        if (err instanceof Error) {
-          log.info(err.message)
+        if (error instanceof Error) {
+          log.info(error.message)
         } else {
-          log.info(String(err))
+          log.info(String(error))
         }
         if (os.platform() === 'win32') {
           log.info(
@@ -432,7 +432,7 @@ export class XpmDownloader {
       try {
         skip = jsonPackage.xpack.binaries.skip
         // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      } catch (err) {
+      } catch (error) {
         // Ignore invalid skip value, use default
       }
     }
@@ -518,9 +518,10 @@ export class XpmDownloader {
         } else {
           response = await fetch(url)
         }
-      } catch (err) {
-        log.trace(util.inspect(err))
-        const errorMessage = err instanceof Error ? err.message : String(err)
+      } catch (error) {
+        log.trace(util.inspect(error))
+        const errorMessage =
+          error instanceof Error ? error.message : String(error)
         throw new CliError(`${errorMessage} in fetch ${url}`)
       }
 
@@ -545,9 +546,10 @@ export class XpmDownloader {
         await pipelinePromise(response.body, cacacheWriteStream)
         // If no exception, everything must be ok.
         return
-      } catch (err) {
-        log.trace(util.inspect(err))
-        const errorMessage = err instanceof Error ? err.message : String(err)
+      } catch (error) {
+        log.trace(util.inspect(error))
+        const errorMessage =
+          error instanceof Error ? error.message : String(error)
         if (retry >= maxRetry) {
           throw new CliError(`${errorMessage} in pipeline ${url}`)
         }

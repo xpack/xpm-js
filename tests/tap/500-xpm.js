@@ -69,8 +69,8 @@ test('xpm --version (spawn)', async (t) => {
     t.equal(stdout, pack.version + '\n', 'version ok')
     // There should be no error messages.
     t.equal(stderr, '', 'stderr empty')
-  } catch (err) {
-    t.fail(err.message)
+  } catch (error) {
+    t.fail(error.message)
   }
   t.end()
 })
@@ -95,8 +95,8 @@ test('xpm -h (spawn)', async (t) => {
     t.match(stdout, 'Bug reports:', 'has Bug reports:')
     // There should be no error messages.
     t.equal(stderr, '', 'stderr empty')
-  } catch (err) {
-    t.fail(err.message)
+  } catch (error) {
+    t.fail(error.message)
   }
   t.end()
 })
@@ -108,8 +108,8 @@ test('xpm --help (spawn)', async (t) => {
     t.match(stdout, 'Usage: xpm <command>', 'has Usage')
     // There should be no error messages.
     t.equal(stderr, '', 'stderr empty')
-  } catch (err) {
-    t.fail(err.message)
+  } catch (error) {
+    t.fail(error.message)
   }
   t.end()
 })
@@ -121,8 +121,8 @@ test('xpm -d (spawn)', async (t) => {
     t.ok(stdout.length > 0, 'has stdout')
     t.match(stdout, 'debug: start arg0:', 'has debug')
     t.ok(stderr === '', 'has no stderr')
-  } catch (err) {
-    t.fail(err.message)
+  } catch (error) {
+    t.fail(error.message)
   }
   t.end()
 })

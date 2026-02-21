@@ -44,59 +44,63 @@ const { CliExitCodes } = cliStartOptionsCsj
 /**
  * Test if help content includes convert options.
  */
-test('xpm run -h',
-  async (t) => {
-    try {
-      const { code, stdout, stderr } = await Common.xpmCli([
-        'run',
-        '-h'
-      ])
-      // Check exit code.
-      t.equal(code, CliExitCodes.SUCCESS, 'exit code is success')
-      const outLines = stdout.split(/\r?\n/)
-      t.ok(outLines.length > 9, 'has enough output')
-      if (outLines.length > 9) {
-        // console.log(outLines)
-        t.match(outLines[1],
-          'run package/configuration specific action', 'has title')
-        t.match(outLines[2], 'Usage: xpm run [options...] ' +
-          '[--config <config_name>] [--dry-run]', 'has Usage')
-      }
-      // There should be no error messages.
-      t.equal(stderr, '', 'stderr is empty')
-    } catch (err) {
-      t.fail(err.message)
+test('xpm run -h', async (t) => {
+  try {
+    const { code, stdout, stderr } = await Common.xpmCli(['run', '-h'])
+    // Check exit code.
+    t.equal(code, CliExitCodes.SUCCESS, 'exit code is success')
+    const outLines = stdout.split(/\r?\n/)
+    t.ok(outLines.length > 9, 'has enough output')
+    if (outLines.length > 9) {
+      // console.log(outLines)
+      t.match(
+        outLines[1],
+        'run package/configuration specific action',
+        'has title'
+      )
+      t.match(
+        outLines[2],
+        'Usage: xpm run [options...] ' + '[--config <config_name>] [--dry-run]',
+        'has Usage'
+      )
     }
-    t.end()
-  })
+    // There should be no error messages.
+    t.equal(stderr, '', 'stderr is empty')
+  } catch (error) {
+    t.fail(error.message)
+  }
+  t.end()
+})
 
 /**
  * Test if partial command recognised and expanded.
  */
-test('xpm run -h',
-  async (t) => {
-    try {
-      const { code, stdout, stderr } = await Common.xpmCli([
-        'run',
-        '-h'
-      ])
-      // Check exit code.
-      t.equal(code, CliExitCodes.SUCCESS, 'exit code is success')
-      const outLines = stdout.split(/\r?\n/)
-      t.ok(outLines.length > 9, 'has enough output')
-      if (outLines.length > 9) {
-        // console.log(outLines)
-        t.match(outLines[1],
-          'run package/configuration specific action', 'has title')
-        t.match(outLines[2], 'Usage: xpm run [options...] ' +
-          '[--config <config_name>] [--dry-run]', 'has Usage')
-      }
-      // There should be no error messages.
-      t.equal(stderr, '', 'stderr is empty')
-    } catch (err) {
-      t.fail(err.message)
+test('xpm run -h', async (t) => {
+  try {
+    const { code, stdout, stderr } = await Common.xpmCli(['run', '-h'])
+    // Check exit code.
+    t.equal(code, CliExitCodes.SUCCESS, 'exit code is success')
+    const outLines = stdout.split(/\r?\n/)
+    t.ok(outLines.length > 9, 'has enough output')
+    if (outLines.length > 9) {
+      // console.log(outLines)
+      t.match(
+        outLines[1],
+        'run package/configuration specific action',
+        'has title'
+      )
+      t.match(
+        outLines[2],
+        'Usage: xpm run [options...] ' + '[--config <config_name>] [--dry-run]',
+        'has Usage'
+      )
     }
-    t.end()
-  })
+    // There should be no error messages.
+    t.equal(stderr, '', 'stderr is empty')
+  } catch (error) {
+    t.fail(error.message)
+  }
+  t.end()
+})
 
 // ----------------------------------------------------------------------------

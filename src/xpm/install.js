@@ -331,8 +331,8 @@ export class Install extends CliCommand {
         xpmRootFolderPath: context.rootPath,
       })
       this.policies = new xpmLib.Policies({ log, minVersion })
-    } catch (err) {
-      throw convertXpmError(err)
+    } catch (error) {
+      throw convertXpmError(error)
     }
 
     // Symbolic links to files do not work on Windows,
@@ -380,8 +380,8 @@ export class Install extends CliCommand {
           }
         }
       }
-    } catch (err) {
-      throw convertXpmError(err)
+    } catch (error) {
+      throw convertXpmError(error)
     }
 
     if (
@@ -429,8 +429,8 @@ export class Install extends CliCommand {
       if (log.isTrace) {
         log.trace(util.inspect(manifest))
       }
-    } catch (err) {
-      log.trace(util.inspect(err))
+    } catch (error) {
+      log.trace(util.inspect(error))
       throw new CliErrorInput(`Package '${specifier}' not found`)
     }
 
@@ -699,7 +699,7 @@ export class Install extends CliCommand {
           // TODO: decide if there should be an error or success.
           return // CliExitCodes.ERROR.OUTPUT
         }
-      } catch (err) {
+      } catch (error) {
         await deleteAsync(localPackagePath, { force: true })
       }
     }
@@ -748,8 +748,8 @@ export class Install extends CliCommand {
           // By default, source xpm packages go to dependencies.
           destinationDependencies = 'dependencies'
         }
-      } catch (err) {
-        throw convertXpmError(err)
+      } catch (error) {
+        throw convertXpmError(error)
       }
     } else {
       // If not xpm package, it must be a node module.
@@ -867,8 +867,8 @@ export class Install extends CliCommand {
           'binary xpm package installed globally, next time use --global'
         )
       }
-    } catch (err) {
-      throw convertXpmError(err)
+    } catch (error) {
+      throw convertXpmError(error)
     }
 
     // Install in the current folder
@@ -889,7 +889,7 @@ export class Install extends CliCommand {
           CliExitCodes.ERROR.OUTPUT
         )
       }
-    } catch (err) {
+    } catch (error) {
       // Not present, no danger.
     }
 
@@ -1197,8 +1197,8 @@ export class Install extends CliCommand {
               cwd: config.cwd,
               log,
             })
-          } catch (err) {
-            log.verbose(err)
+          } catch (error) {
+            log.verbose(error)
             throw new CliError(
               'install dependencies failed (npm returned error)'
             )
@@ -1518,10 +1518,10 @@ export class Install extends CliCommand {
             buildFolderRelativePath,
           })
         }
-      } catch (err) {
-        if (err.code !== 'EEXIST') {
-          log.trace(util.inspect(err))
-          throw new CliError(err)
+      } catch (error) {
+        if (error.code !== 'EEXIST') {
+          log.trace(util.inspect(error))
+          throw new CliError(error)
         }
       }
     }
@@ -1588,7 +1588,7 @@ export class Install extends CliCommand {
         // If the original file is not present, throw.
         log.trace(`stat ${fromFilePath}`)
         await fsPromises.stat(fromFilePath)
-      } catch (err) {
+      } catch (error) {
         if (os.platform() === 'win32') {
           // As usual, things are a bit more complicated on Windows,
           // and it is necessary to process the explicit `.exe`.
@@ -1607,7 +1607,7 @@ export class Install extends CliCommand {
           try {
             log.trace(`stat ${fromFilePath}`)
             await fsPromises.stat(fromFilePath)
-          } catch (err) {
+          } catch (error) {
             // Neither the POSIX name, nor the Windows name is present.
             continue
           }
@@ -1721,7 +1721,7 @@ export class Install extends CliCommand {
           } else {
             log.info(`'${localRelativeFilePath}${suffix}' -> '${fromFilePath}'`)
           }
-        } catch (err) {
+        } catch (error) {
           log.warn('Developer Mode not enabled, using .cmd shims.')
           context.hasFileSymLink = false
         }
@@ -1956,7 +1956,7 @@ export class Install extends CliCommand {
       log.trace(`url: ${url}`)
       // If an URL, keep it as is.
       specifier = dependency.specifier
-    } catch (err) {
+    } catch (error) {
       // If not accepted by URL, it might be a registry scoped name,
       // but only if the specifier is a valid semver.
       const version = semver.valid(dependency.specifier.replace(/\s*[~^]/, ''))
@@ -1989,8 +1989,8 @@ export class Install extends CliCommand {
           log.info(`+ ${specifier}: ${fullName}`)
         }
       }
-    } catch (err) {
-      log.verbose(err)
+    } catch (error) {
+      log.verbose(error)
       throw new CliError(`Package '${specifier}' not found`)
     }
 
@@ -2082,10 +2082,10 @@ export class Install extends CliCommand {
       )
       try {
         await fsPromises.symlink(globalPackagePath, linkPath, symlinkType)
-      } catch (err) {
+      } catch (error) {
         const absPath = path.resolve(linkPath)
         // console.log(absPath)
-        log.trace(util.inspect(err))
+        log.trace(util.inspect(error))
         throw new CliError(
           `volume ${absPath.substring(0, 2)} ` +
             'does not support links, ' +

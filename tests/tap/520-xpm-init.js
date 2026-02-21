@@ -47,90 +47,90 @@ const { CliExitCodes } = cliStartOptionsCsj
 /**
  * Test if help content includes convert options.
  */
-test('xpm help -h',
-  async (t) => {
-    try {
-      const { code, stdout, stderr } = await Common.xpmCli([
-        'init',
-        '-h'
-      ])
-      // Check exit code.
-      t.equal(code, CliExitCodes.SUCCESS, 'exit code is success')
-      const outLines = stdout.split(/\r?\n/)
-      t.ok(outLines.length > 9, 'has enough output')
-      if (outLines.length > 9) {
-        // console.log(outLines)
-        t.match(outLines[1], 'create an xpm package', 'has title')
-        t.match(outLines[2], 'Usage: xpm init [options...] ' +
-          '[--template <xpack>] [--name <string>]', 'has Usage')
-        t.match(outLines[5], 'Init options:', 'has init options')
-        t.match(outLines[6], '  -t|--template <xpack>  ', 'has --template')
-        t.match(outLines[7], '  -n|--name <string>  ', 'has --name')
-        t.match(outLines[8], '  -p|--property <string>  ', 'has --property')
-      }
-      // There should be no error messages.
-      t.equal(stderr, '', 'stderr is empty')
-    } catch (err) {
-      t.fail(err.message)
+test('xpm help -h', async (t) => {
+  try {
+    const { code, stdout, stderr } = await Common.xpmCli(['init', '-h'])
+    // Check exit code.
+    t.equal(code, CliExitCodes.SUCCESS, 'exit code is success')
+    const outLines = stdout.split(/\r?\n/)
+    t.ok(outLines.length > 9, 'has enough output')
+    if (outLines.length > 9) {
+      // console.log(outLines)
+      t.match(outLines[1], 'create an xpm package', 'has title')
+      t.match(
+        outLines[2],
+        'Usage: xpm init [options...] ' +
+          '[--template <xpack>] [--name <string>]',
+        'has Usage'
+      )
+      t.match(outLines[5], 'Init options:', 'has init options')
+      t.match(outLines[6], '  -t|--template <xpack>  ', 'has --template')
+      t.match(outLines[7], '  -n|--name <string>  ', 'has --name')
+      t.match(outLines[8], '  -p|--property <string>  ', 'has --property')
     }
-    t.end()
-  })
+    // There should be no error messages.
+    t.equal(stderr, '', 'stderr is empty')
+  } catch (error) {
+    t.fail(error.message)
+  }
+  t.end()
+})
 
 /**
  * Test if partial command recognised and expanded.
  */
-test('xpm ini -h',
-  async (t) => {
-    try {
-      const { code, stdout, stderr } = await Common.xpmCli([
-        'ini',
-        '-h'
-      ])
-      // Check exit code.
-      t.equal(code, CliExitCodes.SUCCESS, 'exit code is success')
-      const outLines = stdout.split(/\r?\n/)
-      t.ok(outLines.length > 9, 'has enough output')
-      if (outLines.length > 9) {
-        // console.log(outLines)
-        t.match(outLines[1], 'create an xpm package', 'has title')
-        t.match(outLines[2], 'Usage: xpm init [options...] ' +
-          '[--template <xpack>] [--name <string>]', 'has Usage')
-      }
-      // There should be no error messages.
-      t.equal(stderr, '', 'stderr is empty')
-    } catch (err) {
-      t.fail(err.message)
+test('xpm ini -h', async (t) => {
+  try {
+    const { code, stdout, stderr } = await Common.xpmCli(['ini', '-h'])
+    // Check exit code.
+    t.equal(code, CliExitCodes.SUCCESS, 'exit code is success')
+    const outLines = stdout.split(/\r?\n/)
+    t.ok(outLines.length > 9, 'has enough output')
+    if (outLines.length > 9) {
+      // console.log(outLines)
+      t.match(outLines[1], 'create an xpm package', 'has title')
+      t.match(
+        outLines[2],
+        'Usage: xpm init [options...] ' +
+          '[--template <xpack>] [--name <string>]',
+        'has Usage'
+      )
     }
-    t.end()
-  })
+    // There should be no error messages.
+    t.equal(stderr, '', 'stderr is empty')
+  } catch (error) {
+    t.fail(error.message)
+  }
+  t.end()
+})
 
-test('xpm init',
-  async (t) => {
-    const initPath = 'tmp/tests/init'
+test('xpm init', async (t) => {
+  const initPath = 'tmp/tests/init'
 
-    await deleteAsync(initPath, { force: true })
+  await deleteAsync(initPath, { force: true })
 
-    try {
-      const { code, stdout, stderr } = await Common.xpmCli([
-        'init',
-        '-C', initPath
-      ])
-      // Check exit code.
-      t.equal(code, CliExitCodes.SUCCESS, 'exit code is success')
-      const outLines = stdout.split(/\r?\n/)
-      t.ok(outLines.length > 3, 'has enough output')
-      if (outLines.length > 3) {
-        // console.log(outLines)
-        t.match(outLines[1], 'Creating project', 'creating')
-        t.match(outLines[2], 'File \'package.json\' generated', 'package.json')
-        t.match(outLines[3], 'File \'LICENSE\' generated', 'LICENSE')
-      }
-      // There should be no error messages.
-      t.equal(stderr, '', 'stderr is empty')
-    } catch (err) {
-      t.fail(err.message)
+  try {
+    const { code, stdout, stderr } = await Common.xpmCli([
+      'init',
+      '-C',
+      initPath,
+    ])
+    // Check exit code.
+    t.equal(code, CliExitCodes.SUCCESS, 'exit code is success')
+    const outLines = stdout.split(/\r?\n/)
+    t.ok(outLines.length > 3, 'has enough output')
+    if (outLines.length > 3) {
+      // console.log(outLines)
+      t.match(outLines[1], 'Creating project', 'creating')
+      t.match(outLines[2], "File 'package.json' generated", 'package.json')
+      t.match(outLines[3], "File 'LICENSE' generated", 'LICENSE')
     }
-    t.end()
-  })
+    // There should be no error messages.
+    t.equal(stderr, '', 'stderr is empty')
+  } catch (error) {
+    t.fail(error.message)
+  }
+  t.end()
+})
 
 // ----------------------------------------------------------------------------

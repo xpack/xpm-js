@@ -99,8 +99,8 @@ export class BinariesUpdate extends CliCommand {
       this.jsonPackage = await xpmPackage.readPackageDotJson({
         withThrow: true,
       })
-    } catch (err) {
-      throw new CliErrorInput(err.message)
+    } catch (error) {
+      throw new CliErrorInput(error.message)
     }
 
     if (!xpmPackage.isXpmPackage()) {
@@ -123,7 +123,7 @@ export class BinariesUpdate extends CliCommand {
     let stats
     try {
       stats = await fsPromises.stat(fromFolderPath)
-    } catch (err) {
+    } catch (error) {
       throw new CliErrorInput(`'${fromFolderPath}' does not exist`)
     }
     if (!stats.isDirectory()) {
