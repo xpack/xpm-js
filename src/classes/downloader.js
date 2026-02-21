@@ -193,7 +193,7 @@ export class XpmDownloader {
       if (!policies.shareNpmDependencies) {
         log.trace(`del(${destinationTmpFolderPath})`)
         await deleteAsync(destinationTmpFolderPath, { force: true })
-        throw new XpmInputError(
+        throw new xpmLib.InputError(
           `${packFullName} is not an xpm package, use npm to install it`
         )
       }
@@ -325,11 +325,11 @@ export class XpmDownloader {
       }
     }
     if (!platform) {
-      throw new XpmInputError(`platform ${platformKey} not supported`)
+      throw new xpmLib.InputError(`platform ${platformKey} not supported`)
     }
 
     if (!jsonPackage.xpack.binaries.baseUrl) {
-      throw new XpmInputError(
+      throw new xpmLib.InputError(
         'missing "xpack.binaries.baseUrl" in package.json'
       )
     }
@@ -340,7 +340,7 @@ export class XpmDownloader {
     }
 
     if (!platform.fileName) {
-      throw new XpmInputError(
+      throw new xpmLib.InputError(
         `missing xpack.binaries.platform[${platformKey}].fileName`
       )
     }
