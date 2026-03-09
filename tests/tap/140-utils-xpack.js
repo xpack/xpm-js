@@ -41,7 +41,7 @@ import { Logger } from '@xpack/logger'
 
 // ----------------------------------------------------------------------------
 
-const { CliLogger } = cliStartOptionsCsj
+// const { CliLogger } = cliStartOptionsCsj
 
 // ----------------------------------------------------------------------------
 

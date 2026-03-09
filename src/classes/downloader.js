@@ -182,7 +182,7 @@ export class XpmDownloader {
       }
     } else {
       await this.pacoteExtract({
-        specifier: specifier,
+        specifier,
         destinationFolderPath: destinationTmpFolderPath,
         cacheFolderPath,
       })

@@ -618,7 +618,7 @@ export class Install extends CliCommand {
       return
     }
 
-    let buildFolderRelativePath = undefined
+    let buildFolderRelativePath
 
     if (buildConfigurationName) {
       const globalXpmDataModel = new xpmLib.DataModel({
