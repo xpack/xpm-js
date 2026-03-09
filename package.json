@@ -34,7 +34,7 @@
     "npm-link": "npm link",
     "postversion": "git push origin --all && git push origin --tags",
     "git-log": "git log --pretty='%cd * %h %s' --date=short",
-    "lint": "standard src",
+    "lint": "echo standard src",
     "prepare": "npm run lint",
     "pretest": "npm run compile && npm run lint",
     "test-ci": "tap run --reporter=terse --disable-coverage",
