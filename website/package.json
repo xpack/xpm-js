@@ -56,8 +56,8 @@
     "liquidjs": "^10.24.0",
     "typedoc": "^0.28.7",
     "typescript": "~5.9.3",
-    "@microsoft/api-documenter": "^7.28.2",
-    "@microsoft/api-extractor": "^7.55.2",
+    "@microsoft/api-documenter": "^7.29.7",
+    "@microsoft/api-extractor": "^7.57.7",
     "@xpack/docusaurus-template-liquid": "github:xpack/docusaurus-template-liquid",
     "@xpack/npm-packages-helper": "github:xpack/npm-packages-helper"
   },

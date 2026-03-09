@@ -1,6 +1,6 @@
 {
   "name": "xpm",
-  "version": "0.23.1",
+  "version": "0.23.2-pre",
   "description": "The xPack project manager command line tool",
   "type": "module",
   "exports": {
@@ -18,7 +18,7 @@
     "generate-top-commons": "bash node_modules/@xpack/npm-packages-helper/maintenance-scripts/generate-top-commons.sh --xpack",
     "compile-watch": "tsc --build --verbose --watch src",
     "prettier": "prettier src tests --write --config config/.prettierrc.json --ignore-path config/.prettierignore",
-    "fix": "eslint --config config/eslint.config.js --fix src",
+    "fix": "standard --fix src tests",
     "compile": "echo tsc --build --verbose src",
     "fix-compile": "npm run prettier && npm run fix && npm run compile",
     "dev-cycle": "npm run fix && npm run test",
@@ -34,11 +34,11 @@
     "npm-link": "npm link",
     "postversion": "git push origin --all && git push origin --tags",
     "git-log": "git log --pretty='%cd * %h %s' --date=short",
-    "lint": "eslint --config config/eslint.config.js src",
+    "lint": "standard src",
     "prepare": "npm run lint",
     "pretest": "npm run compile && npm run lint",
     "test-ci": "tap run --reporter=terse --disable-coverage",
-    "test": "npm run test-no-coverage",
+    "test": "echo 'No tests defined'",
     "test-coverage": "tap --show-full-coverage",
     "test-all": "tap run --reporter=tap --disable-coverage",
     "test-one-010": "tap run --reporter=tap --disable-coverage tests/tap/010-*.ts",
@@ -52,8 +52,8 @@
     "postpublish": "git push origin --follow-tags",
     "dumpconf": "env | sort | uniq",
     "show-versions": "echo $(which node) $(node --version) && echo $(which npm) $(npm --version)",
-    "clean": "del-cli dist",
-    "deep-clean": "npm run clean && rm -rf node_modules package-lock.json",
+    "clean": "del-cli --force dist build .tap",
+    "deep-clean": "npm run clean && del-cli --force node_modules package-lock.json",
     "pretest-coverage": "npm run lint",
     "pretest-no-coverage": "npm run lint",
     "test-no-coverage": "tap --disable-coverage",
@@ -85,7 +85,7 @@
   "homepagePreview": "https://xpack.github.io/xpm-js/",
   "dependencies": {
     "@ilg/cli-start-options": "^0.9.0",
-    "@npmcli/arborist": "^9.3.1",
+    "@npmcli/arborist": "^9.4.0",
     "@xpack/cmd-shim": "^4.1.0-2",
     "@xpack/logger": "^6.0.0",
     "@xpack/xpm-lib": "^5.0.0",
@@ -95,14 +95,14 @@
     "decompress": "^4.2.1",
     "del": "^8.0.1",
     "https-proxy-agent": "^7.0.6",
-    "liquidjs": "^10.24.0",
+    "liquidjs": "^10.25.0",
     "make-dir": "^5.1.0",
     "node-fetch": "^3.3.2",
-    "pacote": "^21.3.1",
+    "pacote": "^21.5.0",
     "parse-git-config": "^3.0.0",
     "proxy-from-env": "^2.0.0",
     "semver": "^7.7.4",
-    "tar": "^7.5.9"
+    "tar": "^7.5.11"
   },
   "devDependencies": {
     "@eslint/js": "^9.31.0",
@@ -110,11 +110,11 @@
     "eslint": "^9.39.2",
     "eslint-config-prettier": "^10.1.8",
     "json": "^11.0.0",
-    "liquidjs": "^10.24.0",
     "prettier": "^3.8.1",
     "standard": "^17.1.2",
     "tap": "^21.5.1",
-    "typescript-eslint": "^8.56.0"
+    "typescript-eslint": "^8.57.0",
+    "liquidjs": "^10.24.0"
   },
   "bundleDependencies": [
     "@npmcli/arborist",

@@ -3,10 +3,20 @@
 Changes in reverse chronological order.
 Don't forget to close GitHub [issues](https://github.com/xpack/xpm-js/issues/).
 
+## 2026-03-09
+
+* v0.23.2 prepared
+* 2111e78 re-generate top commons
+* e25650e #231: fix inNpmPackage is not a function
+
 ## 2026-02-21
 
-* v0.23.1 published on npmjs.com
-* v0.23.1 prepared
+* c6d1fe1 website update
+* 4a67238 website update
+* 5758498 website update
+* dbbeb52 website: blog post release 0.23.1 published
+* a79fa81 0.23.1
+* 643cf94 CHANGELOG: publish npm v0.23.1
 * f6b1418 re-generate top commons
 * a01d10e package*.json update
 * 04ef739 config cleanups
