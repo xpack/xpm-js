@@ -5,6 +5,7 @@ Don't forget to close GitHub [issues](https://github.com/xpack/xpm-js/issues/).
 
 ## 2026-03-09
 
+* v0.23.2 published on npmjs.com
 * v0.23.2 prepared
 * 2111e78 re-generate top commons
 * e25650e #231: fix inNpmPackage is not a function
