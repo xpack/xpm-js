@@ -14,6 +14,11 @@
 # -----------------------------------------------------------------------------
 
 # Simple workflow to trigger the deployment of GitHub Pages in another project
+
+# -----------------------------------------------------------------------------
+
+# https://xpack.github.io/xpm/
+# https://github.com/xpack/xpm-js/actions/workflows/trigger-publish-github-pages.yml
 name: Trigger Remote GitHub Pages
 
 on:

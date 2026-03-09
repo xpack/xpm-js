@@ -20,6 +20,10 @@
 # https://github.com/actions/checkout
 # https://github.com/actions/setup-node
 
+# -----------------------------------------------------------------------------
+
+# https://xpack.github.io/xpm/
+# https://github.com/xpack/xpm-js/actions/workflows/test-ci.yml
 name: CI on Push
 
 on:
@@ -36,11 +40,12 @@ on:
       - '**.md'
       - '.gitignore'
       - '.npmignore'
+      - '.clang-format'
       - '.vscode/**'
       - '.github/FUNDING.yml'
       - '.github/workflows/publish-github-pages*.yml'
       - '.github/workflows/trigger-publish-github-pages*.yml'
-      - 'typedoc.json'
+      - 'README*.md'
 
 # Allow one concurrent run.
 concurrency:
@@ -48,13 +53,14 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  npm-test:
+  ci-test:
+    name: 'xpm-js test'
 
     strategy:
       matrix:
         # https://github.com/actions/setup-node
         node-version: [ 20, 22, 24 ]
-        # https://docs.github.com/en/actions/using-github-hosted-runners/using-github-hosted-runners/about-github-hosted-runners
+        # https://github.com/actions/runner-images
         os: [ 'ubuntu-24.04', 'ubuntu-24.04-arm', 'macos-15-intel', 'macos-15', 'windows-2025' ]
 
     runs-on: ${{matrix.os}}

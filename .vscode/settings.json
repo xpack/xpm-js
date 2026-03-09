@@ -1,4 +1,7 @@
 {
+  "editor.rulers": [
+    80
+  ],
   "editor.detectIndentation": false,
   "editor.insertSpaces": true,
   "editor.tabSize": 2,
@@ -9,12 +12,36 @@
   "[typescript]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
+  "[liquid]": {
+    "editor.formatOnSave": false,
+    "editor.formatOnType": false,
+    "editor.formatOnPaste": false,
+    "editor.defaultFormatter": null
+  },
   "files.associations": {
-    "*.json": "jsonc"
+    "*.json": "jsonc",
+    "*-liquid.*": "liquid",
+    "*.liquid": "liquid"
   },
   "cSpell.language": "en-GB",
   "cSpell.ignoreWords": [],
+  "prettier.configPath": "config/.prettierrc.json",
+  "prettier.ignorePath": "config/.prettierignore",
+  "markdownlint.config": {
+    "MD041": false
+  },
+  "cmake.ignoreCMakeListsMissing": true,
+  "cmake.configureOnOpen": false,
+  "makefile.configureOnOpen": false,
+  "npm.exclude": [
+    "**/xpacks/**",
+    "**/build/**",
+    "**/tests/**",
+    "**/tmp/**"
+  ],
   "xpack.exclude": [
+    "**/xpacks/**",
+    "**/build/**",
     "**/tests/**",
     "**/tmp/**"
   ]
