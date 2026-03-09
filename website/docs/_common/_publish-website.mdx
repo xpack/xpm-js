@@ -12,7 +12,7 @@ The website deployment is performed automatically when pushing to the
 - Open https://xpack.github.io/xpm/docs/maintainer/#publish-the-website in a separate window
 - **Stop** the local web server
 - Switch to the `webpreview` branch
-- **Merge** the `development` branch into the `webpreview` branch
+- **Rebase** the `development` branch onto the `webpreview` branch
 - **Push** the `webpreview` branch to GitHub
   :::info
   At this point, an automated GitHub Action will generate and publish 
@@ -20,7 +20,7 @@ The website deployment is performed automatically when pushing to the
   :::
 - Switch to the `website` branch
 - run the `npm install` command, to ensure `package-lock.json` is up to date
-- **Merge** the `development` branch into the `website` branch
+- **Rebase** the `development` branch onto the `website` branch
 - **Push** the `website` branch to GitHub
   :::info
   At this point, an automated forwarding GitHub Action will trigger 
