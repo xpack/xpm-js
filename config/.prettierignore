@@ -1,5 +1,5 @@
-# DO NOT EDIT!
-# Automatically generated from npm-packages-helper/templates/*.
+# DO NOT EDIT! Automatically generated from template file:
+# npm-packages-helper/templates/common/config/.prettierignore-liquid
 
 # Ignore artifacts:
 build
@@ -12,3 +12,6 @@ templates
 # Ignore Liquid template files.
 **/*-liquid.*
 **/*.liquid
+
+**/CODE-REVIEW.md
+**/code-review.md

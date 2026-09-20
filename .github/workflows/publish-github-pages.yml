@@ -1,15 +1,15 @@
 # -----------------------------------------------------------------------------
-# DO NOT EDIT!
-# Automatically generated from npm-packages-helper/templates/*.
+# DO NOT EDIT! Automatically generated from template file:
+# npm-packages-helper/templates/common/.github/workflows/publish-github-pages-liquid.yml
 #
 # This file is part of the xPack project (http://xpack.github.io).
 # Copyright (c) 2021-2026 Liviu Ionescu. All rights reserved.
 #
-# Permission to use, copy, modify, and/or distribute this software
-# for any purpose is hereby granted, under the terms of the MIT license.
+# Permission to use, copy, modify, and/or distribute this software for any
+# purpose is hereby granted, under the terms of the MIT license.
 #
-# If a copy of the license was not distributed with this file, it can
-# be obtained from https://opensource.org/licenses/mit.
+# If a copy of the license was not distributed with this file, it can be
+# obtained from https://opensource.org/licenses/mit.
 #
 # -----------------------------------------------------------------------------
 
@@ -67,17 +67,17 @@ jobs:
     steps:
       - name: Checkout
         # https://github.com/actions/checkout
-        uses: actions/checkout@v6.0.1
+        uses: actions/checkout@v6.0.2
         with:
           # The full history, required to compute lastUpdatedAt
           fetch-depth: 0
 
       - name: Use Nodejs
         # https://github.com/actions/setup-node
-        uses: actions/setup-node@v6.2.0
+        uses: actions/setup-node@v6.4.0
         with:
           # Node LTS version.
-          node-version: 20
+          node-version: 24
 
       - name: Install dependencies
         run: npm --prefix website ci
@@ -89,18 +89,52 @@ jobs:
 
       - name: Setup Pages
         # https://github.com/actions/configure-pages
-        uses: actions/configure-pages@v5.0.0
+        uses: actions/configure-pages@v6.0.0
 
       - name: Upload Pages artifact
         # https://github.com/actions/upload-pages-artifact
-        uses: actions/upload-pages-artifact@v4.0.0
+        uses: actions/upload-pages-artifact@v5.0.0
         with:
           # Upload entire website
           path: './website/build'
 
-      - name: Deploy to GitHub Pages
-        id: deployment # referred by environment above, to get the URL.
+      # The GitHub Pages backend intermittently leaves a deployment stuck
+      # in "queued"/"syncing_files" past the action's 10-minute poll
+      # timeout (unresolved upstream issue, see
+      # https://github.com/actions/deploy-pages/issues/406). Retry with a
+      # cooldown, since an immediate retry against the just-cancelled SHA
+      # fails fast.
+      - name: Deploy to GitHub Pages (attempt 1)
+        id: deploy_attempt_1
+        continue-on-error: true
         # https://github.com/actions/deploy-pages
-        uses: actions/deploy-pages@v4.0.5
-        with:
-          artifact_name: github-pages
+        uses: actions/deploy-pages@v5.0.0
+
+      - name: Wait before retrying deployment (1)
+        if: steps.deploy_attempt_1.outcome == 'failure'
+        run: sleep 120
+
+      - name: Deploy to GitHub Pages (attempt 2)
+        id: deploy_attempt_2
+        if: steps.deploy_attempt_1.outcome == 'failure'
+        continue-on-error: true
+        uses: actions/deploy-pages@v5.0.0
+
+      - name: Wait before retrying deployment (2)
+        if: steps.deploy_attempt_1.outcome == 'failure' && steps.deploy_attempt_2.outcome == 'failure'
+        run: sleep 120
+
+      - name: Deploy to GitHub Pages (attempt 3)
+        id: deploy_attempt_3
+        if: steps.deploy_attempt_1.outcome == 'failure' && steps.deploy_attempt_2.outcome == 'failure'
+        uses: actions/deploy-pages@v5.0.0
+
+      - name: Resolve deployment result
+        id: deployment
+        if: always()
+        run: |
+          page_url="${{ steps.deploy_attempt_3.outputs.page_url || steps.deploy_attempt_2.outputs.page_url || steps.deploy_attempt_1.outputs.page_url }}"
+          echo "page_url=$page_url" >> "$GITHUB_OUTPUT"
+          if [ -z "$page_url" ]; then
+            exit 1
+          fi

@@ -1,15 +1,15 @@
 # -----------------------------------------------------------------------------
-# DO NOT EDIT!
-# Automatically generated from npm-packages-helper/templates/*.
+# DO NOT EDIT! Automatically generated from template file:
+# npm-packages-helper/templates/common/.github/workflows/_xpack/test-ci-liquid.yml
 #
 # This file is part of the xPack project (http://xpack.github.io).
 # Copyright (c) 2021-2026 Liviu Ionescu. All rights reserved.
 #
-# Permission to use, copy, modify, and/or distribute this software
-# for any purpose is hereby granted, under the terms of the MIT license.
+# Permission to use, copy, modify, and/or distribute this software for any
+# purpose is hereby granted, under the terms of the MIT license.
 #
-# If a copy of the license was not distributed with this file, it can
-# be obtained from https://opensource.org/licenses/mit.
+# If a copy of the license was not distributed with this file, it can be
+# obtained from https://opensource.org/licenses/mit.
 #
 # -----------------------------------------------------------------------------
 
@@ -40,7 +40,6 @@ on:
       - '**.md'
       - '.gitignore'
       - '.npmignore'
-      - '.clang-format'
       - '.vscode/**'
       - '.github/FUNDING.yml'
       - '.github/workflows/publish-github-pages*.yml'
@@ -57,6 +56,8 @@ jobs:
     name: 'xpm-js test'
 
     strategy:
+      # Do not cancel the other matrix jobs if one of them fails.
+      fail-fast: false
       matrix:
         # https://github.com/actions/setup-node
         node-version: [ 20, 22, 24 ]

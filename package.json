@@ -14,55 +14,6 @@
     "xpm": "bin/xpm.js",
     "xpm-dev": "bin/xpm-dev.js"
   },
-  "scripts": {
-    "generate-top-commons": "bash node_modules/@xpack/npm-packages-helper/maintenance-scripts/generate-top-commons.sh --xpack",
-    "compile-watch": "tsc --build --verbose --watch src",
-    "prettier": "prettier src tests --write --config config/.prettierrc.json --ignore-path config/.prettierignore",
-    "fix": "standard --fix src tests",
-    "compile": "echo tsc --build --verbose src",
-    "fix-compile": "npm run prettier && npm run fix && npm run compile",
-    "dev-cycle": "npm run fix && npm run test",
-    "npm-install": "npm install",
-    "npm-link-deps": "npm link @ilg/cli-start-options @xpack/xpm-lib",
-    "npm-link-lib": "npm link @xpack/xpm-lib",
-    "npm-link-helpers": "npm link @xpack/npm-packages-helper @xpack/docusaurus-template-liquid",
-    "npm-outdated": "npm outdated",
-    "npm-update": "npm update",
-    "npm-version-patch": "npm version patch",
-    "npm-version-minor": "npm version minor",
-    "npm-pack": "npm pack",
-    "npm-link": "npm link",
-    "postversion": "git push origin --all && git push origin --tags",
-    "git-log": "git log --pretty='%cd * %h %s' --date=short",
-    "lint": "echo standard src",
-    "prepare": "npm run lint",
-    "pretest": "npm run compile && npm run lint",
-    "test-ci": "tap run --reporter=terse --disable-coverage",
-    "test": "echo 'No tests defined'",
-    "test-coverage": "tap --show-full-coverage",
-    "test-all": "tap run --reporter=tap --disable-coverage",
-    "test-one-010": "tap run --reporter=tap --disable-coverage tests/tap/010-*.ts",
-    "test-one-020": "tap run --reporter=tap --disable-coverage tests/tap/020-*.ts",
-    "test-one-030": "tap run --reporter=tap --disable-coverage tests/tap/030-*.ts",
-    "test-one-040": "tap run --reporter=tap --disable-coverage tests/tap/040-*.ts",
-    "test-one-050": "tap run --reporter=tap --disable-coverage tests/tap/050-*.ts",
-    "test-one-060": "tap run --reporter=tap --disable-coverage tests/tap/060-*.ts",
-    "test-tap-config-list": "tap config list",
-    "prepublishOnly": "npm run lint && npm run test",
-    "postpublish": "git push origin --follow-tags",
-    "dumpconf": "env | sort | uniq",
-    "show-versions": "echo $(which node) $(node --version) && echo $(which npm) $(npm --version)",
-    "clean": "del-cli --force dist build .tap",
-    "deep-clean": "npm run clean && del-cli --force node_modules package-lock.json",
-    "pretest-coverage": "npm run lint",
-    "pretest-no-coverage": "npm run lint",
-    "test-no-coverage": "tap --disable-coverage",
-    "tap": "tap --reporter=tap"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/xpack/xpm-js.git"
-  },
   "keywords": [
     "xpack",
     "xpm",
@@ -71,18 +22,28 @@
     "cli",
     "npm"
   ],
+  "license": "MIT",
   "author": {
     "name": "Liviu Ionescu",
     "email": "ilg@livius.net",
     "url": "https://github.com/ilg-ul"
   },
   "contributors": [],
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/xpack/xpm-js/issues"
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/xpack/xpm-js.git"
   },
   "homepage": "https://xpack.github.io/xpm/",
   "homepagePreview": "https://xpack.github.io/xpm-js/",
+  "bugs": {
+    "url": "https://github.com/xpack/xpm-js/issues"
+  },
+  "$dependenciesUrls": {
+    "del-cli": "https://www.npmjs.com/package/del-cli",
+    "glob": "https://www.npmjs.com/package/glob",
+    "json": "https://www.npmjs.com/package/json",
+    "liquidjs": "https://www.npmjs.com/package/liquidjs"
+  },
   "dependencies": {
     "@ilg/cli-start-options": "^0.9.0",
     "@npmcli/arborist": "^9.4.0",
@@ -114,7 +75,8 @@
     "standard": "^17.1.2",
     "tap": "^21.5.1",
     "typescript-eslint": "^8.57.0",
-    "liquidjs": "^10.24.0"
+    "liquidjs": "^10.27.1",
+    "glob": "^13.0.6"
   },
   "bundleDependencies": [
     "@npmcli/arborist",
@@ -137,37 +99,51 @@
     "semver",
     "tar"
   ],
-  "standard": {
-    "ignore": [
-      "/website/"
-    ]
-  },
-  "ts-standard": {
-    "ignore": [
-      "**/*.d.ts",
-      "**/*.js"
-    ]
-  },
-  "topConfig": {
-    "descriptiveName": "xPack Project Manager",
-    "githubActionsNodeVersions": [
-      "20",
-      "22",
-      "24"
-    ],
-    "githubActionsOses": [
-      "ubuntu-24.04",
-      "ubuntu-24.04-arm",
-      "macos-15-intel",
-      "macos-15",
-      "windows-2025"
-    ],
-    "permalinkName": "xpm",
-    "preferShortName": "true",
-    "hasTriggerPublish": "true",
-    "hasCli": "true",
-    "isWebPreview": "true",
-    "testCoverage": "false"
+  "scripts": {
+    "generate-top-commons": "node node_modules/@xpack/npm-packages-helper/maintenance-scripts/generate-top-commons.mjs --xpack",
+    "compile-watch": "tsc --build --verbose --watch src",
+    "prettier": "prettier src tests --write --config config/.prettierrc.json --ignore-path config/.prettierignore",
+    "fix": "standard --fix src tests",
+    "compile": "echo tsc --build --verbose src",
+    "fix-compile": "npm run prettier && npm run fix && npm run compile",
+    "dev-cycle": "npm run fix && npm run test",
+    "npm-install": "npm install",
+    "npm-link-deps": "npm link @ilg/cli-start-options @xpack/xpm-lib",
+    "npm-link-lib": "npm link @xpack/xpm-lib",
+    "npm-link-helpers": "npm link @xpack/npm-packages-helper @xpack/docusaurus-template-liquid",
+    "npm-outdated": "npm outdated",
+    "npm-update": "npm update",
+    "npm-version-patch": "npm version patch",
+    "npm-version-minor": "npm version minor",
+    "npm-pack": "npm pack",
+    "npm-link": "npm link",
+    "npm-audit": "npm audit fix --force",
+    "postversion": "git push origin --all && git push origin --tags",
+    "git-log": "git log --pretty='%cd * %h %s' --date=short",
+    "lint": "echo standard src",
+    "prepare": "del-cli dist && npm run prettier && npm run lint && npm run compile",
+    "pretest": "npm run compile && npm run lint",
+    "test-ci": "tap run --reporter=terse --disable-coverage",
+    "test": "echo 'No tests defined'",
+    "test-coverage": "tap --show-full-coverage",
+    "test-all": "tap run --reporter=tap --disable-coverage",
+    "test-one-010": "tap run --reporter=tap --disable-coverage tests/tap/010-*.ts",
+    "test-one-020": "tap run --reporter=tap --disable-coverage tests/tap/020-*.ts",
+    "test-one-030": "tap run --reporter=tap --disable-coverage tests/tap/030-*.ts",
+    "test-one-040": "tap run --reporter=tap --disable-coverage tests/tap/040-*.ts",
+    "test-one-050": "tap run --reporter=tap --disable-coverage tests/tap/050-*.ts",
+    "test-one-060": "tap run --reporter=tap --disable-coverage tests/tap/060-*.ts",
+    "test-tap-config-list": "tap config list",
+    "prepublishOnly": "npm run lint && npm run test",
+    "postpublish": "git push origin --follow-tags",
+    "dumpconf": "env | sort | uniq",
+    "show-versions": "echo $(which node) $(node --version) && echo $(which npm) $(npm --version)",
+    "clean": "del-cli --force dist build .tap",
+    "deep-clean": "del-cli --force node_modules package-lock.json",
+    "pretest-coverage": "npm run lint",
+    "pretest-no-coverage": "npm run lint",
+    "test-no-coverage": "tap --disable-coverage",
+    "tap": "tap --reporter=tap"
   },
   "engines": {
     "node": ">=20.0"
