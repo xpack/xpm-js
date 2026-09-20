@@ -5,6 +5,7 @@ Don't forget to close GitHub [issues](https://github.com/xpack/xpm-js/issues/).
 
 ## 2026-09-20
 
+* v0.23.3 published on npmjs.com
 * v0.23.3 prepared
 * 8e016f3 link.js: postOptions cosmetics
 * a83cb09 #232: fix isNpmPackage is not a function
