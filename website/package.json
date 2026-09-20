@@ -1,10 +1,10 @@
 {
-  "DO NOT EDIT": "Automatically generated from docusaurus-template-liquid/templates/docusaurus",
+  "DO NOT EDIT": "Automatically generated from template file: docusaurus-template-liquid/templates/common/package-merge-liquid.json",
   "name": "website",
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "generate-website-commons": "bash node_modules/@xpack/docusaurus-template-liquid/maintenance-scripts/generate-website-commons.sh --xpack",
+    "generate-website-commons": "node node_modules/@xpack/docusaurus-template-liquid/maintenance-scripts/generate-website-commons.mjs --xpack",
     "docusaurus": "docusaurus",
     "start": "docusaurus start",
     "build": "docusaurus build",
@@ -21,9 +21,9 @@
     "npm-link-helpers": "npm link @xpack/docusaurus-template-liquid @xpack/npm-packages-helper",
     "npm-ci": "npm ci",
     "deep-clean": "del-cli .docusaurus build node_modules package-lock.json",
-    "import-website-releases": "bash node_modules/@xpack/docusaurus-template-liquid/maintenance-scripts/import-releases.sh --xpack",
-    "generate-website-blog-post": "bash node_modules/@xpack/docusaurus-template-liquid/maintenance-scripts/generate-blog-post.sh --xpack",
-    "generate-dependencies-details": "bash node_modules/@xpack/docusaurus-template-liquid/maintenance-scripts/generate-dependencies-details.sh --xpack",
+    "import-website-releases": "node node_modules/@xpack/docusaurus-template-liquid/maintenance-scripts/import-releases.mjs --xpack",
+    "generate-website-blog-post": "node node_modules/@xpack/docusaurus-template-liquid/maintenance-scripts/generate-blog-post.mjs --xpack",
+    "generate-dependencies-details": "node node_modules/@xpack/docusaurus-template-liquid/maintenance-scripts/generate-dependencies-details.mjs --xpack",
     "clean": "del-cli .docusaurus build"
   },
   "author": {
@@ -33,33 +33,34 @@
   },
   "license": "MIT",
   "dependencies": {
-    "@docusaurus/core": "3.9.2",
-    "@docusaurus/plugin-client-redirects": "3.9.2",
-    "@docusaurus/plugin-ideal-image": "3.9.2",
-    "@docusaurus/preset-classic": "3.9.2",
-    "@docusaurus/theme-search-algolia": "3.9.2",
+    "@docusaurus/core": "3.10.1",
+    "@docusaurus/plugin-client-redirects": "3.10.1",
+    "@docusaurus/plugin-ideal-image": "3.10.1",
+    "@docusaurus/preset-classic": "3.10.1",
+    "@docusaurus/theme-search-algolia": "3.10.1",
     "@mdx-js/react": "^3.1.1",
     "clean-css": "~5.3.3",
     "clsx": "^2.0.0",
     "prism-react-renderer": "^2.3.0",
     "react": "^19.2.3",
     "react-dom": "^19.2.3",
-    "@docusaurus/faster": "3.9.2"
+    "@docusaurus/faster": "3.10.1"
   },
   "devDependencies": {
-    "@docusaurus/module-type-aliases": "3.9.2",
-    "@docusaurus/tsconfig": "3.9.2",
-    "@docusaurus/types": "3.9.2",
+    "@docusaurus/module-type-aliases": "3.10.1",
+    "@docusaurus/tsconfig": "3.10.1",
+    "@docusaurus/types": "3.10.1",
     "del-cli": "^7.0.0",
     "docusaurus-plugin-typedoc": "^1.2.1",
     "json": "^11.0.0",
-    "liquidjs": "^10.24.0",
+    "liquidjs": "^10.25.0",
     "typedoc": "^0.28.7",
     "typescript": "~5.9.3",
     "@microsoft/api-documenter": "^7.29.7",
     "@microsoft/api-extractor": "^7.57.7",
     "@xpack/docusaurus-template-liquid": "github:xpack/docusaurus-template-liquid",
-    "@xpack/npm-packages-helper": "github:xpack/npm-packages-helper"
+    "@xpack/npm-packages-helper": "github:xpack/npm-packages-helper",
+    "glob": "^13.0.6"
   },
   "$devDependenciesUrls": [
     "https://www.npmjs.com/package/del-cli",
@@ -100,5 +101,12 @@
   },
   "engines": {
     "node": ">=20.0"
+  },
+  "$dependenciesUrls": {
+    "del-cli": "https://www.npmjs.com/package/del-cli",
+    "glob": "https://www.npmjs.com/package/glob",
+    "json": "https://www.npmjs.com/package/json",
+    "liquidjs": "https://www.npmjs.com/package/liquidjs",
+    "typescript": "https://www.npmjs.com/package/typescript"
   }
 }

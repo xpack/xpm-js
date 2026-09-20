@@ -285,11 +285,6 @@ const config: Config = {
             },
           ]
         },
-        {
-          label: `${customFields.releaseVersion}`,
-          position: 'right',
-          href: `https://www.npmjs.com/package/xpm/v/${customFields.releaseVersion}`,
-        },
       ],
     },
     footer: {

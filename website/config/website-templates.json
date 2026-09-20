@@ -1,0 +1,15 @@
+{
+  "branding": "",
+  "metadataKeywords": "xpm, xpack, project, manager, build, test, dependencies, npm, reproducibility",
+  "programName": "xpm",
+  "tagline": "A tool to automate builds, tests and manage C/C++ dependencies, inspired by npm",
+  "title": "xpm - The xPack Project Manager",
+  "userGuideDescription": "User information, including how to use xpm with existing xpm packages and how to create new packages",
+  "hasCustomDocsNavbarItem": true,
+  "hasCustomHomepageFeatures": true,
+  "hasCustomSidebar": true,
+  "hasMetadataMinimum": true,
+  "hasPolicies": true,
+  "isInstallGlobally": true,
+  "shareOnTwitter": true
+}
