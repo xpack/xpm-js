@@ -73,7 +73,7 @@ export class Link extends CliCommand {
     this.optionGroups = [
       {
         title: 'Link options',
-        postOptions: '[[@<scope>/]<name>]', // Extra arguments.
+        postOptions: '[[@<scope>/]<name>...]', // Extra arguments.
         optionDefs: [
           {
             options: ['-c', '--config'],
