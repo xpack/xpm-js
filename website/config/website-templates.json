@@ -5,6 +5,7 @@
   "tagline": "A tool to automate builds, tests and manage C/C++ dependencies, inspired by npm",
   "title": "xpm - The xPack Project Manager",
   "userGuideDescription": "User information, including how to use xpm with existing xpm packages and how to create new packages",
+  "nodeVersion": "18.20.4",
   "hasCustomDocsNavbarItem": true,
   "hasCustomHomepageFeatures": true,
   "hasCustomSidebar": true,
