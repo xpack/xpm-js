@@ -149,7 +149,7 @@ export class Link extends CliCommand {
     }
 
     if (args.length === 0) {
-      if (!jsonPackage.isNpmPackage()) {
+      if (!xpmPackage.isNpmPackage()) {
         throw new CliErrorInput(
           'check for mandatory "name" and "version" properties in package.json'
         )
