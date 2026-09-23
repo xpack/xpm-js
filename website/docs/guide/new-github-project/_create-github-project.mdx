@@ -16,10 +16,10 @@ With a browser, at GitHub, select your account or organisation.
   :::tip
 
   To easily identify the project as
-  an xPack, it is recommended to suffix the project name with '-xpack'.
+  an xpm package, it is recommended to suffix the project name with `-xpack`.
 
-    :::
-  - enter **Description** (like _A source library package with ..._ or _A binary package with ..._; no ending dot!)
+  :::
+  - enter **Description** (like _A source library package with ..._ or _A binary package with ..._; without a trailing full stop)
   - select **Public**
   - enable **Initialize this repository with a README**
   - select **Add .gitignore: Node**
@@ -44,7 +44,7 @@ With the GitHub web interface:
   small **Clone to HTTPS** window
 - click the **Copy** icon, or explicitly copy the URL
 - in a terminal window, in a place of our choice, create a folder
-  to store all xPacks (for example it can be named `xPacks`):
+  to store all xpm packages (for example it can be named `xPacks`):
 
 ```sh
 mkdir -p xPacks
@@ -65,6 +65,7 @@ In this case, to inform users about this configuration, edit the
 ```text
 This project does not use the `master` branch, please
 switch to the `xpack` branch to access the project files.
+
 ```
 
 With VS Code, Fork or Git:
@@ -98,7 +99,7 @@ With VS Code, Fork or Git:
 - stage the file
 - commit with the following message: **LICENSE: update copyright owner**
 
-### Create the `xpack` branch
+### Create the `xpack` branch (important)
 
 With VS Code, Fork or Git:
 

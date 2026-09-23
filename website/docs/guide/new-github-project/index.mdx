@@ -1,7 +1,7 @@
 ---
 
 title: How to create a new xPack GitHub repository
-description: Detailed instruction how to create a new GitHub repository.
+description: Detailed instructions on how to create a new GitHub repository.
 
 
 date: 2019-07-09 17:48:00 +0300
@@ -31,16 +31,16 @@ Work in progress.
 The technical definition of an xpm package is _a folder containing a
 package.json file with some minimal content_
 (refer to the [Concepts](../concepts) page for further details).
-This definition does not mandate any particular folders hierarchy
+This definition does not mandate any particular folder hierarchy
 or version control system, if any.
 
-Therefore, an xpm package can be created using any tool and stored in
+Therefore, an xpm package (xPack) can be created using any tool and stored in
 any version control system.
 
 :::tip
 
-All xPack Project sub-projects are hosted in public **GitHub** repositories.
-For convenience, it is recommended to create new projects on GitHub as well.
+All µOS++ sub-projects are hosted in public **GitHub** repositories.
+For convenience, it is recommended to host new projects on GitHub as well.
 
 :::
 
@@ -125,7 +125,7 @@ With the GitHub web interface:
 - fork it (for example in an organisation like the
   [xpack-3rd-party](https://github.com/xpack-3rd-party))
 - preferably rename it:
-  - add a prefix with the name of the original organization
+  - add a prefix with the name of the original organisation
   - add the `-xpack` suffix
   - click the **Rename** button
 - select the **Settings** tab
@@ -134,7 +134,8 @@ With the GitHub web interface:
     - enable **Issues**
     - enable **Sponsorship** (if needed)
     - disable **Projects**
-    - enable **Discussions**, Set up discussions
+    - enable **Discussions**
+    - click **Set up discussions**
   - quit the **Settings** tab (there is no Save)
 
 ### Clone locally
@@ -146,7 +147,7 @@ With the GitHub web interface:
 - open the forked project
 - select the **Code** tab
 - click the **Clone or download** button
-- click Open with GitHub Desktop; save to a folder like
+- click **Open with GitHub Desktop**; save to a folder like
   `xpack-3rd-party/<project>-xpack.git`
 
 ### Identify the latest release
@@ -157,7 +158,7 @@ With VS Code, Fork or Git:
 - identify the latest release tag
 - reset the current branch to the tagged commit
 
-#### Create the `xpack` branch
+### Create the `xpack` branch
 
 With VS Code, Fork or Git:
 
@@ -199,7 +200,7 @@ existing archives in a separate branch
 archive.
 
 With each upstream release, while on the `originals` branch,
-fully remove the content extract the newly released archive, commit and push.
+fully remove the content, extract the newly released archive, commit and push.
 Then merge into `xpack`.
 
 <CreateGitHubProject doReconstruct="true" />
@@ -216,7 +217,7 @@ In case the archive contains binary files, or other large files considered
 not essential for the xPack distribution, add them to `.gitignore`.
 - commit with a message like: **vX.Y.Z content**
 
-Add/Edit the README file to add:
+Edit the README file to include:
 
 ```text
 This branch is used to recreate the third-party project history
@@ -387,10 +388,10 @@ Open `package.json` with VS Code:
   your npm organisations) and the project name, without `-xpack.git`
   (like `@micro-os-plus/diag-trace`, `@xpack-dev-tools/ninja-build`,
   `@xpack-3rd-party/arm-cmsis-core`)
-- as **version**, enter `0.1.0; generally use the
+- as **version**, enter `0.1.0`; generally use the
   [SemVer](https://semver.org) conventions
 - as **description**, use the same string as the GitHub project description
-- in **scripts**, check and possibly remove a trailing comma,
+- in **scripts**, check and possibly remove a trailing comma
 - as **url** and **homepage**, use the actual project Git URL
 - as **author**, enter full data, like
 
@@ -414,8 +415,8 @@ Open `package.json` with VS Code:
 { "license": "SEE LICENSE IN <filename>" }
 ```
 
-- if the package is inspired by other existing code, enter the author
-  as the first contributor, for example:
+- if the package is inspired by other existing code, enter the
+  original code's author as a contributor, for example:
 
 ```json
 {
@@ -444,10 +445,8 @@ Update the list of npm scripts:
     "npm-outdated": "npm outdated",
     "npm-update": "npm update",
     "npm-pack": "npm pack",
-    "npm-version-patch": "npm version patch",
-    "npm-version-minor": "npm version minor",
     "postversion": "git push origin --all && git push origin --tags",
-    "git-log": "git log --pretty='%cd * %h %s' --date=short",{% if isJavascript == "true" %}
+    "git-log": "git log --pretty='%cd * %h %s' --date=short"
   },
   ...
 }
@@ -518,7 +517,7 @@ With VS Code, Fork or Git:
 
 Copy/paste files like:
 
-- `test-ci.yml` (to be executed automatically opon pushes)
+- `test-ci.yml` (to be executed automatically upon pushes)
 - `test-all.yml` (to be triggered manually upon user request)
 - commit with the following message: **.github/workflows preliminary content**
 
@@ -563,10 +562,10 @@ With VS Code, Fork or Git:
 - check the latest commits `npm run git-log`
 - update `CHANGELOG.md`; commit with a message like
   _CHANGELOG: prepare npm v1.10.0-1.1_
-- `npm version v1.10.0-1.1`; the first 4 numbers are the same as the
+- `npm version v1.10.0-1.1`; the first four numbers are the same as the
   GitHub release; the fifth number is the npm specific version
 - `npm pack` and check the content of the archive, which should list
-only the desired content and
+  only the desired content and
 the `package.json`, the `README.md`, `LICENSE` and `CHANGELOG.md` files
 - push all changes to GitHub
 - `npm publish --access public --tag next`
@@ -579,7 +578,7 @@ When the release is considered stable, promote it as `latest`. For example:
 
 ### Bump version
 
-In general, depending on the _disruption_ degree, chose one of the following:
+In general, depending on the _disruption_ degree, choose one of the following:
 
 ```sh
 cd <project>.git
